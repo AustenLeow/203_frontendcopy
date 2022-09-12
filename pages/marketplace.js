@@ -1,5 +1,7 @@
-function marketplace() {
-    return <h1>listings will be here</h1>
-}
+import React from 'react'
 
-export default marketplace
+export default function marketplace() {
+  return (
+    <div>marketplace</div>
+  )
+}

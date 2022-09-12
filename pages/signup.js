@@ -1,5 +1,7 @@
-function signup() {
-    return <h1>sign up page</h1>
-}
+import React from 'react'
 
-export default signup
+export default function signup() {
+  return (
+    <div>signup</div>
+  )
+}

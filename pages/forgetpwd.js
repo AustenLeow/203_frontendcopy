@@ -1,9 +1,7 @@
 import React from 'react'
 
-const forgetpwd = () => {
+export default function forgetpwd() {
   return (
     <div>forgetpwd</div>
   )
 }
-
-export default forgetpwd
