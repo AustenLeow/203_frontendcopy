@@ -1,5 +1,7 @@
-function cart() {
-    return <h1>cart page</h1>
-}
+import React from 'react'
 
-export default cart
+export default function cart() {
+  return (
+    <div>cart</div>
+  )
+}

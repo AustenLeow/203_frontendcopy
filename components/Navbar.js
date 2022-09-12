@@ -51,10 +51,10 @@ export default function Navbar() {
                         <NavLink to="/marketplace">
                             marketplace
                         </NavLink>
-                        <NavLink to="/about" >
+                        <NavLink to="/login" >
                             log in
                         </NavLink>
-                        <NavLink to="/marketplace">
+                        <NavLink to="/signup">
                             sign up
                         </NavLink>
                     </div>
