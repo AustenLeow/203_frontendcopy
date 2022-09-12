@@ -1,5 +1,9 @@
-function login() {
-    return <h1>login page</h1>
+import React from 'react'
+
+const login = () => {
+  return (
+    <div>login</div>
+  )
 }
 
 export default login

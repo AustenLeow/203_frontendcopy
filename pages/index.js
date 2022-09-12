@@ -9,9 +9,13 @@ export default function Home() {
       <Head>
         <title> re_ </title>
       </Head>
-      <Navbar />
-
-      <main className={styles.main}></main>
+      <div className="w-screen h-screen bg-[#EFEDE7] flex items-center justify-center">
+        <div className="text-center flex justify-center">
+          <h1 className="py-5 text-4xl lg:text-6xl">
+            re_
+          </h1>
+        </div>
+      </div>
     </div>
     /* <div className={styles.container}>
       <Head>
