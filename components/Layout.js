@@ -11,7 +11,7 @@ export default function Layout({ title, children}) {
             <link rel="icon" href="/favicon.ico" />
           </Head>
 
-          <div className="flex min-h-screen flex-col justify-between bg-[#EFEDE7]">
+        <div className="flex min-h-screen flex-col justify-between bg-[#EFEDE7]">
             <header>
                 
             </header>
@@ -19,7 +19,7 @@ export default function Layout({ title, children}) {
                 
             </main>
             <footer className="flex h-[400px] justify-center items-center shadow-inner bg-[#EFEDE7]">footer</footer>
-          </div>
+        </div>
           
           
         </>
