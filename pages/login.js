@@ -13,7 +13,7 @@ export default function login() {
     console.log(email, password);
   };
   return (
-    <Layout title="Login">
+    <Layout title="login">
       <form
         className="mx-auto w-3/5 py-16 md:py-32"
         onSubmit={handleSubmit(submitHandler)}
@@ -24,9 +24,9 @@ export default function login() {
               image should be here
             </div>
             <div className="relative text-left flex flex-col justify-center">
-              <h1 className="mb-4 text-xl">Login</h1>
+              <h1 className="mb-4 text-xl">login</h1>
               <div className="mb-4">
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email">email</label>
                 <input
                   type="email"
                   {...register("email", {
@@ -45,7 +45,7 @@ export default function login() {
                 )}
               </div>
               <div className="mb-4">
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password">password</label>
                 <input
                   type="password"
                   {...register("password", {
@@ -68,8 +68,8 @@ export default function login() {
                 <button className="primary-button">Login</button>
               </div>
               <div className="mb-4 ">
-                Don&apos;t have an account? &nbsp;
-                <Link href="register">Sign up</Link>
+                don&apos;t have an account? &nbsp;
+                <Link href="register">sign up</Link>
               </div>
             </div>
           </div>
