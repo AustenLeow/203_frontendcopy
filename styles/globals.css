@@ -31,5 +31,14 @@ a {
     color: white;
     background: black;
   }
+}
 
+.primary-button{
+  @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;
+}
+
+input,
+select,
+textarea {
+  @apply rounded border p-2 bg-[#EFEDE7] outline-none ring-[#A2A182] focus:ring;
 }

@@ -6,7 +6,7 @@ export default function Layout({ title, children}) {
     return (
         <>
           <Head>
-            <title>{title ? title + ' - re_' : 're_'}</title>
+            <title>{title ? title + ' |  re_' : 're_'}</title>
             <meta name="description" content="climate change" />
             <link rel="icon" href="/favicon.ico" />
           </Head>
@@ -18,7 +18,7 @@ export default function Layout({ title, children}) {
             <main className="container h-screen m-auto mt-4 p-4 bg-[#EFEDE7]">{children} 
                 
             </main>
-            <footer className="flex h-[400px] justify-center items-center shadow-inner bg-[#EFEDE7]">footer</footer>
+            <footer className="flex h-[320px] justify-center items-center shadow-inner bg-[#EFEDE7]">footer</footer>
         </div>
           
           
