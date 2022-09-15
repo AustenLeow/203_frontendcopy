@@ -30,10 +30,10 @@ export default function login() {
                 <input
                   type="email"
                   {...register("email", {
-                    required: "Please enter email",
+                    required: "please enter your email",
                     pattern: {
                       value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/i,
-                      message: "Please enter valid email",
+                      message: "please enter a valid email",
                     },
                   })}
                   className="w-full"
@@ -49,11 +49,11 @@ export default function login() {
                 <input
                   type="password"
                   {...register("password", {
-                    required: "Please enter password",
+                    required: "please enter your password",
                     minLength: {
                       value: 6,
                       message:
-                        "Password should have a minimum of 6 characters ",
+                        "your password should have a minimum of 6 characters ",
                     },
                   })}
                   className="w-full"
@@ -65,11 +65,13 @@ export default function login() {
                 )}
               </div>
               <div className="mb-4 ">
-                <button className="primary-button">Login</button>
+                <button className="primary-button">login</button>
               </div>
               <div className="mb-4 ">
                 don&apos;t have an account? &nbsp;
-                <Link href="register">sign up</Link>
+                <a className="my-4 text-[#687259]" href="/signup" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
+                    sign up here!
+                </a>
               </div>
             </div>
           </div>
