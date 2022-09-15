@@ -19,6 +19,12 @@ function MobileNav({open, setOpen}) {
                 <a className="text-xl my-4 text-[#687259]" href="/marketplace" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
                     marketplace
                 </a>
+                <a className="text-xl my-4 text-[#687259]" href="/login" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
+                    login
+                </a>
+                <a className="text-xl my-4 text-[#687259]" href="/sign up" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
+                    sign up
+                </a>
             </div>  
         </div>
     )
