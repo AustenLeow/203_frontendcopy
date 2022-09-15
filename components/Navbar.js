@@ -52,7 +52,7 @@ export default function Navbar() {
                             marketplace
                         </NavLink>
                         <NavLink to="/login" >
-                            log in
+                            login
                         </NavLink>
                         <NavLink to="/signup">
                             sign up
