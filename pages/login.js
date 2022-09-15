@@ -19,7 +19,10 @@ export default function login() {
         onSubmit={handleSubmit(submitHandler)}
       >
         <div className="w-full flex items-center justify-center">
-          <div className="relative w-full h-fit m-auto grid grid-cols-1 lg:grid-cols-2">
+          <div className="relative w-full h-fit m-auto grid grid-cols-1 lg:grid-cols-2 ">
+            <div className="flex flex-col items-center justify-center">
+              image should be here
+            </div>
             <div className="relative text-left flex flex-col justify-center">
               <h1 className="mb-4 text-xl">Login</h1>
               <div className="mb-4">
@@ -49,7 +52,8 @@ export default function login() {
                     required: "Please enter password",
                     minLength: {
                       value: 6,
-                      message: "Password should have a minimum of 6 characters ",
+                      message:
+                        "Password should have a minimum of 6 characters ",
                     },
                   })}
                   className="w-full"
@@ -67,9 +71,6 @@ export default function login() {
                 Don&apos;t have an account? &nbsp;
                 <Link href="register">Sign up</Link>
               </div>
-            </div>
-            <div className="flex flex-col items-center justify-center">
-                image should be here
             </div>
           </div>
         </div>
