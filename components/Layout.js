@@ -15,7 +15,7 @@ export default function Layout({ title, children}) {
             <header>
                 
             </header>
-            <main className="container h-screen m-auto mt-4 p-4 bg-[#EFEDE7]">{children} 
+            <main className="w-screen h-screen m-auto mt-4 p-4 bg-[#EFEDE7]">{children} 
                 
             </main>
             <footer className="flex h-[320px] justify-center items-center shadow-inner bg-[#EFEDE7]">footer</footer>

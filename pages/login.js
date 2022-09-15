@@ -9,6 +9,7 @@ export default function login() {
       <form
         className="mx-auto max-w-screen-md"
       >
+        <div className="">
         <h1 className="mb-4 text-xl">Login</h1>
         <div className="w-mb-4">
           <label htmlFor="email">Email</label> 
@@ -25,6 +26,7 @@ export default function login() {
             Don&apos;t have an account? &nbsp; 
             <Link href="/signup">Sign up </Link>
           </div>
+        </div>
         </div>
       </form>
     </Layout>
