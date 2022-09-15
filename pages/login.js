@@ -70,7 +70,7 @@ export default function login() {
               <div className="mb-4 ">
                 don&apos;t have an account? &nbsp;
                 <a className="my-4 text-[#687259]" href="/signup" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
-                    sign up here!
+                    sign up here 
                 </a>
               </div>
             </div>
