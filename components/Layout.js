@@ -11,11 +11,11 @@ export default function Layout({ title, children}) {
             <link rel="icon" href="/favicon.ico" />
           </Head>
 
-        <div className="flex min-h-screen flex-col justify-between bg-[#EFEDE7]">
+        <div className="flex min-h-screen flex-col justify-between bg-[#EFEDEE]">
             <header>
                 
             </header>
-            <main className="w-screen h-screen m-auto mt-4 p-4 bg-[#EFEDE7]">{children} 
+            <main className="w-screen h-screen m-auto mt-4 p-4 bg-[#EFEDEE]">{children} 
                 
             </main>
             <footer className="flex h-[320px] justify-center items-center shadow-inner bg-[#EFEDE7]">footer</footer>
