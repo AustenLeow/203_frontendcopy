@@ -15,7 +15,7 @@ export default function login() {
   return (
     <Layout title="Login">
       <form
-        className="mx-auto max-w-screen-md py-16 md:py-32"
+        className="mx-auto w-3/5 py-16 md:py-32"
         onSubmit={handleSubmit(submitHandler)}
       >
         <div className="w-full flex items-center justify-center">
