@@ -58,3 +58,7 @@ textarea {
   padding: 0;
 }
 
+.overlay{
+  position: absolute;
+  background-color: black;
+}

@@ -6,17 +6,17 @@ export default function Home() {
     <Layout title="">
       <div className="w-screen flex items-center justify-center">
         <video
-          className="w-screen"
+          className="w-screen brightness-50"
           src={require("../public/homepage-b-roll.mp4")}
           type="video/mp4"
           autoPlay
           loop
           muted
         />
-        <div className="absolute w-4/5 h-fit m-auto grid grid-cols-1 lg:grid-cols-2">
-          <div className="text-6xl text-white">
+        <div className="absolute w-3/5 h-fit m-auto grid grid-cols-1 lg:grid-cols-2">
+          <div className="text-8xl text-white">
             <strong> re</strong>
-            <strong className="px-2">
+            <strong className="px-3">
               <Typical
                 steps={[
                   "price_",
