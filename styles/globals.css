@@ -43,3 +43,18 @@ textarea {
   @apply rounded border p-2 bg-[#F5F5F5] outline-none ring-[#A2A182] focus:ring;
 }
 
+.main{
+  width:100%;
+  height:100vh;
+}
+
+.video{
+  width: 100%;
+  object-fit:cover;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
