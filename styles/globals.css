@@ -42,3 +42,4 @@ select,
 textarea {
   @apply rounded border p-2 bg-[#F5F5F5] outline-none ring-[#A2A182] focus:ring;
 }
+
