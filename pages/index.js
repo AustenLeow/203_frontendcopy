@@ -1,9 +1,4 @@
-import Head from "next/head";
-import Image from "next/image";
 import Layout from "../components/Layout";
-import Navbar from "../components/Navbar";
-import styles from "../styles/Home.module.css";
-import videoBg from "../public/homepage-b-roll.mp4";
 
 export default function Home() {
   return (
@@ -17,6 +12,7 @@ export default function Home() {
           loop
           muted
         />
+        
       </div>
     </Layout>
   );
