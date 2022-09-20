@@ -15,11 +15,11 @@ export default function login() {
   return (
     <Layout title="login">
       <form
-        className="mx-auto w-3/5 py-16 md:py-32"
+        className="h-screen w-screen py-16 md:py-32"
         onSubmit={handleSubmit(submitHandler)}
       >
-        <div className="w-full flex items-center justify-center">
-          <div className="relative w-full h-fit m-auto grid grid-cols-1 lg:grid-cols-2 ">
+        <div className="flex items-center justify-center">
+          <div className="relative h-fit w-4/5 m-auto grid grid-cols-1 lg:grid-cols-2 ">
             <div className="flex flex-col items-center justify-center">
               image should be here
             </div>
