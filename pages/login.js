@@ -14,7 +14,6 @@ export default function login() {
     console.log(username, password);
   };
   return (
-    
     <Layout title="login">
       <form
         className="h-screen w-screen py-16 md:py-32"

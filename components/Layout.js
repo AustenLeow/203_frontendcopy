@@ -12,7 +12,7 @@ export default function Layout({ title, children }) {
       </Head>
       <Navbar></Navbar>
       <div className="w-screen flex flex-col justify-center bg-[#EFEDEE]">
-        <main className="w-screen bg-[#EFEDEE] flex justify-center">
+        <main className="w-screen bg-[#EFEDEE] items-center justify-center">
           {children}{" "}
         </main>
         <footer className="flex h-[320px] justify-center items-center shadow-inner bg-[#EFEDE7]">
