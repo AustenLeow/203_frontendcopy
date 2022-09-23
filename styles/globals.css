@@ -37,10 +37,6 @@ a {
   @apply bg-[#A4B07E] text-white font-bold py-2 px-4 rounded;
 }
 
-.landing-button {
-  @apply text-white font-bold py-4 px-4 rounded;
-}
-
 input,
 select,
 textarea {
