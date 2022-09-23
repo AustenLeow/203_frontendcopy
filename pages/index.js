@@ -37,7 +37,16 @@ export default function Home() {
             </strong>
           </div>
           <div className="text-xl sm:text-2xl font-bold text-white flex flex-col items-end justify-center">
-            <div>helping our climate one byte at a time.</div>
+            <div className="mb-5">helping our climate one byte at a time.</div>
+            <div className="flex items-center justify-between">
+              <button className="landing-button">
+                <a href="/login">login</a>
+              </button>
+              <div className="p-3"></div>
+              <button className="landing-button">
+                <a href="/signup">sign up</a>
+              </button>
+            </div>
           </div>
         </div>
       </div>
