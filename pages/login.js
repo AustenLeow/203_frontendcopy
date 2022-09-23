@@ -9,8 +9,8 @@ export default function login() {
     register,
     formState: { errors },
   } = useForm();
-  const submitHandler = ({ email, password }) => {
-    console.log(email, password);
+  const submitHandler = ({ username, password }) => {
+    console.log(username, password);
   };
   return (
     <Layout title="login">
@@ -24,28 +24,29 @@ export default function login() {
               image should be here
             </div>
             <div className="relative text-left flex flex-col justify-center">
-              <h1 className="mb-4 text-xl">login</h1>
+              <h1 className="mb-4 text-xl">Login</h1>
               <div className="mb-4">
-                <label htmlFor="email">email</label>
+                <label htmlFor="username">Username</label>
                 <input
-                  type="email"
-                  {...register("email", {
-                    required: "please enter your email",
-                    pattern: {
-                      value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/i,
-                      message: "please enter a valid email",
+                  type="username"
+                  {...register("username", {
+                    required: "please enter your username",
+                    minLength: {
+                      value: 3,
+                      message:
+                        "your username should have a minimum of 3 characters ",
                     },
                   })}
                   className="w-full"
-                  id="email"
+                  id="username"
                   autoFocus
                 ></input>
-                {errors.email && (
-                  <div className="text-red-500">{errors.email.message}</div>
+                {errors.username && (
+                  <div className="text-red-500">{errors.username.message}</div>
                 )}
               </div>
               <div className="mb-4">
-                <label htmlFor="password">password</label>
+                <label htmlFor="password">Password</label>
                 <input
                   type="password"
                   {...register("password", {
@@ -65,7 +66,7 @@ export default function login() {
                 )}
               </div>
               <div className="mb-4 ">
-                <button className="primary-button">login</button>
+                <button className="primary-button">Login</button>
               </div>
               <div className="mb-4 ">
                 don&apos;t have an account? &nbsp;
