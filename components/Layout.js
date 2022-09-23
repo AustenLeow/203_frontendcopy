@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import Navbar from "./Navbar";
 
 export default function Layout({ title, children }) {
   return (
@@ -9,7 +10,7 @@ export default function Layout({ title, children }) {
         <meta name="description" content="climate change" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      <Navbar></Navbar>
       <div className="w-screen flex flex-col justify-center bg-[#EFEDEE]">
         <main className="w-screen bg-[#EFEDEE] flex justify-center">
           {children}{" "}

@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { useForm } from "react-hook-form";
 import Layout from "../components/Layout";
+import Navbar from "../components/Navbar";
 
 export default function login() {
   const {
@@ -13,6 +14,7 @@ export default function login() {
     console.log(username, password);
   };
   return (
+    
     <Layout title="login">
       <form
         className="h-screen w-screen py-16 md:py-32"

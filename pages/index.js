@@ -1,9 +1,10 @@
 import Layout from "../components/Layout";
 import Typical from "react-typical";
+import Navbar from "../components/Navbar";
 
 export default function Home() {
   return (
-    <Layout title="">
+    <div>
       <div className="w-screen flex items-center justify-center">
         <video
           className="w-screen brightness-50"
@@ -35,9 +36,17 @@ export default function Home() {
               />
             </strong>
           </div>
-          <div className="text-end items-end justify-center"> taste, don't taste </div>
+          <div className="text-2xl font-bold text-white flex flex-col items-end justify-center">
+            <div>
+              helping our climate one byte at a time. 
+            </div>
+          </div>
         </div>
       </div>
-    </Layout>
+
+      <Layout title="">
+        <div className="h-screen">hello</div>
+      </Layout>
+    </div>
   );
 }
