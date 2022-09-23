@@ -5,26 +5,26 @@ export default function Footer() {
         <div className="flex flex-wrap md:max-w-screen-lg mx-auto">
           <section className="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/4">
             <a
-              className="uppercase text-xs font-bold tracking-wider text-[#4E632E] hidden md:block"
+              className=" text-xl font-bold tracking-wider text-[#4E632E] hidden md:block"
               href="#"
             >
-              RE:
+              re:
             </a>
             <article className="h-0 md:h-auto -mt-4 md:mt-0 overflow-hidden">
               <ul className="my-5 text-sm tracking-wide">
-                <li className="my-3 tracking-wide">
-                  <li className="my-3 tracking-wide">
-                    <a href="#">who we are</a>
-                  </li>
+                <li className="my-3 tracking-wide no-underline hover:underline">
+                  <a href="#">who we are</a>
+                </li>
+                <li className="my-3 tracking-wide no-underline hover:underline">
                   <a href="#">our climate story</a>
                 </li>
-                <li className="my-3 tracking-wide">
+                <li className="my-3 tracking-wide no-underline hover:underline">
                   <a href="#">how re: works</a>
                 </li>
-                <li className="my-3 tracking-wide">
+                <li className="my-3 tracking-wide no-underline hover:underline">
                   <a href="#">how re: helps the planet</a>
                 </li>
-                <li className="my-3 tracking-wide">
+                <li className="my-3 tracking-wide no-underline hover:underline">
                   <a href="#">careers</a>
                 </li>
               </ul>
@@ -32,23 +32,23 @@ export default function Footer() {
           </section>
           <section className="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/4">
             <a
-              className="uppercase text-xs font-bold tracking-wider text-[#4E632E] md:block"
+              className=" text-xl font-bold tracking-wider text-[#4E632E] md:block"
               href="#"
             >
               marketplace
             </a>
             <article className="h-0 md:h-auto -mt-4 md:mt-0 overflow-hidden">
               <ul className="my-5 text-sm tracking-wide">
-                <li className="my-3 tracking-wide">
+                <li className="my-3 tracking-wide no-underline hover:underline">
                   <a href="#">shop now</a>
                 </li>
-                <li className="my-3 tracking-wide">
+                <li className="my-3 tracking-wide no-underline hover:underline">
                   <a href="#">previous purchases</a>
                 </li>
-                <li className="my-3 tracking-wide">
+                <li className="my-3 tracking-wide no-underline hover:underline">
                   <a href="#">partner centre</a>
                 </li>
-                <li className="my-3 tracking-wide">
+                <li className="my-3 tracking-wide no-underline hover:underline">
                   <a href="#">how to donate</a>
                 </li>
               </ul>
@@ -56,20 +56,20 @@ export default function Footer() {
           </section>
           <section className="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/4">
             <a
-              className="uppercase text-xs font-bold tracking-wider text-[#4E632E] hidden md:block"
+              className=" text-xl font-bold tracking-wider text-[#4E632E] hidden md:block"
               href="#"
             >
               partners
             </a>
             <article className="h-0 md:h-auto -mt-4 md:mt-0 overflow-hidden">
               <ul className="my-5 text-sm tracking-wide">
-                <li className="my-3 tracking-wide">
+                <li className="my-3 tracking-wide no-underline hover:underline">
                   <a href="#">our partners</a>
                 </li>
-                <li className="my-3 tracking-wide">
+                <li className="my-3 tracking-wide no-underline hover:underline">
                   <a href="#">become a partner</a>
                 </li>
-                <li className="my-3 tracking-wide">
+                <li className="my-3 tracking-wide no-underline hover:underline">
                   <a href="#">how to be a partner</a>
                 </li>
               </ul>
@@ -77,23 +77,23 @@ export default function Footer() {
           </section>
           <section className="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/4">
             <a
-              className="uppercase text-xs font-bold tracking-wider text-[#4E632E] hidden md:block"
+              className="text-xl font-bold tracking-wider text-[#4E632E] hidden md:block"
               href="#"
             >
-              SUPPORT
+              support
             </a>
             <article className="h-0 md:h-auto -mt-4 md:mt-0 overflow-hidden">
               <ul className="my-5 text-sm tracking-wide">
-                <li className="my-3 tracking-wide">
+                <li className="my-3 tracking-wide no-underline hover:underline">
                   <a href="#">terms & conditions</a>
                 </li>
-                <li className="my-3 tracking-wide">
+                <li className="my-3 tracking-wide no-underline hover:underline">
                   <a href="#">help centre</a>
                 </li>
-                <li className="my-3 tracking-wide">
+                <li className="my-3 tracking-wide no-underline hover:underline">
                   <a href="#">payment methods</a>
                 </li>
-                <li className="my-3 tracking-wide">
+                <li className="my-3 tracking-wide no-underline hover:underline">
                   <a href="#">cancellation options</a>
                 </li>
               </ul>
@@ -106,7 +106,7 @@ export default function Footer() {
           <div>
             <p className="leading-8 tracking-wide">
               &copy; 2022 re:
-            &#160;&#160;·&#160;&#160;privacy&#160;&#160;·&#160;&#160;sitemap
+              &#160;&#160;·&#160;&#160;privacy&#160;&#160;·&#160;&#160;sitemap
             </p>
           </div>
           <div className="flex space-x-5">
