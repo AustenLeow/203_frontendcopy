@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 
 export default function Home() {
   return (
-    <div>
+    <div className="h-screen">
       <div className="w-screen flex items-center justify-center">
         <video
           className="w-screen brightness-50"
@@ -15,7 +15,7 @@ export default function Home() {
           muted
         />
         <div className="absolute w-3/5 h-fit m-auto grid grid-cols-1 lg:grid-cols-2">
-          <div className="text-8xl text-white">
+          <div className="text-4xl sm:text-8xl text-white">
             <strong> re</strong>
             <strong className="px-3">
               <Typical
@@ -36,7 +36,7 @@ export default function Home() {
               />
             </strong>
           </div>
-          <div className="text-2xl font-bold text-white flex flex-col items-end justify-center">
+          <div className="text-xl sm:text-2xl font-bold text-white flex flex-col items-end justify-center">
             <div>helping our climate one byte at a time.</div>
           </div>
         </div>
