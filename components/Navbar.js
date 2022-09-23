@@ -13,16 +13,16 @@ function MobileNav({open, setOpen}) {
                 <a className="text-xl font-semibold text-[#687259]" href="/">re_</a>
             </div>
             <div className="flex flex-col ml-4">
-                <a className="text-xl  my-4 text-[#687259]" href="/about" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
+                <a className="text-xl  my-4 text-[#4E632E]" href="/about" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
                     about
                 </a>
-                <a className="text-xl my-4 text-[#687259]" href="/marketplace" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
+                <a className="text-xl my-4 text-[#4E632E]" href="/marketplace" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
                     marketplace
                 </a>
-                <a className="text-xl my-4 text-[#687259]" href="/login" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
+                <a className="text-xl my-4 text-[#4E632E]" href="/login" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
                     login
                 </a>
-                <a className="text-xl my-4 text-[#687259]" href="/sign up" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
+                <a className="text-xl my-4 text-[#4E632E]" href="/sign up" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
                     sign up
                 </a>
             </div>  
