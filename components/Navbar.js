@@ -8,7 +8,7 @@ function NavLink({to, children}) {
 
 function MobileNav({open, setOpen}) {
     return (
-        <div className={`absolute left-0 h-screen w-screen bg-[#EFEDE7] transform ${open ? "-translate-x-0" : "-translate-x-full"} transition-transform duration-300 ease-in-out filter drop-shadow-md `}>
+        <div className={`absolute left-0 h-screen w-screen bg-[#F5F5F5] transform ${open ? "-translate-x-0" : "-translate-x-full"} transition-transform duration-300 ease-in-out filter drop-shadow-md `}>
             <div className="flex items-center justify-center filter drop-shadow-md h-20"> {/*logo container*/}
                 <a className="text-2xl font-semibold text-[#687259]" href="/">re_</a>
             </div>
@@ -33,7 +33,7 @@ function MobileNav({open, setOpen}) {
 export default function Navbar() {
     const [open, setOpen] = useState(false)
         return (
-            <nav className="sticky top-0 shadow bg-[#EFEDEE] px-4 py-4 h-20 flex items-center justify-center">
+            <nav className="sticky top-0 shadow bg-[#F5F5F5] px-4 py-4 h-20 flex items-center justify-center">
                 <div className="flex items-center justify-between w-4/5">
                 <MobileNav open={open} setOpen={setOpen}/>
                 <div className="w-3/4 flex items-center">
