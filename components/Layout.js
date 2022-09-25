@@ -12,9 +12,9 @@ export default function Layout({ title, children }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="w-screen flex flex-col justify-center bg-[#EFEDEE]">
+      <div className="w-screen flex flex-col justify-center bg-[#F5F5F5]">
         <Navbar />
-        <main className="w-screen bg-[#EFEDEE] items-center justify-center">
+        <main className="w-screen items-center justify-center">
           {children}{" "}
         </main>
         <Footer />
