@@ -5,9 +5,9 @@ import ProductItem from '../components/ProductItem';
 
 export default function marketplace() {
   return (
-    <Layout title="Marketplace">
+    <Layout title="marketplace">
       <div className="p-10">
-      <div className="grid grid-cols-1 gap-7 md:grid-cols-3 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-3 lg:grid-cols-4">
         {data.products.map((product) => (
           <ProductItem
             product={product}

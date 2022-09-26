@@ -41,6 +41,10 @@ a {
   @apply text-[#4E632E] text-2xl font-bold;
 }
 
+.product-title{
+  @apply text-[#4E632E] text-xl font-bold;
+}
+
 input,
 select,
 textarea {
