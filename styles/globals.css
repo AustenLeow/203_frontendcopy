@@ -45,6 +45,10 @@ a {
   @apply text-[#4E632E] text-xl font-bold;
 }
 
+.product-button {
+  @apply text-[#A4B07E] rounded border-2 outline-none hover:border-[#4E632E] hover:focus:ring font-bold py-2 px-4 rounded hover:text-[#4E632E];
+}
+
 input,
 select,
 textarea {

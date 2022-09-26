@@ -26,7 +26,7 @@ export default function ProductItem({ product, addToCartHandler }) {
         <p className="mb-2 text-start">Expires on: {product.expiry}</p>
         </div>
         <button
-          className="primary-button flex items-start justify-between w-full"
+          className="product-button flex items-start justify-between w-full"
           type="button"
           // onClick={() => addToCartHandler(product)}
         >
