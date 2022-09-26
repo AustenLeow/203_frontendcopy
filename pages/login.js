@@ -30,11 +30,11 @@ export default function login() {
                 <input
                   type="username"
                   {...register("username", {
-                    required: "please enter your username",
+                    required: "Please enter your username",
                     minLength: {
                       value: 3,
                       message:
-                        "your username should have a minimum of 3 characters ",
+                        "Your username should have a minimum of 3 characters ",
                     },
                   })}
                   className="w-full"
@@ -50,11 +50,11 @@ export default function login() {
                 <input
                   type="password"
                   {...register("password", {
-                    required: "please enter your password",
+                    required: "Please enter your password",
                     minLength: {
                       value: 6,
                       message:
-                        "your password should have a minimum of 6 characters ",
+                        "Your password should have a minimum of 6 characters ",
                     },
                   })}
                   className="w-full"
@@ -70,8 +70,8 @@ export default function login() {
               </div>
               <div className="mb-4 ">
                 don&apos;t have an account? &nbsp;
-                <a className="my-4 text-[#4E632E]" href="/signup" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
-                    sign up here 
+                <a className="my-4 text-[#687259]" href="/signup" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
+                    Sign up here
                 </a>
               </div>
             </div>
