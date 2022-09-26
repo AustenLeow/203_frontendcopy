@@ -22,10 +22,10 @@ export default function login() {
             <div className="flex flex-col items-center justify-center">
               image should be here
             </div>
-            <div className="relative text-left flex flex-col justify-center">
-              <h1 className="mb-4 text-xl">Login</h1>
+            <div className="relative text-left flex flex-col justify-center shadow-2xl p-10">
+              <h1 className="mb-4 text-xl">login</h1>
               <div className="mb-4">
-                <label htmlFor="username">Username</label>
+                <label htmlFor="username">username</label>
                 <input
                   type="username"
                   {...register("username", {
@@ -45,7 +45,7 @@ export default function login() {
                 )}
               </div>
               <div className="mb-4">
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password">password</label>
                 <input
                   type="password"
                   {...register("password", {
@@ -65,11 +65,16 @@ export default function login() {
                 )}
               </div>
               <div className="mb-4 ">
-                <button className="primary-button">Login</button>
+                {/* <button className="primary-button">Login</button> */}
+                <a
+                href="/marketplace"
+                className="relative inline-flex items-center justify-center py-1 px-8 overflow-hidden font-medium text-[#4E632E] transition duration-300 ease-out border-2 border-[#4E632E] rounded-full shadow-md group"
+              > login
+              </a>
               </div>
               <div className="mb-4 ">
                 don&apos;t have an account? &nbsp;
-                <a className="my-4 text-[#687259]" href="/signup" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
+                <a className="my-4 text-[#4E632E]" href="/signup" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
                     sign up here 
                 </a>
               </div>

@@ -22,7 +22,7 @@ export default function signup() {
             <div className="flex flex-col items-center justify-center">
               image should be here
             </div>
-            <div className="relative text-left flex flex-col justify-center">
+            <div className="relative text-left flex flex-col justify-center shadow-2xl p-10">
               <h1 className="mb-4 text-xl">sign up</h1>
               <div className="mb-4">
                 <label htmlFor="username">username</label>
@@ -65,7 +65,14 @@ export default function signup() {
                 )}
               </div>
               <div className="mb-4 ">
-                <button className="primary-button">Login</button>
+                {/* <button className="primary-button">Login</button> */}
+                <a
+                  href="/marketplace"
+                  className="relative inline-flex items-center justify-center py-1 px-8 overflow-hidden font-medium text-[#4E632E] transition duration-300 ease-out border-2 border-[#4E632E] rounded-full shadow-md group"
+                >
+                  {" "}
+                  sign up
+                </a>
               </div>
             </div>
           </div>
