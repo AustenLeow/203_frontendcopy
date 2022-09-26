@@ -43,6 +43,7 @@ textarea {
   @apply rounded border p-2 bg-[#F5F5F5] outline-none ring-[#A2A182] focus:ring;
 }
 
+
 .card {
   @apply mb-5  block   rounded-lg border border-gray-200  shadow-md;
 }
