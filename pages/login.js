@@ -18,11 +18,11 @@ export default function login() {
         onSubmit={handleSubmit(submitHandler)}
       >
         <div className="w-full flex items-center justify-center">
-          <div className="relative w-full h-fit m-auto grid grid-cols-1 lg:grid-cols-2 ">
+          <div className="w-full h-fit m-auto grid grid-cols-1 lg:grid-cols-2 ">
             <div className="flex flex-col items-center justify-center">
               image should be here
             </div>
-            <div className="relative text-left flex flex-col justify-center shadow-2xl p-10">
+            <div className="text-left flex flex-col justify-center shadow-2xl p-10">
               <h1 className="mb-4 text-xl">Login</h1>
               <div className="mb-4">
                 <label htmlFor="username">Username</label>
