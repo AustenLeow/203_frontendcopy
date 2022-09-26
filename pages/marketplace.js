@@ -5,8 +5,9 @@ import ProductItem from '../components/ProductItem';
 
 export default function marketplace() {
   return (
-    <Layout title="Marketplace">
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
+    <Layout title="marketplace">
+      <div className="p-10">
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-3 lg:grid-cols-4">
         {data.products.map((product) => (
           <ProductItem
             product={product}
@@ -14,6 +15,7 @@ export default function marketplace() {
             // addToCartHandler={addToCartHandler}
           ></ProductItem>
         ))}
+      </div>
       </div>
     </Layout>
   );
