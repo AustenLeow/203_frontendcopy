@@ -102,7 +102,9 @@ export default function SignUp() {
       </div>
       <div className="mb-4">
         Already have an account? &nbsp;
-        <Link href="login">Login</Link>
+        <a className="my-4 text-[#687259]" href="/login" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
+                    Login 
+        </a>
       </div>
       </form>
       </Layout>
