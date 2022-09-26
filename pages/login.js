@@ -23,9 +23,9 @@ export default function login() {
               image should be here
             </div>
             <div className="relative text-left flex flex-col justify-center shadow-2xl p-10">
-              <h1 className="mb-4 text-xl">login</h1>
+              <h1 className="mb-4 font-bold text-xl">login</h1>
               <div className="mb-4">
-                <label htmlFor="username">username</label>
+                <label className="pb-4" htmlFor="username">username</label>
                 <input
                   type="username"
                   {...register("username", {
@@ -68,7 +68,7 @@ export default function login() {
                 {/* <button className="primary-button">Login</button> */}
                 <a
                 href="/marketplace"
-                className="relative inline-flex items-center justify-center py-1 px-8 overflow-hidden font-medium text-[#4E632E] transition duration-300 ease-out border-2 border-[#4E632E] rounded-full shadow-md group"
+                className="relative inline-flex items-center justify-center py-1 px-8 overflow-hidden font-medium text-[#A4B07E] hover:text-[#4E632E] transition duration-300 ease-out border-2 border-[#A4B07E] hover:border-[#4E632E] rounded-full shadow-md group"
               > login
               </a>
               </div>

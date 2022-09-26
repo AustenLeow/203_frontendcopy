@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import Layout from "../components/Layout";
 
-export default function signup() {
+export default function login() {
   const {
     handleSubmit,
     register,
@@ -12,7 +12,7 @@ export default function signup() {
     console.log(username, password);
   };
   return (
-    <Layout title="sign up">
+    <Layout title="login">
       <form
         className="h-screen w-screen py-16 md:py-32"
         onSubmit={handleSubmit(submitHandler)}
@@ -23,9 +23,9 @@ export default function signup() {
               image should be here
             </div>
             <div className="relative text-left flex flex-col justify-center shadow-2xl p-10">
-              <h1 className="mb-4 text-xl">sign up</h1>
+              <h1 className="mb-4 font-bold text-xl">login</h1>
               <div className="mb-4">
-                <label htmlFor="username">username</label>
+                <label className="pb-4" htmlFor="username">username</label>
                 <input
                   type="username"
                   {...register("username", {
@@ -67,11 +67,15 @@ export default function signup() {
               <div className="mb-4 ">
                 {/* <button className="primary-button">Login</button> */}
                 <a
-                  href="/marketplace"
-                  className="relative inline-flex items-center justify-center py-1 px-8 overflow-hidden font-medium text-[#4E632E] transition duration-300 ease-out border-2 border-[#4E632E] rounded-full shadow-md group"
-                >
-                  {" "}
-                  sign up
+                href="/marketplace"
+                className="relative inline-flex items-center justify-center py-1 px-8 overflow-hidden font-medium text-[#A4B07E] hover:text-[#4E632E] transition duration-300 ease-out border-2 border-[#A4B07E] hover:border-[#4E632E] rounded-full shadow-md group"
+              > login
+              </a>
+              </div>
+              <div className="mb-4 ">
+                don&apos;t have an account? &nbsp;
+                <a className="my-4 text-[#4E632E]" href="/signup" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
+                    sign up here 
                 </a>
               </div>
             </div>
