@@ -49,5 +49,5 @@ textarea {
 
 
 .card {
-  @apply mb-5  block   rounded-lg border border-gray-200  shadow-md;
+  @apply mb-5  block rounded-xl border border-gray-200 shadow-2xl;
 }
