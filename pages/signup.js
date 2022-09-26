@@ -1,25 +1,31 @@
-import Link from "next/link";
 import React from "react";
 import { useForm } from "react-hook-form";
 import Layout from "../components/Layout";
 
-export default function SignUp() {
-
+export default function signup() {
   const {
-      handleSubmit,
-      register,
-      formState: { errors },
-    } = useForm();
-    const submitHandler = ({ username, email, password, confirmpassword }) => {
-      console.log(username, email, password, confirmpassword);
-    };
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm();
+  const submitHandler = ({ username, email, password, confirmpassword }) => {
+    console.log(username, email, password, confirmpassword);
+  };
 
   return (
     <Layout title="signup">
-      <form className='mx-auto mx-w-screen-md'
-      onSubmit={handleSubmit(submitHandler)}>
-      <h1 className="mb-4 text-xl">Create Account</h1>
-      <div className="mb-4">
+      <form
+        className="mx-auto w-4/5 py-16 md:py-32"
+        onSubmit={handleSubmit(submitHandler)}
+      >
+        <div className="w-full flex items-center justify-center">
+          <div className="relative w-full h-fit m-auto grid grid-cols-1 lg:grid-cols-2 ">
+            <div className="flex flex-col items-center justify-center">
+              image should be here
+            </div>
+            <div className="relative text-left flex flex-col justify-center shadow-2xl p-10">
+              <h1 className="mb-4 text-xl">Create Account</h1>
+              <div className="mb-4">
                 <label htmlFor="username">Username</label>
                 <input
                   type="username"
@@ -39,26 +45,28 @@ export default function SignUp() {
                   <div className="text-red-500">{errors.username.message}</div>
                 )}
               </div>
-       
-      <div className="mb-4">
-        <label htmlFor="email">Email</label>
-        <input type="email"
-        {...register('email', { required: 'Please enter your email',
-      pattern: {
-        value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/i,
-        message: 'Please enter valid email',
-      }
-      })}
-        className="w-full" 
-        id="email" 
-        autofocus
-      ></input>
-      {errors.email && (
-        <div className="text-red-500">{errors.email.message}</div>
-      )}
-      </div>
 
-      <div className="mb-4">
+              <div className="mb-4">
+                <label htmlFor="email">Email</label>
+                <input
+                  type="email"
+                  {...register("email", {
+                    required: "Please enter your email",
+                    pattern: {
+                      value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/i,
+                      message: "Please enter valid email",
+                    },
+                  })}
+                  className="w-full"
+                  id="email"
+                  autofocus
+                ></input>
+                {errors.email && (
+                  <div className="text-red-500">{errors.email.message}</div>
+                )}
+              </div>
+
+              <div className="mb-4">
                 <label htmlFor="password">Password</label>
                 <input
                   type="password"
@@ -79,34 +87,48 @@ export default function SignUp() {
                 )}
               </div>
 
-      <div className="mb-4">
-        <label htmlFor="confirmpassword">Confirm Password</label>
-        <input 
-        type="password"
-        {...register("confirmpassword", {
-          required: "Please enter your confirmed password",
-          validate: 
-            value => value === document.getElementById("password").value || 'Passwords do not match'
-        })}
-        className="w-full" 
-        id="confirmpassword" 
-        autofocus
-      ></input>
-      {errors.confirmpassword && (
-                  <div className="text-red-500 ">{errors.confirmpassword.message}</div>
+              <div className="mb-4">
+                <label htmlFor="confirmpassword">Confirm Password</label>
+                <input
+                  type="password"
+                  {...register("confirmpassword", {
+                    required: "Please enter your confirmed password",
+                    validate: (value) =>
+                      value === document.getElementById("password").value ||
+                      "Passwords do not match",
+                  })}
+                  className="w-full"
+                  id="confirmpassword"
+                  autofocus
+                ></input>
+                {errors.confirmpassword && (
+                  <div className="text-red-500 ">
+                    {errors.confirmpassword.message}
+                  </div>
                 )}
-      </div>
+              </div>
 
-      <div className="mb-4">
-        <button className="primary-button">Create</button>
-      </div>
-      <div className="mb-4">
-        Already have an account? &nbsp;
-        <a className="my-4 text-[#687259]" href="/login" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
-                    Login 
-        </a>
-      </div>
+              <div className="mb-4">
+                <button className="primary-button hover:bg-[#4E632E]">Create</button>
+              </div>
+              <div className="mb-4">
+                Already have an account? &nbsp;
+                <a
+                  className="my-4 text-[#687259]"
+                  href="/login"
+                  onClick={() =>
+                    setTimeout(() => {
+                      setOpen(!open);
+                    }, 100)
+                  }
+                >
+                  Login
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </form>
-      </Layout>
+    </Layout>
   );
 }

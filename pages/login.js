@@ -1,4 +1,3 @@
-import Link from "next/link";
 import React from "react";
 import { useForm } from "react-hook-form";
 import Layout from "../components/Layout";
@@ -69,7 +68,7 @@ export default function login() {
                 <button className="primary-button hover:bg-[#4E632E]">Login</button>
               </div>
               <div className="mb-4 ">
-                don&apos;t have an account? &nbsp;
+                Don&apos;t have an account? &nbsp;
                 <a className="my-4 text-[#687259]" href="/signup" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
                     Sign up here
                 </a>
