@@ -15,7 +15,7 @@ export default function login() {
   return (
     <Layout title="login">
       <form
-        className="mx-auto w-3/5 py-16 md:py-32"
+        className="mx-auto w-4/5 py-16 md:py-32"
         onSubmit={handleSubmit(submitHandler)}
       >
         <div className="w-full flex items-center justify-center">
@@ -23,7 +23,7 @@ export default function login() {
             <div className="flex flex-col items-center justify-center">
               image should be here
             </div>
-            <div className="relative text-left flex flex-col justify-center">
+            <div className="relative text-left flex flex-col justify-center shadow-2xl p-10">
               <h1 className="mb-4 text-xl">Login</h1>
               <div className="mb-4">
                 <label htmlFor="username">Username</label>
@@ -66,12 +66,12 @@ export default function login() {
                 )}
               </div>
               <div className="mb-4 ">
-                <button className="primary-button">Login</button>
+                <button className="primary-button hover:bg-[#4E632E]">Login</button>
               </div>
               <div className="mb-4 ">
-                Don&apos;t have an account? &nbsp;
+                don&apos;t have an account? &nbsp;
                 <a className="my-4 text-[#687259]" href="/signup" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
-                    Sign up here 
+                    Sign up here
                 </a>
               </div>
             </div>

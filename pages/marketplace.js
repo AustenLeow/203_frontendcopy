@@ -1,7 +1,8 @@
-import React from 'react'
+import React from "react";
+import Layout from "../components/Layout";
 
 export default function marketplace() {
   return (
-    <div>marketplace</div>
-  )
+    <div><Layout></Layout></div>
+  );
 }

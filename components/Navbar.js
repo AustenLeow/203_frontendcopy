@@ -8,21 +8,21 @@ function NavLink({to, children}) {
 
 function MobileNav({open, setOpen}) {
     return (
-        <div className={`absolute top-0 left-0 h-screen w-screen bg-[#EFEDE7] transform ${open ? "-translate-x-0" : "-translate-x-full"} transition-transform duration-300 ease-in-out filter drop-shadow-md `}>
+        <div className={`absolute left-0 h-screen w-screen bg-[#F5F5F5] transform ${open ? "-translate-x-0" : "-translate-x-full"} transition-transform duration-300 ease-in-out filter drop-shadow-md `}>
             <div className="flex items-center justify-center filter drop-shadow-md h-20"> {/*logo container*/}
-                <a className="text-xl font-semibold text-[#687259]" href="/">re_</a>
+                <a className="text-2xl font-semibold text-[#687259]" href="/">re_</a>
             </div>
             <div className="flex flex-col ml-4">
-                <a className="text-xl  my-4 text-[#687259]" href="/about" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
+                <a className="text-xl  my-4 text-[#4E632E]" href="/about" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
                     about
                 </a>
-                <a className="text-xl my-4 text-[#687259]" href="/marketplace" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
+                <a className="text-xl my-4 text-[#4E632E]" href="/marketplace" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
                     marketplace
                 </a>
-                <a className="text-xl my-4 text-[#687259]" href="/login" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
+                <a className="text-xl my-4 text-[#4E632E]" href="/login" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
                     login
                 </a>
-                <a className="text-xl my-4 text-[#687259]" href="/sign up" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
+                <a className="text-xl my-4 text-[#4E632E]" href="/sign up" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
                     sign up
                 </a>
             </div>  
@@ -33,11 +33,11 @@ function MobileNav({open, setOpen}) {
 export default function Navbar() {
     const [open, setOpen] = useState(false)
         return (
-            <nav className="flex filter bg-[#EFEDEE] px-4 py-4 h-20 items-center justify-center">
+            <nav className="sticky top-0 shadow bg-[#F5F5F5] px-4 py-4 h-20 flex items-center justify-center">
                 <div className="flex items-center justify-between w-4/5">
                 <MobileNav open={open} setOpen={setOpen}/>
                 <div className="w-3/4 flex items-center">
-                    <a className="text-2xl font-semibold text-[#687259] " href="/">re_</a>
+                    <a className="text-4xl font-semibold text-[#4E632E] " href="/">re:</a>
                 </div>
                 <div className="w-9/12 flex justify-end items-center">
     
@@ -45,13 +45,13 @@ export default function Navbar() {
                         setOpen(!open)
                     }}>
                         {/* hamburger button */}
-                        <span className={`h-1 w-full bg-[#687259] rounded-lg transform transition duration-300 ease-in-out ${open ? "rotate-45 translate-y-3.5" : ""}`} />
-                        <span className={`h-1 w-full bg-[#687259] rounded-lg transition-all duration-300 ease-in-out ${open ? "w-0" : "w-full"}`} />
-                        <span className={`h-1 w-full bg-[#687259] rounded-lg transform transition duration-300 ease-in-out ${open ? "-rotate-45 -translate-y-3.5" : ""}`} />
+                        <span className={`h-1 w-full bg-[#4E632E] rounded-lg transform transition duration-300 ease-in-out ${open ? "rotate-45 translate-y-3.5" : ""}`} />
+                        <span className={`h-1 w-full bg-[#4E632E] rounded-lg transition-all duration-300 ease-in-out ${open ? "w-0" : "w-full"}`} />
+                        <span className={`h-1 w-full bg-[#4E632E] rounded-lg transform transition duration-300 ease-in-out ${open ? "-rotate-45 -translate-y-3.5" : ""}`} />
                     </div>
     
-                    <div className="hidden md:flex text-[#687259]">
-                        <NavLink to="/about" className="hover:underline">
+                    <div className="hidden md:flex text-[#4E632E]">
+                        <NavLink className="no-underline hover:underline" to="/about">
                             about
                         </NavLink>
                         <NavLink to="/marketplace">
