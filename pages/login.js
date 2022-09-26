@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { useForm } from "react-hook-form";
 import Layout from "../components/Layout";
@@ -14,18 +15,18 @@ export default function login() {
   return (
     <Layout title="login">
       <form
-        className="h-screen w-screen py-16 md:py-32"
+        className="mx-auto w-3/5 py-16 md:py-32"
         onSubmit={handleSubmit(submitHandler)}
       >
-        <div className="flex items-center justify-center">
-          <div className="relative h-fit w-4/5 m-auto grid grid-cols-1 lg:grid-cols-2 ">
+        <div className="w-full flex items-center justify-center">
+          <div className="relative w-full h-fit m-auto grid grid-cols-1 lg:grid-cols-2 ">
             <div className="flex flex-col items-center justify-center">
               image should be here
             </div>
-            <div className="relative text-left flex flex-col justify-center shadow-2xl p-10">
-              <h1 className="mb-4 font-bold text-xl">login</h1>
+            <div className="relative text-left flex flex-col justify-center">
+              <h1 className="mb-4 text-xl">Login</h1>
               <div className="mb-4">
-                <label className="pb-4" htmlFor="username">username</label>
+                <label htmlFor="username">Username</label>
                 <input
                   type="username"
                   {...register("username", {
@@ -45,7 +46,7 @@ export default function login() {
                 )}
               </div>
               <div className="mb-4">
-                <label htmlFor="password">password</label>
+                <label htmlFor="password">Password</label>
                 <input
                   type="password"
                   {...register("password", {
@@ -65,16 +66,11 @@ export default function login() {
                 )}
               </div>
               <div className="mb-4 ">
-                {/* <button className="primary-button">Login</button> */}
-                <a
-                href="/marketplace"
-                className="relative inline-flex items-center justify-center py-1 px-8 overflow-hidden font-medium text-[#A4B07E] hover:text-[#4E632E] transition duration-300 ease-out border-2 border-[#A4B07E] hover:border-[#4E632E] rounded-full shadow-md group"
-              > login
-              </a>
+                <button className="primary-button">Login</button>
               </div>
               <div className="mb-4 ">
                 don&apos;t have an account? &nbsp;
-                <a className="my-4 text-[#4E632E]" href="/signup" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
+                <a className="my-4 text-[#687259]" href="/signup" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
                     sign up here 
                 </a>
               </div>
