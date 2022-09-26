@@ -34,7 +34,7 @@ a {
 }
 
 .primary-button{
-  @apply bg-[#A4B07E] text-white font-bold py-2 px-4 rounded hover:bg-[#83905a] active:bg-[#737d52];
+  @apply bg-[#A4B07E] text-white font-bold py-2 px-4 rounded hover:bg-[#4E632E] active:bg-[#4E632E];
 }
 
 .login-text {
@@ -49,5 +49,5 @@ textarea {
 
 
 .card {
-  @apply mb-5  block rounded-xl border border-gray-200 shadow-2xl;
+  @apply p-6 block rounded-xl border border-gray-200 shadow-2xl;
 }
