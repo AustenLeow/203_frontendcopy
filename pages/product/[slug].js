@@ -18,12 +18,12 @@ export default function ProductScreen() {
 
   return (
     <Layout title={product.name}>
-      <div className="mx-auto py-16 md:py-32 w-3/4">
+      <div className="relative mx-auto py-16 md:py-32 w-3/4">
         <div className="p-4">
           {" "}
           <BiArrowBack />{" "}
         </div>
-        <div className="relative w-full h-fit m-auto grid grid-cols-1 lg:grid-cols-2 ">
+        <div className="w-full h-fit m-auto grid grid-cols-1 lg:grid-cols-2 ">
           <div className="p-20 hover:p-15">
             <Image
               className="object-cover w-2/3 hover:scale-110 duration-300"
@@ -34,13 +34,18 @@ export default function ProductScreen() {
               layout="responsive"
             ></Image>
           </div>
-          <div className="text-left flex flex-col justify-center shadow-2xl p-10 h-3/5 my-auto">
-            <div className="">
+          <div className="text-left flex flex-col justify-between shadow-2xl p-10 h-3/5 my-auto">
+            <div>
               <div className="product-title">{product.name}</div>
               <div>{product.category}</div>
               <div>{product.description}</div>
               <div>{product.brand}</div>
-              <div>
+            </div>
+            <div className=" flex justify-start">
+              <div className="pr-2">Status: </div>
+              <div>{product.countInStock > 0 ? '    In stock' : '    Unavailable'}</div>
+            </div>
+            <div>
                 <button
                   className="product-button flex items-end hover:items-center justify-between w-full"
                   type="button"
@@ -53,7 +58,6 @@ export default function ProductScreen() {
                   </div>
                 </button>
               </div>
-            </div>
           </div>
         </div>
       </div>
