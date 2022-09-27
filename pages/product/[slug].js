@@ -23,9 +23,10 @@ export default function ProductScreen() {
           {" "}
           <BiArrowBack />{" "}
         </div>
-        <div className="w-full h-fit m-auto grid grid-cols-1 lg:grid-cols-2 ">
+        <div className="relative w-full h-fit m-auto grid grid-cols-1 lg:grid-cols-2 ">
           <div className="p-20 hover:p-15">
-            <Image className="object-cover w-2/3"
+            <Image
+              className="object-cover w-2/3 hover:scale-110 duration-300"
               src={product.image}
               alt={product.name}
               width={700}
@@ -33,9 +34,26 @@ export default function ProductScreen() {
               layout="responsive"
             ></Image>
           </div>
-          <div className="text-left flex flex-col justify-center shadow-2xl p-10">
-            <div className="h-2/5">title</div>
-            <div> desc</div>
+          <div className="text-left flex flex-col justify-center shadow-2xl p-10 h-3/5 my-auto">
+            <div className="">
+              <div className="product-title">{product.name}</div>
+              <div>{product.category}</div>
+              <div>{product.description}</div>
+              <div>{product.brand}</div>
+              <div>
+                <button
+                  className="product-button flex items-end hover:items-center justify-between w-full"
+                  type="button"
+                  // onClick={() => addToCartHandler(product)}
+                >
+                  <div> Add to cart</div>
+                  <div>
+                    {" "}
+                    <p className="text-start">${product.price}</p>{" "}
+                  </div>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
