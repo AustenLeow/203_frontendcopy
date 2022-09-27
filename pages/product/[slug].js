@@ -18,15 +18,15 @@ export default function ProductScreen() {
 
   return (
     <Layout title={product.name}>
-      <div className="relative mx-auto py-16 md:py-32 w-3/4">
+      <div className=" mx-auto py-16 md:py-32 w-3/4">
         <div className="p-4">
           {" "}
           <BiArrowBack />{" "}
         </div>
-        <div className="w-full h-fit m-auto grid grid-cols-1 lg:grid-cols-2 ">
-          <div className="p-20 hover:p-15">
+        <div className="w-full h-fit m-auto grid grid-cols-1 lg:grid-cols-2 rounded shadow-2xl p-10">
+          <div className="relative p-20 hover:p-15">
             <Image
-              className="object-cover w-2/3 hover:scale-110 duration-300"
+              className="rounded shadow-xl hover:scale-110 duration-300"
               src={product.image}
               alt={product.name}
               width={700}
