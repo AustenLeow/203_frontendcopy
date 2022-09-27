@@ -1,5 +1,3 @@
-import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import Layout from "../../components/Layout";
@@ -21,19 +19,23 @@ export default function ProductScreen() {
       <div className=" mx-auto py-16 md:py-32 w-3/4">
         <div className="p-4">
           {" "}
-          <BiArrowBack />{" "}
+          <BiArrowBack 
+            className="text-2xl cursor-pointer"
+            
+          />{" "}
+          
         </div>
-        <div className="w-full h-fit m-auto grid grid-cols-1 lg:grid-cols-2 rounded shadow-2xl p-10">
-          <div className="relative p-20 hover:p-15">
-            <Image
-              className="rounded shadow-xl hover:scale-110 duration-300"
-              src={product.image}
-              alt={product.name}
-              width={700}
-              height={640}
-            ></Image>
+        <div className="grid grid-cols-1 lg:grid-cols-3 rounded shadow-2xl gap-4 p-10">
+          <div className="place-self-center">
+          <a>
+          <img
+            src={product.image}
+            alt={product.name}
+            className="rounded shadow object-cover place-content-center"
+          />
+        </a>
           </div>
-          <div className="text-left flex flex-col justify-between shadow-2xl h-fit p-10 my-auto">
+          <div className="text-left flex flex-col justify-between shadow-2xl h-fit p-10 my-auto col-span-2">
             <div>
               <div className="product-title">{product.name}</div>
               <div>{product.category}</div>
