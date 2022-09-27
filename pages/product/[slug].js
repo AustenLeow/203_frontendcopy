@@ -31,10 +31,9 @@ export default function ProductScreen() {
               alt={product.name}
               width={700}
               height={640}
-              layout="responsive"
             ></Image>
           </div>
-          <div className="text-left flex flex-col justify-between shadow-2xl p-10 h-3/5 my-auto">
+          <div className="text-left flex flex-col justify-between shadow-2xl h-fit p-10 my-auto">
             <div>
               <div className="product-title">{product.name}</div>
               <div>{product.category}</div>
@@ -42,7 +41,7 @@ export default function ProductScreen() {
               <div>{product.brand}</div>
             </div>
             <div className=" flex justify-start">
-              <div className="pr-2">Status: </div>
+              <div className="pr-2 pb-2">Status: </div>
               <div>{product.countInStock > 0 ? '    In stock' : '    Unavailable'}</div>
             </div>
             <div>

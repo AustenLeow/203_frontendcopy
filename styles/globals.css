@@ -42,7 +42,7 @@ a {
 }
 
 .product-title{
-  @apply text-[#4E632E] text-2xl py-3 font-bold;
+  @apply text-[#4E632E] text-2xl py-2 font-bold;
 }
 
 .product-button {
