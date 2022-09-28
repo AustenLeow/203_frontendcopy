@@ -12,8 +12,8 @@ export default function Layout({ title, children }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="w-screen flex flex-col justify-center bg-[#F5F5F5]">
-        <Navbar />
+      <div className="relative w-screen flex flex-col justify-center bg-[#F5F5F5]">
+        <Navbar className="absolute"/>
         <main className="w-screen items-center justify-center">
           {children}{" "}
         </main>
