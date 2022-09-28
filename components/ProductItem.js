@@ -13,24 +13,34 @@ export default function ProductItem({ product, addToCartHandler }) {
           />
         </a>
       </Link>
-      <div className="flex flex-col items-center justify-center p-5">
-        <Link href={`/product/${product.slug}`}>
-          <a>
-            <h2 className="text-lg, font-bold">{product.name}</h2>
-          </a>
-        </Link>
-        <p className="mb-2">{product.brand}</p>
-        <p>Category: {product.category}</p>
-        <p>Price: ${product.price}</p>
-        <p>Quantity: {product.countInStock}</p>
-        <p className="mb-2">Expires on: {product.expiry}</p>
-        <button
-          className="primary-button"
-          type="button"
-          // onClick={() => addToCartHandler(product)}
-        >
-          Add to cart
-        </button>
+      <div className="flex flex-col justify-between p-3 h-2/5">
+        <div className="flex flex-col justify-start">
+          <Link href={`/product/${product.slug}`}>
+            <a>
+              <h2 className="product-title">{product.name}</h2>
+            </a>
+          </Link>
+          <p className="text-start">{product.brand}</p>
+          <p className="text-xs">{product.category}</p>
+        </div>
+        <div className="py-3"></div>
+
+        <div className="flex flex-col justify-end items-start">
+          {/* <p className="text-start">Quantity: {product.countInStock}</p> */}
+          <p className="mb-2 text-start">Expires on: {product.expiry}</p>
+
+          <button
+            className="product-button flex items-end hover:items-center justify-between w-full"
+            type="button"
+            // onClick={() => addToCartHandler(product)}
+          >
+            <div> Add to cart</div>
+            <div>
+              {" "}
+              <p className="text-start">${product.price}</p>{" "}
+            </div>
+          </button>
+        </div>
       </div>
     </div>
   );
