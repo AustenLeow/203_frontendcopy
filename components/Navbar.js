@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import React, { useContext } from 'react';
 import { Store } from '../utils/Store';
 
@@ -36,10 +36,14 @@ function MobileNav({open, setOpen}) {
 }
 
 export default function Navbar() {
-    const { state, dispatch } = useContext(Store);
-    const { cart } = state;
-
     const [open, setOpen] = useState(false)
+    const { state } = useContext(Store);
+    const { cart } = state;
+    const [cartItemsCount, setCartItemsCount] = useState(0);
+    useEffect(() => {
+        setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0))
+    }, [cart.cartItems]);
+
         return (
             <nav className="absolute sticky top-0 shadow bg-[#F5F5F5] opacity-100 px-4 py-4 h-20 flex items-center justify-center">
                 <div className="flex items-center justify-between w-4/5">
@@ -74,9 +78,9 @@ export default function Navbar() {
                         <NavLink to="/cart">
                             {/* <a> */}
                                 cart
-                                {cart.cartItems.length > 0 && (
+                                {cartItemsCount > 0 && (
                                     <span className='ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white'>
-                                        {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
+                                        {cartItemsCount}
                                     </span>
                                 )}
                             {/* </a> */}
