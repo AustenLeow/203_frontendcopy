@@ -1,4 +1,6 @@
-import {useState} from 'react'
+import {useState} from 'react';
+import React, { useContext } from 'react';
+import { Store } from '../utils/Store';
 
 function NavLink({to, children}) {
     return <a href={to} className={`mx-4`}>
@@ -25,12 +27,18 @@ function MobileNav({open, setOpen}) {
                 <a className="text-xl my-4 text-[#4E632E]" href="/sign up" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
                     sign up
                 </a>
+                <a className="text-xl my-4 text-[#4E632E]" href="/cart" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
+                    cart
+                </a>
             </div>  
         </div>
     )
 }
 
 export default function Navbar() {
+    const { state, dispatch } = useContext(Store);
+    const { cart } = state;
+
     const [open, setOpen] = useState(false)
         return (
             <nav className="absolute sticky top-0 shadow bg-[#F5F5F5] opacity-100 px-4 py-4 h-20 flex items-center justify-center">
@@ -62,6 +70,16 @@ export default function Navbar() {
                         </NavLink>
                         <NavLink to="/signup">
                             sign up
+                        </NavLink>
+                        <NavLink to="/cart">
+                            {/* <a> */}
+                                cart
+                                {cart.cartItems.length > 0 && (
+                                    <span className='ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white'>
+                                        {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
+                                    </span>
+                                )}
+                            {/* </a> */}
                         </NavLink>
                     </div>
                 </div>
