@@ -24,11 +24,7 @@ export default function ProductItem({ product, addToCartHandler }) {
         <p>Price: ${product.price}</p>
         <p>Quantity: {product.countInStock}</p>
         <p className="mb-2">Expires on: {product.expiry}</p>
-        <button
-          className="primary-button"
-          type="button"
-          // onClick={() => addToCartHandler(product)}
-        >
+        <button className="primary-button" type="button">
           Add to cart
         </button>
       </div>

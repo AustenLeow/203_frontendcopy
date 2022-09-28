@@ -11,7 +11,6 @@ export default function marketplace() {
           <ProductItem
             product={product}
             key={product.slug}
-            // addToCartHandler={addToCartHandler}
           ></ProductItem>
         ))}
       </div>
