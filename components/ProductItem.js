@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import React from 'react';
+import Link from "next/link";
+import React from "react";
 
 export default function ProductItem({ product, addToCartHandler }) {
   return (
@@ -9,7 +9,7 @@ export default function ProductItem({ product, addToCartHandler }) {
           <img
             src={product.image}
             alt={product.name}
-            className="rounded shadow object-cover h-64 w-full"
+            className="rounded shadow object-cover h-3/5 w-full"
           />
         </a>
       </Link>
@@ -24,10 +24,14 @@ export default function ProductItem({ product, addToCartHandler }) {
         <p>Price: ${product.price}</p>
         <p>Quantity: {product.countInStock}</p>
         <p className="mb-2">Expires on: {product.expiry}</p>
-        <button className="primary-button" type="button">
+        <button
+          className="primary-button"
+          type="button"
+          // onClick={() => addToCartHandler(product)}
+        >
           Add to cart
         </button>
       </div>
     </div>
   );
-}
+  }
