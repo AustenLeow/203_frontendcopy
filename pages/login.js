@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React from "react";
 import { useForm } from "react-hook-form";
 import Layout from "../components/Layout";
@@ -8,9 +9,26 @@ export default function login() {
     register,
     formState: { errors },
   } = useForm();
+
   const submitHandler = ({ username, password }) => {
-    console.log(username, password);
+    axios.post('http://localhost:8080/api/auth/signin', {
+      username: 'aus4',
+      password: 'password'
+
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   };
+
+  const router = useRouter();
+  const loginHandler = () => {
+    router.push('/marketplace');
+  }
+
   return (
     <Layout title="login">
       <form
@@ -65,7 +83,7 @@ export default function login() {
                 )}
               </div>
               <div className="mb-4 ">
-                <button className="primary-button hover:bg-[#4E632E]">Login</button>
+                <button className="primary-button hover:bg-[#4E632E]" onClick={loginHandler}>Login</button>
               </div>
               <div className="mb-4 ">
                 Don&apos;t have an account? &nbsp;
