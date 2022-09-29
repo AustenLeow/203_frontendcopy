@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React from "react";
+import React, { useContext } from "react";
 
 export default function ProductItem({ product, addToCartHandler }) {
   return (
@@ -26,13 +26,13 @@ export default function ProductItem({ product, addToCartHandler }) {
         <div className="py-3"></div>
 
         <div className="flex flex-col justify-end items-start">
-          {/* <p className="text-start">Quantity: {product.countInStock}</p> */}
+          <p className="text-start">Quantity: {product.countInStock}</p>
           <p className="mb-2 text-start">Expires on: {product.expiry}</p>
 
           <button
             className="product-button flex items-end hover:items-center justify-between w-full"
             type="button"
-            // onClick={() => addToCartHandler(product)}
+            onClick={addToCartHandler}
           >
             <div> Add to cart</div>
             <div>
