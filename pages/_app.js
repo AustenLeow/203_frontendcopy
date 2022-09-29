@@ -1,10 +1,13 @@
-import '../styles/globals.css'
-import Navbar from '../components/Navbar'
-
+import '../styles/globals.css';
+import { StoreProvider } from '../utils/Store';
 
 function MyApp({ Component, pageProps }) {
-  return <> < Navbar/> <Component {...pageProps} /> </>
+  return (
+    <StoreProvider>
+      <Component {...pageProps} />
+    </StoreProvider>
+  );
 }
 
-export default MyApp
+export default MyApp;
  

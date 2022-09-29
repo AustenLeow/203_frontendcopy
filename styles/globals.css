@@ -34,7 +34,19 @@ a {
 }
 
 .primary-button{
-  @apply bg-[#A4B07E] text-white font-bold py-2 px-4 rounded;
+  @apply bg-[#A4B07E] text-white font-bold py-2 px-4 rounded hover:bg-[#4E632E] active:bg-[#4E632E];
+}
+
+.login-text {
+  @apply text-[#4E632E] text-2xl font-bold;
+}
+
+.product-title{
+  @apply text-[#4E632E] text-2xl py-2 font-bold;
+}
+
+.product-button {
+  @apply text-[#A4B07E] rounded border-2 outline-none hover:border-[#4E632E] hover:focus:ring font-bold py-2 px-4 rounded hover:text-[#4E632E];
 }
 
 input,
@@ -43,3 +55,7 @@ textarea {
   @apply rounded border p-2 bg-[#F5F5F5] outline-none ring-[#A2A182] focus:ring;
 }
 
+
+.card {
+  @apply p-6 block rounded-xl border border-gray-200 shadow-2xl;
+}
