@@ -3,6 +3,7 @@ import Typical from "react-typical";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { IoEarthSharp } from "react-icons/io5";
 import Navbar from "../components/Navbar";
+import useUser from "../data/useUser";
 
 export default function Home() {
   return (

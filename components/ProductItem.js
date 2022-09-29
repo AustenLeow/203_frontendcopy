@@ -2,6 +2,7 @@ import Link from "next/link";
 import React, { useContext } from "react";
 
 export default function ProductItem({ product, addToCartHandler }) {
+  // const PRODUCT_ITEM_API = "http://localhost:8080/api/products";
   return (
     <div className="card">
       <Link href={`/product/${product.slug}`}>
