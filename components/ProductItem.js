@@ -13,7 +13,7 @@ export default function ProductItem({ product, addToCartHandler }) {
           />
         </a>
       </Link>
-      <div className="flex flex-col justify-between p-3 h-2/5">
+      <div className="flex flex-col justify-between p-5 h-2/5">
         <div className="flex flex-col justify-start">
           <Link href={`/product/${product.slug}`}>
             <a>
