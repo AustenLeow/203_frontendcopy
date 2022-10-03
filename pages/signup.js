@@ -2,6 +2,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import Layout from "../components/Layout";
 import {useFormik} from "formik";
+import { registerValidate } from "../lib/validate";
+import {registerValidate} from "../lib/validate";
 
 export default function signup() {
   const {
@@ -20,6 +22,7 @@ export default function signup() {
       password: "",
       confirmpassword: "",
     },
+    validate: registerValidate,
     onSubmit
   })
 
