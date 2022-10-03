@@ -23,11 +23,13 @@ function CartScreen() {
     };
 
     return (
-        <Layout title='Shopping Cart'>
-            <h1 className='mb-4 text-xl'>Shopping Cart</h1>
+        <Layout title='cart'>
             {cartItems.length === 0 ? (
-                <div>
-                    Cart is empty. <Link href='/marketplace'>Go shopping</Link>
+                <div className='p-5'>
+                    Cart is empty. &nbsp;
+                    <a className="my-4 text-[#687259]" href="/marketplace" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
+                    Go shopping.
+                    </a>
                 </div>
             ) : (
                 <div className='grid md:grid-cols-4 md:gap-5'>
