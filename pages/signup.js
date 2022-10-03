@@ -1,5 +1,6 @@
-import React from "react";
+import {React} from "react";
 import { useForm } from "react-hook-form";
+import {useRouter} from "next/router";
 import Layout from "../components/Layout";
 import axios from "axios";
 
@@ -11,7 +12,7 @@ export default function signup() {
   } = useForm();
 
   const submitHandler = ({ username, email, password, confirmpassword }) => {
-    // console.log(username, email, password, confirmpassword);
+    console.log(username, email, password, confirmpassword);
     axios.post('http://localhost:8080/api/auth/signup', {
       username: document.getElementById("username").value,
       email: document.getElementById("email").value,
