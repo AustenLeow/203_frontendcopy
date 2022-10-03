@@ -21,6 +21,10 @@ export default function ProductItem({ product }) {
     router.push('/cart');
   }
 
+
+export default function ProductItem({ product, addToCartHandler }) {
+  // const PRODUCT_ITEM_API = "http://localhost:8080/api/products";
+
   return (
     <div className="card">
       <Link href={`/product/${product.slug}`}>
@@ -32,7 +36,7 @@ export default function ProductItem({ product }) {
           />
         </a>
       </Link>
-      <div className="flex flex-col justify-between p-3 h-2/5">
+      <div className="flex flex-col justify-between p-5 h-2/5">
         <div className="flex flex-col justify-start">
           <Link href={`/product/${product.slug}`}>
             <a>
