@@ -18,6 +18,10 @@ export default function ProductScreen() {
     return <div>Product Not Found</div>;
   }
 
+  const backToProductsHandler = () => {
+    router.push('/marketplace');
+  }
+
   const addToCartHandler = () => {
     const existItem = state.cart.cartItems.find((x) => x.slug === product.slug);
     const quantity = existItem ? existItem.quantity + 1 : 1;
@@ -34,9 +38,11 @@ export default function ProductScreen() {
   return (
     <Layout title={product.name}>
       <div className="py-2 px-10">
-        <Link href="/marketplace">
-          Back to products
-        </Link>
+        <button className="primary-button w-1/10" onClick={backToProductsHandler}>
+          <Link href="/marketplace">
+            Back to products
+          </Link>
+        </button>
       </div>
       <div className="grid md:grid-cols-4 md:gap-3">
         <div className="md:col-span-2 px-10">
