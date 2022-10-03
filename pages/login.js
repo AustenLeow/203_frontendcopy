@@ -30,6 +30,10 @@ export default function login() {
     signIn('google', {callbackUrl: 'http://localhost:3000/'})
   }
 
+  async function handleGitHubSignIn(){
+    signIn('github', {callbackUrl: 'http://localhost:3000/'})
+  }
+
   return (
     <Layout title="login">
       <form
@@ -84,11 +88,6 @@ export default function login() {
                   <div className="text-red-500 ">{errors.password.message}</div>
                 )}
               </div>
-              <div className="mb-4 ">
-                <button onClick={handleGoogleSignIn} className="primary-button hover:bg-[#4E632E]">
-                  Google 
-                </button>
-              </div>
               <div>
               <button className="primary-button hover:bg-[#4E632E]">
                   Login
@@ -107,6 +106,16 @@ export default function login() {
                 >
                   Sign up here
                 </a>
+              </div>
+              <div className="mb-4 ">
+                <button onClick={handleGoogleSignIn} className="primary-button hover:bg-[#4E632E]">
+                  Google 
+                </button>
+              </div>
+              <div className="mb-4 ">
+                <button onClick={handleGitHubSignIn} className="primary-button hover:bg-[#4E632E]">
+                  GitHub 
+                </button>
               </div>
             </div>
           </div>
