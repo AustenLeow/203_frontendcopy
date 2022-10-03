@@ -59,7 +59,7 @@ export default function signup() {
                   })}
                   className="w-full"
                   id="email"
-                  autofocus
+                  autoFocus
                 ></input>
                 {errors.email && (
                   <div className="text-red-500">{errors.email.message}</div>
