@@ -5,40 +5,44 @@ import axios from "axios";
 import { signIn } from "next-auth/react";
 import { useFormik } from "formik";
 import Link from "next/link";
+import login_validate from "../lib/validate";
 
 export default function login() {
   const formik = useFormik({
     initialValues: {
-      email: "",
+      username: "",
       password: "",
     },
+    validate : login_validate,
     onSubmit,
   });
+
+  console.log(formik.errors);
 
   async function onSubmit(values) {
     console.log(values);
   }
 
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-  } = useForm();
-  const submitHandler = ({ username, password }) => {
-    console.log(username, password);
+  // const {
+  //   handleSubmit,
+  //   register,
+  //   formState: { errors },
+  // } = useForm();
+  // const submitHandler = ({ username, password }) => {
+  //   console.log(username, password);
 
-    axios
-      .post("http://localhost:8080/api/auth/signin", {
-        username: "username",
-        password: "password",
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
+  //   axios
+  //     .post("http://localhost:8080/api/auth/signin", {
+  //       username: "username",
+  //       password: "password",
+  //     })
+  //     .then(function (response) {
+  //       console.log(response);
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // };
 
   async function handleGoogleSignIn() {
     signIn("google", { callbackUrl: "http://localhost:3000/" });

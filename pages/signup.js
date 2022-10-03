@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import Layout from "../components/Layout";
+import {useFormik} from "formik";
 
 export default function signup() {
   const {
@@ -11,12 +12,26 @@ export default function signup() {
   const submitHandler = ({ username, email, password, confirmpassword }) => {
     console.log(username, email, password, confirmpassword);
   };
+  
+  const formik = useFormik({
+    initialValues: {
+      username: "",
+      email: "",
+      password: "",
+      confirmpassword: "",
+    },
+    onSubmit
+  })
+
+  async function onSubmit(values) {
+    console.log(values);
+  }
 
   return (
     <Layout title="signup">
       <form
         className="mx-auto w-4/5 py-16 md:py-32"
-        onSubmit={handleSubmit(submitHandler)}
+        onSubmit={formik.handleSubmit}
       >
         <div className="w-full flex items-center justify-center">
           <div className="w-full h-fit m-auto grid grid-cols-1 lg:grid-cols-2 ">
@@ -25,87 +40,49 @@ export default function signup() {
             </div>
             <div className="text-left flex flex-col justify-center shadow-2xl p-10">
               <h1 className="mb-4 text-xl">Create Account</h1>
-              <div className="mb-4">
+              <div className="mb-4 w-full input">
                 <label htmlFor="username">Username</label>
                 <input
                   type="username"
-                  {...register("username", {
-                    required: "please enter your username",
-                    minLength: {
-                      value: 3,
-                      message:
-                        "your username should have a minimum of 3 characters ",
-                    },
-                  })}
-                  className="w-full"
-                  id="username"
-                  autoFocus
-                ></input>
-                {errors.username && (
-                  <div className="text-red-500">{errors.username.message}</div>
-                )}
+                  name="username"
+                  placeholder="Username"
+                  onChange={formik.handleChange}
+                    value={formik.values.username}
+                  />
               </div>
 
-              <div className="mb-4">
+              <div className="mb-4 w-full input">
                 <label htmlFor="email">Email</label>
                 <input
                   type="email"
-                  {...register("email", {
-                    required: "Please enter your email",
-                    pattern: {
-                      value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/i,
-                      message: "Please enter valid email",
-                    },
-                  })}
-                  className="w-full"
-                  id="email"
-                  autoFocus
-                ></input>
-                {errors.email && (
-                  <div className="text-red-500">{errors.email.message}</div>
-                )}
+                  name="email"
+                  placeholder="email"
+                  onChange={formik.handleChange}
+                    value={formik.values.email}
+                  />
               </div>
 
-              <div className="mb-4">
+              <div className="mb-4 w-full input">
                 <label htmlFor="password">Password</label>
                 <input
                   type="password"
-                  {...register("password", {
-                    required: "Please enter your password",
-                    minLength: {
-                      value: 6,
-                      message:
-                        "Your password should have a minimum of 6 characters ",
-                    },
-                  })}
-                  className="w-full"
-                  id="password"
-                  autoFocus
-                ></input>
-                {errors.password && (
-                  <div className="text-red-500 ">{errors.password.message}</div>
-                )}
+                  name="password"
+                  placeholder="Password"
+                  onChange={formik.handleChange}
+                    value={formik.values.password}
+                />
+                
               </div>
 
-              <div className="mb-4">
+              <div className="mb-4 w-full input">
                 <label htmlFor="confirmpassword">Confirm Password</label>
                 <input
                   type="password"
-                  {...register("confirmpassword", {
-                    required: "Please enter your confirmed password",
-                    validate: (value) =>
-                      value === document.getElementById("password").value ||
-                      "Passwords do not match",
-                  })}
-                  className="w-full"
-                  id="confirmpassword"
-                  autofocus
-                ></input>
-                {errors.confirmpassword && (
-                  <div className="text-red-500 ">
-                    {errors.confirmpassword.message}
-                  </div>
-                )}
+                  name="confirmpassword"
+                  placeholder="Confirm password"
+                  onChange={formik.handleChange}
+                    value={formik.values.confirmpassword}
+               />
               </div>
 
               <div className="mb-4">
