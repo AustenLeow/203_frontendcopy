@@ -1,20 +1,18 @@
 import React from "react";
-import { useForm } from "react-hook-form";
 import Layout from "../components/Layout";
-import {useFormik} from "formik";
+import { useFormik } from "formik";
 import { registerValidate } from "../lib/validate";
-import {registerValidate} from "../lib/validate";
 
 export default function signup() {
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-  } = useForm();
-  const submitHandler = ({ username, email, password, confirmpassword }) => {
-    console.log(username, email, password, confirmpassword);
-  };
-  
+  // const {
+  //   handleSubmit,
+  //   register,
+  //   formState: { errors },
+  // } = useForm();
+  // const submitHandler = ({ username, email, password, confirmpassword }) => {
+  //   console.log(username, email, password, confirmpassword);
+  // };
+
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -23,8 +21,8 @@ export default function signup() {
       confirmpassword: "",
     },
     validate: registerValidate,
-    onSubmit
-  })
+    onSubmit,
+  });
 
   async function onSubmit(values) {
     console.log(values);
@@ -50,19 +48,31 @@ export default function signup() {
                   name="username"
                   placeholder="Username"
                   onChange={formik.handleChange}
-                    value={formik.values.username}
-                  />
+                  value={formik.values.username}
+                />
+                {formik.errors.username && formik.touched.username ? (
+                  <span className="text-rose-500">
+                    {formik.errors.username}
+                  </span>
+                ) : (
+                  <></>
+                )}
               </div>
 
-              <div className="mb-4 w-full input">
+              <div className={"mb-4 w-full input"}>
                 <label htmlFor="email">Email</label>
                 <input
                   type="email"
                   name="email"
-                  placeholder="email"
+                  placeholder="Email"
                   onChange={formik.handleChange}
-                    value={formik.values.email}
-                  />
+                  value={formik.values.email}
+                />
+                {formik.errors.email && formik.touched.email ? (
+                  <span className="text-rose-500">{formik.errors.email}</span>
+                ) : (
+                  <></>
+                )}
               </div>
 
               <div className="mb-4 w-full input">
@@ -72,9 +82,15 @@ export default function signup() {
                   name="password"
                   placeholder="Password"
                   onChange={formik.handleChange}
-                    value={formik.values.password}
+                  value={formik.values.password}
                 />
-                
+                {formik.errors.password && formik.touched.password ? (
+                  <span className="text-rose-500">
+                    {formik.errors.password}
+                  </span>
+                ) : (
+                  <></>
+                )}
               </div>
 
               <div className="mb-4 w-full input">
@@ -84,15 +100,25 @@ export default function signup() {
                   name="confirmpassword"
                   placeholder="Confirm password"
                   onChange={formik.handleChange}
-                    value={formik.values.confirmpassword}
-               />
+                  value={formik.values.confirmpassword}
+                />
+                {formik.errors.confirmpassword &&
+                formik.touched.confirmpassword ? (
+                  <span className="text-rose-500">
+                    {formik.errors.confirmpassword}
+                  </span>
+                ) : (
+                  <></>
+                )}
               </div>
 
               <div className="mb-4">
-                <button className="primary-button hover:bg-[#4E632E]">Create</button>
+                <button className="primary-button hover:bg-[#4E632E]">
+                  Create
+                </button>
               </div>
               <div className="mb-4">
-                Already have an account? &nbsp;
+               Have an account? &nbsp;
                 <a
                   className="my-4 text-[#687259]"
                   href="/login"

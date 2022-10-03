@@ -199,9 +199,17 @@ export default function login() {
               <p className="text-center text-grey-400">
                 {" "}
                 Don't have an account?
-                <Link href={"/signup"}>
-                  <a className="text-green>"></a>
-                </Link>
+                <a
+                  className="my-4 text-[#687259]"
+                  href="/signup"
+                  onClick={() =>
+                    setTimeout(() => {
+                      setOpen(!open);
+                    }, 100)
+                  }
+                >
+                  Sign up here
+                </a>
               </p>
             </div>
           </div>
