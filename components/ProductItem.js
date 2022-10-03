@@ -1,8 +1,30 @@
-import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useContext } from "react";
+import data from "../utils/data";
+import Link from 'next/Link';
+import { Store } from '../utils/Store';
+
+export default function ProductItem({ product }) {
+  const { state, dispatch } = useContext(Store);
+  const router = useRouter();
+
+  const addToCartHandler = () => {
+    const existItem = state.cart.cartItems.find((x) => x.slug === product.slug);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+
+    if (product.countInStock < quantity) {
+      alert('Product is out of stock.');
+      return;
+    }
+
+    dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
+    router.push('/cart');
+  }
+
 
 export default function ProductItem({ product, addToCartHandler }) {
   // const PRODUCT_ITEM_API = "http://localhost:8080/api/products";
+
   return (
     <div className="card">
       <Link href={`/product/${product.slug}`}>
@@ -10,7 +32,7 @@ export default function ProductItem({ product, addToCartHandler }) {
           <img
             src={product.image}
             alt={product.name}
-            className="rounded shadow object-cover h-3/5 w-full"
+            className="rounded shadow object-cover h-1/2 w-full"
           />
         </a>
       </Link>
@@ -27,7 +49,6 @@ export default function ProductItem({ product, addToCartHandler }) {
         <div className="py-3"></div>
 
         <div className="flex flex-col justify-end items-start">
-          <p className="text-start">Quantity: {product.countInStock}</p>
           <p className="mb-2 text-start">Expires on: {product.expiry}</p>
 
           <button

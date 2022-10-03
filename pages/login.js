@@ -8,6 +8,7 @@ import Link from "next/link";
 import login_validate from "../lib/validate";
 
 export default function login() {
+
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -51,6 +52,7 @@ export default function login() {
   async function handleGitHubSignIn() {
     signIn("github", { callbackUrl: "http://localhost:3000/" });
   }
+
 
   return (
     <Layout title="login">
@@ -103,10 +105,12 @@ export default function login() {
                   <div className="text-red-500 ">{errors.password.message}</div>
                 )}
               </div>
+
               <div>
               <button className="primary-button hover:bg-[#4E632E]">
                   Login
                 </button>
+
               </div>
               <div className="mb-4 ">
                 Don&apos;t have an account? &nbsp;
