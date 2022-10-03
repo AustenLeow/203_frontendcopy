@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import Layout from "../components/Layout";
+import axios from "axios";
 
 export default function signup() {
   const {
@@ -8,8 +9,21 @@ export default function signup() {
     register,
     formState: { errors },
   } = useForm();
+
   const submitHandler = ({ username, email, password, confirmpassword }) => {
-    console.log(username, email, password, confirmpassword);
+    // console.log(username, email, password, confirmpassword);
+    axios.post('http://localhost:8080/api/auth/signup', {
+      username: document.getElementById("username").value,
+      email: document.getElementById("email").value,
+      password: document.getElementById("password").value
+
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   };
 
   return (
@@ -109,7 +123,19 @@ export default function signup() {
               </div>
 
               <div className="mb-4">
-                <button className="primary-button hover:bg-[#4E632E]">Create</button>
+                <button className="primary-button hover:bg-">
+                <a
+                  className="my-4 text-[#FFFFFF]"
+                  href="/login"
+                  onClick={() =>
+                    setTimeout(() => {
+                      setOpen(!open);
+                    }, 100)
+                  }
+                >Create
+                  
+                </a>
+                </button>
               </div>
               <div className="mb-4">
                 Already have an account? &nbsp;
