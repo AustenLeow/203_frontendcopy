@@ -13,7 +13,7 @@ export default function login() {
       username: "",
       password: "",
     },
-    validate : login_validate,
+    validate: login_validate,
     onSubmit,
   });
 
@@ -54,9 +54,7 @@ export default function login() {
 
   return (
     <Layout title="login">
-      <div
-        className="mx-auto w-4/5 py-16 md:py-32"
-      >
+      <div className="mx-auto w-4/5 py-16 md:py-32">
         <div className="w-full flex items-center justify-center">
           <div className="w-full h-fit m-auto grid grid-cols-1 lg:grid-cols-2 ">
             <div className="flex flex-col items-center justify-center">
@@ -135,7 +133,10 @@ export default function login() {
                 </button>
               </div> */}
               <div className="text-2xl py-4 font-bold">Login</div>
-              <form className="flex flex-col gap-5" onSubmit={formik.handleSubmit}>
+              <form
+                className="flex flex-col gap-5"
+                onSubmit={formik.handleSubmit}
+              >
                 <div className="w-full input">
                   <input
                     type="username"
@@ -144,6 +145,11 @@ export default function login() {
                     onChange={formik.handleChange}
                     value={formik.values.username}
                   />
+                  {formik.errors.username && formik.touched.username ? (
+                    <span className="text-rose-500">{formik.errors.username}</span>
+                  ) : (
+                    <></>
+                  )}
                 </div>
                 <div className="w-full input">
                   <input
@@ -153,6 +159,12 @@ export default function login() {
                     onChange={formik.handleChange}
                     value={formik.values.password}
                   />
+
+                  {formik.errors.password &&  formik.touched.password ? (
+                    <span className="text-rose-500">{formik.errors.password}</span>
+                  ) : (
+                    <></>
+                  )}
                 </div>
 
                 <div>
@@ -164,13 +176,21 @@ export default function login() {
                   </button>
                 </div>
                 <div>
-                  <button className="w-full p-2 rounded border-2" onClick={handleGoogleSignIn} type="submit">
+                  <button
+                    className="w-full p-2 rounded border-2"
+                    onClick={handleGoogleSignIn}
+                    type="submit"
+                  >
                     {" "}
                     Sign in with Google{" "}
                   </button>
                 </div>
                 <div>
-                  <button className="w-full p-2 rounded border-2" onClick={handleGitHubSignIn} type="submit">
+                  <button
+                    className="w-full p-2 rounded border-2"
+                    onClick={handleGitHubSignIn}
+                    type="submit"
+                  >
                     {" "}
                     Sign in with GitHub{" "}
                   </button>
