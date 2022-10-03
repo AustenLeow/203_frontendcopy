@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import Layout from "../components/Layout";
 import axios from "axios";
+import { signIn } from "next-auth/react";
 
 export default function login() {
   const {
@@ -25,6 +26,10 @@ export default function login() {
       });
   };
 
+  async function handleGoogleSignIn(){
+    signIn('google', {callbackUrl: 'http://localhost:3000/'})
+  }
+
   return (
     <Layout title="login">
       <form
@@ -47,7 +52,8 @@ export default function login() {
                     minLength: {
                       value: 3,
                       message:
-                        "Your username should have a minimum of 3 characters ",
+                      
+                        "Your username is incorrect ",
                     },
                   })}
                   className="w-full"
@@ -67,7 +73,7 @@ export default function login() {
                     minLength: {
                       value: 6,
                       message:
-                        "Your password should have a minimum of 6 characters ",
+                        "Your password is incorrect",
                     },
                   })}
                   className="w-full"
@@ -79,7 +85,12 @@ export default function login() {
                 )}
               </div>
               <div className="mb-4 ">
-                <button className="primary-button hover:bg-[#4E632E]">
+                <button onClick={handleGoogleSignIn} className="primary-button hover:bg-[#4E632E]">
+                  Google 
+                </button>
+              </div>
+              <div>
+              <button className="primary-button hover:bg-[#4E632E]">
                   Login
                 </button>
               </div>
