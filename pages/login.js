@@ -8,9 +8,22 @@ export default function login() {
     register,
     formState: { errors },
   } = useForm();
+
   const submitHandler = ({ username, password }) => {
     console.log(username, password);
+    // axios.post('http://localhost:8080/api/auth/signin', {
+    //   username: 'aus4',
+    //   password: 'password'
+
+    // })
+    // .then(function (response) {
+    //   console.log(response);
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
   };
+
   return (
     <Layout title="login">
       <form
@@ -65,7 +78,18 @@ export default function login() {
                 )}
               </div>
               <div className="mb-4 ">
-                <button className="primary-button hover:bg-[#4E632E]">Login</button>
+                <button className="primary-button hover:bg-[#4E632E]">
+                <a
+                  className="my-4 text-[#FFFFFF]"
+                  href="/marketplace"
+                  onClick={() =>
+                    setTimeout(() => {
+                      setOpen(!open);
+                    }, 100)
+                  }
+                  >Login
+                  </a>
+                  </button>
               </div>
               <div className="mb-4 ">
                 Don&apos;t have an account? &nbsp;
