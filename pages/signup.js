@@ -26,11 +26,6 @@ export default function signup() {
     });
   };
 
-  const router = useRouter();
-  const goToLoginHandler = () => {
-    router.push('/login');
-  }
-
   return (
     <Layout title="signup">
       <form
