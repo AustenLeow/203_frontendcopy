@@ -1,7 +1,7 @@
-import { useRouter } from "next/router";
 import React from "react";
 import { useForm } from "react-hook-form";
 import Layout from "../components/Layout";
+import axios from "axios";
 
 export default function signup() {
   const {
@@ -11,18 +11,19 @@ export default function signup() {
   } = useForm();
 
   const submitHandler = ({ username, email, password, confirmpassword }) => {
+    // console.log(username, email, password, confirmpassword);
     axios.post('http://localhost:8080/api/auth/signup', {
-      username: 'aus4',
-      email: 'aus4@gmail.com',
-      password: 'password'
+      username: document.getElementById("username").value,
+      email: document.getElementById("email").value,
+      password: document.getElementById("password").value
 
     })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   };
 
   const router = useRouter();
@@ -127,7 +128,19 @@ export default function signup() {
               </div>
 
               <div className="mb-4">
-                <button className="primary-button hover:bg-[#4E632E]" onClick={goToLoginHandler}>Create</button>
+                <button className="primary-button hover:bg-">
+                <a
+                  className="my-4 text-[#FFFFFF]"
+                  href="/login"
+                  onClick={() =>
+                    setTimeout(() => {
+                      setOpen(!open);
+                    }, 100)
+                  }
+                >Create
+                  
+                </a>
+                </button>
               </div>
               <div className="mb-4">
                 Already have an account? &nbsp;
