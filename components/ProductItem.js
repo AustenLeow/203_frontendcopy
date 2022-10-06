@@ -22,8 +22,8 @@ export default function ProductItem({ product }) {
   }
 
 
-export default function ProductItem({ product, addToCartHandler }) {
-  // const PRODUCT_ITEM_API = "http://localhost:8080/api/products";
+// export default function ProductItem({ product, addToCartHandler }) {
+//   // const PRODUCT_ITEM_API = "http://localhost:8080/api/products";
 
   return (
     <div className="card">

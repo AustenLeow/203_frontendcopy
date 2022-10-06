@@ -1,40 +1,47 @@
-
 import React from "react";
+import { useForm } from "react-hook-form";
 import Layout from "../components/Layout";
-import { useFormik } from "formik";
-import { registerValidate } from "../lib/validate";
+// import { useRouter } from "next/react";
+import axios from "axios";
 
 export default function signup() {
-  // const {
-  //   handleSubmit,
-  //   register,
-  //   formState: { errors },
-  // } = useForm();
-  // const submitHandler = ({ username, email, password, confirmpassword }) => {
-  //   console.log(username, email, password, confirmpassword);
-  // };
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm();
 
-  const formik = useFormik({
-    initialValues: {
-      username: "",
-      email: "",
-      password: "",
-      confirmpassword: "",
-    },
-    validate: registerValidate,
-    onSubmit,
-  });
+  // const [username, setUsername] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [confirmpassword, setConfirmPassword] = useState("");
 
-  async function onSubmit(values) {
-    console.log(values);
-  }
+  const submitHandler = ({ username, email, password, confirmpassword }) => {
+    console.log(username, email, password, confirmpassword);
+    //axios.post('http://localhost:8080/api/auth/signup', {
+    //   username: document.getElementById("username").value,
+    //   email: document.getElementById("email").value,
+    //   password: document.getElementById("password").value
 
+    // })
+    // .then(function (response) {
+    //   console.log(response);
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
+  };
+
+  // const router = useRouter();
+  // const goToLoginHandler = () => {
+  //   router.push('/login');
+  // }
 
   return (
     <Layout title="signup">
       <form
         className="mx-auto w-4/5 py-16 md:py-32"
-        onSubmit={formik.handleSubmit}
+        onSubmit={handleSubmit(submitHandler)}
       >
         <div className="w-full flex items-center justify-center">
           <div className="w-full h-fit m-auto grid grid-cols-1 lg:grid-cols-2 ">
@@ -43,86 +50,108 @@ export default function signup() {
             </div>
             <div className="text-left flex flex-col justify-center shadow-2xl p-10">
               <h1 className="mb-4 text-xl">Create Account</h1>
-              <div className="mb-4 w-full input">
+              <div className="mb-4">
                 <label htmlFor="username">Username</label>
                 <input
                   type="username"
-                  name="username"
-                  placeholder="Username"
-                  onChange={formik.handleChange}
-                  value={formik.values.username}
-                />
-                {formik.errors.username && formik.touched.username ? (
-                  <span className="text-rose-500">
-                    {formik.errors.username}
-                  </span>
-                ) : (
-                  <></>
+                  {...register("username", {
+                    required: "please enter your username",
+                    minLength: {
+                      value: 3,
+                      message:
+                        "your username should have a minimum of 3 characters ",
+                    },
+                  })}
+                  className="w-full"
+                  id="username"
+                  autoFocus
+                ></input>
+                {errors.username && (
+                  <div className="text-red-500">{errors.username.message}</div>
                 )}
               </div>
 
-              <div className={"mb-4 w-full input"}>
+              <div className="mb-4">
                 <label htmlFor="email">Email</label>
                 <input
                   type="email"
-                  name="email"
-                  placeholder="Email"
-                  onChange={formik.handleChange}
-                  value={formik.values.email}
-                />
-                {formik.errors.email && formik.touched.email ? (
-                  <span className="text-rose-500">{formik.errors.email}</span>
-                ) : (
-                  <></>
+                  {...register("email", {
+                    required: "Please enter your email",
+                    pattern: {
+                      value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/i,
+                      message: "Please enter valid email",
+                    },
+                  })}
+                  className="w-full"
+                  id="email"
+                  autofocus
+                ></input>
+                {errors.email && (
+                  <div className="text-red-500">{errors.email.message}</div>
                 )}
               </div>
 
-              <div className="mb-4 w-full input">
+              <div className="mb-4">
                 <label htmlFor="password">Password</label>
                 <input
                   type="password"
-                  name="password"
-                  placeholder="Password"
-                  onChange={formik.handleChange}
-                  value={formik.values.password}
-                />
-                {formik.errors.password && formik.touched.password ? (
-                  <span className="text-rose-500">
-                    {formik.errors.password}
-                  </span>
-                ) : (
-                  <></>
+                  {...register("password", {
+                    required: "Please enter your password",
+                    minLength: {
+                      value: 6,
+                      message:
+                        "Your password should have a minimum of 6 characters ",
+                    },
+                  })}
+                  className="w-full"
+                  id="password"
+                  autoFocus
+                ></input>
+                {errors.password && (
+                  <div className="text-red-500 ">{errors.password.message}</div>
                 )}
               </div>
 
-              <div className="mb-4 w-full input">
+              <div className="mb-4">
                 <label htmlFor="confirmpassword">Confirm Password</label>
                 <input
                   type="password"
-                  name="confirmpassword"
-                  placeholder="Confirm password"
-                  onChange={formik.handleChange}
-                  value={formik.values.confirmpassword}
-                />
-                {formik.errors.confirmpassword &&
-                formik.touched.confirmpassword ? (
-                  <span className="text-rose-500">
-                    {formik.errors.confirmpassword}
-                  </span>
-                ) : (
-                  <></>
+                  {...register("confirmpassword", {
+                    required: "Please enter your confirmed password",
+                    validate: (value) =>
+                      value === document.getElementById("password").value ||
+                      "Passwords do not match",
+                  })}
+                  className="w-full"
+                  id="confirmpassword"
+                  autofocus
+                ></input>
+                {errors.confirmpassword && (
+                  <div className="text-red-500 ">
+                    {errors.confirmpassword.message}
+                  </div>
                 )}
               </div>
 
               <div className="mb-4">
-
-                <button className="primary-button hover:bg-[#4E632E]">
-                  Create
-
+                <button className="primary-button hover:bg-" type="submit">
+                <a
+                  className="my-4 text-[#FFFFFF]"
+                  //onSubmit={submitHandler} required
+                  href="/login"
+                  onSubmit={submitHandler} required
+                  onClick={() =>
+                    setTimeout(() => {
+                      setOpen(!open);
+                    }, 100)
+                  }
+                >Create
+                  
+                </a>
                 </button>
               </div>
               <div className="mb-4">
-               Have an account? &nbsp;
+                Already have an account? &nbsp;
                 <a
                   className="my-4 text-[#687259]"
                   href="/login"

@@ -7,32 +7,38 @@ import { useState } from "react";
 
 export default function login() {
 
-  const url = "http://localhost:8080/api/auth/login";
-
-  const [username, password] = useState("");
-
-  
-
   const {
     handleSubmit,
     register,
     formState: { errors },
   } = useForm();
 
-  const submitHandler = ({ username, password }) => {
-    console.log(username, password);
-    axios.post('http://localhost:8080/api/auth/login', {
-      username: username,
-      password: password
-
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+  const submitHandler = ({ email, password }) => {
+    console.log(email, password);
   };
+
+  // const [username, setUsername] = useState("");
+  // const [password, setPassword] = useState("");
+
+  // const submitHandler = (e) => {
+  //   e.preventDefault();
+  //   const result = { username, password };
+  //   console.log(result);
+
+
+    // console.log(username, password);
+    // axios.post('http://localhost:8080/api/auth/login', {
+    //   username: username,
+    //   password: password
+
+    // })
+  //   .then(function (response) {
+  //     console.log(response);
+  //   })
+  //   .catch(function (error) {
+  //     console.log(error);
+  //   });
+  // };
 
   return (
     <Layout title="login">
@@ -62,6 +68,7 @@ export default function login() {
                   className="w-full"
                   id="username"
                   autoFocus
+                  // onChange={(e) => setUsername(e.target.value)}
                 ></input>
                 {errors.username && (
                   <div className="text-red-500">{errors.username.message}</div>
@@ -82,6 +89,7 @@ export default function login() {
                   className="w-full"
                   id="password"
                   autoFocus
+                  // onChange={(e) => setPassword(e.target.value)}
                 ></input>
                 {errors.password && (
                   <div className="text-red-500 ">{errors.password.message}</div>

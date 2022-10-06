@@ -3,10 +3,8 @@ import Layout from "../components/Layout";
 import { Store } from '../utils/Store';
 import Link from 'next/Link';
 import Image from 'next/image';
-
-// import { XCircleIcon } from '@heroicons/react/outline/esm';
-// import { useRouter } from 'next/router';
-
+import { XCircleIcon } from '@heroicons/react/outline/esm';
+import dynamic from 'next/dynamic';
 
 function CartScreen() {
     // const router = useRouter();
@@ -25,13 +23,11 @@ function CartScreen() {
     };
 
     return (
-        <Layout title='cart'>
+        <Layout title='Shopping Cart'>
+            <h1 className='mb-4 text-xl'>Shopping Cart</h1>
             {cartItems.length === 0 ? (
-                <div className='p-5'>
-                    Cart is empty. &nbsp;
-                    <a className="my-4 text-[#687259]" href="/marketplace" onClick={() => setTimeout(() => {setOpen(!open)}, 100)}>
-                    Go shopping.
-                    </a>
+                <div>
+                    Cart is empty. <Link href='/marketplace'>Go shopping</Link>
                 </div>
             ) : (
                 <div className='grid md:grid-cols-4 md:gap-5'>
