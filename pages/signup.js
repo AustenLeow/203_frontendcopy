@@ -1,7 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import Layout from "../components/Layout";
-// import { useRouter } from "next/react";
 import axios from "axios";
 
 export default function signup() {
@@ -11,31 +10,21 @@ export default function signup() {
     formState: { errors },
   } = useForm();
 
-  // const [username, setUsername] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [confirmpassword, setConfirmPassword] = useState("");
-
   const submitHandler = ({ username, email, password, confirmpassword }) => {
-    console.log(username, email, password, confirmpassword);
-    //axios.post('http://localhost:8080/api/auth/signup', {
-    //   username: document.getElementById("username").value,
-    //   email: document.getElementById("email").value,
-    //   password: document.getElementById("password").value
+    // console.log(username, email, password, confirmpassword);
+    axios.post('http://localhost:8080/api/auth/signup', {
+      username: document.getElementById("username").value,
+      email: document.getElementById("email").value,
+      password: document.getElementById("password").value
 
-    // })
-    // .then(function (response) {
-    //   console.log(response);
-    // })
-    // .catch(function (error) {
-    //   console.log(error);
-    // });
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   };
-
-  // const router = useRouter();
-  // const goToLoginHandler = () => {
-  //   router.push('/login');
-  // }
 
   return (
     <Layout title="signup">
@@ -55,7 +44,7 @@ export default function signup() {
                 <input
                   type="username"
                   {...register("username", {
-                    required: "please enter your username",
+                    required: "Please enter your username",
                     minLength: {
                       value: 3,
                       message:
@@ -70,7 +59,6 @@ export default function signup() {
                   <div className="text-red-500">{errors.username.message}</div>
                 )}
               </div>
-
               <div className="mb-4">
                 <label htmlFor="email">Email</label>
                 <input
@@ -90,7 +78,6 @@ export default function signup() {
                   <div className="text-red-500">{errors.email.message}</div>
                 )}
               </div>
-
               <div className="mb-4">
                 <label htmlFor="password">Password</label>
                 <input
@@ -111,7 +98,6 @@ export default function signup() {
                   <div className="text-red-500 ">{errors.password.message}</div>
                 )}
               </div>
-
               <div className="mb-4">
                 <label htmlFor="confirmpassword">Confirm Password</label>
                 <input
@@ -134,19 +120,17 @@ export default function signup() {
               </div>
 
               <div className="mb-4">
-                <button className="primary-button hover:bg-" type="submit">
+                <button className="primary-button hover:bg-">
                 <a
                   className="my-4 text-[#FFFFFF]"
-                  //onSubmit={submitHandler} required
                   href="/login"
-                  onSubmit={submitHandler} required
                   onClick={() =>
                     setTimeout(() => {
                       setOpen(!open);
                     }, 100)
                   }
                 >Create
-                  
+
                 </a>
                 </button>
               </div>

@@ -24,13 +24,13 @@ function CartScreen() {
 
     return (
         <Layout title='Shopping Cart'>
-            <h1 className='mb-4 text-xl'>Shopping Cart</h1>
+            <h1 className='text-xl p-7'>Shopping Cart</h1>
             {cartItems.length === 0 ? (
-                <div>
-                    Cart is empty. <Link href='/marketplace'>Go shopping</Link>
+                <div className='px-7'>
+                    Cart is empty. <a className='text-[#687259]' href='/marketplace'>Go shopping</a>
                 </div>
             ) : (
-                <div className='grid md:grid-cols-4 md:gap-5'>
+                <div className='grid md:grid-cols-4 md:gap-5 px-7'>
                     <div className='overflow-x-auto md:col-span-3'>
                         <table className='min-w-full'>
                             <thead className='border-b'>
