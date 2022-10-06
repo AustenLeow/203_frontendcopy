@@ -3,8 +3,10 @@ import Layout from "../components/Layout";
 import { Store } from '../utils/Store';
 import Link from 'next/Link';
 import Image from 'next/image';
-import { XCircleIcon } from '@heroicons/react/outline/esm';
-import dynamic from 'next/dynamic';
+
+// import { XCircleIcon } from '@heroicons/react/outline/esm';
+// import { useRouter } from 'next/router';
+
 
 function CartScreen() {
     // const router = useRouter();

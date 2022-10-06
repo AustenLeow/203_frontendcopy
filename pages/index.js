@@ -3,8 +3,12 @@ import Typical from "react-typical";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { IoEarthSharp } from "react-icons/io5";
 import Navbar from "../components/Navbar";
+import { getSession, useSession, signIn, signOut } from "next-auth/react"
+import { userAgent } from "next/server";
+
 
 export default function Home() {
+  const { data: session } = useSession()
   return (
     <div>
       <div className="w-screen flex items-center justify-center">
@@ -96,6 +100,25 @@ export default function Home() {
           </div>
         </div>
       </Layout>
+      {/* {session ? User({session}): Guest()} */}
     </div>
   );
 }
+
+// only get session in cookies
+// export async function getServerSideProps({req}){
+//   const session = await getSession({req})
+//   if(!session){
+//     return {
+//       redirect: {
+//         destination: '/login',
+//         permanent: false,
+//       }
+//     }
+//   }
+//   return {
+//     props: {
+//       session
+//     }
+//   }
+// }
