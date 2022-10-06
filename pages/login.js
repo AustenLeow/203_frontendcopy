@@ -1,8 +1,18 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import Layout from "../components/Layout";
+import axios from "axios";
+
+import { useState } from "react";
 
 export default function login() {
+
+  const url = "http://localhost:8080/api/auth/login";
+
+  const [username, password] = useState("");
+
+  
+
   const {
     handleSubmit,
     register,
@@ -11,17 +21,17 @@ export default function login() {
 
   const submitHandler = ({ username, password }) => {
     console.log(username, password);
-    // axios.post('http://localhost:8080/api/auth/signin', {
-    //   username: 'aus4',
-    //   password: 'password'
+    axios.post('http://localhost:8080/api/auth/login', {
+      username: username,
+      password: password
 
-    // })
-    // .then(function (response) {
-    //   console.log(response);
-    // })
-    // .catch(function (error) {
-    //   console.log(error);
-    // });
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   };
 
   return (
