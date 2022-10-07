@@ -148,7 +148,7 @@ export default function SignIn() {
     if (res.ok) {
       const json = await res.json()
       localStorage.setItem("token", json.accessToken)
-      router.push("/user")
+      router.push("/marketplace")
     } else {
       alert("Bad credentials")
     }

@@ -22,8 +22,21 @@ export default function ProductItem({ product }) {
   }
 
 
-// export default function ProductItem({ product, addToCartHandler }) {
-//   // const PRODUCT_ITEM_API = "http://localhost:8080/api/products";
+  async function addToCart() {
+    fetch(`http://localhost:8080/api/v1/cart/add/${product.id}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        "Authorization": "Bearer " + localStorage.getItem("token")
+      },
+    }).then(response => response.text())
+    .then(product => {
+      console.log(product);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
 
   return (
     <div className="card">
@@ -54,7 +67,7 @@ export default function ProductItem({ product }) {
           <button
             className="product-button flex items-end hover:items-center justify-between w-full"
             type="button"
-            onClick={addToCartHandler}
+            onClick={addToCartHandler && addToCart}
           >
             <div> Add to cart</div>
             <div>
