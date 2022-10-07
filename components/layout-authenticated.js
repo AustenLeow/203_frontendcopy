@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
-import styles from '../styles/layout.module.css'
 
 export default function LayoutAuthenticated(props) {
   const [profile, setProfile] = useState()
