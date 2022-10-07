@@ -12,7 +12,7 @@ export default function ProductItem({ product }) {
     const existItem = state.cart.cartItems.find((x) => x.slug === product.slug);
     const quantity = existItem ? existItem.quantity + 1 : 1;
 
-    if (product.countInStock < quantity) {
+    if (product.quantity < quantity) {
       alert('Product is out of stock.');
       return;
     }
@@ -21,9 +21,19 @@ export default function ProductItem({ product }) {
     router.push('/cart');
   }
 
-
-// export default function ProductItem({ product, addToCartHandler }) {
-//   // const PRODUCT_ITEM_API = "http://localhost:8080/api/products";
+  async function addToCart() {
+    const res = await fetch('http://localhost:8080/api/v1/cart/add/'+ {product.id}, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        "Authorization": "Bearer " + localStorage.getItem("token")
+      },
+      // body: JSON.stringify(
+      //   {}
+      // )
+    })
+    return await res.json();
+  }
 
   return (
     <div className="card">
@@ -31,7 +41,7 @@ export default function ProductItem({ product }) {
         <a>
           <img
             src={product.image}
-            alt={product.name}
+            alt={product.item_name}
             className="rounded shadow object-cover h-1/2 w-full"
           />
         </a>
@@ -40,21 +50,21 @@ export default function ProductItem({ product }) {
         <div className="flex flex-col justify-start">
           <Link href={`/product/${product.slug}`}>
             <a>
-              <h2 className="product-title">{product.name}</h2>
+              <h2 className="product-title">{product.item_name}</h2>
             </a>
           </Link>
           <p className="text-start">{product.brand}</p>
-          <p className="text-xs">{product.category}</p>
+          <p className="text-xs">{product.type}</p>
         </div>
         <div className="py-3"></div>
 
         <div className="flex flex-col justify-end items-start">
-          <p className="mb-2 text-start">Expires on: {product.expiry}</p>
+          <p className="mb-2 text-start">Expires on: {product.expiry_date}</p>
 
           <button
             className="product-button flex items-end hover:items-center justify-between w-full"
             type="button"
-            onClick={addToCartHandler}
+            onClick={addToCartHandler && addToCart}
           >
             <div> Add to cart</div>
             <div>

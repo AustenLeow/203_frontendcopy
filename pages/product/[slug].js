@@ -26,7 +26,7 @@ export default function ProductScreen() {
     const existItem = state.cart.cartItems.find((x) => x.slug === product.slug);
     const quantity = existItem ? existItem.quantity + 1 : 1;
 
-    if (product.countInStock < quantity) {
+    if (product.quantity < quantity) {
       alert('Product is out of stock.');
       return;
     }
@@ -36,16 +36,19 @@ export default function ProductScreen() {
   }
 
   async function addToCart() {
-    const response = await fetch('http://localhost:8080/api/cart', {
-    method: 'POST',
-    headers: {'Content-type': 'application/json'},
-    body: JSON.stringify()
-  })
-  return await response.json();
-}
+    const res = await fetch('http://localhost:8080/api/v1/cart/add/${product.id}', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        "Authorization": "Bearer " + localStorage.getItem("token")
+      },
+      // body: JSON.stringify()
+    })
+    return await res.json();
+  }
 
   return (
-    <Layout title={product.name}>
+    <Layout title={product.item_name}>
       <div className="py-2 px-10">
         <button className="primary-button w-1/10" onClick={backToProductsHandler}>
           <Link href="/marketplace">
@@ -57,7 +60,7 @@ export default function ProductScreen() {
         <div className="md:col-span-2 px-10">
           <Image
             src={product.image}
-            alt={product.name}
+            alt={product.item_name}
             width={150}
             height={150}
             layout="responsive">
@@ -66,10 +69,10 @@ export default function ProductScreen() {
         <div>
           <ul>
             <li>
-              <h1 className="text-lg">{product.name}</h1>
+              <h1 className="text-lg">{product.item_name}</h1>
             </li>
-            <li>Category: {product.category}</li>
-            <li>Expires on: {product.expiry}</li>
+            <li>type: {product.type}</li>
+            <li>Expires on: {product.expiry_date}</li>
           </ul>
         </div>
         <div>
@@ -80,7 +83,7 @@ export default function ProductScreen() {
             </div>
             <div className="mb-2 flex justify-between">
               <div>Status</div>
-              <div>{product.countInStock > 0? 'In stock' : 'Unavailable'}</div>
+              <div>{product.quantity > 0 ? 'In stock' : 'Unavailable'}</div>
             </div>
             <button className="primary-button w-full" onClick={addToCartHandler && addToCart}>Add to cart</button>
           </div>
