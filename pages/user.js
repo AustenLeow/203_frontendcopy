@@ -2,6 +2,7 @@ import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import LayoutAuthenticated from "../components/layout-authenticated"
 
+
 export default function User() {
   const [content, setContent] = useState(null)
   const router = useRouter()

@@ -30,8 +30,8 @@ export default function LayoutAuthenticated(props) {
   }
 
   return (
-    <div className={styles.layout}>
-      <div className={styles.nav}>
+    <div >
+      <div >
         <p>Signed in as: {profile && profile.username}</p>
         <p><button onClick={logout}>Log out</button></p>
       </div>
