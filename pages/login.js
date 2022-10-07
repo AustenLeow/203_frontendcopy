@@ -3,26 +3,6 @@ import Layout from "../components/Layout";
 import { useRouter } from "next/router";
 
 export default function login() {
-  // const {
-  //   handleSubmit,
-  //   register,
-  //   formState: { errors },
-  // } = useForm();
-
-  // const submitHandler = ({ username, password }) => {
-  //   console.log(username, password);
-  // axios.post('http://localhost:8080/api/auth/signin', {
-  //   username: 'aus4',
-  //   password: 'password'
-
-  // })
-  // .then(function (response) {
-  //   console.log(response);
-  // })
-  // .catch(function (error) {
-  //   console.log(error);
-  // });
-
   const router = useRouter();
 
   const [state, setState] = useState({
@@ -47,7 +27,7 @@ export default function login() {
     if (res.ok) {
       const json = await res.json();
       localStorage.setItem("token", json.accessToken);
-      router.push("/markeyplace");
+      router.push("/marketplace");
     } else {
       alert("Bad credentials");
     }
@@ -113,17 +93,7 @@ export default function login() {
                   className="primary-button hover:bg-[#4E632E]"
                   onClick={handleSubmit}
                 >
-                  <a
-                    className="my-4 text-[#FFFFFF]"
-                    href="/marketplace"
-                    onClick={() =>
-                      setTimeout(() => {
-                        setOpen(!open);
-                      }, 100)
-                    }
-                  >
-                    Login
-                  </a>
+                  Login
                 </button>
               </div>
               <div className="mb-4 ">
