@@ -58,7 +58,6 @@ export default function login() {
     <Layout title="login">
       <form
         className="mx-auto w-4/5 py-16 md:py-32"
-        onSubmit={handleSubmit(submitHandler)}
       >
         <div className="w-full flex items-center justify-center">
           <div className="w-full h-fit m-auto grid grid-cols-1 lg:grid-cols-2 ">
@@ -71,44 +70,46 @@ export default function login() {
                 <label htmlFor="username">Username</label>
                 <input
                   type="username"
-                  {...register("username", {
-                    required: "Please enter your username",
-                    minLength: {
-                      value: 3,
-                      message:
-                        "Your username should have a minimum of 3 characters ",
-                    },
-                  })}
+                  value={state.username} onChange={handleChange} autoComplete="off"
+                  // {...register("username", {
+                  //   required: "Please enter your username",
+                  //   minLength: {
+                  //     value: 3,
+                  //     message:
+                  //       "Your username should have a minimum of 3 characters ",
+                  //   },
+                  // })}
                   className="w-full"
                   id="username"
                   autoFocus
                 ></input>
-                {errors.username && (
+                {/* {errors.username && (
                   <div className="text-red-500">{errors.username.message}</div>
-                )}
+                )} */}
               </div>
               <div className="mb-4">
                 <label htmlFor="password">Password</label>
                 <input
                   type="password"
-                  {...register("password", {
-                    required: "Please enter your password",
-                    minLength: {
-                      value: 6,
-                      message:
-                        "Your password should have a minimum of 6 characters ",
-                    },
-                  })}
+                  value={state.password} onChange={handleChange} 
+                  // {...register("password", {
+                  //   required: "Please enter your password",
+                  //   minLength: {
+                  //     value: 6,
+                  //     message:
+                  //       "Your password should have a minimum of 6 characters ",
+                  //   },
+                  // })}
                   className="w-full"
                   id="password"
                   autoFocus
                 ></input>
-                {errors.password && (
+                {/* {errors.password && (
                   <div className="text-red-500 ">{errors.password.message}</div>
-                )}
+                )} */}
               </div>
               <div className="mb-4 ">
-                <button className="primary-button hover:bg-[#4E632E]">
+                <button className="primary-button hover:bg-[#4E632E]" onClick={handleSubmit}>
                 <a
                   className="my-4 text-[#FFFFFF]"
                   href="/marketplace"
