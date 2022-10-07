@@ -22,7 +22,7 @@ const data = {
             quantity: 1,
             expiry_date: '20-10-2022',
             brand: 'Fairprice',
-            description: '',
+            description: 'crunchy',
         },
         {
             id: 3,
@@ -34,7 +34,7 @@ const data = {
             quantity: 5,
             expiry_date: '20-10-2022',
             brand: 'Gardenia',
-            description: '',
+            description: 'like bread',
         },
         {
             id: 4,
@@ -46,7 +46,7 @@ const data = {
             quantity: 2,
             expiry_date: '25-10-2022',
             brand: 'Ayam Brand',
-            description: '',
+            description: 'beanss',
         },
     ],
 };

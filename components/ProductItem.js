@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import data from "../utils/data";
 import Link from 'next/Link';
 import { Store } from '../utils/Store';
@@ -19,10 +19,26 @@ export default function ProductItem({ product }) {
 
     dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
     router.push('/cart');
+
+    
+
+
+    // const pdt = { item_name, type, image, price, quantity, expiry_date, brand, description };
+    // fetch(`http://localhost:8080/api/v1/cart/add/${product.id}`, {
+    //   method: 'POST',
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     "Authorization": "Bearer " + localStorage.getItem("token")
+    //   },
+    //   // body: JSON.stringify(state)
+    // }).then(() => {
+    //   console.log('new product added');
+    // })
+
   }
 
   async function addToCart() {
-    const res = await fetch('http://localhost:8080/api/v1/cart/add/'+ {product.id}, {
+    fetch(`http://localhost:8080/api/v1/cart/add/${product.id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -31,8 +47,15 @@ export default function ProductItem({ product }) {
       // body: JSON.stringify(
       //   {}
       // )
+    }).then(response => response.text())
+    .then(product => {
+      console.log(product);
     })
-    return await res.json();
+    .catch(err => {
+      console.log(err);
+    })
+    
+    // return await res.json();
   }
 
   return (
