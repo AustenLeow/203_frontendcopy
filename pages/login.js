@@ -53,7 +53,6 @@ export default function login() {
       alert("Bad credentials")
     }
   }
-  };
 
   return (
     <Layout title="login">
