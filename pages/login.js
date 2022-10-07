@@ -154,7 +154,8 @@ export default function SignIn() {
       }
     } catch (error) {
       console.log(error);
-      alert("Not connected to database!");
+      // alert("Not connected to database!");
+      router.push("/error");
     }
   }
 

@@ -124,6 +124,8 @@ export default function SignUp() {
   }
 
   async function handleSubmit() {
+    try{
+
     const res = await fetch("http://localhost:8080/api/auth/signup", {
       method: "POST",
       body: JSON.stringify(state),
@@ -135,6 +137,12 @@ export default function SignUp() {
       alert("user registered success");
       router.push("/login");
     }
+        } catch (error){
+          console.log(error);
+          // alert("Something went wrong!");
+          router.push("/error");
+        }
+
   }
 
   return (
