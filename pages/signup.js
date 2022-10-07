@@ -105,17 +105,32 @@
 //   );
 // }
 import { useRouter } from "next/router";
+import React from "react";
 import { useState } from "react";
 import Layout from "../components/layout";
+import { useForm } from "react-hook-form";
 
 export default function SignUp() {
   const router = useRouter();
+
+  // const {
+  //   register,
+  //   formState: { errors },
+  // } = useForm();
 
   const [state, setState] = useState({
     username: "",
     email: "",
     password: "",
   });
+
+  const [isError, setIsError] = useState("");
+
+  const checkValidation=(e)=>{
+    if(document.getElementById(username).value < 3){
+      setIsError("Username should have a minimum of 3 characters");
+    }
+  }
 
   function handleChange(e) {
     const copy = { ...state };
@@ -148,32 +163,69 @@ export default function SignUp() {
   return (
     <Layout title="signup">
       <div className="mx-auto w-4/5 py-16 md:py-32">
+        <div style={{ position: "absolute", top: 100, marginLeft: 250}}>{isError}</div>
         <div className="w-full flex items-center justify-center">
           <h1>Sign Up</h1>
           <div>
             <input
               type="text"
+              // {...register("username", {
+              //   required: "please enter your username",
+              //   minLength: {
+              //     value: 3,
+              //     message:
+              //       "your username should have a minimum of 3 characters ",
+              //   },
+              // })}
               name="username"
+              id="username"
               placeholder="username"
               value={state.username}
               onChange={handleChange}
+              onChange = {(e) => checkValidation(e)}
               autoComplete="off"
             />
+            {/* {errors.username && (
+            <div className="text-red-500">{errors.username.message}</div>)} */}
+
             <input
               type="text"
+              // {...register("text", {
+              //   required: "Please enter your email",
+              //   pattern: {
+              //     value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/i,
+              //     message: "Please enter valid email",
+              //   },
+              // })}
               name="email"
+              id="email"
               placeholder="email"
               value={state.email}
               onChange={handleChange}
               autoComplete="off"
             />
+            {/* {errors.email && (
+            <div className="text-red-500">{errors.email.message}</div>)} */}
+
             <input
               type="password"
               name="password"
+              id="password"
               placeholder="password"
+              // {...register("password", {
+              //   required: "Please enter your password",
+              //   minLength: {
+              //     value: 6,
+              //     message:
+              //       "Your password should have a minimum of 6 characters ",
+              //   },
+              // })}
               value={state.password}
               onChange={handleChange}
             />
+            {/* {errors.password && (
+            <div className="text-red-500 ">{errors.password.message}</div>)} */}
+
             <button className="primary-button" onClick={handleSubmit}>
               Submit
             </button>
