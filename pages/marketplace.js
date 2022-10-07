@@ -2,6 +2,7 @@ import React from 'react';
 import Layout from '../components/Layout';
 import data from '../utils/data';
 import ProductItem from '../components/ProductItem';
+import router from 'next/router';
 
 export default function marketplace() {
   function logout() {
