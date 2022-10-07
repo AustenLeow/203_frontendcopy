@@ -36,15 +36,19 @@ export default function ProductScreen() {
   }
 
   async function addToCart() {
-    const res = await fetch('http://localhost:8080/api/v1/cart/add/${product.id}', {
+    fetch(`http://localhost:8080/api/v1/cart/add/${product.id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         "Authorization": "Bearer " + localStorage.getItem("token")
       },
-      // body: JSON.stringify()
+    }).then(response => response.text())
+    .then(product => {
+      console.log(product);
     })
-    return await res.json();
+    .catch(err => {
+      console.log(err);
+    })
   }
 
   return (
