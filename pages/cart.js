@@ -22,6 +22,15 @@ function CartScreen() {
         dispatch({type: 'CART_ADD_ITEM', payload:{...item, quantity}});
     };
 
+    async function updateItemQty(item, qty) {
+        const response = await fetch('http://localhost:8080/api/cart', {
+        method: 'PUT',
+        headers: {'Content-type': 'application/json'},
+        body: JSON.stringify(item, qty)
+      })
+      return await response.json();
+    }
+
     return (
         <Layout title='Shopping Cart'>
             <h1 className='text-xl p-7'>Shopping Cart</h1>
@@ -37,7 +46,7 @@ function CartScreen() {
                                 <tr>
                                     <th className='px-5 text-left'>Item</th>
                                     <th className='px-5 text-lright'>Quantity</th>
-                                    <th className='px-5 text-rigth'>Price</th>
+                                    <th className='px-5 text-right'>Price</th>
                                     <th className='px-5'>Action</th>
                                 </tr>
                             </thead>
@@ -63,6 +72,7 @@ function CartScreen() {
                                                 value={item.quantity}
                                                 onChange={(e) =>
                                                     updateCartHandler(item, e.target.value)
+                                                    && updateItemQty(item, e.target.value)
                                                 }
                                             >
                                                 {[...Array(item.countInStock).keys()].map((x) => (
