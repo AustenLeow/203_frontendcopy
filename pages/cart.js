@@ -19,16 +19,18 @@ function CartScreen() {
 
     const updateCartHandler = (item, qty) => {
         const quantity = Number(qty);
-        dispatch({type: 'CART_ADD_ITEM', payload:{...item, quantity}});
+        dispatch({ type: 'CART_ADD_ITEM', payload: { ...item, quantity } });
     };
 
     async function updateItemQty(item, qty) {
-        const response = await fetch('http://localhost:8080/api/cart', {
-        method: 'PUT',
-        headers: {'Content-type': 'application/json'},
-        body: JSON.stringify(item, qty)
-      })
-      return await response.json();
+        const res = await fetch('http://localhost:8080/api/v1/cart/update/{product.id}/{qty}', {
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem("token")
+            },
+            body: JSON.stringify(item, qty)
+        })
     }
 
     return (
@@ -58,12 +60,12 @@ function CartScreen() {
                                                 <a className='flex items-center'>
                                                     <Image
                                                         src={item.image}
-                                                        alt={item.name}
+                                                        alt={item.item_name}
                                                         width={50}
                                                         height={50}
                                                     ></Image>
                                                     &nbsp;
-                                                    {item.name}
+                                                    {item.item_name}
                                                 </a>
                                             </Link>
                                         </td>
@@ -75,7 +77,7 @@ function CartScreen() {
                                                     && updateItemQty(item, e.target.value)
                                                 }
                                             >
-                                                {[...Array(item.countInStock).keys()].map((x) => (
+                                                {[...Array(item.quantity).keys()].map((x) => (
                                                     <option key={x + 1} value={x + 1}>
                                                         {x + 1}
                                                     </option>
@@ -113,4 +115,4 @@ function CartScreen() {
     );
 }
 
-export default dynamic(()=> Promise.resolve(CartScreen), {ssr:false});
+export default dynamic(() => Promise.resolve(CartScreen), { ssr: false });
