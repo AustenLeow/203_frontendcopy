@@ -44,23 +44,23 @@ export default function Navbar() {
         setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0))
     }, [cart.cartItems]);
 
-    async function getCart(e) {
-        e.preventDefault();
-        fetch('http://localhost:8080/api/v1/cart', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                "Authorization": "Bearer " + localStorage.getItem("token")
-            },
-        })
-        .then(response => response.json())
-            .then(product => {
-                console.log(product);
-            })
-            .catch(err => {
-                console.log(err);
-            })
-    }
+    // async function getCart() {
+    //     // e.preventDefault();
+    //     fetch('http://localhost:8080/api/v1/cart', {
+    //         method: 'GET',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //             "Authorization": "Bearer " + localStorage.getItem("token")
+    //         },
+    //     })
+    //     .then(response => response.json())
+    //         .then(data => {
+    //             console.log(data);
+    //         })
+    //         .catch(err => {
+    //             console.log(err);
+    //         })
+    // }
 
         return (
             <nav className="absolute sticky top-0 shadow bg-[#F5F5F5] opacity-100 px-4 py-4 h-20 flex items-center justify-center">
@@ -93,16 +93,16 @@ export default function Navbar() {
                         <NavLink to="/signup">
                             sign up
                         </NavLink>
-                        <NavLink to="/cart">
+                        <NavLink to="/cart2">
                             {/* <a> */}
-                            <div onClick={getCart}>
+                            <div >
                                 cart
                             </div>
-                                {cartItemsCount > 0 && (
+                                {/* {cartItemsCount > 0 && (
                                     <span className='ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white'>
                                         {cartItemsCount}
                                     </span>
-                                )}
+                                )} */}
                             {/* </a> */}
                         </NavLink>
                     </div>
