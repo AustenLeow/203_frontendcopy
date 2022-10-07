@@ -1,27 +1,26 @@
 import { useRouter } from "next/router";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import data from "../utils/data";
 import Link from 'next/Link';
 import { Store } from '../utils/Store';
-
+ 
 export default function ProductItem({ product }) {
   const { state, dispatch } = useContext(Store);
   const router = useRouter();
-
+ 
   const addToCartHandler = () => {
     const existItem = state.cart.cartItems.find((x) => x.slug === product.slug);
     const quantity = existItem ? existItem.quantity + 1 : 1;
-
-    if (product.countInStock < quantity) {
+ 
+    if (product.quantity < quantity) {
       alert('Product is out of stock.');
       return;
     }
-
+ 
     dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
     router.push('/cart');
   }
-
-
+ 
   async function addToCart() {
     fetch(`http://localhost:8080/api/v1/cart/add/${product.id}`, {
       method: 'POST',
@@ -37,14 +36,14 @@ export default function ProductItem({ product }) {
       console.log(err);
     })
   }
-
+ 
   return (
     <div className="card">
       <Link href={`/product/${product.slug}`}>
         <a>
           <img
             src={product.image}
-            alt={product.name}
+            alt={product.item_name}
             className="rounded shadow object-cover h-1/2 w-full"
           />
         </a>
@@ -53,17 +52,17 @@ export default function ProductItem({ product }) {
         <div className="flex flex-col justify-start">
           <Link href={`/product/${product.slug}`}>
             <a>
-              <h2 className="product-title">{product.name}</h2>
+              <h2 className="product-title">{product.item_name}</h2>
             </a>
           </Link>
           <p className="text-start">{product.brand}</p>
-          <p className="text-xs">{product.category}</p>
+          <p className="text-xs">{product.type}</p>
         </div>
         <div className="py-3"></div>
-
+ 
         <div className="flex flex-col justify-end items-start">
-          <p className="mb-2 text-start">Expires on: {product.expiry}</p>
-
+          <p className="mb-2 text-start">Expires on: {product.expiry_date}</p>
+ 
           <button
             className="product-button flex items-end hover:items-center justify-between w-full"
             type="button"
@@ -80,3 +79,4 @@ export default function ProductItem({ product }) {
     </div>
   );
   }
+

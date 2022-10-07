@@ -6,44 +6,51 @@ import Link from 'next/Link';
 import Image from 'next/image';
 import { Store } from '../../utils/Store';
 // import { BiArrowBack } from "react-icons/bi";
-
+ 
 export default function ProductScreen() {
   const { state, dispatch } = useContext(Store);
   const router = useRouter();
   const { query } = useRouter();
   const { slug } = query;
   const product = data.products.find((x) => x.slug === slug);
-
+ 
   if (!product) {
     return <div>Product Not Found</div>;
   }
-
+ 
   const backToProductsHandler = () => {
     router.push('/marketplace');
   }
-
+ 
   const addToCartHandler = () => {
     const existItem = state.cart.cartItems.find((x) => x.slug === product.slug);
     const quantity = existItem ? existItem.quantity + 1 : 1;
-
+ 
     if (product.countInStock < quantity) {
       alert('Product is out of stock.');
       return;
     }
-
+ 
     dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
     router.push('/cart');
   }
-
+ 
   async function addToCart() {
-    const response = await fetch('http://localhost:8080/api/cart', {
-    method: 'POST',
-    headers: {'Content-type': 'application/json'},
-    body: JSON.stringify()
-  })
-  return await response.json();
-}
-
+    fetch(`http://localhost:8080/api/v1/cart/add/${product.id}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        "Authorization": "Bearer " + localStorage.getItem("token")
+      },
+    }).then(response => response.text())
+    .then(product => {
+      console.log(product);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+ 
   return (
     <Layout title={product.name}>
       <div className="py-2 px-10">
@@ -89,3 +96,5 @@ export default function ProductScreen() {
     </Layout>
   );
 }
+ 
+

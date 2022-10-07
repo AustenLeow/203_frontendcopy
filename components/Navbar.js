@@ -44,15 +44,37 @@ export default function Navbar() {
         setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0))
     }, [cart.cartItems]);
 
-        return (
-            <nav className="absolute sticky top-0 shadow bg-[#F5F5F5] opacity-100 px-4 py-4 h-20 flex items-center justify-center">
-                <div className="flex items-center justify-between w-4/5">
-                <MobileNav open={open} setOpen={setOpen}/>
+    async function getCart() {
+        fetch('http://localhost:8080/api/v1/cart', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": "Bearer " + localStorage.getItem("token")
+            },
+        })
+        
+        .then(() => {
+            console.log('test');
+        })
+        
+        // .then(response => response.json())
+        //     .then(product => {
+        //         console.log(product);
+        //     })
+        //     .catch(err => {
+        //         console.log(err);
+        //     })
+    }
+
+    return (
+        <nav className="absolute sticky top-0 shadow bg-[#F5F5F5] opacity-100 px-4 py-4 h-20 flex items-center justify-center">
+            <div className="flex items-center justify-between w-4/5">
+                <MobileNav open={open} setOpen={setOpen} />
                 <div className="w-3/4 flex items-center">
                     <a className="text-4xl font-semibold text-[#4E632E] " href="/">re:</a>
                 </div>
                 <div className="w-9/12 flex justify-end items-center">
-    
+
                     <div className="z-50 flex relative w-8 h-8 flex-col justify-between items-center md:hidden" onClick={() => {
                         setOpen(!open)
                     }}>
@@ -61,7 +83,7 @@ export default function Navbar() {
                         <span className={`h-1 w-full bg-[#4E632E] rounded-lg transition-all duration-300 ease-in-out ${open ? "w-0" : "w-full"}`} />
                         <span className={`h-1 w-full bg-[#4E632E] rounded-lg transform transition duration-300 ease-in-out ${open ? "-rotate-45 -translate-y-3.5" : ""}`} />
                     </div>
-    
+
                     <div className="hidden md:flex text-[#4E632E]">
                         <NavLink className="no-underline hover:underline" to="/about">
                             about
@@ -77,17 +99,19 @@ export default function Navbar() {
                         </NavLink>
                         <NavLink to="/cart">
                             {/* <a> */}
+                            <div onClick={getCart}>
                                 cart
-                                {cartItemsCount > 0 && (
-                                    <span className='ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white'>
-                                        {cartItemsCount}
-                                    </span>
-                                )}
+                            </div>
+                            {cartItemsCount > 0 && (
+                                <span className='ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white'>
+                                    {cartItemsCount}
+                                </span>
+                            )}
                             {/* </a> */}
                         </NavLink>
                     </div>
                 </div>
-                </div>
-            </nav>
-        )
-    }
+            </div>
+        </nav>
+    )
+}
