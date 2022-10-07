@@ -44,6 +44,24 @@ export default function Navbar() {
         setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0))
     }, [cart.cartItems]);
 
+    async function getCart(e) {
+        e.preventDefault();
+        fetch('http://localhost:8080/api/v1/cart', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": "Bearer " + localStorage.getItem("token")
+            },
+        })
+        .then(response => response.json())
+            .then(product => {
+                console.log(product);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
         return (
             <nav className="absolute sticky top-0 shadow bg-[#F5F5F5] opacity-100 px-4 py-4 h-20 flex items-center justify-center">
                 <div className="flex items-center justify-between w-4/5">
@@ -77,7 +95,9 @@ export default function Navbar() {
                         </NavLink>
                         <NavLink to="/cart">
                             {/* <a> */}
+                            <div onClick={getCart}>
                                 cart
+                            </div>
                                 {cartItemsCount > 0 && (
                                     <span className='ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white'>
                                         {cartItemsCount}
