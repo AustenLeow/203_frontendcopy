@@ -1,9 +1,13 @@
+import { useRouter } from "next/router";
 import React from 'react';
 import Layout from '../components/Layout';
 import data from '../utils/data';
 import ProductItem from '../components/ProductItem';
 
 export default function marketplace() {
+
+  const router = useRouter();
+
   function logout() {
     localStorage.removeItem("token")
     router.push("/login")
