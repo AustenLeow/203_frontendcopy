@@ -12,24 +12,24 @@ export default function signup() {
 
   const submitHandler = ({ username, email, password, confirmpassword }) => {
     // console.log(username, email, password, confirmpassword);
-    axios.post('http://localhost:8080/api/auth/signup', {
-      username: document.getElementById("username").value,
-      email: document.getElementById("email").value,
-      password: document.getElementById("password").value
+  //   axios.post('http://localhost:8080/api/auth/signup', {
+  //     username: document.getElementById("username").value,
+  //     email: document.getElementById("email").value,
+  //     password: document.getElementById("password").value
 
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-  };
+  //   })
+  //   .then(function (response) {
+  //     console.log(response);
+  //   })
+  //   .catch(function (error) {
+  //     console.log(error);
+  //   });
+   };
 
-  const router = useRouter();
-  const goToLoginHandler = () => {
-    router.push('/login');
-  }
+  // const router = useRouter();
+  // const goToLoginHandler = () => {
+  //   router.push('/login');
+  // }
 
   return (
     <Layout title="signup">
