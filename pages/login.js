@@ -1,17 +1,17 @@
-import React from "react";
+import {React,  useState} from "react";
 import { useForm } from "react-hook-form";
 import Layout from "../components/Layout";
-import axios from "axios";
+import { useRouter } from "next/router";
 
 export default function login() {
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-  } = useForm();
+  // const {
+  //   handleSubmit,
+  //   register,
+  //   formState: { errors },
+  // } = useForm();
 
-  const submitHandler = ({ username, password }) => {
-    console.log(username, password);
+  // const submitHandler = ({ username, password }) => {
+  //   console.log(username, password);
     // axios.post('http://localhost:8080/api/auth/signin', {
     //   username: 'aus4',
     //   password: 'password'
@@ -23,6 +23,36 @@ export default function login() {
     // .catch(function (error) {
     //   console.log(error);
     // });
+
+  const router = useRouter()
+
+  const [state, setState] = useState({
+    username: "",
+    password: ""
+  })
+
+  function handleChange(e) {
+    const copy = { ...state }
+    copy[e.target.name] = e.target.value
+    setState(copy)
+  }
+
+  async function handleSubmit() {
+    const res = await fetch('http://localhost:8080/api/auth/signin', {
+      method: "POST",
+      body: JSON.stringify(state),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    if (res.ok) {
+      const json = await res.json()
+      localStorage.setItem("token", json.accessToken)
+      router.push("/user")
+    } else {
+      alert("Bad credentials")
+    }
+  }
   };
 
   return (
