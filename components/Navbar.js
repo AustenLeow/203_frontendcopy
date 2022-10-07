@@ -44,7 +44,9 @@ export default function Navbar() {
         setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0))
     }, [cart.cartItems]);
 
-    async function getCart() {
+    async function getCart(e) {
+        e.preventDefault();
+        try{
         fetch('http://localhost:8080/api/v1/cart', {
             method: 'GET',
             headers: {
@@ -52,18 +54,21 @@ export default function Navbar() {
                 "Authorization": "Bearer " + localStorage.getItem("token")
             },
         })
-        
-        .then(() => {
-            console.log('test');
+        // .then(() => {
+        //     console.log("here");
+        // })
+        .then(response => response.json())
+        .then(product => {
+            console.log(product);
         })
+        .catch(err => {
+            console.log(err);
+        })
+    } catch (error){
+        console.log(error.response);
+    }
         
-        // .then(response => response.json())
-        //     .then(product => {
-        //         console.log(product);
-        //     })
-        //     .catch(err => {
-        //         console.log(err);
-        //     })
+
     }
 
     return (

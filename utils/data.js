@@ -1,7 +1,7 @@
 const data = {
     products: [
         {
-            id: 21,
+            id: 22,
             item_name: 'Sardine Cans',
             slug: 'sardine cans',
             type: 'delicious fish',
@@ -13,7 +13,7 @@ const data = {
             description: 'delicious',
         },
         {
-            id: 2,
+            id: 24,
             item_name: 'Carrots - 5pc',
             slug: 'carrots',
             type: 'Vegetable',
