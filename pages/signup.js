@@ -1,30 +1,59 @@
-import React from "react";
+import {React,  useState} from "react";
 import { useForm } from "react-hook-form";
 import Layout from "../components/Layout";
 import axios from "axios";
+import { useRouter } from "next/router"
 
 export default function signup() {
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-  } = useForm();
+  // const {
+  //   handleSubmit,
+  //   register,
+  //   formState: { errors },
+  // } = useForm();
 
-  const submitHandler = ({ username, email, password, confirmpassword }) => {
-    // console.log(username, email, password, confirmpassword);
-    axios.post('http://localhost:8080/api/auth/signup', {
-      username: document.getElementById("username").value,
-      email: document.getElementById("email").value,
-      password: document.getElementById("password").value
+  // const submitHandler = ({ username, email, password, confirmpassword }) => {
+  //   // console.log(username, email, password, confirmpassword);
+  //   axios.post('http://localhost:8080/api/auth/signup', {
+  //     username: document.getElementById("username").value,
+  //     email: document.getElementById("email").value,
+  //     password: document.getElementById("password").value
 
+  //   })
+  //   .then(function (response) {
+  //     console.log(response);
+  //   })
+  //   .catch(function (error) {
+  //     console.log(error);
+  //   });
+  // };
+
+  const router = useRouter()
+
+  const [state, setState] = useState({
+    username: "",
+    email: "",
+    password: ""
+  })
+
+  function handleChange(e) {
+    const copy = { ...state }
+    copy[e.target.name] = e.target.value
+    setState(copy)
+  }
+
+  async function handleSubmit() {
+    const res = await fetch('http://localhost:8080/api/auth/signup', {
+      method: "POST",
+      body: JSON.stringify(state),
+      headers: {
+        "Content-Type": "application/json"
+      }
     })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-  };
+    if (res.ok) {
+      alert("user registered success")
+      router.push("/signin")
+    }
+  }
 
   return (
     <Layout title="signup">
