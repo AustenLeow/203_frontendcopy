@@ -3,7 +3,6 @@ import React from 'react';
 import Layout from '../components/Layout';
 import data from '../utils/data';
 import ProductItem from '../components/ProductItem';
-import router from 'next/router';
 
 export default function marketplace() {
 
@@ -13,12 +12,11 @@ export default function marketplace() {
     localStorage.removeItem("token")
     router.push("/login")
   }
-
+  
   return (
     <Layout title="marketplace">
       <div className="p-10">
       <p><button onClick={logout}>Log out</button></p>
-      {/* <h1>Welcome {username}</h1> */}
       <div className="grid grid-cols-1 gap-8 md:grid-cols-3 lg:grid-cols-4">
         {data.products.map((product) => (
           <ProductItem

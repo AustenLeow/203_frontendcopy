@@ -1,11 +1,11 @@
 const data = {
     products: [
         {
-            id: 2,
+            id: 21,
             item_name: 'Sardine Cans',
             slug: 'sardine cans',
             type: 'delicious fish',
-            image: '/images/Sardine Cans.jpg',
+            image: 'https://m.media-amazon.com/images/I/81A9tHLuPoL.jpg',
             price: 5,
             quantity: 10,
             expiry_date: '10/12/2022',
@@ -13,7 +13,7 @@ const data = {
             description: 'delicious',
         },
         {
-            id: 7,
+            id: 2,
             item_name: 'Carrots - 5pc',
             slug: 'carrots',
             type: 'Vegetable',
