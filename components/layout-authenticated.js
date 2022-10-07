@@ -26,12 +26,12 @@ export default function LayoutAuthenticated(props) {
 
   function logout() {
     localStorage.removeItem("token")
-    router.push("/")
+    router.push("/login")
   }
 
   return (
     <div >
-      <div >
+      <div>
         <p>Signed in as: {profile && profile.username}</p>
         <p><button onClick={logout}>Log out</button></p>
       </div>
