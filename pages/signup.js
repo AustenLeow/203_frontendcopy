@@ -65,10 +65,13 @@ export default function signup() {
             </div>
             <div className="text-left flex flex-col justify-center shadow-2xl p-10">
               <h1 className="mb-4 text-xl">Create Account</h1>
+
               <div className="mb-4">
                 <label htmlFor="username">Username</label>
                 <input
-                  type="username"
+                  type="text"
+                  name="username"
+                  placeholder="username"
                   value={state.username}
                   onChange={handleChange}
                   autoComplete="off"
@@ -92,6 +95,8 @@ export default function signup() {
                 <label htmlFor="email">Email</label>
                 <input
                   type="email"
+                  name="email"
+                  placeholder="email"
                   // {...register("email", {
                   //   required: "Please enter your email",
                   //   pattern: {
@@ -104,7 +109,7 @@ export default function signup() {
                   autoComplete="off"
                   className="w-full"
                   id="email"
-                  autofocus
+                  autoFocus
                 ></input>
                 {/* {errors.email && (
                   <div className="text-red-500">{errors.email.message}</div>
@@ -113,6 +118,9 @@ export default function signup() {
               <div className="mb-4">
                 <label htmlFor="password">Password</label>
                 <input
+                  type="password"
+                  name="password"
+                  placeholder="password"
                   // type="password"
                   // {...register("password", {
                   //   required: "Please enter your password",
@@ -122,7 +130,8 @@ export default function signup() {
                   //       "Your password should have a minimum of 6 characters ",
                   //   },
                   // })}
-                  value={state.password} onChange={handleChange}
+                  value={state.password}
+                  onChange={handleChange}
                   className="w-full"
                   id="password"
                   autoFocus
@@ -131,7 +140,7 @@ export default function signup() {
                   <div className="text-red-500 ">{errors.password.message}</div>
                 )} */}
               </div>
-              <div className="mb-4">
+              {/* <div className="mb-4">
                 <label htmlFor="confirmpassword">Confirm Password</label>
                 <input
                   type="password"
@@ -143,14 +152,14 @@ export default function signup() {
                   // })}
                   className="w-full"
                   id="confirmpassword"
-                  autofocus
+                  autoFocus
                 ></input>
                 {/* {errors.confirmpassword && (
                   <div className="text-red-500 ">
                     {errors.confirmpassword.message}
                   </div>
                 )} */}
-              </div>
+              {/* </div> */}
 
               <div className="mb-4">
                 <button className="primary-button" onClick={handleSubmit}>
