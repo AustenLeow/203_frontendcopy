@@ -1,70 +1,51 @@
-import { useState, useEffect, useCallback } from 'react';
-import Layout from "../components/Layout";
-import { Store } from '../utils/Store';
-import Link from 'next/Link';
-import Image from 'next/image';
-import { XCircleIcon } from '@heroicons/react/outline/esm';
-import dynamic from 'next/dynamic';
+import React, { useState, useEffect, useCallback } from 'react';
 
 export default function cart2() {
+
+    // const items = [];
     const [cart, setCart] = useState([]);
-    const [state1, setState1] = useState({});
+
     useEffect(() => {
         fetchCartItemsHandler();
     }, []);
     
     function fetchCartItemsHandler() {
-        
-            // fetch('http://localhost:8080/api/v1/cart', {
-            //     method: 'GET',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //         "Authorization": "Bearer " + localStorage.getItem("token")
-            //     }
-            // })
-            // .then((res) => res.json())
-            // .then((data) => {   
-            //         // console.log(data);
-            //         setState1(prevState => {
-            //             // Object.assign would also work
-            //             return {...prevState, ...data};
-            //           });
-                    
-            //         // setState1(product);
-            //         console.log(state1);
-            //     })
-            //     .catch(err => {
-            //         console.log(err);
-            //     });
-            const cart = JSON.parse((localStorage.getItem("myCart")|| "[]"));
-            console.log(cart);
-
-            return (
-                <Layout>
-                  <div >
-                    <h1 >Cart</h1>
-                    {cart && (
-                      <p>{cart}</p>
-                    )}
-                  </div>
-                </Layout>
-              )
+        const cart = JSON.parse((localStorage.getItem("myCart")|| "[]"));
+        console.log(cart);
+        setCart(cart);
     }
-        
+    
+    return (
+        <React.Fragment>
+              <div >
+                <h1>Cart</h1>
+                  {cart.map(cartitem => 
+                     <p>{cartitem.item.id}</p>,
+                      {/* <p>{cartitem.item.itemName}</p>,
+                      <p>{cartitem.item.price}</p>,
+                     <p>{cartitem.item.url}</p>,
+                     <p>{cartitem.quantity}</p>,
+                     <p>{cartitem.subtotal}</p> */}
+                      
+                  )}
+              </div>
+        </React.Fragment>
+        );
 }
 
 
+/////////// things we have tried to get cart ...
 
-                    // const items = data.map((itemdata) => {
-                    //     return {
-                    //         id: itemdata.item.id,
-                    //         itemName: itemdata.item.itemName,
-                    //         price: itemdata.item.price,
-                    //         url: itemdata.item.url,
-                    //         quantity: itemdata.quantity,
-                    //         subtotal: itemdata.subtotal
-                    //     };
-                    // });
+    // const items = data.map((cart) => {
+    //     return {
+    //         id: cart.item.id,
+    //         itemName: cart.item.itemName,
+    //         price: cart.item.price,
+    //         url: cart.item.url,
+    //         quantity: cart.quantity,
+    //         subtotal: cart.subtotal
+    //     };
+    // });
 
 
     // const fetchCartItemsHandler = useCallback(async () => {
