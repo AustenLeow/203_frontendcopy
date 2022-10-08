@@ -8,33 +8,36 @@ import dynamic from 'next/dynamic';
 
 export default function cart2() {
     const [cart, setCart] = useState([]);
-
+    const [state1, setState1] = useState({});
     useEffect(() => {
         fetchCartItemsHandler();
     }, []);
     
     function fetchCartItemsHandler() {
-            fetch('http://localhost:8080/api/v1/cart', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    "Authorization": "Bearer " + localStorage.getItem("token")
-                }
-            })
-            .then((res) => res.json())
-            .then((data) => {   
-                    console.log(data);
-
-                    setState1(prevState => {
-                        // Object.assign would also work
-                        return {...prevState, ...data};
-                      });
-                    // setState1(product);
-                    console.log(state1);
-                })
-                .catch(err => {
-                    console.log(err);
-                });
+        
+            // fetch('http://localhost:8080/api/v1/cart', {
+            //     method: 'GET',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //         "Authorization": "Bearer " + localStorage.getItem("token")
+            //     }
+            // })
+            // .then((res) => res.json())
+            // .then((data) => {   
+            //         // console.log(data);
+            //         setState1(prevState => {
+            //             // Object.assign would also work
+            //             return {...prevState, ...data};
+            //           });
+                    
+            //         // setState1(product);
+            //         console.log(state1);
+            //     })
+            //     .catch(err => {
+            //         console.log(err);
+            //     });
+            const cart = JSON.parse((localStorage.getItem("myCart")|| "[]"));
+            console.log(cart);
 
             return (
                 <Layout>

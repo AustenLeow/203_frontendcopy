@@ -3,12 +3,10 @@ import React, { useContext } from "react";
 import { Store } from "../utils/Store";
 import ReactDOM from "react-dom/client";
 
-function NavLink({ to, children }) {
-  return (
-    <a href={to} className={`mx-4`}>
-      {children}
+function NavLink({to, children}) {
+    return <a href={to} className={`mx-4`}>
+        {children}
     </a>
-  );
 }
 
 function MobileNav({ open, setOpen }) {
@@ -93,11 +91,14 @@ export default function Navbar() {
   const [state1, setState1] = useState({});
   const [cartItemsCount, setCartItemsCount] = useState(0);
   useEffect(() => {
+    getCart();
+    
     setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
-  }, [cart.cartItems]);
+  }, [cart.cartItems]
+  );
 
   async function getCart(e) {
-    e.preventDefault();
+    // e.preventDefault();
     fetch("http://localhost:8080/api/v1/cart", {
       method: "GET",
       headers: {
@@ -111,12 +112,13 @@ export default function Navbar() {
         // setItem((prevState) => {
         //   return { ...prevState, ...product };
         // });
-        setState1(prevState => {
-            // Object.assign would also work
-            return {...prevState, ...product};
-          });
-        // setState1(product);
+        // setState1(prevState => {
+        //     // Object.assign would also work
+        //     return {...prevState, ...product};
+        //   });
+        setState1(product);
         console.log(state1);
+        localStorage.setItem("myCart", JSON.stringify(state1));
       })
       .catch((err) => {
         console.log(err);
@@ -164,7 +166,7 @@ export default function Navbar() {
             <NavLink to="/marketplace">marketplace</NavLink>
             <NavLink to="/login">login</NavLink>
             <NavLink to="/signup">sign up</NavLink>
-            <NavLink to="/cart">
+            <NavLink to="/cart2">
               {/* <a> */}
               <div onClick={getCart}>cart</div>
               {cartItemsCount > 0 && (
