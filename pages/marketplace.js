@@ -3,16 +3,26 @@ import React from 'react';
 import Layout from '../components/Layout';
 import data from '../utils/data';
 import ProductItem from '../components/ProductItem';
+import { useState, useEffect, useCallback } from 'react';
 
 export default function marketplace() {
 
   const router = useRouter();
+  useEffect(() => {
+    fetchItemsHandler();
+}, []);
 
   function logout() {
     localStorage.removeItem("token")
     router.push("/login")
   }
-  
+
+  function fetchItemsHandler() {
+        
+    const items = JSON.parse((localStorage.getItem("items")|| "[]"));
+    console.log(items);
+  }
+
   return (
     <Layout title="marketplace">
       <div className="p-10">
