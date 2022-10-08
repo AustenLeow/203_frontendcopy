@@ -90,15 +90,13 @@ export default function Navbar() {
   const { cart } = state;
   const [state1, setState1] = useState({});
   const [cartItemsCount, setCartItemsCount] = useState(0);
-  useEffect(() => {
-    getCart();
-    
-    setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
-  }, [cart.cartItems]
-  );
 
-  async function getCart(e) {
-    // e.preventDefault();
+  useEffect(() => {
+    getCart(); 
+    setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
+  }, [cart.cartItems]);
+
+  async function getCart() {
     fetch("http://localhost:8080/api/v1/cart", {
       method: "GET",
       headers: {
@@ -108,14 +106,6 @@ export default function Navbar() {
     })
       .then((response) => response.json())
       .then((product) => {
-        // console.log(product);
-        // setItem((prevState) => {
-        //   return { ...prevState, ...product };
-        // });
-        // setState1(prevState => {
-        //     // Object.assign would also work
-        //     return {...prevState, ...product};
-        //   });
         setState1(product);
         console.log(state1);
         localStorage.setItem("myCart", JSON.stringify(state1));
@@ -167,14 +157,12 @@ export default function Navbar() {
             <NavLink to="/login">login</NavLink>
             <NavLink to="/signup">sign up</NavLink>
             <NavLink to="/cart2">
-              {/* <a> */}
               <div onClick={getCart}>cart</div>
               {cartItemsCount > 0 && (
                 <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
                   {cartItemsCount}
                 </span>
               )}
-              {/* </a> */}
             </NavLink>
           </div>
         </div>

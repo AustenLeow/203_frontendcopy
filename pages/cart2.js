@@ -1,41 +1,14 @@
 import { useState, useEffect, useCallback } from 'react';
 import Layout from "../components/Layout";
-import { Store } from '../utils/Store';
-import Link from 'next/Link';
-import Image from 'next/image';
-import { XCircleIcon } from '@heroicons/react/outline/esm';
-import dynamic from 'next/dynamic';
 
 export default function cart2() {
-    const [cart, setCart] = useState([]);
-    const [state1, setState1] = useState({});
+
     useEffect(() => {
         fetchCartItemsHandler();
     }, []);
     
     function fetchCartItemsHandler() {
         
-            // fetch('http://localhost:8080/api/v1/cart', {
-            //     method: 'GET',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //         "Authorization": "Bearer " + localStorage.getItem("token")
-            //     }
-            // })
-            // .then((res) => res.json())
-            // .then((data) => {   
-            //         // console.log(data);
-            //         setState1(prevState => {
-            //             // Object.assign would also work
-            //             return {...prevState, ...data};
-            //           });
-                    
-            //         // setState1(product);
-            //         console.log(state1);
-            //     })
-            //     .catch(err => {
-            //         console.log(err);
-            //     });
             const cart = JSON.parse((localStorage.getItem("myCart")|| "[]"));
             console.log(cart);
 
@@ -48,23 +21,24 @@ export default function cart2() {
                     )}
                   </div>
                 </Layout>
-              )
+              );
     }
         
 }
 
 
+/////////// things we have tried to get cart ...
 
-                    // const items = data.map((itemdata) => {
-                    //     return {
-                    //         id: itemdata.item.id,
-                    //         itemName: itemdata.item.itemName,
-                    //         price: itemdata.item.price,
-                    //         url: itemdata.item.url,
-                    //         quantity: itemdata.quantity,
-                    //         subtotal: itemdata.subtotal
-                    //     };
-                    // });
+    // const items = data.map((itemdata) => {
+    //     return {
+    //         id: itemdata.item.id,
+    //         itemName: itemdata.item.itemName,
+    //         price: itemdata.item.price,
+    //         url: itemdata.item.url,
+    //         quantity: itemdata.quantity,
+    //         subtotal: itemdata.subtotal
+    //     };
+    // });
 
 
     // const fetchCartItemsHandler = useCallback(async () => {
