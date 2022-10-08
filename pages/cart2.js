@@ -25,8 +25,12 @@ export default function cart2() {
             .then((data) => {   
                     console.log(data);
 
-                    setCart(data);
-                    console.log(cart);
+                    setState1(prevState => {
+                        // Object.assign would also work
+                        return {...prevState, ...data};
+                      });
+                    // setState1(product);
+                    console.log(state1);
                 })
                 .catch(err => {
                     console.log(err);

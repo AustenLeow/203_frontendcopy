@@ -5,7 +5,6 @@ import Link from 'next/Link';
 import Image from 'next/image';
 import { XCircleIcon } from '@heroicons/react/outline/esm';
 import dynamic from 'next/dynamic';
-import { Store } from '../utils/Store';
 
 function CartScreen() {
     // const router = useRouter();
@@ -13,7 +12,6 @@ function CartScreen() {
     const {
         cart: { cartItems },
     } = state;
-    
 
     const removeItemHandler = (item) => {
         dispatch({ type: 'CART_REMOVE_ITEM', payload: item });
@@ -42,7 +40,6 @@ function CartScreen() {
                     Cart is empty. <a className='text-[#687259]' href='/marketplace'>Go shopping</a>
                 </div>
             ) : (  */
-            
                 (<div className='grid md:grid-cols-4 md:gap-5 px-7'>
                     <div className='overflow-x-auto md:col-span-3'>
                         <table className='min-w-full'>
