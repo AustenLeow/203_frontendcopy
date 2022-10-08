@@ -7,16 +7,61 @@ import { XCircleIcon } from '@heroicons/react/outline/esm';
 import dynamic from 'next/dynamic';
 
 export default function cart2() {
-    const [cartItems, setCartItems] = useState([]);
-
+    const [cart, setCart] = useState([]);
 
     useEffect(() => {
         fetchCartItemsHandler();
     }, []);
     
-    // const fetchCartItemsHandler = useCallback(async () => {
     function fetchCartItemsHandler() {
-        // e.preventDefault();
+            fetch('http://localhost:8080/api/v1/cart', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Authorization": "Bearer " + localStorage.getItem("token")
+                }
+            })
+            .then((res) => res.json())
+            .then((data) => {   
+                    console.log(data);
+
+                    setCart(data);
+                    console.log(cart);
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+
+            return (
+                <Layout>
+                  <div >
+                    <h1 >Cart</h1>
+                    {cart && (
+                      <p>{cart}</p>
+                    )}
+                  </div>
+                </Layout>
+              )
+    }
+        
+}
+
+
+
+                    // const items = data.map((itemdata) => {
+                    //     return {
+                    //         id: itemdata.item.id,
+                    //         itemName: itemdata.item.itemName,
+                    //         price: itemdata.item.price,
+                    //         url: itemdata.item.url,
+                    //         quantity: itemdata.quantity,
+                    //         subtotal: itemdata.subtotal
+                    //     };
+                    // });
+
+
+    // const fetchCartItemsHandler = useCallback(async () => {
+                            
         // setError(null);
         // try {
         //     const res = await fetch('http://localhost:8080/api/v1/cart', {
@@ -50,48 +95,3 @@ export default function cart2() {
         //     setError(error.message);
         // }
         // console.log(cartItems);
-
-
-
-            fetch('http://localhost:8080/api/v1/cart', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    "Authorization": "Bearer " + localStorage.getItem("token")
-                }
-            })
-            .then((res) => res.json())
-            .then((data) => {   
-                    console.log(data);
-                    // const items = data.map((itemdata) => {
-                    //     return {
-                    //         id: itemdata.item.id,
-                    //         itemName: itemdata.item.itemName,
-                    //         price: itemdata.item.price,
-                    //         url: itemdata.item.url,
-                    //         quantity: itemdata.quantity,
-                    //         subtotal: itemdata.subtotal
-                    //     };
-                    // });
-                    setCartItems(data);
-                    console.log(cartItems);
-                })
-                .catch(err => {
-                    console.log(err);
-                });
-
-            return (
-                <Layout>
-                  <div >
-                    <h1 >Cart</h1>
-                    {cartItems && (
-                      <p>{cartItems}</p>
-                    )}
-                  </div>
-                </Layout>
-              )
-    }
-    // }, []);
-
-        
-}
