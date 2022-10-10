@@ -9,8 +9,6 @@ export default function marketplace() {
     router.push("/login");
   }
 
-  <button onClick={logout}>Log out</button>;
-
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -49,27 +47,30 @@ export default function marketplace() {
   return (
     <Layout title="marketplace">
       <div className="px-5">
-        <h1 className="py-3">Marketplace</h1>
+        <button className="primary-button" onClick={logout}>Log out</button>
+        <h1 className="py-3 header-text">Marketplace</h1>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3 lg:grid-cols-4">
           {items.map((item) => (
-            <div key={item.id}>
-              <p>
-                <img src={item.url} width={100} height={100}></img>
-              </p>
-              <div className="py-5">
-                <p className="font-bold text-xl">{item.itemName}</p>
-                <p className="font-light text-xs">{item.brand}</p>
+            <div className="card">
+              <div key={item.id}>
+                <p>
+                  <img src={item.url} width={100} height={100}></img>
+                </p>
+                <div className="py-5">
+                  <p className="font-bold text-xl">{item.itemName}</p>
+                  <p className="font-light text-xs">{item.brand}</p>
+                </div>
+                <p>Price: ${item.price}</p>
+                <p>Quantity: {item.quantity}</p>
+                <p>Expires on: {item.expiry_date}</p>
+                <button
+                  className="product-button w-full"
+                  type="button"
+                  onClick={() => addToCart(item)}
+                >
+                  <div> Add to Cart</div>
+                </button>
               </div>
-              <p>Price: ${item.price}</p>
-              <p>Quantity: {item.quantity}</p>
-              <p>Expires on: {item.expiry_date}</p>
-              <button
-                className="product-button w-full"
-                type="button"
-                onClick={() => addToCart(item)}
-              >
-                <div> Add to cart</div>
-              </button>
             </div>
           ))}
         </div>
