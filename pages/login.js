@@ -9,6 +9,12 @@ export default function SignIn() {
     getItems2();
   }, []);
 
+  const [error, setError] = useState({
+    username: "",
+    password: "",
+  });
+
+
   const [state1, setState1] = useState({});
   const [state, setState] = useState({
     username: "",
@@ -79,6 +85,39 @@ export default function SignIn() {
     }
   }
 
+  const validateInput = (e) => {
+    let { name, value } = e.target;
+    setError((prev) => {
+      const stateObj = { ...prev, [name]: "" };
+
+      switch (name) {
+        case "username":
+          if (!value) {
+            stateObj[name] = "Please enter a username.";
+          }
+          break;
+
+        case "password":
+          if (!value) {
+            stateObj[name] = "Please enter Password.";
+          } else if (input.confirmPassword && value !== input.confirmPassword) {
+            stateObj["confirmPassword"] =
+              "Password and Confirm Password does not match.";
+          } else {
+            stateObj["confirmPassword"] = input.confirmPassword
+              ? ""
+              : error.confirmPassword;
+          }
+          break;
+
+        default:
+          break;
+      }
+
+      return stateObj;
+    });
+  };
+
   return (
     <Layout>
       <div className="mx-auto w-4/5 py-16 md:py-32">
@@ -103,14 +142,22 @@ export default function SignIn() {
                   value={state.username}
                   onChange={handleChange}
                   autoComplete="off"
+                  onBlur={validateInput}
                 />
+                {error.username && (
+                    <span className="err">{error.username}</span>
+                  )}
                 <input
                   type="password"
                   name="password"
                   placeholder="password"
                   value={state.password}
                   onChange={handleChange}
+                  onBlur={validateInput}
                 />
+                {error.password && (
+                    <span className="err">{error.password}</span>
+                  )}
                 <button className="primary-button" onClick={handleSubmit}>
                   Submit
                 </button>

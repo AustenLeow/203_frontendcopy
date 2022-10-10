@@ -120,10 +120,10 @@ export default function SignUp() {
   });
 
   const [error, setError] = useState({
-    username: '',
-    password: '',
-    confirmPassword: ''
-  })
+    username: "",
+    password: "",
+    confirmPassword: "",
+  });
 
   function handleChange(e) {
     const copy = { ...state };
@@ -132,28 +132,37 @@ export default function SignUp() {
     validateInput(e);
   }
 
-  const validateInput = e => {
+  const validateInput = (e) => {
     let { name, value } = e.target;
-    setError(prev => {
+    setError((prev) => {
       const stateObj = { ...prev, [name]: "" };
-   
+
       switch (name) {
         case "username":
           if (!value) {
-            stateObj[name] = "Please enter Username.";
+            stateObj[name] = "Please enter a username.";
           }
           break;
-   
+
+        case "email":
+          if (!value) {
+            stateObj[name] = "Please enter an email.";
+          }
+          break;
+
         case "password":
           if (!value) {
             stateObj[name] = "Please enter Password.";
           } else if (input.confirmPassword && value !== input.confirmPassword) {
-            stateObj["confirmPassword"] = "Password and Confirm Password does not match.";
+            stateObj["confirmPassword"] =
+              "Password and Confirm Password does not match.";
           } else {
-            stateObj["confirmPassword"] = input.confirmPassword ? "" : error.confirmPassword;
+            stateObj["confirmPassword"] = input.confirmPassword
+              ? ""
+              : error.confirmPassword;
           }
           break;
-   
+
         case "confirmPassword":
           if (!value) {
             stateObj[name] = "Please enter Confirm Password.";
@@ -161,14 +170,14 @@ export default function SignUp() {
             stateObj[name] = "Password and Confirm Password does not match.";
           }
           break;
-   
+
         default:
           break;
       }
-   
+
       return stateObj;
     });
-  }
+  };
 
   async function handleSubmit() {
     const res = await fetch("http://localhost:8080/api/auth/signup", {
@@ -211,7 +220,9 @@ export default function SignUp() {
                     autoComplete="off"
                     onBlur={validateInput}
                   />
-                   {error.username && <span className='err'>{error.username}</span>}
+                  {error.username && (
+                    <span className="err">{error.username}</span>
+                  )}
                   <input
                     type="text"
                     name="email"
@@ -219,7 +230,11 @@ export default function SignUp() {
                     value={state.email}
                     onChange={handleChange}
                     autoComplete="off"
+                    onBlur={validateInput}
                   />
+                  {error.email && (
+                    <span className="err">{error.email}</span>
+                  )}
                   <input
                     type="password"
                     name="password"
@@ -228,7 +243,9 @@ export default function SignUp() {
                     onChange={handleChange}
                     onBlur={validateInput}
                   />
-                   {error.password && <span className='err'>{error.password}</span>}
+                  {error.password && (
+                    <span className="err">{error.password}</span>
+                  )}
                   <input
                     type="password"
                     name="confirmPassword"
@@ -237,7 +254,9 @@ export default function SignUp() {
                     onChange={handleChange}
                     onBlur={validateInput}
                   />
-                  {error.confirmPassword && <span className='err'>{error.confirmPassword}</span>}
+                  {error.confirmPassword && (
+                    <span className="err">{error.confirmPassword}</span>
+                  )}
                   <button className="primary-button" onClick={handleSubmit}>
                     Submit
                   </button>
