@@ -41,7 +41,7 @@ export default function Home() {
             </strong>
           </div>
           <div className="text-xl sm:text-2xl font-bold text-white flex flex-col items-end justify-center">
-            <div className="mb-5">helping our climate one byte at a time.</div>
+            <div className="mb-2 items-end text-end">helping our climate one byte at a time.</div>
             <div className="flex items-center ">
               <a
                 href="/login"
@@ -57,16 +57,16 @@ export default function Home() {
               </a>
               <div className="p-4"></div>
               <a
-                href="/marketplace"
+                href="/signup"
                 className="relative inline-flex items-center justify-center py-1 px-10 overflow-hidden font-medium text-white transition duration-300 ease-out border-2 border-white rounded-full shadow-md group"
               >
                 <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full group-hover:translate-x-0 ease">
                   <AiOutlineShoppingCart />
                 </span>
                 <span className="absolute flex items-center justify-center w-full h-full text-white transition-all duration-300 transform group-hover:translate-x-full ease">
-                  marketplace
+                  sign up
                 </span>
-                <span className="relative invisible">marketplace</span>
+                <span className="relative invisible">sign up</span>
               </a>
             </div>
           </div>
