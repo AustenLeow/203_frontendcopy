@@ -19,15 +19,28 @@ export default function cart2() {
         <React.Fragment>
               <div >
                 <h1>Cart</h1>
+                <table>
+                <tr>
+                    <th>item_id</th>
+                    <th>item name</th>
+                    <th>price</th>
+                    <th>image url</th>
+                    <th>quantity</th>
+                    <th>subtotal</th>
+                </tr>
+                
                   {cart.map(cartitem => 
-                     <p>{cartitem.item.id}</p>,
-                      {/* <p>{cartitem.item.itemName}</p>,
-                      <p>{cartitem.item.price}</p>,
-                     <p>{cartitem.item.url}</p>,
-                     <p>{cartitem.quantity}</p>,
-                     <p>{cartitem.subtotal}</p> */}
-                      
+                    <tr>
+                     <td>{cartitem.item.id}</td>,
+                      <td>{cartitem.item.itemName}</td>,
+                      <td>{cartitem.item.price}</td>,
+                     <td><img src={cartitem.item.url}></img></td>,
+                     <td>{cartitem.quantity}</td>,
+                     <td>{cartitem.subtotal}</td>
+                    </tr>
                   )}
+
+                  </table>
               </div>
         </React.Fragment>
         );
