@@ -1,8 +1,6 @@
 import { useRouter } from "next/router";
 import React from "react";
 import Layout from "../components/Layout";
-import data from "../utils/data";
-import ProductItem from "../components/ProductItem";
 import { useState, useEffect, useCallback } from "react";
 
 export default function marketplace() {
