@@ -9,8 +9,6 @@ export default function marketplace() {
     router.push("/login");
   }
 
-  <button onClick={logout}>Log out</button>;
-
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -49,7 +47,8 @@ export default function marketplace() {
   return (
     <Layout title="marketplace">
       <div className="px-5">
-        <h1 className="py-3">Marketplace</h1>
+        <button className="primary-button" onClick={logout}>Log out</button>
+        <h1 className="py-3 header-text">Marketplace</h1>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3 lg:grid-cols-4">
           {items.map((item) => (
             <div className="card">
