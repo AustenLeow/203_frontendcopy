@@ -83,26 +83,39 @@ export default function SignIn() {
     <Layout>
       <div className="mx-auto w-4/5 py-16 md:py-32">
         <div className="w-full flex items-center justify-center">
-          <h1>Sign In</h1>
-          <div>
-            <input
-              type="text"
-              name="username"
-              placeholder="username"
-              value={state.username}
-              onChange={handleChange}
-              autoComplete="off"
-            />
-            <input
-              type="password"
-              name="password"
-              placeholder="password"
-              value={state.password}
-              onChange={handleChange}
-            />
-            <button className="primary-button" onClick={handleSubmit}>
-              Submit
-            </button>
+          <div className="w-full h-fit m-auto grid grid-cols-1 lg:grid-cols-2 ">
+            <div className="flex flex-col items-center justify-center">
+              <img
+                alt=" "
+                src="/signup.png"
+                height={250}
+                width={300}
+                className="ml-3"
+              />
+            </div>
+            <div className="text-left flex flex-col justify-center shadow-2xl p-10">
+              <h1 className="mb-4 text-xl">Create Account</h1>
+              <div>
+                <input
+                  type="text"
+                  name="username"
+                  placeholder="username"
+                  value={state.username}
+                  onChange={handleChange}
+                  autoComplete="off"
+                />
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="password"
+                  value={state.password}
+                  onChange={handleChange}
+                />
+                <button className="primary-button" onClick={handleSubmit}>
+                  Submit
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
