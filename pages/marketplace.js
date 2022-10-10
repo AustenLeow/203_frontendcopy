@@ -69,7 +69,7 @@ export default function marketplace() {
                   type="button"
                   onClick={() => addToCart(item)}
                 >
-                  <div> Add to cart</div>
+                  <div> Add to Cart</div>
                 </button>
               </div>
             </div>
