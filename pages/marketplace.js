@@ -115,8 +115,10 @@ export default function marketplace() {
     <Layout title="marketplace">
       <div className="px-5">
         {/* <button className="primary-button" onClick={logout}>Log out</button> */}
-        <button onClick={getCart2}>cart</button>
-      <button onClick={logout}>log out</button>
+        <div  style={{"textAlign":"right"}}>
+          <button onClick={getCart2} className="hidden md:flex text-[#4E632E]">cart</button>
+          <button onClick={logout} className="hidden md:flex text-[#4E632E]">log out</button>
+        </div>
         <h1 className="py-3 header-text">Marketplace</h1>
        
 

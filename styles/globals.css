@@ -59,3 +59,11 @@ textarea {
 .card {
   @apply p-6 block rounded-xl border border-gray-200 shadow-2xl;
 }
+
+.buttonz {
+  @apply ml-auto 
+  /* margin-left: auto; 
+  margin-right: 0;
+  display: block; 
+  text-align: right; */
+}

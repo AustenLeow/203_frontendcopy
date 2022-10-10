@@ -12,6 +12,7 @@ export default function cart2() {
     getCart();
     fetchCartItemsHandler();
     fetchItemsHandler();
+    // getTotal();
     // updateItemQty(4, 1);
   }, []);
 
@@ -20,6 +21,33 @@ export default function cart2() {
     console.log(items);
     setItems(items);
   }
+
+//   const getTotal = () => {
+//     fetch("http://localhost:8080/api/v1/cart", {
+//       method: "GET",
+//       headers: {
+//         "Content-Type": "application/json",
+//         Authorization: "Bearer " + localStorage.getItem("token"),
+//       },
+//     })
+//       .then((response) => response.json())
+//       .then((product) => {
+//         // setCart(product);
+//         console.log();
+//         setCart(product);
+//         localStorage.setItem("myCart", JSON.stringify(product));
+//         cart.map((cartitem) => (
+//             total += cartitem.subtotal,
+//             // console.log(total)
+//             ));
+//         // console.log(total);
+//         return total;
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//       });
+
+//   }
 
   const countItemStock = (product) => {
     fetch(`http://localhost:8080/api/v1/items/${product.id}`, {
@@ -196,6 +224,7 @@ export default function cart2() {
                                                 ))}
                                             </select>
                                         </td> */}
+                                    
                     <td className="p-5 text-right">{cartitem.subtotal}</td>
                     <td className="p-5 text-center">
                       <button onClick={() => removeItemHandler(cartitem.item)}>
@@ -209,14 +238,17 @@ export default function cart2() {
           </div>
           <div className="card p-5">
             <ul>
-              {/* <li>
+              <li>
                                 <div className='pb-3 text-xl'>
-                                    Subtotal ${cartitem.subtotal}
+                                    Total $
                                 </div>
-                            </li> */}
-              {/* check out */}
+                            </li> 
+          
               <li>
                 <button className="primary-button w-full">Check Out</button>
+              </li>
+              <li >
+                <button className="primary-button w-full">Donate to charity</button>
               </li>
             </ul>
           </div>
