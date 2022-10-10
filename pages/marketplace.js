@@ -8,15 +8,84 @@ import { useState, useEffect, useCallback } from 'react';
 export default function marketplace() {
 
   const [items, setItems] = useState([]);
+  const [state1, setState1] = useState([]);
 
   useEffect(() => {
+    getCart();
+    getItems();
     fetchItemsHandler();
   }, []);
 
   const router = useRouter();
+  // function logout() {
+  //   localStorage.removeItem("token");
+  //   router.push("/login");
+  // }
+
+  async function getCart() {
+    fetch("http://localhost:8080/api/v1/cart", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((response) => response.json())
+      .then((product) => {
+        setState1(product);
+        console.log(state1);
+        localStorage.setItem("myCart", JSON.stringify(state1));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+      
+  }
+  async function getCart2() {
+    fetch("http://localhost:8080/api/v1/cart", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((response) => response.json())
+      .then((product) => {
+        setState1(product);
+        console.log(state1);
+        localStorage.setItem("myCart", JSON.stringify(state1));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+      router.push("/cart2")
+  }
+
   function logout() {
-    localStorage.removeItem("token")
-    router.push("/login")
+    localStorage.removeItem("token");
+    // localStorage.setItem("token", null);
+    router.push("/login");
+  }
+
+  function getItems() {
+    fetch("http://localhost:8080/api/v1/items", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((response) => response.json())
+      .then((product) => {
+        setItems(product);
+        localStorage.setItem("items", JSON.stringify(product));
+        console.log();
+        
+        
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   function fetchItemsHandler() {
@@ -45,27 +114,36 @@ export default function marketplace() {
   return (
     <Layout title="marketplace">
       <div className="px-5">
-        <h1 className="py-3">Marketplace</h1>
+        {/* <button className="primary-button" onClick={logout}>Log out</button> */}
+        <button onClick={getCart2}>cart</button>
+      <button onClick={logout}>log out</button>
+        <h1 className="py-3 header-text">Marketplace</h1>
+       
+
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3 lg:grid-cols-4">
-          {items.map(item =>
-            <div key={item.id}>
-              <p><img src={item.url} width={100} height={100}></img></p>
-              <div className="py-5">
-                <p className="font-bold text-xl">{item.itemName}</p>
-                <p className="font-light text-xs">{item.brand}</p>
+          {items.map((item) => (
+            <div className="card" key={item.id}>
+              <div >
+                <p>
+                  <img src={item.url} width={100} height={100}></img>
+                </p>
+                <div className="py-5">
+                  <p className="font-bold text-xl">{item.itemName}</p>
+                  <p className="font-light text-xs">{item.brand}</p>
+                </div>
+                <p>Price: ${item.price}</p>
+                <p>Quantity: {item.quantity}</p>
+                <p>Expires on: {item.expiry_date}</p>
+                <button
+                  className="product-button w-full"
+                  type="button"
+                  onClick={() => addToCart(item)}
+                >
+                  <div> Add to Cart</div>
+                </button>
               </div>
-              <p>Price: ${item.price}</p>
-              <p>Quantity: {item.quantity}</p>
-              <p>Expires on: {item.expiry_date}</p>
-              <button
-                className="product-button w-full"
-                type="button"
-                onClick={() => addToCart(item)}
-              >
-                <div> Add to cart</div>
-              </button>
             </div>
-          )}
+          ))}
         </div>
 
 

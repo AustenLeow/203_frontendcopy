@@ -12,7 +12,6 @@ export default function cart2() {
     getCart();
     fetchCartItemsHandler();
     fetchItemsHandler();
-    updateItemQty(4,1);
   }, []);
 
   function fetchItemsHandler() {
