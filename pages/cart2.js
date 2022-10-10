@@ -21,7 +21,6 @@ export default function cart2() {
                 <table>
                 <tbody>
                 <tr>
-                    {/* <th>item_id</th> */}
                     <th>item</th>
                     <th> image </th>
                     <th>price</th>
@@ -30,8 +29,7 @@ export default function cart2() {
                 </tr>
                 
                   {cart.map(cartitem => 
-                    <tr>
-                     {/* <td>{cartitem.item.id}</td> */}
+                    <tr key={cartitem.item.id}>
                       <td>{cartitem.item.itemName}</td>
                       <td><img src={cartitem.item.url} width={100} height={100}></img></td>
                       <td>{cartitem.item.price}</td>
