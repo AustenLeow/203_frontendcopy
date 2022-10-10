@@ -7,6 +7,7 @@ import { Store } from '../utils/Store';
 export default function ProductItem({ product }) {
   const { state, dispatch } = useContext(Store);
   const router = useRouter();
+  
 
   const addToCartHandler = () => {
     const existItem = state.cart.cartItems.find((x) => x.slug === product.slug);
@@ -32,6 +33,7 @@ export default function ProductItem({ product }) {
     }).then(response => response.text())
     .then(product => {
       console.log(product);
+      
     })
     .catch(err => {
       console.log(err);
