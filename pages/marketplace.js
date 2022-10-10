@@ -12,8 +12,8 @@ export default function marketplace() {
 
   useEffect(() => {
     getCart();
-    getItems();
     fetchItemsHandler();
+    getItems();
   }, []);
 
   const router = useRouter();

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 // import Image from 'next/image';
-import { XCircleIcon } from "@heroicons/react/outline/esm";
+import { XCircleIcon, PlusCircleIcon, MinusCircleIcon } from "@heroicons/react/outline/esm";
 
 export default function cart2() {
   const total = 0;
@@ -12,6 +12,7 @@ export default function cart2() {
     getCart();
     fetchCartItemsHandler();
     fetchItemsHandler();
+    // updateItemQty(4, 1);
   }, []);
 
   function fetchItemsHandler() {
@@ -156,28 +157,30 @@ export default function cart2() {
                       ></img>
                     </td>
                     <td className="p-5 text-right">{cartitem.item.price}</td>
-                    <button
-                      onClick={() =>
-                        updateItemQty(cartitem.item, cartitem.quantity + 1)
-                      }
-                    >
-                      +
-                    </button>
+
                     <td
                       className="p-5 text-right"
                       onChange={() =>
                         updateItemQty(cartitem.item, cartitem.quantity)
                       }
                     >
-                      {cartitem.quantity}
+                      <button
+                        onClick={() =>
+                          updateItemQty(cartitem.item, cartitem.quantity - 1)
+                        }
+                      >
+                        <MinusCircleIcon className="h-5 w-5"></MinusCircleIcon>
+                      </button>
+                      &nbsp;{cartitem.quantity}&nbsp;
+                      <button
+                        onClick={() =>
+                          updateItemQty(cartitem.item, cartitem.quantity + 1)
+                        }
+                      >
+                        <PlusCircleIcon className="h-5 w-5"></PlusCircleIcon>
+                      </button>
                     </td>
-                    <button
-                      onClick={() =>
-                        updateItemQty(cartitem.item, cartitem.quantity - 1)
-                      }
-                    >
-                      -
-                    </button>
+
                     {/* <td className='p-5 text-center'>
                                             <select
                                                 value={cartitem.quantity}
