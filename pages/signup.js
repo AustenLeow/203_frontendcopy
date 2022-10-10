@@ -153,10 +153,10 @@ export default function SignUp() {
 
         case "password":
           if (!value) {
-            stateObj[name] = "Please enter Password.";
+            stateObj[name] = "Please enter a password.";
           } else if (input.confirmPassword && value !== input.confirmPassword) {
             stateObj["confirmPassword"] =
-              "Password and Confirm Password does not match.";
+              "Password and Confirm Password do not match.";
           } else {
             stateObj["confirmPassword"] = input.confirmPassword
               ? ""
@@ -209,59 +209,62 @@ export default function SignUp() {
               />
             </div>
             <div className="text-left flex flex-col justify-center shadow-2xl p-10">
-              <h1 className="mb-4 text-xl">Create Account</h1>
-              <div className="mb-4">
-                <div>
-                  <input
-                    type="text"
-                    name="username"
-                    placeholder="Enter Username"
-                    value={state.username}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    onBlur={validateInput}
-                  />
-                  {error.username && (
-                    <span className="err">{error.username}</span>
-                  )}
-                  <input
-                    type="text"
-                    name="email"
-                    placeholder="email"
-                    value={state.email}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    onBlur={validateInput}
-                  />
-                  {error.email && (
-                    <span className="err">{error.email}</span>
-                  )}
-                  <input
-                    type="password"
-                    name="password"
-                    placeholder="Enter Password"
-                    value={state.password}
-                    onChange={handleChange}
-                    onBlur={validateInput}
-                  />
-                  {error.password && (
-                    <span className="err">{error.password}</span>
-                  )}
-                  <input
-                    type="password"
-                    name="confirmPassword"
-                    placeholder="Enter Confirmed Password"
-                    value={state.confirmPassword}
-                    onChange={handleChange}
-                    onBlur={validateInput}
-                  />
-                  {error.confirmPassword && (
-                    <span className="err">{error.confirmPassword}</span>
-                  )}
-                  <button className="primary-button" onClick={handleSubmit}>
-                    Submit
-                  </button>
-                </div>
+              <h1 className="header-text">Sign Up</h1>
+
+              <div className="p-4">
+                <input
+                  type="text"
+                  name="username"
+                  placeholder="Enter Username"
+                  value={state.username}
+                  onChange={handleChange}
+                  autoComplete="off"
+                  onBlur={validateInput}
+                  className="input"
+                />
+                {error.username && (
+                  <span className="err">{error.username}</span>
+                )}
+                <input
+                  type="text"
+                  name="email"
+                  placeholder="Enter Email"
+                  value={state.email}
+                  onChange={handleChange}
+                  autoComplete="off"
+                  onBlur={validateInput}
+                  className="input"
+                />
+                {error.email && <span className="err">{error.email}</span>}
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Enter Password"
+                  value={state.password}
+                  onChange={handleChange}
+                  onBlur={validateInput}
+                  className="input"
+                />
+                {error.password && (
+                  <span className="err">{error.password}</span>
+                )}
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  placeholder="Enter Confirmed Password"
+                  value={state.confirmPassword}
+                  onChange={handleChange}
+                  onBlur={validateInput}
+                  className="input"
+                />
+                {error.confirmPassword && (
+                  <span className="err">{error.confirmPassword}</span>
+                )}
+              </div>
+              <div className="px-3">
+                <button className="primary-button" onClick={handleSubmit}>
+                  Submit
+                </button>
               </div>
             </div>
           </div>

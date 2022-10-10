@@ -99,13 +99,6 @@ export default function SignIn() {
         case "password":
           if (!value) {
             stateObj[name] = "Please enter Password.";
-          } else if (input.confirmPassword && value !== input.confirmPassword) {
-            stateObj["confirmPassword"] =
-              "Password and Confirm Password does not match.";
-          } else {
-            stateObj["confirmPassword"] = input.confirmPassword
-              ? ""
-              : error.confirmPassword;
           }
           break;
 
@@ -132,8 +125,8 @@ export default function SignIn() {
               />
             </div>
             <div className="text-left flex flex-col justify-center shadow-2xl p-10">
-              <h1 className="mb-4 text-xl">Create Account</h1>
-              <div>
+              <h1 className="header-text">Log In</h1>
+              <div className="p-4">
                 <input
                   type="text"
                   name="username"
@@ -142,6 +135,7 @@ export default function SignIn() {
                   onChange={handleChange}
                   autoComplete="off"
                   onBlur={validateInput}
+                  className="input"
                 />
                 {error.username && (
                   <span className="err">{error.username}</span>
@@ -153,10 +147,13 @@ export default function SignIn() {
                   value={state.password}
                   onChange={handleChange}
                   onBlur={validateInput}
+                  className="input"
                 />
                 {error.password && (
                   <span className="err">{error.password}</span>
                 )}
+              </div>
+              <div className="px-3">
                 <button className="primary-button" onClick={handleSubmit}>
                   Submit
                 </button>
