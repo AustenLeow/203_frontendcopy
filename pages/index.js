@@ -41,7 +41,7 @@ export default function Home() {
             </strong>
           </div>
           <div className="text-xl sm:text-2xl font-bold text-white flex flex-col items-end justify-center">
-            <div className="mb-5">helping our climate one byte at a time.</div>
+            <div className="mb-2 items-end text-end">helping our climate one byte at a time.</div>
             <div className="flex items-center ">
               <a
                 href="/login"
