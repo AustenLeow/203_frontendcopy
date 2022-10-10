@@ -10,8 +10,29 @@ export default function cart2() {
     const [cart, setCart] = useState([]);
 
     useEffect(() => {
+        getCart();
         fetchCartItemsHandler();
     }, []);
+
+    function getCart() {
+        fetch("http://localhost:8080/api/v1/cart", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        })
+          .then((response) => response.json())
+          .then((product) => {
+            // setCart(product);
+            console.log();
+            setCart(product);
+            localStorage.setItem("myCart", JSON.stringify(product));
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
     
     function fetchCartItemsHandler() {
         const cart = JSON.parse((localStorage.getItem("myCart")|| "[]"));
@@ -29,7 +50,8 @@ export default function cart2() {
             }).then(response => response.text())
             .then(product => {
             console.log(product);
-            fetchCartItemsHandler()
+            getCart();
+            fetchCartItemsHandler();
             })
             .catch(err => {
             console.log(err);
