@@ -4,49 +4,55 @@ import Layout from "../components/Layout";
 import { XCircleIcon } from "@heroicons/react/outline/esm";
 
 export default function cart2() {
-  var num = 0;
   const total = 0;
-
+  const [items, setItems] = useState([]);
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
     getCart();
     fetchCartItemsHandler();
+    fetchItemsHandler();
+    updateItemQty(4,1);
   }, []);
 
-  async function countItemStock(product) {
-    const promise = await fetch(
-      `http://localhost:8080/api/v1/items/${product.id}`,
-      {
-        method: "GET",
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-        // proxy: {
-        //   host: 'http://localhost:/8080/api/v1/items',
-        //   port: 8080
-        // }
-      }
-    )
+  function fetchItemsHandler() {
+    const items = JSON.parse(localStorage.getItem("items") || "[]");
+    console.log(items);
+    setItems(items);
+  }
+
+  const countItemStock = (product) => {
+    fetch(`http://localhost:8080/api/v1/items/${product.id}`, {
+      method: "GET",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+      // proxy: {
+      //   host: 'http://localhost:/8080/api/v1/items',
+      //   port: 8080
+      // }
+    })
       .then(function (response) {
         return response.json();
       })
       .then(function (response) {
         // console.log(response); // now this is the body of the response
-        num = response.quantity;
         // return console.log(response.quantity);
         return response.quantity;
+      })
+      .then((product) => {
+        // setCart(product);
+        // console.log("here");
       })
       .catch((err) => {
         console.log(err);
       });
-    return promise;
-  }
+  };
 
-  function updateItemQty(item, qty) {
-    const response = fetch(
+  async function updateItemQty(item, qty) {
+    const response = await fetch(
       `http://localhost:8080/api/v1/cart/update/${item.id}/${qty}`,
       {
         method: "PUT",
@@ -151,24 +157,43 @@ export default function cart2() {
                       ></img>
                     </td>
                     <td className="p-5 text-right">{cartitem.item.price}</td>
-                    <td className="p-5 text-right">{cartitem.quantity}</td>
-                    <td className="p-5 text-center">
-                      <select
-                        value={cartitem.quantity}
-                        onChange={(e) =>
-                          //updateCartHandler(item, e.target.value)
-                          updateItemQty(cartitem.item, e.target.value)
-                        }
-                      >
-                        {[...Array(parseInt(countItemStock(cartitem.item))).keys()].map(
-                          (x) => (
-                            <option key={x + 1} value={x + 1}>
-                              {x + 1}
-                            </option>
-                          )
-                        )}
-                      </select>
+                    <button
+                      onClick={() =>
+                        updateItemQty(cartitem.item, cartitem.quantity + 1)
+                      }
+                    >
+                      +
+                    </button>
+                    <td
+                      className="p-5 text-right"
+                      onChange={() =>
+                        updateItemQty(cartitem.item, cartitem.quantity)
+                      }
+                    >
+                      {cartitem.quantity}
                     </td>
+                    <button
+                      onClick={() =>
+                        updateItemQty(cartitem.item, cartitem.quantity - 1)
+                      }
+                    >
+                      -
+                    </button>
+                    {/* <td className='p-5 text-center'>
+                                            <select
+                                                value={cartitem.quantity}
+                                                onChange={(e) =>
+                                                    //updateCartHandler(item, e.target.value)
+                                                     updateItemQty(cartitem.item, e.target.quantity)
+                                                }
+                                            >
+                                                {[...Array(items.item).keys()].map((x) => (
+                                                    <option key={x + 1} value={x + 1}>
+                                                        {x + 1}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                        </td> */}
                     <td className="p-5 text-right">{cartitem.subtotal}</td>
                     <td className="p-5 text-center">
                       <button onClick={() => removeItemHandler(cartitem.item)}>
