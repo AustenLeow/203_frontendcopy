@@ -158,11 +158,11 @@ export default function Navbar() {
             <NavLink to="/signup">sign up</NavLink>
             <NavLink to="/cart2">
               <div onClick={getCart}>cart</div>
-              {cartItemsCount > 0 && (
+              {/* {cartItemsCount > 0 && (
                 <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
                   {cartItemsCount}
                 </span>
-              )}
+              )} */}
             </NavLink>
           </div>
         </div>
