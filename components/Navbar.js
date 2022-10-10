@@ -114,6 +114,10 @@ export default function Navbar() {
         console.log(err);
       });
   }
+  function logout() {
+    localStorage.removeItem("token");
+    router.push("/login");
+  }
 
   return (
     <nav className="absolute sticky top-0 shadow bg-[#F5F5F5] opacity-100 px-4 py-4 h-20 flex items-center justify-center">

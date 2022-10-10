@@ -6,7 +6,7 @@ import { useEffect, useCallback } from "react";
 export default function SignIn() {
   const router = useRouter();
   useEffect(() => {
-    getItems2();
+    // getItems();
   }, []);
 
   const [error, setError] = useState({
@@ -26,7 +26,7 @@ export default function SignIn() {
     setState(copy);
   }
 
-  async function getItems(e) {
+  async function getItems() {
     // e.preventDefault();
     fetch("http://localhost:8080/api/v1/items", {
       method: "GET",
@@ -38,7 +38,7 @@ export default function SignIn() {
       .then((response) => response.json())
       .then((product) => {
         setState1(product);
-        // console.log(state1);
+        console.log(state1);
         localStorage.setItem("items", JSON.stringify(state1));
       })
       .catch((err) => {

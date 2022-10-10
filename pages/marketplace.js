@@ -4,14 +4,12 @@ import Layout from "../components/Layout";
 import { useState, useEffect, useCallback } from "react";
 
 export default function marketplace() {
-  function logout() {
-    localStorage.removeItem("token");
-    router.push("/login");
-  }
+
 
   const [items, setItems] = useState([]);
 
   useEffect(() => {
+    getItems();
     fetchItemsHandler();
   }, []);
 
@@ -19,6 +17,26 @@ export default function marketplace() {
   function logout() {
     localStorage.removeItem("token");
     router.push("/login");
+  }
+
+  function getItems() {
+    fetch("http://localhost:8080/api/v1/items", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((response) => response.json())
+      .then((product) => {
+        localStorage.setItem("items", JSON.stringify(product));
+        console.log();
+        setItems(product);
+        
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   function fetchItemsHandler() {
