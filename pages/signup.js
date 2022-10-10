@@ -116,12 +116,58 @@ export default function SignUp() {
     username: "",
     email: "",
     password: "",
+    confirmPassword: "",
   });
+
+  const [error, setError] = useState({
+    username: '',
+    password: '',
+    confirmPassword: ''
+  })
 
   function handleChange(e) {
     const copy = { ...state };
     copy[e.target.name] = e.target.value;
     setState(copy);
+    validateInput(e);
+  }
+
+  const validateInput = e => {
+    let { name, value } = e.target;
+    setError(prev => {
+      const stateObj = { ...prev, [name]: "" };
+   
+      switch (name) {
+        case "username":
+          if (!value) {
+            stateObj[name] = "Please enter Username.";
+          }
+          break;
+   
+        case "password":
+          if (!value) {
+            stateObj[name] = "Please enter Password.";
+          } else if (input.confirmPassword && value !== input.confirmPassword) {
+            stateObj["confirmPassword"] = "Password and Confirm Password does not match.";
+          } else {
+            stateObj["confirmPassword"] = input.confirmPassword ? "" : error.confirmPassword;
+          }
+          break;
+   
+        case "confirmPassword":
+          if (!value) {
+            stateObj[name] = "Please enter Confirm Password.";
+          } else if (input.password && value !== input.password) {
+            stateObj[name] = "Password and Confirm Password does not match.";
+          }
+          break;
+   
+        default:
+          break;
+      }
+   
+      return stateObj;
+    });
   }
 
   async function handleSubmit() {
@@ -159,11 +205,13 @@ export default function SignUp() {
                   <input
                     type="text"
                     name="username"
-                    placeholder="username"
+                    placeholder="Enter Username"
                     value={state.username}
                     onChange={handleChange}
                     autoComplete="off"
+                    onBlur={validateInput}
                   />
+                   {error.username && <span className='err'>{error.username}</span>}
                   <input
                     type="text"
                     name="email"
@@ -175,10 +223,21 @@ export default function SignUp() {
                   <input
                     type="password"
                     name="password"
-                    placeholder="password"
+                    placeholder="Enter Password"
                     value={state.password}
                     onChange={handleChange}
+                    onBlur={validateInput}
                   />
+                   {error.password && <span className='err'>{error.password}</span>}
+                  <input
+                    type="password"
+                    name="confirmPassword"
+                    placeholder="Enter Confirmed Password"
+                    value={state.confirmPassword}
+                    onChange={handleChange}
+                    onBlur={validateInput}
+                  />
+                  {error.confirmPassword && <span className='err'>{error.confirmPassword}</span>}
                   <button className="primary-button" onClick={handleSubmit}>
                     Submit
                   </button>
