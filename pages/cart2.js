@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect} from 'react';
 
 export default function cart2() {
 
-    // const items = [];
     const [cart, setCart] = useState([]);
 
     useEffect(() => {
@@ -20,26 +19,27 @@ export default function cart2() {
               <div >
                 <h1>Cart</h1>
                 <table>
+                <tbody>
                 <tr>
-                    <th>item_id</th>
-                    <th>item name</th>
+                    {/* <th>item_id</th> */}
+                    <th>item</th>
+                    <th> image </th>
                     <th>price</th>
-                    <th>image url</th>
                     <th>quantity</th>
                     <th>subtotal</th>
                 </tr>
                 
                   {cart.map(cartitem => 
                     <tr>
-                     <td>{cartitem.item.id}</td>,
-                      <td>{cartitem.item.itemName}</td>,
-                      <td>{cartitem.item.price}</td>,
-                     <td><img src={cartitem.item.url}></img></td>,
-                     <td>{cartitem.quantity}</td>,
+                     {/* <td>{cartitem.item.id}</td> */}
+                      <td>{cartitem.item.itemName}</td>
+                      <td><img src={cartitem.item.url} width={100} height={100}></img></td>
+                      <td>{cartitem.item.price}</td>
+                     <td>{cartitem.quantity}</td>
                      <td>{cartitem.subtotal}</td>
                     </tr>
                   )}
-
+                </tbody>
                   </table>
               </div>
         </React.Fragment>

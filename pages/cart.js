@@ -1,26 +1,36 @@
-import React, { useContext } from 'react'
+import React, { useState, useEffect} from 'react';
 import Layout from "../components/Layout";
-import { Store } from '../utils/Store';
 import Link from 'next/Link';
 import Image from 'next/image';
 import { XCircleIcon } from '@heroicons/react/outline/esm';
 import dynamic from 'next/dynamic';
 
 function CartScreen() {
+    const [cart, setCart] = useState([]);
+
+    useEffect(() => {
+        fetchCartItemsHandler();
+    }, []);
+    
+    function fetchCartItemsHandler() {
+        const cart = JSON.parse((localStorage.getItem("myCart")|| "[]"));
+        console.log(cart);
+        setCart(cart);
+    }
     // const router = useRouter();
-    const { state, dispatch } = useContext(Store);
-    const {
-        cart: { cartItems },
-    } = state;
+    // const { state, dispatch } = useContext(Store);
+    // const {
+    //     cart: { cartItems },
+    // } = state;
 
     const removeItemHandler = (item) => {
-        dispatch({ type: 'CART_REMOVE_ITEM', payload: item });
+        // dispatch({ type: 'CART_REMOVE_ITEM', payload: item });
     };
 
-    const updateCartHandler = (item, qty) => {
-        const quantity = Number(qty);
-        dispatch({type: 'CART_ADD_ITEM', payload:{...item, quantity}});
-    };
+    // const updateCartHandler = (item, qty) => {
+    //     // const quantity = Number(qty);
+    //     // dispatch({type: 'CART_ADD_ITEM', payload:{...item, quantity}});
+    // };
 
     async function updateItemQty(item, qty) {
         const response = await fetch('http://localhost:8080/api/cart', {
