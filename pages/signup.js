@@ -121,6 +121,7 @@ export default function SignUp() {
 
   const [error, setError] = useState({
     username: "",
+    email: "",
     password: "",
     confirmPassword: "",
   });

@@ -14,7 +14,6 @@ export default function SignIn() {
     password: "",
   });
 
-
   const [state1, setState1] = useState({});
   const [state, setState] = useState({
     username: "",
@@ -81,7 +80,7 @@ export default function SignIn() {
       getItems();
       router.push("/marketplace");
     } else {
-      alert("Bad credentials");
+      alert("Username or password is incorrect");
     }
   }
 
@@ -138,26 +137,26 @@ export default function SignIn() {
                 <input
                   type="text"
                   name="username"
-                  placeholder="username"
+                  placeholder="Enter Username"
                   value={state.username}
                   onChange={handleChange}
                   autoComplete="off"
                   onBlur={validateInput}
                 />
                 {error.username && (
-                    <span className="err">{error.username}</span>
-                  )}
+                  <span className="err">{error.username}</span>
+                )}
                 <input
                   type="password"
                   name="password"
-                  placeholder="password"
+                  placeholder="Enter Password"
                   value={state.password}
                   onChange={handleChange}
                   onBlur={validateInput}
                 />
                 {error.password && (
-                    <span className="err">{error.password}</span>
-                  )}
+                  <span className="err">{error.password}</span>
+                )}
                 <button className="primary-button" onClick={handleSubmit}>
                   Submit
                 </button>
