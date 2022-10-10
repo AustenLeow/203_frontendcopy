@@ -7,17 +7,17 @@ export default function SignUp() {
   const router = useRouter();
 
   const [state, setState] = useState({
-    username: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
   });
 
   const [error, setError] = useState({
-    username: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
   });
 
   function handleChange(e) {
@@ -47,12 +47,12 @@ export default function SignUp() {
 
         case "password":
           if (!value) {
-            stateObj[name] = "Please enter a password.";
-          } else if (input.confirmPassword && value !== input.confirmPassword) {
+            stateObj[name] = "Please enter Password.";
+          } else if (state.confirmPassword && value !== state.confirmPassword) {
             stateObj["confirmPassword"] =
-              "Password and Confirm Password do not match.";
+              "Password and Confirm Password does not match.";
           } else {
-            stateObj["confirmPassword"] = input.confirmPassword
+            stateObj["confirmPassword"] = state.confirmPassword
               ? ""
               : error.confirmPassword;
           }
@@ -61,7 +61,7 @@ export default function SignUp() {
         case "confirmPassword":
           if (!value) {
             stateObj[name] = "Please enter Confirm Password.";
-          } else if (input.password && value !== input.password) {
+          } else if (state.password && value !== state.password) {
             stateObj[name] = "Password and Confirm Password does not match.";
           }
           break;
@@ -83,7 +83,7 @@ export default function SignUp() {
       },
     });
     if (res.ok) {
-      alert("user registered success");
+      alert("User has been successfully registered!");
       router.push("/login");
     }
   }
@@ -137,20 +137,19 @@ export default function SignUp() {
                   value={state.password}
                   onChange={handleChange}
                   onBlur={validateInput}
-                  className="input"
-                />
+                ></input>
                 {error.password && (
                   <span className="err">{error.password}</span>
                 )}
+
                 <input
                   type="password"
                   name="confirmPassword"
-                  placeholder="Enter Confirmed Password"
+                  placeholder="Enter Confirm Password"
                   value={state.confirmPassword}
                   onChange={handleChange}
                   onBlur={validateInput}
-                  className="input"
-                />
+                ></input>
                 {error.confirmPassword && (
                   <span className="err">{error.confirmPassword}</span>
                 )}
