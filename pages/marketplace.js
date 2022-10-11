@@ -12,7 +12,7 @@ export default function marketplace() {
 
   useEffect(() => {
     getCart();
-    fetchItemsHandler();
+    // fetchItemsHandler();
     getItems();
   }, []);
 
@@ -79,7 +79,7 @@ export default function marketplace() {
       .then((product) => {
         setItems(product);
         localStorage.setItem("items", JSON.stringify(product));
-        console.log();
+        console.log(product);
         
         
       })
