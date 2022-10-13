@@ -193,9 +193,13 @@ export default function cart2() {
                       }
                     >
                       <button
-                        onClick={() =>
+                        onClick={() => { if (cartitem.quantity > 1){
                           updateItemQty(cartitem.item, cartitem.quantity - 1)
+                          } else {
+                            alert("please delete item");
+                          } 
                         }
+                      }
                       >
                         <MinusCircleIcon className="h-5 w-5"></MinusCircleIcon>
                       </button>
