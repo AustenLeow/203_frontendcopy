@@ -196,7 +196,7 @@ export default function cart2() {
                         onClick={() => { if (cartitem.quantity > 1){
                           updateItemQty(cartitem.item, cartitem.quantity - 1)
                           } else {
-                            removeItemHandler(cartitem.item)
+                            alert("please delete item");
                           } 
                         }
                       }
