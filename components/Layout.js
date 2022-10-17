@@ -7,7 +7,7 @@ export default function Layout({ title, children }) {
   return (
     <>
       <Head>
-        <title>{title ? " re:" + title : "re:"}</title>
+        <title>{title ?  title : "greenfoodforyou"}</title>
         <meta name="description" content="climate change" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
