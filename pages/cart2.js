@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 // import Image from 'next/image';
 import { XCircleIcon, PlusCircleIcon, MinusCircleIcon } from "@heroicons/react/outline/esm";
+import { set } from "react-hook-form";
 
 export default function cart2() {
-  const total = 0;
+  const [total, setTotal] = useState(0.0);
   const [items, setItems] = useState([]);
   const [cart, setCart] = useState([]);
 
@@ -12,7 +13,7 @@ export default function cart2() {
     getCart();
     fetchCartItemsHandler();
     fetchItemsHandler();
-    // getTotal();
+    getTotal();
     // updateItemQty(4, 1);
   }, []);
 
@@ -21,33 +22,37 @@ export default function cart2() {
     console.log(items);
     setItems(items);
   }
+   function getTotal() {
+    
+     fetch("http://localhost:8080/api/v1/cart", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((response) => response.json())
+      .then((product) => {
+        // setCart(product);
+        setCart(product);
+        let x = 0;
+        console.log(product);
+        localStorage.setItem("myCart", JSON.stringify(product));
+        product.map((cartitem) => (
+            x += cartitem.subtotal
+            // console.log(total)
+            ));
+        console.log(x);
+        setTotal(x);
+        return total;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
-//   const getTotal = () => {
-//     fetch("http://localhost:8080/api/v1/cart", {
-//       method: "GET",
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: "Bearer " + localStorage.getItem("token"),
-//       },
-//     })
-//       .then((response) => response.json())
-//       .then((product) => {
-//         // setCart(product);
-//         console.log();
-//         setCart(product);
-//         localStorage.setItem("myCart", JSON.stringify(product));
-//         cart.map((cartitem) => (
-//             total += cartitem.subtotal,
-//             // console.log(total)
-//             ));
-//         // console.log(total);
-//         return total;
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//       });
+  }
 
-//   }
+  
 
   const countItemStock = (product) => {
     fetch(`http://localhost:8080/api/v1/items/${product.id}`, {
@@ -96,6 +101,7 @@ export default function cart2() {
         console.log(product);
         getCart();
         fetchCartItemsHandler();
+        getTotal();
       })
       .catch((err) => {
         console.log(err);
@@ -115,6 +121,7 @@ export default function cart2() {
         // setCart(product);
         // console.log();
         setCart(product);
+        console.log(product);
         localStorage.setItem("myCart", JSON.stringify(product));
       })
       .catch((err) => {
@@ -141,6 +148,7 @@ export default function cart2() {
         console.log(product);
         getCart();
         fetchCartItemsHandler();
+        getTotal();
       })
       .catch((err) => {
         console.log(err);
@@ -244,7 +252,7 @@ export default function cart2() {
             <ul>
               <li>
                                 <div className='pb-3 text-xl'>
-                                    Total $
+                                    Total $ {total}
                                 </div>
                             </li> 
           
