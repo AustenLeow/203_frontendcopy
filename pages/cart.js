@@ -5,27 +5,37 @@ import Link from 'next/Link';
 import Image from 'next/image';
 import { XCircleIcon } from '@heroicons/react/outline/esm';
 import dynamic from 'next/dynamic';
-
+ 
 function CartScreen() {
     // const router = useRouter();
     const { state, dispatch } = useContext(Store);
     const {
         cart: { cartItems },
     } = state;
-
+ 
     const removeItemHandler = (item) => {
         dispatch({ type: 'CART_REMOVE_ITEM', payload: item });
     };
-
+ 
     const updateCartHandler = (item, qty) => {
         const quantity = Number(qty);
         dispatch({type: 'CART_ADD_ITEM', payload:{...item, quantity}});
     };
-
+ 
+    async function updateItemQty(item, qty) {
+        const response = await fetch('http://localhost:8080/api/cart', {
+        method: 'PUT',
+        headers: {'Content-type': 'application/json'},
+        body: JSON.stringify(item, qty)
+      })
+      return await response.json();
+    }
+ 
     return (
         <Layout title='Shopping Cart'>
             <h1 className='text-xl p-7'>Shopping Cart</h1>
-            {cartItems.length === 0 ? (
+            {
+                cartItems.length === 0 ? (
                 <div className='px-7'>
                     Cart is empty. <a className='text-[#687259]' href='/marketplace'>Go shopping</a>
                 </div>
@@ -37,7 +47,7 @@ function CartScreen() {
                                 <tr>
                                     <th className='px-5 text-left'>Item</th>
                                     <th className='px-5 text-lright'>Quantity</th>
-                                    <th className='px-5 text-rigth'>Price</th>
+                                    <th className='px-5 text-right'>Price</th>
                                     <th className='px-5'>Action</th>
                                 </tr>
                             </thead>
@@ -62,7 +72,7 @@ function CartScreen() {
                                             <select
                                                 value={item.quantity}
                                                 onChange={(e) =>
-                                                    updateCartHandler(item, e.target.value)
+                                                    updateCartHandler(item, e.target.value) && updateItemQty
                                                 }
                                             >
                                                 {[...Array(item.countInStock).keys()].map((x) => (
@@ -102,5 +112,6 @@ function CartScreen() {
         </Layout>
     );
 }
-
+ 
 export default dynamic(()=> Promise.resolve(CartScreen), {ssr:false});
+

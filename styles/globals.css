@@ -37,8 +37,8 @@ a {
   @apply bg-[#A4B07E] text-white font-bold py-2 px-4 rounded-xl hover:bg-[#4E632E] active:bg-[#4E632E] bg-gradient-to-r from-[#A4B07E] to-[#4E632E];
 }
 
-.login-text {
-  @apply text-[#4E632E] text-2xl font-bold;
+.header-text {
+  @apply text-[#4E632E] text-2xl px-3 font-bold;
 }
 
 .product-title{
@@ -52,10 +52,18 @@ a {
 input,
 select,
 textarea {
-  @apply w-full rounded border p-2 bg-[#F5F5F5] outline-none ring-[#A2A182] focus:ring;
+  @apply w-full rounded border p-3 bg-[#F5F5F5] outline-none ring-[#A2A182] focus:ring my-2;
 }
 
 
 .card {
   @apply p-6 block rounded-xl border border-gray-200 shadow-2xl;
+}
+
+.buttonz {
+  @apply ml-auto 
+  /* margin-left: auto; 
+  margin-right: 0;
+  display: block; 
+  text-align: right; */
 }
