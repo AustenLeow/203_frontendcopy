@@ -59,3 +59,22 @@ textarea {
 .card {
   @apply p-6 block rounded-xl border border-gray-200 shadow-2xl;
 }
+
+.price-wrapper{
+  position: relative; 
+  display: inline-block;
+}
+
+.price-slash{
+  position: relative;
+  width: 100%;
+  height: 0;
+  border-top: 2px solid red;
+  transform: rotate(-16deg);
+  top: 17px;
+}
+
+.price{ 
+  @apply text-xl;
+}
+

@@ -44,10 +44,16 @@ export default function marketplace() {
       });
   }
 
+ 
   return (
     <Layout title="marketplace">
       <div className="px-5">
-        <button className="primary-button" onClick={logout}>Log out</button>
+        <div className="flex justify-end">
+          <button className="primary-button" onClick={logout}>
+            Log out
+          </button>
+        </div>
+
         <h1 className="py-3 header-text">Marketplace</h1>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3 lg:grid-cols-4">
           {items.map((item) => (
@@ -60,7 +66,13 @@ export default function marketplace() {
                   <p className="font-bold text-xl">{item.itemName}</p>
                   <p className="font-light text-xs">{item.brand}</p>
                 </div>
-                <p>Price: ${item.price}</p>
+                
+                
+                <p class="price" >Price: ${item.price}</p>
+                <div class="price-wrapper">
+                  <div class="price-slash"></div>
+                  <p class="price text-2xl" >Price: ${item.price}</p>
+                </div>
                 <p>Quantity: {item.quantity}</p>
                 <p>Expires on: {item.expiry_date}</p>
                 <button
