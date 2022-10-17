@@ -154,16 +154,8 @@ export default function Navbar() {
               about
             </NavLink>
             <NavLink to="/marketplace">marketplace</NavLink>
-            <NavLink to="/login">login</NavLink>
+            <NavLink to="/login">log in</NavLink>
             <NavLink to="/signup">sign up</NavLink>
-            <NavLink to="/cart2">
-              <div onClick={getCart}>cart</div>
-              {/* {cartItemsCount > 0 && (
-                <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
-                  {cartItemsCount}
-                </span>
-              )} */}
-            </NavLink>
           </div>
         </div>
       </div>

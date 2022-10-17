@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import Layout from "../components/layout";
-import { useEffect, useCallback } from "react";
+import { useEffect } from "react";
 
 export default function SignIn() {
   const router = useRouter();

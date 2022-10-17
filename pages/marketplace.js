@@ -73,7 +73,7 @@ export default function marketplace() {
                   <div class="price-slash"></div>
                   <p class="price text-2xl" >Price: ${item.originalprice}</p>
                 </div>
-                <p>Quantity: {item.quantity}</p>
+                {/* <p>Quantity: {item.quantity}</p> */}
                 <p>Expires on: {item.expiry_date}</p>
                 <button
                   className="product-button w-full"
