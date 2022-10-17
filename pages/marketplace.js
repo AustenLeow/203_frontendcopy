@@ -71,7 +71,7 @@ export default function marketplace() {
                 <p class="price" >Price: ${item.price}</p>
                 <div class="price-wrapper">
                   <div class="price-slash"></div>
-                  <p class="price text-2xl" >Price: ${item.price}</p>
+                  <p class="price text-2xl" >Price: ${item.originalprice}</p>
                 </div>
                 <p>Quantity: {item.quantity}</p>
                 <p>Expires on: {item.expiry_date}</p>
