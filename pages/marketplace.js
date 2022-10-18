@@ -1,13 +1,9 @@
 import { useRouter } from "next/router";
 import React from "react";
 import Layout from "../components/Layout";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 
 export default function marketplace() {
-  function logout() {
-    localStorage.removeItem("token");
-    router.push("/login");
-  }
 
   const [items, setItems] = useState([]);
 
@@ -53,7 +49,6 @@ export default function marketplace() {
             Log out
           </button>
         </div>
-
         <h1 className="py-3 header-text">Marketplace</h1>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3 lg:grid-cols-4">
           {items.map((item) => (

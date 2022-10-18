@@ -3,10 +3,17 @@ import React, { useContext } from "react";
 import { Store } from "../utils/Store";
 import ReactDOM from "react-dom/client";
 
-function NavLink({to, children}) {
-    return <a href={to} className={`mx-4`}>
-        {children}
+function logout() {
+  localStorage.removeItem("token");
+  router.push("/login");
+}
+
+function NavLink({ to, children }) {
+  return (
+    <a href={to} className={`mx-4`}>
+      {children}
     </a>
+  );
 }
 
 function MobileNav({ open, setOpen }) {
@@ -92,7 +99,7 @@ export default function Navbar() {
   const [cartItemsCount, setCartItemsCount] = useState(0);
 
   useEffect(() => {
-    getCart(); 
+    getCart();
     setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
   }, [cart.cartItems]);
 
@@ -162,7 +169,10 @@ export default function Navbar() {
                 </span>
               )} */}
             </NavLink>
-            <NavLink to="/login">log out</NavLink>
+            <button
+            onClick={logout}>
+              log out
+            </button>
           </div>
         </div>
       </div>
