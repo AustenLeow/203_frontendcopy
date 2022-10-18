@@ -5,9 +5,9 @@ import { useEffect } from "react";
 
 export default function SignIn() {
   const router = useRouter();
-  useEffect(() => {
-    getItems2();
-  }, []);
+  // useEffect(() => {
+  //   getItems();
+  // }, []);
 
   const [error, setError] = useState({
     username: "",
@@ -15,6 +15,7 @@ export default function SignIn() {
   });
 
   const [state1, setState1] = useState({});
+
   const [state, setState] = useState({
     username: "",
     password: "",
@@ -26,7 +27,7 @@ export default function SignIn() {
     setState(copy);
   }
 
-  async function getItems(e) {
+  async function getItems() {
     // e.preventDefault();
     fetch("http://localhost:8080/api/v1/items", {
       method: "GET",
@@ -38,27 +39,7 @@ export default function SignIn() {
       .then((response) => response.json())
       .then((product) => {
         setState1(product);
-        // console.log(state1);
-        localStorage.setItem("items", JSON.stringify(state1));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
-  async function getItems2(e) {
-    // e.preventDefault();
-    fetch("http://localhost:8080/api/v1/items", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
-      .then((response) => response.json())
-      .then((product) => {
-        setState1(product);
-        // console.log(state1);
+        console.log(state1);
         localStorage.setItem("items", JSON.stringify(state1));
       })
       .catch((err) => {

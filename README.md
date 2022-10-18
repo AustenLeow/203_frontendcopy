@@ -1,3 +1,6 @@
+# CS203 G1-T2 Marketplace App Frontend
+For more information, our project documentation can be found on this <a href="https://docs.google.com/document/d/1CESnTTPve_ZE6EioaL1GUpCG75fNIAIBd19TlhVWrRQ/edit#">link</a>.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

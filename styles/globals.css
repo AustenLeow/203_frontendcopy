@@ -60,6 +60,7 @@ textarea {
   @apply p-6 block rounded-xl border border-gray-200 shadow-2xl;
 }
 
+
 .price-wrapper{
   position: relative; 
   display: inline-block;
@@ -77,4 +78,3 @@ textarea {
 .price{ 
   @apply text-xl;
 }
-
