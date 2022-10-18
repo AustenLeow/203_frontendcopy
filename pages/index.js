@@ -18,22 +18,21 @@ export default function Home() {
         />
         <div className="absolute w-3/5 m-auto grid grid-cols-1 lg:grid-cols-2">
           <div className="text-4xl sm:text-8xl text-white">
-            <strong> re:</strong>
+            <strong> green:</strong>
             <strong className="px-5 text-[#BFDB9C]">
               <Typical
                 steps={[
                   "price",
                   1000,
-                  "planet",
-                  1000,
                   "food",
                   1000,
-                  "invent",
-                  1000,
-                  "imagine",
+                  "produce",
                   1000,
                   "purpose",
                   1000,
+                  "planet",
+                  1000,
+                  "people",
                 ]}
                 wrapper="p"
                 loop={Infinity}
@@ -86,14 +85,6 @@ export default function Home() {
             how does it work
           </div>
           <div className="flex flex-col items-center justify-center">cycle</div>
-        </div>
-        <div className="h-screen w-3/5 m-auto grid grid-cols-1 lg:grid-cols-2">
-          <div className="flex flex-col items-start justify-center text-6xl font-bold text-[#4E632E]">
-            hot picks
-          </div>
-          <div className="flex flex-col items-center justify-center">
-            carousel of products
-          </div>
         </div>
       </Layout>
     </div>

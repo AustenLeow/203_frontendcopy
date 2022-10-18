@@ -1,9 +1,8 @@
 import { useRouter } from "next/router";
-import React from 'react';
-import Layout from '../components/Layout';
-import data from '../utils/data';
-import ProductItem from '../components/ProductItem';
-import { useState, useEffect, useCallback } from 'react';
+import React from "react";
+import Layout from "../components/Layout";
+import { useState, useEffect } from "react";
+
 
 export default function marketplace() {
 
@@ -88,36 +87,15 @@ export default function marketplace() {
       });
   }
 
-  function fetchItemsHandler() {
-    const items = JSON.parse((localStorage.getItem("items") || "[]"));
-    console.log(items);
-    setItems(items);
-  }
 
-  async function addToCart (item) {
-    fetch(`http://localhost:8080/api/v1/cart/add/${item.id}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        "Authorization": "Bearer " + localStorage.getItem("token")
-      },
-    }).then(response => response.text())
-    .then(item => {
-      console.log(item);
-      
-    })
-    .catch(err => {
-      console.log(err);
-    })
-  }
-
+ 
   return (
     <Layout title="marketplace">
       <div className="px-5">
-        {/* <button className="primary-button" onClick={logout}>Log out</button> */}
-        <div  style={{"textAlign":"right"}}>
-          <button onClick={getCart2} className="hidden md:flex text-[#4E632E]">cart</button>
-          <button onClick={logout} className="hidden md:flex text-[#4E632E]">log out</button>
+        <div className="flex justify-end">
+          <button className="primary-button" onClick={logout}>
+            Log out
+          </button>
         </div>
         <h1 className="py-3 header-text">Marketplace</h1>
        
@@ -133,8 +111,14 @@ export default function marketplace() {
                   <p className="font-bold text-xl">{item.itemName}</p>
                   <p className="font-light text-xs">{item.brand}</p>
                 </div>
-                <p>Price: ${item.price}</p>
-                <p>Quantity: {item.quantity}</p>
+                
+                
+                <p class="price" >Price: ${item.price}</p>
+                <div class="price-wrapper">
+                  <div class="price-slash"></div>
+                  <p class="price text-2xl" >Price: ${item.originalprice}</p>
+                </div>
+                {/* <p>Quantity: {item.quantity}</p> */}
                 <p>Expires on: {item.expiry_date}</p>
                 <button
                   className="product-button w-full"
