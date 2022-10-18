@@ -133,8 +133,14 @@ export default function marketplace() {
                   <p className="font-bold text-xl">{item.itemName}</p>
                   <p className="font-light text-xs">{item.brand}</p>
                 </div>
-                <p>Price: ${item.price}</p>
-                <p>Quantity: {item.quantity}</p>
+                
+                
+                <p className="price" >Price: ${item.price}</p>
+                <div className="price-wrapper">
+                  <div className="price-slash"></div>
+                  <p className="price text-2xl" >Price: ${item.originalprice}</p>
+                </div>
+                {/* <p>Quantity: {item.quantity}</p> */}
                 <p>Expires on: {item.expiry_date}</p>
                 <button
                   className="product-button w-full"
