@@ -4,12 +4,14 @@ import Layout from '../components/Layout';
 import data from '../utils/data';
 import ProductItem from '../components/ProductItem';
 import { useState, useEffect, useCallback } from 'react';
+import { ArrowDownIcon } from "@heroicons/react/outline/esm";
+import { Menu } from '@headlessui/react';
 
 export default function marketplace() {
 
   const [items, setItems] = useState([]);
   const [state1, setState1] = useState([]);
-
+  const [type, setType] = useState([]);
   useEffect(() => {
     getCart();
     // fetchItemsHandler();
@@ -88,6 +90,29 @@ export default function marketplace() {
       });
   }
 
+  function getItemsByType() {
+    // e.preventDefault();
+    let  pathOriginal = "http://localhost:8080/api/v1/items";
+    let  pathWithType =  pathOriginal + "/" + type;
+
+    fetch(pathWithType, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((response) => response.json())
+      .then((product) => {
+        setState1(product);
+        console.log(state1);
+        localStorage.setItem("items", JSON.stringify(state1));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   function fetchItemsHandler() {
     const items = JSON.parse((localStorage.getItem("items") || "[]"));
     console.log(items);
@@ -120,7 +145,69 @@ export default function marketplace() {
           <button onClick={logout} className="hidden md:flex text-[#4E632E]">log out</button>
         </div>
         <h1 className="py-3 header-text">Marketplace</h1>
-       
+
+
+            <div>
+              <div className='flex w-50 p-2 text-left items-center'>
+                Filter by: &nbsp;
+                {/* // hydration error */}
+              </div>
+            </div>
+          <Menu>
+          <Menu.Button>
+            <div>
+            <div className='flex bg-white w-50 p-2 text-left items-center'>
+                Type &nbsp;
+                {/* // hydration error */}
+                <ArrowDownIcon className="h-3 w-3"></ArrowDownIcon>
+              </div>
+            </div>
+            <Menu.Items>
+            <button className='flex w-50 p-2 text-left items-center' onClick={() => setType("Vegetables")}>
+              Vegetables
+            </button>
+            <button className='flex w-50 p-2 text-left items-center' onClick={() => setType("Fruits")}>
+              Fruits
+            </button>
+            <button className='flex w-50 p-2 text-left items-center' onClick={() => setType("Meat")}>
+              Meat
+            </button>
+            <button className='flex w-50 p-2 text-left items-center' onClick={() => setType("Canned food")}>
+              Canned food
+            </button>
+            <button className='flex w-50 p-2 text-left items-center' onClick={() => setType("Drinks")}>
+              Drinks
+            </button>
+          </Menu.Items>
+          </Menu.Button>&nbsp;&nbsp;&nbsp;&nbsp;
+
+          <Menu.Button>
+            <div>
+            <div className='flex bg-white w-50 p-2 text-left items-center'>
+                Location &nbsp;
+                {/* // hydration error */}
+                <ArrowDownIcon className="h-3 w-3"></ArrowDownIcon>
+              </div>
+            </div>
+            <Menu.Items>
+            <div className='flex w-50 p-2 text-left items-center'>
+              North
+            </div>
+            <div className='flex w-50 p-2 text-left items-center'>
+              South
+            </div>
+            <div className='flex w-50 p-2 text-left items-center'>
+              East
+            </div>
+            <div className='flex w-50 p-2 text-left items-center'>
+              West
+            </div>
+            <div className='flex w-50 p-2 text-left items-center'>
+              Central
+            </div>
+          </Menu.Items>
+          </Menu.Button>
+        </Menu>
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3 lg:grid-cols-4">
           {items.map((item) => (

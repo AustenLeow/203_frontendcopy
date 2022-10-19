@@ -129,6 +129,8 @@ export default function cart2() {
       });
   }
 
+  
+
   function fetchCartItemsHandler() {
     const cart = JSON.parse(localStorage.getItem("myCart") || "[]");
     console.log(cart);
