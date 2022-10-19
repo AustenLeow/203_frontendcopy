@@ -42,11 +42,19 @@ a {
 }
 
 .product-title{
-  @apply text-[#4E632E] text-2xl py-2 font-bold;
+  @apply font-bold text-xl;
+}
+
+.product-brand {
+  @apply text-base;
 }
 
 .product-button {
   @apply text-[#A4B07E] rounded border-2 outline-none hover:border-[#4E632E] hover:focus:ring font-bold py-2 px-4 rounded hover:text-[#4E632E];
+}
+
+.product-description {
+  @apply text-gray-700 text-base;
 }
 
 input,
@@ -76,5 +84,5 @@ textarea {
 }
 
 .price{ 
-  @apply text-xl;
+  @apply text-base;
 }
