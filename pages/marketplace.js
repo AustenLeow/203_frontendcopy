@@ -10,7 +10,7 @@ import { Menu } from '@headlessui/react';
 export default function marketplace() {
   const [items, setItems] = useState([]);
   const [state1, setState1] = useState([]);
-  const [type, setType] = useState([]);
+  const [type, setType] = useState('');
 
   useEffect(() => {
     getCart();
@@ -89,10 +89,10 @@ export default function marketplace() {
 
   function getItemsByType() {
     // e.preventDefault();
-    let pathOriginal = "http://localhost:8080/api/v1/items/type/";
+    let pathOriginal = "http://localhost:8080/api/v1/items/type/${product.type}`";
     let pathWithType = pathOriginal + type;
 
-    fetch(pathWithType, {
+    fetch(`http://localhost:8080/api/v1/items/${product.type}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -101,10 +101,9 @@ export default function marketplace() {
     })
       .then((response) => response.json())
       .then((product) => {
-        setState1(product);
-        console.log(state1);
-        setType(type);
-        localStorage.setItem("items", JSON.stringify(state1));
+        setType(product);
+        localStorage.setItem("items", JSON.stringify(product));
+        console.log(product);
       })
       .catch((err) => {
         console.log(err);
@@ -166,19 +165,19 @@ export default function marketplace() {
               </div>
             </div>
             <Menu.Items>
-              <button className='flex w-50 p-2 text-left items-center' onClick={() => {setType("Vegetables"); getItemsByType}}>
+              <button className='flex w-50 p-2 text-left items-center' onClick={() => {setType("vegetable"); getItemsByType}}>
                 Vegetables
               </button>
               <button className='flex w-50 p-2 text-left items-center' onClick={() => {setType("fruit"); getItemsByType}}>
                 Fruits
               </button>
-              <button className='flex w-50 p-2 text-left items-center' onClick={() => {setType("Meat"); getItemsByType}}>
+              <button className='flex w-50 p-2 text-left items-center' onClick={() => {setType("meat"); getItemsByType}}>
                 Meat
               </button>
               <button className='flex w-50 p-2 text-left items-center' onClick={() => {setType("canned food"); getItemsByType}}>
                 Canned food
               </button>
-              <button className='flex w-50 p-2 text-left items-center' onClick={() => {setType("Drinks"); getItemsByType}}>
+              <button className='flex w-50 p-2 text-left items-center' onClick={() => {setType("drink"); getItemsByType}}>
                 Drinks
               </button>
             </Menu.Items>
