@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 // import Image from 'next/image';
+
 import {
   XCircleIcon,
   PlusCircleIcon,
@@ -10,10 +11,14 @@ import Modal from "../components/Modal";
 import { Router } from "next/router";
 import { useRouter } from "next/router";
 
+
 export default function cart2() {
   const [total, setTotal] = useState(0.0);
   const [items, setItems] = useState([]);
   const [cart, setCart] = useState([]);
+
+  const [quantity, setQuantity] = useState(0);
+
   const [showModal, setShowModal] = useState(false);
   const router = useRouter();
 
@@ -27,6 +32,7 @@ export default function cart2() {
     fetchCartItemsHandler();
     fetchItemsHandler();
     getTotal();
+    getQuantity();
     // updateItemQty(4, 1);
   }, []);
 
@@ -35,7 +41,8 @@ export default function cart2() {
     console.log(items);
     setItems(items);
   }
-  function getTotal() {
+
+  function getQuantity() {
     fetch("http://localhost:8080/api/v1/cart", {
       method: "GET",
       headers: {
@@ -50,19 +57,49 @@ export default function cart2() {
         let x = 0;
         console.log(product);
         localStorage.setItem("myCart", JSON.stringify(product));
-        product.map(
-          (cartitem) =>
-            (x += cartitem.subtotal)
+        product.map((cartitem) => (
+            x += cartitem.quantity
             // console.log(total)
-        );
-        console.log(x);
-        setTotal(x);
-        return total;
+            ));
+       //  console.log(x);
+        setQuantity(x);
+        return quantity;
       })
       .catch((err) => {
         console.log(err);
       });
-  }
+     }
+
+
+  function getTotal() {
+    fetch("http://localhost:8080/api/v1/cart", {
+
+     method: "GET",
+     headers: {
+       "Content-Type": "application/json",
+       Authorization: "Bearer " + localStorage.getItem("token"),
+     },
+   })
+     .then((response) => response.json())
+     .then((product) => {
+       // setCart(product);
+       setCart(product);
+       let x = 0;
+       console.log(product);
+       localStorage.setItem("myCart", JSON.stringify(product));
+       product.map((cartitem) => (
+           x += cartitem.subtotal
+           // console.log(total)
+           ));
+      //  console.log(x);
+       setTotal(x);
+       return total;
+     })
+     .catch((err) => {
+       console.log(err);
+     });
+    }
+
 
   const countItemStock = (product) => {
     fetch(`http://localhost:8080/api/v1/items/${product.id}`, {
@@ -112,6 +149,7 @@ export default function cart2() {
         getCart();
         fetchCartItemsHandler();
         getTotal();
+        getQuantity();
       })
       .catch((err) => {
         console.log(err);
@@ -158,6 +196,7 @@ export default function cart2() {
         getCart();
         fetchCartItemsHandler();
         getTotal();
+        getQuantity();
       })
       .catch((err) => {
         console.log(err);
@@ -165,6 +204,7 @@ export default function cart2() {
   };
 
   return (
+
     <Layout title="Your shopping cart">
        
       {cart.length == 0 ? (
@@ -189,19 +229,27 @@ export default function cart2() {
             <table className="min-w-full">
               <thead className="border-b">
                 <tr>
-                  <th className="px-5 text-right">item</th>
-                  <th className="px-5 text-right"></th>
+                  <th className="px-5 text-left">item</th>
+                  <th className="px-5 text-right">carbon savings</th>
                   <th className="px-5 text-right">price</th>
                   <th className="px-5 text-right">quantity</th>
                   <th className="px-5 text-right">subtotal</th>
-                  <th className="px-5">Action</th>
+                  <th className="px-5">delete</th>
                 </tr>
               </thead>
               <tbody>
                 {cart.map((cartitem) => (
                   <tr key={cartitem.item.id} className="border-b">
-                    <td className="p-5 text-right">{cartitem.item.itemName}</td>
-                    <td className="p-5 text-right">
+                    <div className="text-center">
+                    <td className="p-5 align-top"><img
+                        src={cartitem.item.url}
+                        alt={cartitem.item.itemName}
+                        className="flex items-center"
+                        width={100}
+                        height={100}
+                      ></img>{cartitem.item.itemName}</td></div>
+                      <td className="p-5 text-right">carbon savings</td>
+                    {/* <td className="p-5 text-right">
                       <img
                         src={cartitem.item.url}
                         alt={cartitem.item.itemName}
@@ -209,7 +257,7 @@ export default function cart2() {
                         width={100}
                         height={100}
                       ></img>
-                    </td>
+                    </td> */}
                     <td className="p-5 text-right">{cartitem.item.price}</td>
 
                     <td
@@ -267,6 +315,7 @@ export default function cart2() {
             </table>
           </div>
           <div className="card p-5">
+
             <div>
               <div className="pb-3 text-xl font-bold">Total: ${total}</div>
             </div>
