@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 // import Image from 'next/image';
 import { XCircleIcon, PlusCircleIcon, MinusCircleIcon } from "@heroicons/react/outline/esm";
-import { set } from "react-hook-form";
 
 export default function cart2() {
   const [total, setTotal] = useState(0.0);
@@ -22,37 +21,35 @@ export default function cart2() {
     console.log(items);
     setItems(items);
   }
-   function getTotal() {
-    
-     fetch("http://localhost:8080/api/v1/cart", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
-      .then((response) => response.json())
-      .then((product) => {
-        // setCart(product);
-        setCart(product);
-        let x = 0;
-        console.log(product);
-        localStorage.setItem("myCart", JSON.stringify(product));
-        product.map((cartitem) => (
-            x += cartitem.subtotal
-            // console.log(total)
-            ));
-        console.log(x);
-        setTotal(x);
-        return total;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  function getTotal() {
 
-  }
+    fetch("http://localhost:8080/api/v1/cart", {
+     method: "GET",
+     headers: {
+       "Content-Type": "application/json",
+       Authorization: "Bearer " + localStorage.getItem("token"),
+     },
+   })
+     .then((response) => response.json())
+     .then((product) => {
+       // setCart(product);
+       setCart(product);
+       let x = 0;
+       console.log(product);
+       localStorage.setItem("myCart", JSON.stringify(product));
+       product.map((cartitem) => (
+           x += cartitem.subtotal
+           // console.log(total)
+           ));
+       console.log(x);
+       setTotal(x);
+       return total;
+     })
+     .catch((err) => {
+       console.log(err);
+     });
+    }
 
-  
 
   const countItemStock = (product) => {
     fetch(`http://localhost:8080/api/v1/items/${product.id}`, {
@@ -121,15 +118,12 @@ export default function cart2() {
         // setCart(product);
         // console.log();
         setCart(product);
-        console.log(product);
         localStorage.setItem("myCart", JSON.stringify(product));
       })
       .catch((err) => {
         console.log(err);
       });
   }
-
-  
 
   function fetchCartItemsHandler() {
     const cart = JSON.parse(localStorage.getItem("myCart") || "[]");
@@ -272,51 +266,3 @@ export default function cart2() {
   );
 }
 
-/////////// things we have tried to get cart ...
-
-// const items = data.map((cart) => {
-//     return {
-//         id: cart.item.id,
-//         itemName: cart.item.itemName,
-//         price: cart.item.price,
-//         url: cart.item.url,
-//         quantity: cart.quantity,
-//         subtotal: cart.subtotal
-//     };
-// });
-
-// const fetchCartItemsHandler = useCallback(async () => {
-
-// setError(null);
-// try {
-//     const res = await fetch('http://localhost:8080/api/v1/cart', {
-//             method: 'GET',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//                 "Authorization": "Bearer " + localStorage.getItem("token")
-//             }
-//         });
-//     if (!res.ok) {
-//         throw new Error('Something went wrong');
-//     }
-//     const data = await res.json();
-//     // const data = JSON.stringify(dataobj);
-//     // const itemlist = [];
-//     console.log(data);
-
-// for (const key in data) {
-//     itemlist.push({
-//         id: data[key].item.id,
-//         itemName: data[key].item.itemName,
-//         price: data[key].item.price,
-//         url: data[key].item.url,
-//         quantity: data[key].quantity,
-//         subtotal: data[key].subtotal
-//     });
-//     // }
-//     setCartItems(data);
-// }
-// catch (error) {
-//     setError(error.message);
-// }
-// console.log(cartItems);
