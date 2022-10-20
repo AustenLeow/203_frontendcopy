@@ -1,14 +1,31 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 // import Image from 'next/image';
-import { IconName } from "react-icons/vsc";
-import { XCircleIcon, PlusCircleIcon, MinusCircleIcon } from "@heroicons/react/outline/esm";
+
+import {
+  XCircleIcon,
+  PlusCircleIcon,
+  MinusCircleIcon,
+} from "@heroicons/react/outline/esm";
+import Modal from "../components/Modal";
+import { Router } from "next/router";
+import { useRouter } from "next/router";
+
 
 export default function cart2() {
   const [total, setTotal] = useState(0.0);
   const [items, setItems] = useState([]);
   const [cart, setCart] = useState([]);
+
   const [quantity, setQuantity] = useState(0);
+
+  const [showModal, setShowModal] = useState(false);
+  const router = useRouter();
+
+  function handleOnClose() {
+    setShowModal(false);
+    router.push("/marketplace");
+  }
 
   useEffect(() => {
     getCart();
@@ -55,8 +72,8 @@ export default function cart2() {
 
 
   function getTotal() {
-
     fetch("http://localhost:8080/api/v1/cart", {
+
      method: "GET",
      headers: {
        "Content-Type": "application/json",
@@ -187,22 +204,27 @@ export default function cart2() {
   };
 
   return (
-    <Layout title="cart">
-      {/* <button className = "hidden md:flex text-[#4E632E]">Back to Shopping
-            </button> */}
-            <a className="hidden md:flex text-[#4E632E]" href = "/marketplace">Back to Shopping</a>
-      <div className="p-10">
-              <h1 className="py-3 header-text text-center m-auto">Your Shopping Cart ({quantity})</h1>
-            </div>
+
+    <Layout title="Your shopping cart">
+       
       {cart.length == 0 ? (
-        <div className="px-7">
-          Cart is empty.{" "}
-          <a className="text-[#687259]" href="/marketplace">
-            Continue browsing
+        <div className="flex flex-col justify-center items-center">
+          <img
+                alt=" "
+                src="/emptycart.png"
+                height={300}
+                width={300}
+                className="ml-3 pt-16"
+              />
+          <h1 className="product-title pt-8 pb-5">Your shopping cart is empty :( {" "}</h1>
+          <a className="text-[#687259] hover:underline no-underline" href="/marketplace">
+            Go shopping
           </a>
-        </div>
+        </div> 
       ) : (
+        
         <div className="grid md:grid-cols-4 md:gap-5 px-7">
+          
           <div className="overflow-x-auto md:col-span-3">
             <table className="min-w-full">
               <thead className="border-b">
@@ -245,13 +267,13 @@ export default function cart2() {
                       }
                     >
                       <button
-                        onClick={() => { if (cartitem.quantity > 1){
-                          updateItemQty(cartitem.item, cartitem.quantity - 1)
+                        onClick={() => {
+                          if (cartitem.quantity > 1) {
+                            updateItemQty(cartitem.item, cartitem.quantity - 1);
                           } else {
-                            removeItemHandler(cartitem.item)
-                          } 
-                        }
-                      }
+                            removeItemHandler(cartitem.item);
+                          }
+                        }}
                       >
                         <MinusCircleIcon className="h-5 w-5"></MinusCircleIcon>
                       </button>
@@ -280,7 +302,7 @@ export default function cart2() {
                                                 ))}
                                             </select>
                                         </td> */}
-                                    
+
                     <td className="p-5 text-right">{cartitem.subtotal}</td>
                     <td className="p-5 text-center">
                       <button onClick={() => removeItemHandler(cartitem.item)}>
@@ -293,24 +315,29 @@ export default function cart2() {
             </table>
           </div>
           <div className="card p-5">
-            <ul>
-              <li>
-                                <div className='pb-3 text-xl'>
-                                    Total $ {total}
-                                </div>
-                            </li> 
-          
-              <li>
-                <button className="primary-button w-full mb-px">Check Out</button>
-              </li>
-              <li >
-                <button className="primary-button w-full">Donate to charity</button>
-              </li>
-            </ul>
+
+            <div>
+              <div className="pb-3 text-xl font-bold">Total: ${total}</div>
+            </div>
+
+            <div>
+              <button className="button w-full"> 
+              
+              Check Out</button>
+            </div>
+            <p className="p-2"></p>
+            <div>
+              <button
+                className="button w-full"
+                onClick={() => setShowModal(true)}
+              >
+                Donate to charity
+              </button>
+            </div>
+            <Modal onClose={handleOnClose} visible={showModal} />
           </div>
         </div>
       )}
     </Layout>
   );
 }
-
