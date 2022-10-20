@@ -47,7 +47,7 @@ export default function ProductScreen() {
   return (
     <Layout title={product.name}>
       <div className="py-2 px-10">
-        <button className="primary-button w-1/10" onClick={backToProductsHandler}>
+        <button className="button w-1/10" onClick={backToProductsHandler}>
           <Link href="/marketplace">
             Back to products
           </Link>
@@ -82,7 +82,7 @@ export default function ProductScreen() {
               <div>Status</div>
               <div>{product.countInStock > 0? 'In stock' : 'Unavailable'}</div>
             </div>
-            <button className="primary-button w-full" onClick={addToCartHandler && addToCart}>Add to cart</button>
+            <button className="button w-full" onClick={addToCartHandler && addToCart}>Add to cart</button>
           </div>
         </div>
       </div>

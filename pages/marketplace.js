@@ -109,21 +109,12 @@ export default function marketplace() {
 
   return (
     <Layout title="marketplace">
-      <div className="px-5">
-        {/* <button className="primary-button" onClick={logout}>Log out</button> */}
-        {/* <div style={{ textAlign: "right" }}>
-          <button onClick={getCart2} className="hidden md:flex text-[#4E632E]">
-            cart
-          </button>
-          <button onClick={logout} className="hidden md:flex text-[#4E632E]">
-            log out
-          </button>
-        </div> */}
-        <div className="p-10">
+      <div className="w-screen">
+        <div className="h-40">
           <h1 className="py-3 header-text text-center m-auto">Marketplace</h1>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3 lg:grid-cols-4">
+        <div className="p-6 grid grid-cols-1 gap-8 md:grid-cols-3 lg:grid-cols-4">
           {items.map((item) => (
             <div className="card" key={item.id}>
               <div>
@@ -143,13 +134,13 @@ export default function marketplace() {
                 <div className="price-wrapper">
                   <div className="price-slash"></div>
                   <p className="price text-2xl">
-                    Original Price: ${item.originalprice}
+                   ${item.originalprice}
                   </p>
                 </div>
                 {/* <p>Quantity: {item.quantity}</p> */}
                 <p className="mb-3">Expires on: {item.expiry_date}</p>
                 <button
-                  className="product-button w-full"
+                  className="button w-full"
                   type="button"
                   onClick={() => addToCart(item)}
                 >
