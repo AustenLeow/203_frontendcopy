@@ -328,7 +328,7 @@ export default function cart2() {
               
               Check Out</button>
             </div>
-            <p className="p-2"></p>
+            <p className="p-0.5"></p>
             <div>
               <button
                 className="button w-full"
