@@ -97,10 +97,10 @@ export default function SignIn() {
         <div className="w-full flex items-center justify-center">
           <div className="w-full h-fit m-auto grid grid-cols-1 lg:grid-cols-2 ">
             <div className="flex flex-col items-center justify-center">
-              <img
+            <img
                 alt=" "
-                src="/signup.png"
-                height={250}
+                src="/login.png"
+                height={300}
                 width={300}
                 className="ml-3"
               />
@@ -139,7 +139,7 @@ export default function SignIn() {
                   Submit
                 </button>
               </div>
-              <div className="mb-4 ">
+              <div className="mb-4 p-3">
                 Don&apos;t have an account? &nbsp;
                 <a className="my-4 text-[#687259]" href="/signup">
                   Sign up here
