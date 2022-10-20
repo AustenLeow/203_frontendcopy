@@ -5,12 +5,6 @@ import data from "../utils/data";
 import ProductItem from "../components/ProductItem";
 import { useState, useEffect, useCallback } from "react";
 
-=======
-import data from "../utils/data";
-import ProductItem from "../components/ProductItem";
-import { useState, useEffect, useCallback } from "react";
->>>>>>> 57b4bb4fcaa7b34439a18da88d38cc71bc119c37
-
 export default function marketplace() {
   const [items, setItems] = useState([]);
   const [state1, setState1] = useState([]);
