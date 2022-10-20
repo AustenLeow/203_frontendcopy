@@ -262,12 +262,12 @@ export default function cart2() {
                                 </div>
                             </li> 
           
-              <li>
+              <div>
                 <button className="button w-full">Check Out</button>
-              </li>
-              <li >
+              </div>
+              <div >
                 <button className="button w-full" onClick={() => setShowModal(true)}>Donate to charity</button>
-              </li>
+              </div>
               <Modal onClose={handleOnClose} visible={showModal}/>
             </ul>
           </div>

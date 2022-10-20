@@ -46,7 +46,7 @@ a {
 }
 
 .product-brand {
-  @apply text-base;
+  @apply text-lg;
 }
 
 .button {
