@@ -135,7 +135,7 @@ export default function SignIn() {
                 )}
               </div>
               <div className="px-3">
-                <button className="primary-button" onClick={handleSubmit}>
+                <button className="button" onClick={handleSubmit}>
                   Submit
                 </button>
               </div>
@@ -145,6 +145,7 @@ export default function SignIn() {
                   Sign up here
                 </a>
               </div>
+              
             </div>
           </div>
         </div>

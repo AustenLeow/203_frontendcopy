@@ -2,11 +2,21 @@ import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 // import Image from 'next/image';
 import { XCircleIcon, PlusCircleIcon, MinusCircleIcon } from "@heroicons/react/outline/esm";
+import Modal from "../components/Modal";
+import { Router } from "next/router";
+import { useRouter } from "next/router";
 
 export default function cart2() {
   const [total, setTotal] = useState(0.0);
   const [items, setItems] = useState([]);
   const [cart, setCart] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const router = useRouter();
+  
+  function handleOnClose() {
+    setShowModal(false);
+    router.push("/marketplace");
+  };
 
   useEffect(() => {
     getCart();
@@ -253,11 +263,12 @@ export default function cart2() {
                             </li> 
           
               <li>
-                <button className="primary-button w-full">Check Out</button>
+                <button className="button w-full">Check Out</button>
               </li>
               <li >
-                <button className="primary-button w-full">Donate to charity</button>
+                <button className="button w-full" onClick={() => setShowModal(true)}>Donate to charity</button>
               </li>
+              <Modal onClose={handleOnClose} visible={showModal}/>
             </ul>
           </div>
         </div>

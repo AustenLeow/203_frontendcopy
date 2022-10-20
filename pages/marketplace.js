@@ -149,7 +149,7 @@ export default function marketplace() {
                 {/* <p>Quantity: {item.quantity}</p> */}
                 <p className="mb-3">Expires on: {item.expiry_date}</p>
                 <button
-                  className="product-button w-full"
+                  className="button w-full"
                   type="button"
                   onClick={() => addToCart(item)}
                 >

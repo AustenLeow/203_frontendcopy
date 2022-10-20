@@ -155,7 +155,7 @@ export default function SignUp() {
                 )}
               </div>
               <div className="px-3">
-                <button className="primary-button" onClick={handleSubmit}>
+                <button className="button" onClick={handleSubmit}>
                   Submit
                 </button>
               </div>
