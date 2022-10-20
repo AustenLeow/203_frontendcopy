@@ -97,7 +97,7 @@ export default function SignUp() {
               <img
                 alt=" "
                 src="/signup.png"
-                height={250}
+                height={300}
                 width={300}
                 className="ml-3"
               />
@@ -155,11 +155,11 @@ export default function SignUp() {
                 )}
               </div>
               <div className="px-3">
-                <button className="primary-button" onClick={handleSubmit}>
+                <button className="button" onClick={handleSubmit}>
                   Submit
                 </button>
               </div>
-              <div className="mb-4 ">
+              <div className="mb-4  p-3">
                 Already have an account? &nbsp;
                 <a className="my-4 text-[#687259]" href="/login">
                   Login
