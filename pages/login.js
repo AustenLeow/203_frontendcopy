@@ -139,6 +139,12 @@ export default function SignIn() {
                   Submit
                 </button>
               </div>
+              <div className="mb-4 ">
+                Don&apos;t have an account? &nbsp;
+                <a className="my-4 text-[#687259]" href="/signup">
+                  Sign up here
+                </a>
+              </div>
             </div>
           </div>
         </div>
