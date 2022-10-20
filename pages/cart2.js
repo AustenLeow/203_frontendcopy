@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 // import Image from 'next/image';
-import { XCircleIcon, PlusCircleIcon, MinusCircleIcon } from "@heroicons/react/outline/esm";
+import {
+  XCircleIcon,
+  PlusCircleIcon,
+  MinusCircleIcon,
+} from "@heroicons/react/outline/esm";
 import Modal from "../components/Modal";
 import { Router } from "next/router";
 import { useRouter } from "next/router";
@@ -12,11 +16,11 @@ export default function cart2() {
   const [cart, setCart] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const router = useRouter();
-  
+
   function handleOnClose() {
     setShowModal(false);
     router.push("/marketplace");
-  };
+  }
 
   useEffect(() => {
     getCart();
@@ -32,34 +36,33 @@ export default function cart2() {
     setItems(items);
   }
   function getTotal() {
-
     fetch("http://localhost:8080/api/v1/cart", {
-     method: "GET",
-     headers: {
-       "Content-Type": "application/json",
-       Authorization: "Bearer " + localStorage.getItem("token"),
-     },
-   })
-     .then((response) => response.json())
-     .then((product) => {
-       // setCart(product);
-       setCart(product);
-       let x = 0;
-       console.log(product);
-       localStorage.setItem("myCart", JSON.stringify(product));
-       product.map((cartitem) => (
-           x += cartitem.subtotal
-           // console.log(total)
-           ));
-       console.log(x);
-       setTotal(x);
-       return total;
-     })
-     .catch((err) => {
-       console.log(err);
-     });
-    }
-
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((response) => response.json())
+      .then((product) => {
+        // setCart(product);
+        setCart(product);
+        let x = 0;
+        console.log(product);
+        localStorage.setItem("myCart", JSON.stringify(product));
+        product.map(
+          (cartitem) =>
+            (x += cartitem.subtotal)
+            // console.log(total)
+        );
+        console.log(x);
+        setTotal(x);
+        return total;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   const countItemStock = (product) => {
     fetch(`http://localhost:8080/api/v1/items/${product.id}`, {
@@ -162,17 +165,26 @@ export default function cart2() {
   };
 
   return (
-    <Layout title="cart">
-      <h1 className="text-xl p-7">Your Shopping Cart</h1>
+    <Layout title="Your shopping cart">
+       
       {cart.length == 0 ? (
-        <div className="px-7">
-          Cart is empty.{" "}
-          <a className="text-[#687259]" href="/marketplace">
+        <div className="flex flex-col justify-center items-center">
+          <img
+                alt=" "
+                src="/emptycart.png"
+                height={300}
+                width={300}
+                className="ml-3 pt-16"
+              />
+          <h1 className="product-title pt-8 pb-5">Your shopping cart is empty :( {" "}</h1>
+          <a className="text-[#687259] hover:underline no-underline" href="/marketplace">
             Go shopping
           </a>
-        </div>
+        </div> 
       ) : (
+        
         <div className="grid md:grid-cols-4 md:gap-5 px-7">
+          <h1 className="py-5 header-text text-center m-auto">Your shopping cart </h1>
           <div className="overflow-x-auto md:col-span-3">
             <table className="min-w-full">
               <thead className="border-b">
@@ -207,13 +219,13 @@ export default function cart2() {
                       }
                     >
                       <button
-                        onClick={() => { if (cartitem.quantity > 1){
-                          updateItemQty(cartitem.item, cartitem.quantity - 1)
+                        onClick={() => {
+                          if (cartitem.quantity > 1) {
+                            updateItemQty(cartitem.item, cartitem.quantity - 1);
                           } else {
-                            removeItemHandler(cartitem.item)
-                          } 
-                        }
-                      }
+                            removeItemHandler(cartitem.item);
+                          }
+                        }}
                       >
                         <MinusCircleIcon className="h-5 w-5"></MinusCircleIcon>
                       </button>
@@ -242,7 +254,7 @@ export default function cart2() {
                                                 ))}
                                             </select>
                                         </td> */}
-                                    
+
                     <td className="p-5 text-right">{cartitem.subtotal}</td>
                     <td className="p-5 text-center">
                       <button onClick={() => removeItemHandler(cartitem.item)}>
@@ -255,25 +267,28 @@ export default function cart2() {
             </table>
           </div>
           <div className="card p-5">
-            <ul>
-              <li>
-                                <div className='pb-3 text-xl'>
-                                    Total $ {total}
-                                </div>
-                            </li> 
-          
-              <div>
-                <button className="button w-full">Check Out</button>
-              </div>
-              <div >
-                <button className="button w-full" onClick={() => setShowModal(true)}>Donate to charity</button>
-              </div>
-              <Modal onClose={handleOnClose} visible={showModal}/>
-            </ul>
+            <div>
+              <div className="pb-3 text-xl font-bold">Total: ${total}</div>
+            </div>
+
+            <div>
+              <button className="button w-full"> 
+              
+              Check Out</button>
+            </div>
+            <p className="p-2"></p>
+            <div>
+              <button
+                className="button w-full"
+                onClick={() => setShowModal(true)}
+              >
+                Donate to charity
+              </button>
+            </div>
+            <Modal onClose={handleOnClose} visible={showModal} />
           </div>
         </div>
       )}
     </Layout>
   );
 }
-
