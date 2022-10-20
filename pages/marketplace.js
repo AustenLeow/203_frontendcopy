@@ -14,6 +14,7 @@ import { useState, useEffect, useCallback } from "react";
 export default function marketplace() {
   const [items, setItems] = useState([]);
   const [state1, setState1] = useState([]);
+  const [searchTerm, setSearchTerm] = useState([]);
 
   useEffect(() => {
     getCart();
@@ -115,13 +116,34 @@ export default function marketplace() {
 
   return (
     <Layout title="marketplace">
-      <div className="w-screen">
-        <div className="h-40">
+      <div className="w-screen px-10">
+        <div>
           <h1 className="py-3 header-text text-center m-auto">Marketplace</h1>
         </div>
 
-        <div className="p-6 grid grid-cols-1 gap-8 md:grid-cols-3 lg:grid-cols-4">
-          {items.map((item) => (
+        <input
+        className="border-2 border-gray-300 mt-10 mb-20 w-1/3"
+        type="text"
+        placeholder="Search for..."
+        onChange={ (e) => {
+          setSearchTerm(e.target.value);
+        }}
+        />
+
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3 lg:grid-cols-4">
+          {items.filter((item) => {
+            if (searchTerm == "") {
+              return item
+            } else if (item.type.toLowerCase().includes(searchTerm.toLowerCase())) {
+              return item
+            } else if (item.brand.toLowerCase().includes(searchTerm.toLowerCase())) {
+              return item
+            } else if (item.itemName.toLowerCase().includes(searchTerm.toLowerCase())) {
+              return item
+            } else if (item.location.toLowerCase().includes(searchTerm.toLowerCase())) {
+              return item
+            }
+          }).map((item) => (
             <div className="card" key={item.id}>
               <div>
                 <div className="max-w-4xl mx-auto">
@@ -140,7 +162,7 @@ export default function marketplace() {
                 <div className="price-wrapper">
                   <div className="price-slash"></div>
                   <p className="price text-2xl">
-                   ${item.originalprice}
+                    ${item.originalprice}
                   </p>
                 </div>
                 {/* <p>Quantity: {item.quantity}</p> */}
