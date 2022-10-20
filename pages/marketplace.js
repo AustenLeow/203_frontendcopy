@@ -1,16 +1,15 @@
 import { useRouter } from "next/router";
-import React from 'react';
-import Layout from '../components/Layout';
-import data from '../utils/data';
-import ProductItem from '../components/ProductItem';
-import { useState, useEffect, useCallback } from 'react';
-import { ArrowDownIcon } from "@heroicons/react/outline/esm";
-import { Menu } from '@headlessui/react';
+import React from "react";
+import Layout from "../components/Layout";
+import data from "../utils/data";
+import ProductItem from "../components/ProductItem";
+import { useState, useEffect, useCallback } from "react";
 
 export default function marketplace() {
   const [items, setItems] = useState([]);
   const [state1, setState1] = useState([]);
-  const [type, setType] = useState([]);
+  const [searchTerm, setSearchTerm] = useState([]);
+
   useEffect(() => {
     getCart();
     // fetchItemsHandler();
@@ -86,29 +85,6 @@ export default function marketplace() {
       });
   }
 
-  function getItemsByType() {
-    // e.preventDefault();
-    let  pathOriginal = "http://localhost:8080/api/v1/items";
-    let  pathWithType =  pathOriginal + "/" + type;
-
-    fetch(pathWithType, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
-      .then((response) => response.json())
-      .then((product) => {
-        setState1(product);
-        console.log(state1);
-        localStorage.setItem("items", JSON.stringify(state1));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
   function fetchItemsHandler() {
     const items = JSON.parse(localStorage.getItem("items") || "[]");
     console.log(items);
@@ -134,86 +110,34 @@ export default function marketplace() {
 
   return (
     <Layout title="marketplace">
-      <div className="px-5">
-        {/* <button className="primary-button" onClick={logout}>Log out</button> */}
-        {/* <div style={{ textAlign: "right" }}>
-          <button onClick={getCart2} className="hidden md:flex text-[#4E632E]">
-            cart
-          </button>
-          <button onClick={logout} className="hidden md:flex text-[#4E632E]">
-            log out
-          </button>
-        </div> */}
-        <div className="p-10">
+      <div className="w-screen px-10">
+        <div>
           <h1 className="py-3 header-text text-center m-auto">Marketplace</h1>
         </div>
-        <h1 className="py-3 header-text">Marketplace</h1>
 
-
-            <div>
-              <div className='flex w-50 p-2 text-left items-center'>
-                Filter by: &nbsp;
-                {/* // hydration error */}
-              </div>
-            </div>
-          <Menu>
-          <Menu.Button>
-            <div>
-            <div className='flex bg-white w-50 p-2 text-left items-center'>
-                Type &nbsp;
-                {/* // hydration error */}
-                <ArrowDownIcon className="h-3 w-3"></ArrowDownIcon>
-              </div>
-            </div>
-            <Menu.Items>
-            <button className='flex w-50 p-2 text-left items-center' onClick={() => setType("Vegetables")}>
-              Vegetables
-            </button>
-            <button className='flex w-50 p-2 text-left items-center' onClick={() => setType("Fruits")}>
-              Fruits
-            </button>
-            <button className='flex w-50 p-2 text-left items-center' onClick={() => setType("Meat")}>
-              Meat
-            </button>
-            <button className='flex w-50 p-2 text-left items-center' onClick={() => setType("Canned food")}>
-              Canned food
-            </button>
-            <button className='flex w-50 p-2 text-left items-center' onClick={() => setType("Drinks")}>
-              Drinks
-            </button>
-          </Menu.Items>
-          </Menu.Button>&nbsp;&nbsp;&nbsp;&nbsp;
-
-          <Menu.Button>
-            <div>
-            <div className='flex bg-white w-50 p-2 text-left items-center'>
-                Location &nbsp;
-                {/* // hydration error */}
-                <ArrowDownIcon className="h-3 w-3"></ArrowDownIcon>
-              </div>
-            </div>
-            <Menu.Items>
-            <div className='flex w-50 p-2 text-left items-center'>
-              North
-            </div>
-            <div className='flex w-50 p-2 text-left items-center'>
-              South
-            </div>
-            <div className='flex w-50 p-2 text-left items-center'>
-              East
-            </div>
-            <div className='flex w-50 p-2 text-left items-center'>
-              West
-            </div>
-            <div className='flex w-50 p-2 text-left items-center'>
-              Central
-            </div>
-          </Menu.Items>
-          </Menu.Button>
-        </Menu>
+        <input
+        className="border-2 border-gray-300 mt-10 mb-20 w-1/3"
+        type="text"
+        placeholder="Search for..."
+        onChange={ (e) => {
+          setSearchTerm(e.target.value);
+        }}
+        />
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3 lg:grid-cols-4">
-          {items.map((item) => (
+          {items.filter((item) => {
+            if (searchTerm == "") {
+              return item
+            } else if (item.type.toLowerCase().includes(searchTerm.toLowerCase())) {
+              return item
+            } else if (item.brand.toLowerCase().includes(searchTerm.toLowerCase())) {
+              return item
+            } else if (item.itemName.toLowerCase().includes(searchTerm.toLowerCase())) {
+              return item
+            } else if (item.location.toLowerCase().includes(searchTerm.toLowerCase())) {
+              return item
+            }
+          }).map((item) => (
             <div className="card" key={item.id}>
               <div>
                 <div className="max-w-4xl mx-auto">
@@ -232,13 +156,13 @@ export default function marketplace() {
                 <div className="price-wrapper">
                   <div className="price-slash"></div>
                   <p className="price text-2xl">
-                    Original Price: ${item.originalprice}
+                    ${item.originalprice}
                   </p>
                 </div>
                 {/* <p>Quantity: {item.quantity}</p> */}
                 <p className="mb-3">Expires on: {item.expiry_date}</p>
                 <button
-                  className="product-button w-full"
+                  className="button w-full"
                   type="button"
                   onClick={() => addToCart(item)}
                 >
