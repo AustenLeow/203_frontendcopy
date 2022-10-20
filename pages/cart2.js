@@ -206,6 +206,9 @@ export default function cart2() {
   return (
 
     <Layout title="Your shopping cart">
+        <div className="p-10">
+              <h1 className="py-3 header-text text-center m-auto">Your Shopping Cart ({quantity})</h1>
+            </div>
        
       {cart.length == 0 ? (
         <div className="flex flex-col justify-center items-center">
