@@ -184,7 +184,7 @@ export default function cart2() {
       ) : (
         
         <div className="grid md:grid-cols-4 md:gap-5 px-7">
-          <h1 className="py-5 header-text text-center m-auto">Your shopping cart </h1>
+          
           <div className="overflow-x-auto md:col-span-3">
             <table className="min-w-full">
               <thead className="border-b">
