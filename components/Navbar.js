@@ -164,9 +164,12 @@ export default function Navbar() {
             <NavLink className="no-underline hover:underline" to="/about">
               about
             </NavLink>
-            <NavLink to="/marketplace">marketplace</NavLink>
-            <NavLink to="/login">log in</NavLink>
+            <NavLink to="/login">login</NavLink>
             <NavLink to="/signup">sign up</NavLink>
+           {/* <NavLink to="/cart2">
+              <div onClick={getCart}>cart</div>
+            </NavLink>
+            <button onClick={logout}>log out</button> */}
           </div>
         </div>
       </div>

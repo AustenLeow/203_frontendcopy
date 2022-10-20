@@ -2,11 +2,7 @@ import { useEffect, useState } from "react";
 import React, { useContext } from "react";
 import { Store } from "../utils/Store";
 import ReactDOM from "react-dom/client";
-
-function logout() {
-  localStorage.removeItem("token");
-  router.push("/login");
-}
+import { useRouter } from "next/router";
 
 function NavLink({ to, children }) {
   return (
@@ -92,6 +88,7 @@ function MobileNav({ open, setOpen }) {
 }
 
 export default function Navbar() {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const { state } = useContext(Store);
   const { cart } = state;
@@ -102,6 +99,11 @@ export default function Navbar() {
     getCart();
     setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
   }, [cart.cartItems]);
+
+  function logout() {
+    localStorage.removeItem("token");
+    router.push("/login");
+  }
 
   async function getCart() {
     fetch("http://localhost:8080/api/v1/cart", {
@@ -169,10 +171,7 @@ export default function Navbar() {
                 </span>
               )} */}
             </NavLink>
-            <button
-            onClick={logout}>
-              log out
-            </button>
+            <button onClick={logout}>log out</button>
           </div>
         </div>
       </div>
