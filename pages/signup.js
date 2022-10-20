@@ -13,17 +13,17 @@ export default function SignUp() {
   // } = useForm();
 
   const [state, setState] = useState({
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
   });
 
   const [error, setError] = useState({
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
   });
 
   const [isError, setIsError] = useState("");
@@ -173,6 +173,12 @@ export default function SignUp() {
                 <button className="primary-button" onClick={handleSubmit}>
                   Submit
                 </button>
+              </div>
+              <div className="mb-4 ">
+                Already have an account? &nbsp;
+                <a className="my-4 text-[#687259]" href="/login">
+                  Login
+                </a>
               </div>
             </div>
           </div>

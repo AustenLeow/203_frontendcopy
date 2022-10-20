@@ -4,10 +4,12 @@ import { Store } from "../utils/Store";
 import ReactDOM from "react-dom/client";
 import { useRouter } from "next/router";
 
-function NavLink({to, children}) {
-    return <a href={to} className={`mx-4`}>
-        {children}
+function NavLink({ to, children }) {
+  return (
+    <a href={to} className={`mx-4`}>
+      {children}
     </a>
+  );
 }
 
 function MobileNav({ open, setOpen }) {
@@ -86,45 +88,41 @@ function MobileNav({ open, setOpen }) {
 }
 
 export default function Navbar() {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const { state } = useContext(Store);
   const { cart } = state;
   const [state1, setState1] = useState({});
   const [cartItemsCount, setCartItemsCount] = useState(0);
 
-  // const router = useRouter();
-  // // const isLoggedIn = () => {localStorage.getItem('token') != null}
+  useEffect(() => {
+    getCart();
+    setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
+  }, [cart.cartItems]);
 
-  // useEffect(() => {
-  //   // isLoggedIn;
-  //   getCart(); 
-  //   setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
-  // }, [cart.cartItems]);
+  function logout() {
+    localStorage.removeItem("token");
+    router.push("/login");
+  }
 
-  // async function getCart() {
-  //   fetch("http://localhost:8080/api/v1/cart", {
-  //     method: "GET",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Authorization: "Bearer " + localStorage.getItem("token"),
-  //     },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((product) => {
-  //       setState1(product);
-  //       console.log(state1);
-  //       localStorage.setItem("myCart", JSON.stringify(state1));
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  //     router.push("/cart2");
-  // }
-  // function logout() {
-  //   localStorage.removeItem("token");
-  //   // localStorage.setItem("token", null);
-  //   router.push("/login");
-  // }
+  async function getCart() {
+    fetch("http://localhost:8080/api/v1/cart", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((response) => response.json())
+      .then((product) => {
+        setState1(product);
+        console.log(state1);
+        localStorage.setItem("myCart", JSON.stringify(state1));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   return (
     <nav className="absolute sticky top-0 shadow bg-[#F5F5F5] opacity-100 px-4 py-4 h-20 flex items-center justify-center">
@@ -164,13 +162,16 @@ export default function Navbar() {
             <NavLink className="no-underline hover:underline" to="/about">
               about
             </NavLink>
-            <NavLink to="/login">login</NavLink>
-            <NavLink to="/signup">sign up</NavLink>
-            <NavLink to="/profile">profile</NavLink>
-           {/* <NavLink to="/cart2">
+            <NavLink to="/marketplace">marketplace</NavLink>
+            <NavLink to="/cart2">
               <div onClick={getCart}>cart</div>
+              {/* {cartItemsCount > 0 && (
+                <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
+                  {cartItemsCount}
+                </span>
+              )} */}
             </NavLink>
-            <button onClick={logout}>log out</button> */}
+            <button onClick={logout}>log out</button>
           </div>
         </div>
       </div>
