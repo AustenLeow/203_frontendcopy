@@ -3,7 +3,7 @@ export default function Footer() {
     <footer className="mt-16">
       <div className= "border-t md:px-4 md:pt-10 md:pb-5">
         <div className="flex flex-wrap md:max-w-screen-lg mx-auto">
-          <section className="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/4">
+          <section className="text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/4">
             <a
               className=" text-xl font-bold tracking-wider text-[#4E632E] hidden md:block"
               href="#"
@@ -30,7 +30,7 @@ export default function Footer() {
               </ul>
             </article>
           </section>
-          <section className="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/4">
+          <section className=" text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/4">
             <a
               className=" text-xl font-bold tracking-wider text-[#4E632E] md:block"
               href="#"
@@ -54,7 +54,7 @@ export default function Footer() {
               </ul>
             </article>
           </section>
-          <section className="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/4">
+          <section className=" text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/4">
             <a
               className=" text-xl font-bold tracking-wider text-[#4E632E] hidden md:block"
               href="#"
@@ -75,7 +75,7 @@ export default function Footer() {
               </ul>
             </article>
           </section>
-          <section className="relative text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/4">
+          <section className=" text-gray-700 font-light font-light border-b px-4 pb-4 md:py-3 w-full md:border-none md:w-1/4">
             <a
               className="text-xl font-bold tracking-wider text-[#4E632E] hidden md:block"
               href="#"
