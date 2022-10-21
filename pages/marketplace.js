@@ -115,6 +115,7 @@ export default function marketplace() {
           <h1 className="py-3 header-text text-center m-auto">Marketplace</h1>
         </div>
 
+      <div className="flex justify-center items-center">
         <input
         className="border-2 border-gray-300 mt-10 mb-20 w-1/3"
         type="text"
@@ -123,8 +124,9 @@ export default function marketplace() {
           setSearchTerm(e.target.value);
         }}
         />
+        </div>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-3 lg:grid-cols-4">
           {items.filter((item) => {
             if (searchTerm == "") {
               return item
@@ -150,16 +152,19 @@ export default function marketplace() {
                 <div className="py-5">
                   <p className="product-title">{item.itemName}</p>
                   <p className="product-brand">{item.brand}</p>
+                  <p className="mb-3"> {item.location}</p>
+                  <p className="mb-2">{item.type}</p>
                 </div>
 
-                <p className="price">Discounted Price: ${item.price}</p>
+                <p className="text-2xl">${item.price}</p>
                 <div className="price-wrapper">
                   <div className="price-slash"></div>
-                  <p className="price text-2xl">
+                  <p className="price">
                     ${item.originalprice}
                   </p>
                 </div>
                 {/* <p>Quantity: {item.quantity}</p> */}
+                
                 <p className="mb-3">Expires on: {item.expiry_date}</p>
                 <button
                   className="button w-full"

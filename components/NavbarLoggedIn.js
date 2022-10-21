@@ -126,7 +126,7 @@ export default function Navbar() {
 
   return (
     <nav className="absolute sticky top-0 shadow bg-[#F5F5F5] opacity-100 px-4 py-4 h-20 flex items-center justify-center">
-      <div className="flex items-center justify-between w-4/5">
+      <div className=" flex items-center justify-between w-4/5">
         <MobileNav open={open} setOpen={setOpen} />
         <div className="w-3/4 flex items-center">
           <a className="text-4xl font-semibold text-[#4E632E] " href="/">
@@ -171,8 +171,8 @@ export default function Navbar() {
                 </span>
               )} */}
             </NavLink>
-            <button onClick={logout}>log out</button>
             <NavLink to="/profile">profile</NavLink>
+            <button onClick={logout}>log out</button>
           </div>
         </div>
       </div>
