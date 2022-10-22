@@ -197,11 +197,16 @@ export default function cart2() {
         fetchCartItemsHandler();
         getTotal();
         getQuantity();
+        reload()
       })
       .catch((err) => {
         console.log(err);
       });
   };
+
+  function reload(){
+    setTimeout(function(){location.reload()}, 1);
+  }
 
   return (
 
@@ -272,9 +277,11 @@ export default function cart2() {
                       <button
                         onClick={() => {
                           if (cartitem.quantity > 1) {
-                            updateItemQty(cartitem.item, cartitem.quantity - 1);
+                            updateItemQty(cartitem.item, cartitem.quantity - 1)
+                            && reload();
                           } else {
-                            removeItemHandler(cartitem.item);
+                            removeItemHandler(cartitem.item)
+                            && reload();
                           }
                         }}
                       >
@@ -284,6 +291,7 @@ export default function cart2() {
                       <button
                         onClick={() =>
                           updateItemQty(cartitem.item, cartitem.quantity + 1)
+                          && reload()
                         }
                       >
                         <PlusCircleIcon className="h-5 w-5"></PlusCircleIcon>
@@ -308,7 +316,10 @@ export default function cart2() {
 
                     <td className="p-5 text-right">{cartitem.subtotal}</td>
                     <td className="p-5 text-center">
-                      <button onClick={() => removeItemHandler(cartitem.item)}>
+                      <button
+                        onClick={() =>
+                          removeItemHandler(cartitem.item)
+                        }>
                         <XCircleIcon className="h-5 w-5"></XCircleIcon>
                       </button>
                     </td>

@@ -108,6 +108,10 @@ export default function marketplace() {
       });
   }
 
+  function reload(){
+    setTimeout(function(){location.reload()}, 1);
+  }
+
   return (
     <Layout title="marketplace">
       <div className="w-screen px-10">
@@ -164,7 +168,7 @@ export default function marketplace() {
                 <button
                   className="button w-full"
                   type="button"
-                  onClick={() => addToCart(item)}
+                  onClick={() => addToCart(item) && reload()}
                 >
                   <div> Add to Cart</div>
                 </button>
