@@ -1,19 +1,38 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 // import Image from 'next/image';
-import { XCircleIcon, PlusCircleIcon, MinusCircleIcon } from "@heroicons/react/outline/esm";
-import { set } from "react-hook-form";
+
+import {
+  XCircleIcon,
+  PlusCircleIcon,
+  MinusCircleIcon,
+} from "@heroicons/react/outline/esm";
+import Modal from "../components/Modal";
+import { Router } from "next/router";
+import { useRouter } from "next/router";
+
 
 export default function cart2() {
   const [total, setTotal] = useState(0.0);
   const [items, setItems] = useState([]);
   const [cart, setCart] = useState([]);
 
+  const [quantity, setQuantity] = useState(0);
+
+  const [showModal, setShowModal] = useState(false);
+  const router = useRouter();
+
+  function handleOnClose() {
+    setShowModal(false);
+    router.push("/marketplace");
+  }
+
   useEffect(() => {
     getCart();
     fetchCartItemsHandler();
     fetchItemsHandler();
     getTotal();
+    getQuantity();
     // updateItemQty(4, 1);
   }, []);
 
@@ -39,18 +58,18 @@ export default function cart2() {
         console.log(product);
         localStorage.setItem("myCart", JSON.stringify(product));
         product.map((cartitem) => (
-            x += cartitem.subtotal
+            x += cartitem.quantity
             // console.log(total)
             ));
-        console.log(x);
-        setTotal(x);
-        return total;
+       //  console.log(x);
+        setQuantity(x);
+        return quantity;
       })
       .catch((err) => {
         console.log(err);
       });
+     }
 
-  }
 
   
 
@@ -102,6 +121,7 @@ export default function cart2() {
         getCart();
         fetchCartItemsHandler();
         getTotal();
+        getQuantity();
       })
       .catch((err) => {
         console.log(err);
@@ -121,15 +141,12 @@ export default function cart2() {
         // setCart(product);
         // console.log();
         setCart(product);
-        console.log(product);
         localStorage.setItem("myCart", JSON.stringify(product));
       })
       .catch((err) => {
         console.log(err);
       });
   }
-
-  
 
   function fetchCartItemsHandler() {
     const cart = JSON.parse(localStorage.getItem("myCart") || "[]");
@@ -151,6 +168,7 @@ export default function cart2() {
         getCart();
         fetchCartItemsHandler();
         getTotal();
+        getQuantity();
       })
       .catch((err) => {
         console.log(err);
@@ -158,34 +176,55 @@ export default function cart2() {
   };
 
   return (
-    <Layout title="cart">
-      <h1 className="text-xl p-7">Your Shopping Cart</h1>
+
+    <Layout title="Your shopping cart">
+        <div className="p-10">
+              <h1 className="py-3 header-text text-center m-auto">Your Shopping Cart ({quantity})</h1>
+            </div>
+       
       {cart.length == 0 ? (
-        <div className="px-7">
-          Cart is empty.{" "}
-          <a className="text-[#687259]" href="/marketplace">
+        <div className="flex flex-col justify-center items-center">
+          <img
+                alt=" "
+                src="/emptycart.png"
+                height={300}
+                width={300}
+                className="ml-3 pt-16"
+              />
+          <h1 className="product-title pt-8 pb-5">Your shopping cart is empty :( {" "}</h1>
+          <a className="text-[#687259] hover:underline no-underline" href="/marketplace">
             Go shopping
           </a>
-        </div>
+        </div> 
       ) : (
+        
         <div className="grid md:grid-cols-4 md:gap-5 px-7">
+          
           <div className="overflow-x-auto md:col-span-3">
             <table className="min-w-full">
               <thead className="border-b">
                 <tr>
-                  <th className="px-5 text-right">item</th>
-                  <th className="px-5 text-right"></th>
+                  <th className="px-5 text-left">item</th>
+                  <th className="px-5 text-right">carbon savings</th>
                   <th className="px-5 text-right">price</th>
                   <th className="px-5 text-right">quantity</th>
                   <th className="px-5 text-right">subtotal</th>
-                  <th className="px-5">Action</th>
+                  <th className="px-5">delete</th>
                 </tr>
               </thead>
               <tbody>
                 {cart.map((cartitem) => (
                   <tr key={cartitem.item.id} className="border-b">
-                    <td className="p-5 text-right">{cartitem.item.itemName}</td>
-                    <td className="p-5 text-right">
+                    <div className="text-center">
+                    <td className="p-5 align-top"><img
+                        src={cartitem.item.url}
+                        alt={cartitem.item.itemName}
+                        className="flex items-center"
+                        width={100}
+                        height={100}
+                      ></img>{cartitem.item.itemName}</td></div>
+                      <td className="p-5 text-right">carbon savings</td>
+                    {/* <td className="p-5 text-right">
                       <img
                         src={cartitem.item.url}
                         alt={cartitem.item.itemName}
@@ -193,7 +232,7 @@ export default function cart2() {
                         width={100}
                         height={100}
                       ></img>
-                    </td>
+                    </td> */}
                     <td className="p-5 text-right">{cartitem.item.price}</td>
 
                     <td
@@ -203,13 +242,13 @@ export default function cart2() {
                       }
                     >
                       <button
-                        onClick={() => { if (cartitem.quantity > 1){
-                          updateItemQty(cartitem.item, cartitem.quantity - 1)
+                        onClick={() => {
+                          if (cartitem.quantity > 1) {
+                            updateItemQty(cartitem.item, cartitem.quantity - 1);
                           } else {
-                            removeItemHandler(cartitem.item)
-                          } 
-                        }
-                      }
+                            removeItemHandler(cartitem.item);
+                          }
+                        }}
                       >
                         <MinusCircleIcon className="h-5 w-5"></MinusCircleIcon>
                       </button>
@@ -238,7 +277,7 @@ export default function cart2() {
                                                 ))}
                                             </select>
                                         </td> */}
-                                    
+
                     <td className="p-5 text-right">{cartitem.subtotal}</td>
                     <td className="p-5 text-center">
                       <button onClick={() => removeItemHandler(cartitem.item)}>
@@ -251,24 +290,29 @@ export default function cart2() {
             </table>
           </div>
           <div className="card p-5">
-            <ul>
-              <li>
-                                <div className='pb-3 text-xl'>
-                                    Total $ {total}
-                                </div>
-                            </li> 
-          
-              <li>
-                <button className="primary-button w-full">Check Out</button>
-              </li>
-              <li >
-                <button className="primary-button w-full">Donate to charity</button>
-              </li>
-            </ul>
+
+            <div>
+              <div className="pb-3 text-xl font-bold">Total: ${total}</div>
+            </div>
+
+            <div>
+              <button className="button w-full"> 
+              
+              Check Out</button>
+            </div>
+            <p className="p-0.5"></p>
+            <div>
+              <button
+                className="button w-full"
+                onClick={() => setShowModal(true)}
+              >
+                Donate to charity
+              </button>
+            </div>
+            <Modal onClose={handleOnClose} visible={showModal} />
           </div>
         </div>
       )}
     </Layout>
   );
 }
-

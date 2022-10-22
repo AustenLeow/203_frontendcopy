@@ -166,7 +166,6 @@ export default function Navbar() {
             </NavLink>
             <NavLink to="/login">login</NavLink>
             <NavLink to="/signup">sign up</NavLink>
-            <NavLink to="/profile">profile</NavLink>
            {/* <NavLink to="/cart2">
               <div onClick={getCart}>cart</div>
             </NavLink>

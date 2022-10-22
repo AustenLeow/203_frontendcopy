@@ -172,6 +172,7 @@ export default function Navbar() {
               )} */}
             </NavLink>
             <button onClick={logout}>log out</button>
+            <NavLink to="/profile">profile</NavLink>
           </div>
         </div>
       </div>
