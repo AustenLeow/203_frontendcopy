@@ -19,7 +19,7 @@ export default function cart2() {
   const [cart, setCart] = useState([]);
   const [quantity, setQuantity] = useState(0);
   const [showDonateModal, setShowDonateModal] = useState(false);
-  const[showCheckOutModal, setShowCheckOutModal] = useState(false);
+  const [showCheckOutModal, setShowCheckOutModal] = useState(false);
   const router = useRouter();
 
   function handleOnClose() {
@@ -36,7 +36,7 @@ export default function cart2() {
   // function clearCart() {
   //   // localStorage.setItem("myCart", JSON.stringify([]));
   //   for(var i = 0; i < localStorage.getItem.length; i++) {
-      
+
   //       removeItemHandler(i);
   //     }
   // }
@@ -73,9 +73,8 @@ export default function cart2() {
         console.log(product);
         localStorage.setItem("myCart", JSON.stringify(product));
         product.map(
-          (cartitem) =>
-            (x += cartitem.quantity)
-            // console.log(total)
+          (cartitem) => (x += cartitem.quantity)
+          // console.log(total)
         );
         //  console.log(x);
         setQuantity(x);
@@ -102,9 +101,8 @@ export default function cart2() {
         console.log(product);
         localStorage.setItem("myCart", JSON.stringify(product));
         product.map(
-          (cartitem) =>
-            (x += cartitem.subtotal)
-            // console.log(total)
+          (cartitem) => (x += cartitem.subtotal)
+          // console.log(total)
         );
         //  console.log(x);
         setTotal(x);
@@ -131,9 +129,8 @@ export default function cart2() {
         console.log(product);
         localStorage.setItem("myCart", JSON.stringify(product));
         product.map(
-          (cartitem) =>
-            (x += cartitem.carbontotal)
-            // console.log(total)
+          (cartitem) => (x += cartitem.carbontotal)
+          // console.log(total)
         );
         //  console.log(x);
         setTotalCarbonSavings(x);
@@ -283,24 +280,24 @@ export default function cart2() {
           </a>
         </div>
       ) : (
-        <div className="grid md:grid-cols-4 md:gap-5 px-7">
-          <div className="overflow-x-auto md:col-span-3">
-            <table className="min-w-full">
-              <thead className="border-b">
+        <div className="grid w-5/6 md:grid-cols-4 place-items-center">
+          <div className="overflow-x-auto md:col-span-3 pr-5 pl-20 ">
+            <table className="table-auto min-w-full">
+              <thead className=" uppercase">
                 <tr>
-                  <th className="px-5 text-left">Item</th>
-                  <th className="px-5 text-right">Carbon savings</th>
-                  <th className="px-5 text-right">Price</th>
-                  <th className="px-5 text-right">Quantity</th>
-                  <th className="px-5 text-right">Subtotal</th>
-                  <th className="px-5">Delete</th>
+                  <th className="py-3 px-6">Item</th>
+                  <th className="py-3 px-6">Carbon savings</th>
+                  <th className="py-3 px-6">Price</th>
+                  <th className="py-3 px-6">Quantity</th>
+                  <th className="py-3 px-6">Subtotal</th>
+                  <th className="py-3 px-6">Delete</th>
                 </tr>
               </thead>
               <tbody>
                 {cart.map((cartitem) => (
                   <tr key={cartitem.item.id} className="border-b">
                     <div className="text-center">
-                      <td className="p-5 align-top">
+                      <td className="py-4 px-6 font-base text-gray-900 whitespace-nowrap dark:text-white">
                         <img
                           src={cartitem.item.url}
                           alt={cartitem.item.itemName}
@@ -311,7 +308,7 @@ export default function cart2() {
                         {cartitem.item.itemName}
                       </td>
                     </div>
-                    <td className="p-5 text-right"> 🌱 {cartitem.carbontotal}</td>
+                    <td className="p-5 text-center"> 🌱 {cartitem.carbontotal}</td>
                     {/* <td className="p-5 text-right">
                       <img
                         src={cartitem.item.url}
@@ -321,10 +318,10 @@ export default function cart2() {
                         height={100}
                       ></img>
                     </td> */}
-                    <td className="p-5 text-right"> ${cartitem.item.price}</td>
+                    <td className="p-5 text-center"> ${cartitem.item.price}</td>
 
                     <td
-                      className="p-5 text-right"
+                      className="p-5 text-center"
                       onChange={() =>
                         updateItemQty(cartitem.item, cartitem.quantity)
                       }
@@ -370,8 +367,8 @@ export default function cart2() {
                                             </select>
                                         </td> */}
 
-                    <td className="p-5 text-right">${cartitem.subtotal}</td>
-                    <td className="p-5 text-center">
+                    <td className="p-5 text-center">${cartitem.subtotal}</td>
+                    <td className="p-6 text-center">
                       <button onClick={() => removeItemHandler(cartitem.item)}>
                         <XCircleIcon className="h-5 w-5"></XCircleIcon>
                       </button>
@@ -381,12 +378,15 @@ export default function cart2() {
               </tbody>
             </table>
           </div>
-          <div className="card p-5">
+          <div className="card h-4/5 place-items-center">
             <div>
               <div className="pb-3 text-xl font-bold"> 🛍 Total: ${total}</div>
             </div>
             <div>
-              <div className="pb-3 text-xl font-bold"> 🌱 Total Carbon Savings: {totalCarbonSavings}  </div>
+              <div className="pb-3 text-xl font-bold">
+                {" "}
+                🌱 Total Carbon Savings: {totalCarbonSavings}{" "}
+              </div>
             </div>
             <div>
               <button
@@ -396,7 +396,7 @@ export default function cart2() {
                 Check Out
               </button>
             </div>
-            <p className="p-0.5"></p>
+            <p className="p-2"></p>
             <div>
               <button
                 className="button w-full"
@@ -405,7 +405,10 @@ export default function cart2() {
                 Donate to charity
               </button>
             </div>
-            <CheckOutModal onClose={handleOnCloseClearCart} visible={showCheckOutModal} />
+            <CheckOutModal
+              onClose={handleOnCloseClearCart}
+              visible={showCheckOutModal}
+            />
             <Modal onClose={handleOnClose} visible={showDonateModal} />
           </div>
         </div>
