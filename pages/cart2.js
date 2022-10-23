@@ -14,6 +14,7 @@ import { useRouter } from "next/router";
 
 export default function cart2() {
   const [total, setTotal] = useState(0.0);
+  const [totalCarbonSavings, setTotalCarbonSavings] = useState(0.0);
   const [items, setItems] = useState([]);
   const [cart, setCart] = useState([]);
   const [quantity, setQuantity] = useState(0);
@@ -45,6 +46,7 @@ export default function cart2() {
     fetchCartItemsHandler();
     fetchItemsHandler();
     getTotal();
+    getTotalCarbonSavings();
     getQuantity();
     // updateItemQty(4, 1);
   }, []);
@@ -113,6 +115,35 @@ export default function cart2() {
       });
   }
 
+  function getTotalCarbonSavings() {
+    fetch("http://localhost:8080/api/v1/cart", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((response) => response.json())
+      .then((product) => {
+        // setCart(product);
+        setCart(product);
+        let x = 0;
+        console.log(product);
+        localStorage.setItem("myCart", JSON.stringify(product));
+        product.map(
+          (cartitem) =>
+            (x += cartitem.carbontotal)
+            // console.log(total)
+        );
+        //  console.log(x);
+        setTotalCarbonSavings(x);
+        return total;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   const countItemStock = (product) => {
     fetch(`http://localhost:8080/api/v1/items/${product.id}`, {
       method: "GET",
@@ -161,6 +192,7 @@ export default function cart2() {
         getCart();
         fetchCartItemsHandler();
         getTotal();
+        getTotalCarbonSavings();
         getQuantity();
       })
       .catch((err) => {
@@ -208,6 +240,7 @@ export default function cart2() {
         getCart();
         fetchCartItemsHandler();
         getTotal();
+        getTotalCarbonSavings();
         getQuantity();
         reload();
       })
@@ -278,7 +311,7 @@ export default function cart2() {
                         {cartitem.item.itemName}
                       </td>
                     </div>
-                    <td className="p-5 text-right">Carbon savings</td>
+                    <td className="p-5 text-right"> 🌱 {cartitem.carbontotal}</td>
                     {/* <td className="p-5 text-right">
                       <img
                         src={cartitem.item.url}
@@ -288,7 +321,7 @@ export default function cart2() {
                         height={100}
                       ></img>
                     </td> */}
-                    <td className="p-5 text-right">{cartitem.item.price}</td>
+                    <td className="p-5 text-right"> ${cartitem.item.price}</td>
 
                     <td
                       className="p-5 text-right"
@@ -337,7 +370,7 @@ export default function cart2() {
                                             </select>
                                         </td> */}
 
-                    <td className="p-5 text-right">{cartitem.subtotal}</td>
+                    <td className="p-5 text-right">${cartitem.subtotal}</td>
                     <td className="p-5 text-center">
                       <button onClick={() => removeItemHandler(cartitem.item)}>
                         <XCircleIcon className="h-5 w-5"></XCircleIcon>
@@ -350,9 +383,11 @@ export default function cart2() {
           </div>
           <div className="card p-5">
             <div>
-              <div className="pb-3 text-xl font-bold">Total: ${total}</div>
+              <div className="pb-3 text-xl font-bold"> 🛍 Total: ${total}</div>
             </div>
-
+            <div>
+              <div className="pb-3 text-xl font-bold"> 🌱 Total Carbon Savings: {totalCarbonSavings}  </div>
+            </div>
             <div>
               <button
                 className="button w-full"
