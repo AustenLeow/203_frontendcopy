@@ -205,7 +205,7 @@ export default function cart2() {
   };
 
   function reload(){
-    setTimeout(function(){location.reload()}, 1);
+    setTimeout(function(){location.reload()}, 0);
   }
 
   return (
