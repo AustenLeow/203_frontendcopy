@@ -15,7 +15,10 @@ export default function CheckOutModal({ visible, onClose }) {
           {" "}
           Thank you for shopping with us{" "}
         </p>
-
+        <p className="text-center text-base p-4">
+          {" "}
+          * Please self collect your order within 2 days! {" "}
+        </p>
         <div className="flex flex-col items-center justify-center">
           <img
             alt=" "

@@ -16,18 +16,29 @@ export default function cart2() {
   const [total, setTotal] = useState(0.0);
   const [items, setItems] = useState([]);
   const [cart, setCart] = useState([]);
-
   const [quantity, setQuantity] = useState(0);
-
   const [showDonateModal, setShowDonateModal] = useState(false);
   const[showCheckOutModal, setShowCheckOutModal] = useState(false);
   const router = useRouter();
 
   function handleOnClose() {
-    setShowDonateModal(false);
     setShowCheckOutModal(false);
     router.push("/marketplace");
   }
+
+  function handleOnCloseClearCart() {
+    setShowCheckOutModal(false);
+    // clearCart();
+    router.push("/marketplace");
+  }
+
+  // function clearCart() {
+  //   // localStorage.setItem("myCart", JSON.stringify([]));
+  //   for(var i = 0; i < localStorage.getItem.length; i++) {
+      
+  //       removeItemHandler(i);
+  //     }
+  // }
 
   useEffect(() => {
     getCart();
@@ -359,7 +370,7 @@ export default function cart2() {
                 Donate to charity
               </button>
             </div>
-            <CheckOutModal onClose={handleOnClose} visible={showCheckOutModal} />
+            <CheckOutModal onClose={handleOnCloseClearCart} visible={showCheckOutModal} />
             <Modal onClose={handleOnClose} visible={showDonateModal} />
           </div>
         </div>
