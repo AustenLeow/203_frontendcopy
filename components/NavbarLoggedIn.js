@@ -21,6 +21,13 @@ function MobileNav({ open, setOpen }) {
       <div className="flex items-center justify-center filter drop-shadow-md h-20">
         {" "}
         {/*logo container*/}
+        <img
+          alt=" "
+          src="/Logo.png"
+          height={30}
+          width={30}
+          className="ml-4"
+        />
         <a className="text-2xl font-semibold text-[#687259]" href="/">
           re_
         </a>
@@ -164,7 +171,13 @@ export default function Navbar() {
         <MobileNav open={open} setOpen={setOpen} />
         <div className="w-3/4 flex items-center">
           <a className="text-4xl font-semibold text-[#4E632E] " href="/">
-            re:
+          <img
+          alt=" "
+          src="/logoWhite.png"
+          height={80}
+          width={80}
+          className="ml-4"
+        />
           </a>
         </div>
         <div className="w-9/12 flex justify-end items-center">

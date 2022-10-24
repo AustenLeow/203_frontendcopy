@@ -4,18 +4,17 @@ import { Store } from "../utils/Store";
 import ReactDOM from "react-dom/client";
 import { useRouter } from "next/router";
 
-function NavLink({to, children}) {
-    return <a href={to} className={`mx-4`}>
-        {children}
-    </a>
+function NavLink({ to, children }) {
+  return <a href={to} className={`mx-4`}>
+    {children}
+  </a>
 }
 
 function MobileNav({ open, setOpen }) {
   return (
     <div
-      className={`absolute left-0 h-screen w-screen bg-[#F5F5F5] transform ${
-        open ? "-translate-x-0" : "-translate-x-full"
-      } transition-transform duration-300 ease-in-out filter drop-shadow-md `}
+      className={`absolute left-0 h-screen w-screen bg-[#F5F5F5] transform ${open ? "-translate-x-0" : "-translate-x-full"
+        } transition-transform duration-300 ease-in-out filter drop-shadow-md `}
     >
       <div className="flex items-center justify-center filter drop-shadow-md h-20">
         {" "}
@@ -144,19 +143,16 @@ export default function Navbar() {
           >
             {/* hamburger button */}
             <span
-              className={`h-1 w-full bg-[#4E632E] rounded-lg transform transition duration-300 ease-in-out ${
-                open ? "rotate-45 translate-y-3.5" : ""
-              }`}
+              className={`h-1 w-full bg-[#4E632E] rounded-lg transform transition duration-300 ease-in-out ${open ? "rotate-45 translate-y-3.5" : ""
+                }`}
             />
             <span
-              className={`h-1 w-full bg-[#4E632E] rounded-lg transition-all duration-300 ease-in-out ${
-                open ? "w-0" : "w-full"
-              }`}
+              className={`h-1 w-full bg-[#4E632E] rounded-lg transition-all duration-300 ease-in-out ${open ? "w-0" : "w-full"
+                }`}
             />
             <span
-              className={`h-1 w-full bg-[#4E632E] rounded-lg transform transition duration-300 ease-in-out ${
-                open ? "-rotate-45 -translate-y-3.5" : ""
-              }`}
+              className={`h-1 w-full bg-[#4E632E] rounded-lg transform transition duration-300 ease-in-out ${open ? "-rotate-45 -translate-y-3.5" : ""
+                }`}
             />
           </div>
 
@@ -166,7 +162,7 @@ export default function Navbar() {
             </NavLink>
             <NavLink to="/login">login</NavLink>
             <NavLink to="/signup">sign up</NavLink>
-           {/* <NavLink to="/cart2">
+            {/* <NavLink to="/cart2">
               <div onClick={getCart}>cart</div>
             </NavLink>
             <button onClick={logout}>log out</button> */}
