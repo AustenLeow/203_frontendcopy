@@ -83,5 +83,5 @@ textarea {
 }
 
 .price{ 
-  @apply text-base;
+  @apply text-xl;
 }

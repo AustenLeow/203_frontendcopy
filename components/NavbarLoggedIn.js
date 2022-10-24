@@ -15,9 +15,8 @@ function NavLink({ to, children }) {
 function MobileNav({ open, setOpen }) {
   return (
     <div
-      className={`absolute left-0 h-screen w-screen bg-[#F5F5F5] transform ${
-        open ? "-translate-x-0" : "-translate-x-full"
-      } transition-transform duration-300 ease-in-out filter drop-shadow-md `}
+      className={`absolute left-0 h-screen w-screen bg-[#F5F5F5] transform ${open ? "-translate-x-0" : "-translate-x-full"
+        } transition-transform duration-300 ease-in-out filter drop-shadow-md `}
     >
       <div className="flex items-center justify-center filter drop-shadow-md h-20">
         {" "}
@@ -90,15 +89,22 @@ function MobileNav({ open, setOpen }) {
 export default function Navbar() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
-  const { state } = useContext(Store);
-  const { cart } = state;
+  // const { state } = useContext(Store);
+  // const { cart } = state;
   const [state1, setState1] = useState({});
-  const [cartItemsCount, setCartItemsCount] = useState(0);
+  // const [cartItemsCount, setCartItemsCount] = useState(0);
+  const [cart, setCart] = useState([]);
+  const [quantity, setQuantity] = useState(0);
+
+  // useEffect(() => {
+  //   getCart();
+  //   setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
+  // }, [cart.cartItems]);
 
   useEffect(() => {
     getCart();
-    setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
-  }, [cart.cartItems]);
+    getQuantity();
+  }, []);
 
   function logout() {
     localStorage.removeItem("token");
@@ -124,9 +130,37 @@ export default function Navbar() {
       });
   }
 
+  function getQuantity() {
+    fetch("http://localhost:8080/api/v1/cart", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((response) => response.json())
+      .then((product) => {
+        // setCart(product);
+        setCart(product);
+        let x = 0;
+        console.log(product);
+        localStorage.setItem("myCart", JSON.stringify(product));
+        product.map((cartitem) => (
+          x += cartitem.quantity
+          // console.log(total)
+        ));
+        //  console.log(x);
+        setQuantity(x);
+        return quantity;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   return (
     <nav className="absolute sticky top-0 shadow bg-[#F5F5F5] opacity-100 px-4 py-4 h-20 flex items-center justify-center">
-      <div className="flex items-center justify-between w-4/5">
+      <div className=" flex items-center justify-between w-4/5">
         <MobileNav open={open} setOpen={setOpen} />
         <div className="w-3/4 flex items-center">
           <a className="text-4xl font-semibold text-[#4E632E] " href="/">
@@ -142,19 +176,16 @@ export default function Navbar() {
           >
             {/* hamburger button */}
             <span
-              className={`h-1 w-full bg-[#4E632E] rounded-lg transform transition duration-300 ease-in-out ${
-                open ? "rotate-45 translate-y-3.5" : ""
-              }`}
+              className={`h-1 w-full bg-[#4E632E] rounded-lg transform transition duration-300 ease-in-out ${open ? "rotate-45 translate-y-3.5" : ""
+                }`}
             />
             <span
-              className={`h-1 w-full bg-[#4E632E] rounded-lg transition-all duration-300 ease-in-out ${
-                open ? "w-0" : "w-full"
-              }`}
+              className={`h-1 w-full bg-[#4E632E] rounded-lg transition-all duration-300 ease-in-out ${open ? "w-0" : "w-full"
+                }`}
             />
             <span
-              className={`h-1 w-full bg-[#4E632E] rounded-lg transform transition duration-300 ease-in-out ${
-                open ? "-rotate-45 -translate-y-3.5" : ""
-              }`}
+              className={`h-1 w-full bg-[#4E632E] rounded-lg transform transition duration-300 ease-in-out ${open ? "-rotate-45 -translate-y-3.5" : ""
+                }`}
             />
           </div>
 
@@ -164,15 +195,21 @@ export default function Navbar() {
             </NavLink>
             <NavLink to="/marketplace">marketplace</NavLink>
             <NavLink to="/cart2">
-              <div onClick={getCart}>cart</div>
+              <div onClick={getCart}>cart
+              {quantity == 0 ? ("") : (
+                <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
+                  {quantity}
+                </span>
+              )}
+              </div>
               {/* {cartItemsCount > 0 && (
                 <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
                   {cartItemsCount}
                 </span>
               )} */}
             </NavLink>
-            <button onClick={logout}>log out</button>
             <NavLink to="/profile">profile</NavLink>
+            <button onClick={logout}>log out</button>
           </div>
         </div>
       </div>

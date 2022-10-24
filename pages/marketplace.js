@@ -133,6 +133,10 @@ export default function marketplace() {
       });
   }
 
+  function reload(){
+    setTimeout(function(){location.reload()}, 0);
+  }
+
   return (
     <Layout title="marketplace">
       <div className="w-screen px-10">
@@ -141,71 +145,32 @@ export default function marketplace() {
         </div>
         <h1 className="py-3 header-text">Marketplace</h1>
 
-
-        <div>
-          <div className='flex w-50 p-2 text-left items-center'>
-            Filter by: &nbsp;
-          </div>
+      <div className="flex justify-center items-center">
+        <input
+        className="border-2 border-gray-300 mt-10 mb-20 w-1/3"
+        type="text"
+        placeholder="Search for..."
+        onChange={ (e) => {
+          setSearchTerm(e.target.value);
+        }}
+        />
         </div>
-        <Menu>
-          <Menu.Button>
-            <div>
-              <div className='flex bg-white w-50 p-2 text-left items-center'>
-                Type &nbsp;
-                <ArrowCircleDownIcon className="h-3 w-3"></ArrowCircleDownIcon>
-              </div>
-            </div>
-            <Menu.Items>
-              <button className='flex w-50 p-2 text-left items-center' onClick={() => {setType("vegetable"); getItemsByType}}>
-                Vegetables
-              </button>
-              <button className='flex w-50 p-2 text-left items-center' onClick={() => {setType("fruit"); getItemsByType}}>
-                Fruits
-              </button>
-              <button className='flex w-50 p-2 text-left items-center' onClick={() => {setType("meat"); getItemsByType}}>
-                Meat
-              </button>
-              <button className='flex w-50 p-2 text-left items-center' onClick={() => {setType("canned food"); getItemsByType}}>
-                Canned food
-              </button>
-              <button className='flex w-50 p-2 text-left items-center' onClick={() => {setType("drink"); getItemsByType}}>
-                Drinks
-              </button>
-            </Menu.Items>
-          </Menu.Button>&nbsp;&nbsp;&nbsp;&nbsp;
-        </Menu>
 
-        <Menu>
-          <Menu.Button>
-            <div>
-              <div className='flex bg-white w-50 p-2 text-left items-center'>
-                Location &nbsp;
-                <ArrowCircleDownIcon className="h-3 w-3"></ArrowCircleDownIcon>
-              </div>
-            </div>
-            <Menu.Items>
-              <div className='flex w-50 p-2 text-left items-center'>
-                North
-              </div>
-              <div className='flex w-50 p-2 text-left items-center'>
-                South
-              </div>
-              <div className='flex w-50 p-2 text-left items-center'>
-                East
-              </div>
-              <div className='flex w-50 p-2 text-left items-center'>
-                West
-              </div>
-              <div className='flex w-50 p-2 text-left items-center'>
-                Central
-              </div>
-            </Menu.Items>
-          </Menu.Button>
-        </Menu>
-
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3 lg:grid-cols-4">
-          {items.map((item) => (
-            <div className="card mt-20" key={item.id}>
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-3 lg:grid-cols-4">
+          {items.filter((item) => {
+            if (searchTerm == "") {
+              return item
+            } else if (item.type.toLowerCase().includes(searchTerm.toLowerCase())) {
+              return item
+            } else if (item.brand.toLowerCase().includes(searchTerm.toLowerCase())) {
+              return item
+            } else if (item.itemName.toLowerCase().includes(searchTerm.toLowerCase())) {
+              return item
+            } else if (item.location.toLowerCase().includes(searchTerm.toLowerCase())) {
+              return item
+            }
+          }).map((item) => (
+            <div className="card" key={item.id}>
               <div>
                 <div className="max-w-4xl mx-auto">
                   <img
@@ -217,21 +182,24 @@ export default function marketplace() {
                 <div className="py-5">
                   <p className="product-title">{item.itemName}</p>
                   <p className="product-brand">{item.brand}</p>
+                  <p className="mb-3"> {item.location}</p>
+                  <p className="mb-2">{item.type}</p>
                 </div>
 
-                <p className="price">Discounted Price: ${item.price}</p>
+                <p className="text-2xl">${item.price}</p>
                 <div className="price-wrapper">
                   <div className="price-slash"></div>
-                  <p className="price text-2xl">
+                  <p className="price">
                     ${item.originalprice}
                   </p>
                 </div>
                 {/* <p>Quantity: {item.quantity}</p> */}
+                
                 <p className="mb-3">Expires on: {item.expiry_date}</p>
                 <button
                   className="button w-full"
                   type="button"
-                  onClick={() => addToCart(item)}
+                  onClick={() => addToCart(item) && reload()}
                 >
                   <div> Add to Cart</div>
                 </button>
