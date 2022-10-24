@@ -1,19 +1,53 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 // import Image from 'next/image';
-import { XCircleIcon, PlusCircleIcon, MinusCircleIcon } from "@heroicons/react/outline/esm";
-import { set } from "react-hook-form";
+
+import {
+  XCircleIcon,
+  PlusCircleIcon,
+  MinusCircleIcon,
+} from "@heroicons/react/outline/esm";
+import Modal from "../components/DonateModal";
+import CheckOutModal from "../components/CheckOutModal";
+import { Router } from "next/router";
+import { useRouter } from "next/router";
 
 export default function cart2() {
   const [total, setTotal] = useState(0.0);
+  const [totalCarbonSavings, setTotalCarbonSavings] = useState(0.0);
   const [items, setItems] = useState([]);
   const [cart, setCart] = useState([]);
+  const [quantity, setQuantity] = useState(0);
+  const [showDonateModal, setShowDonateModal] = useState(false);
+  const [showCheckOutModal, setShowCheckOutModal] = useState(false);
+  const router = useRouter();
+
+  function handleOnClose() {
+    setShowCheckOutModal(false);
+    router.push("/marketplace");
+  }
+
+  function handleOnCloseClearCart() {
+    setShowCheckOutModal(false);
+    // clearCart();
+    router.push("/marketplace");
+  }
+
+  // function clearCart() {
+  //   // localStorage.setItem("myCart", JSON.stringify([]));
+  //   for(var i = 0; i < localStorage.getItem.length; i++) {
+
+  //       removeItemHandler(i);
+  //     }
+  // }
 
   useEffect(() => {
     getCart();
     fetchCartItemsHandler();
     fetchItemsHandler();
     getTotal();
+    getTotalCarbonSavings();
+    getQuantity();
     // updateItemQty(4, 1);
   }, []);
 
@@ -22,9 +56,9 @@ export default function cart2() {
     console.log(items);
     setItems(items);
   }
-   function getTotal() {
-    
-     fetch("http://localhost:8080/api/v1/cart", {
+
+  function getQuantity() {
+    fetch("http://localhost:8080/api/v1/cart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -38,21 +72,74 @@ export default function cart2() {
         let x = 0;
         console.log(product);
         localStorage.setItem("myCart", JSON.stringify(product));
-        product.map((cartitem) => (
-            x += cartitem.subtotal
-            // console.log(total)
-            ));
-        console.log(x);
+        product.map(
+          (cartitem) => (x += cartitem.quantity)
+          // console.log(total)
+        );
+        //  console.log(x);
+        setQuantity(x);
+        return quantity;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function getTotal() {
+    fetch("http://localhost:8080/api/v1/cart", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((response) => response.json())
+      .then((product) => {
+        // setCart(product);
+        setCart(product);
+        let x = 0;
+        console.log(product);
+        localStorage.setItem("myCart", JSON.stringify(product));
+        product.map(
+          (cartitem) => (x += cartitem.subtotal)
+          // console.log(total)
+        );
+        //  console.log(x);
         setTotal(x);
         return total;
       })
       .catch((err) => {
         console.log(err);
       });
-
   }
 
-  
+  function getTotalCarbonSavings() {
+    fetch("http://localhost:8080/api/v1/cart", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((response) => response.json())
+      .then((product) => {
+        // setCart(product);
+        setCart(product);
+        let x = 0;
+        console.log(product);
+        localStorage.setItem("myCart", JSON.stringify(product));
+        product.map(
+          (cartitem) => (x += cartitem.carbontotal)
+          // console.log(total)
+        );
+        //  console.log(x);
+        setTotalCarbonSavings(x);
+        return total;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   const countItemStock = (product) => {
     fetch(`http://localhost:8080/api/v1/items/${product.id}`, {
@@ -102,6 +189,8 @@ export default function cart2() {
         getCart();
         fetchCartItemsHandler();
         getTotal();
+        getTotalCarbonSavings();
+        getQuantity();
       })
       .catch((err) => {
         console.log(err);
@@ -121,7 +210,6 @@ export default function cart2() {
         // setCart(product);
         // console.log();
         setCart(product);
-        console.log(product);
         localStorage.setItem("myCart", JSON.stringify(product));
       })
       .catch((err) => {
@@ -149,41 +237,79 @@ export default function cart2() {
         getCart();
         fetchCartItemsHandler();
         getTotal();
+        getTotalCarbonSavings();
+        getQuantity();
+        reload();
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
+  function reload() {
+    setTimeout(function () {
+      location.reload();
+    }, 0);
+  }
+
   return (
-    <Layout title="cart">
-      <h1 className="text-xl p-7">Your Shopping Cart</h1>
+    <Layout title="Your shopping cart">
+      <div className="p-10">
+        <h1 className="py-3 header-text text-center m-auto">
+          Your Shopping Cart ({quantity})
+        </h1>
+      </div>
+
       {cart.length == 0 ? (
-        <div className="px-7">
-          Cart is empty.{" "}
-          <a className="text-[#687259]" href="/marketplace">
+        <div className="flex flex-col justify-center items-center">
+          <img
+            alt=" "
+            src="/emptycart.png"
+            height={300}
+            width={300}
+            className="ml-3 pt-16"
+          />
+          <h1 className="product-title pt-8 pb-5">
+            Your shopping cart is empty :({" "}
+          </h1>
+          <a
+            className="text-[#687259] hover:underline no-underline"
+            href="/marketplace"
+          >
             Go shopping
           </a>
         </div>
       ) : (
-        <div className="grid md:grid-cols-4 md:gap-5 px-7">
-          <div className="overflow-x-auto md:col-span-3">
-            <table className="min-w-full">
-              <thead className="border-b">
+        <div className="grid w-5/6 md:grid-cols-4 place-items-center">
+          <div className="overflow-x-auto md:col-span-3 pr-5 pl-20 ">
+            <table className="table-auto min-w-full">
+              <thead className=" uppercase">
                 <tr>
-                  <th className="px-5 text-right">item</th>
-                  <th className="px-5 text-right"></th>
-                  <th className="px-5 text-right">price</th>
-                  <th className="px-5 text-right">quantity</th>
-                  <th className="px-5 text-right">subtotal</th>
-                  <th className="px-5">Action</th>
+                  <th className="py-3 px-6">Item</th>
+                  <th className="py-3 px-6">Carbon savings</th>
+                  <th className="py-3 px-6">Price</th>
+                  <th className="py-3 px-6">Quantity</th>
+                  <th className="py-3 px-6">Subtotal</th>
+                  <th className="py-3 px-6">Delete</th>
                 </tr>
               </thead>
               <tbody>
                 {cart.map((cartitem) => (
                   <tr key={cartitem.item.id} className="border-b">
-                    <td className="p-5 text-right">{cartitem.item.itemName}</td>
-                    <td className="p-5 text-right">
+                    <div className="text-center">
+                      <td className="py-4 px-6 font-base text-gray-900 whitespace-nowrap dark:text-white">
+                        <img
+                          src={cartitem.item.url}
+                          alt={cartitem.item.itemName}
+                          className="flex items-center"
+                          width={100}
+                          height={100}
+                        ></img>
+                        {cartitem.item.itemName}
+                      </td>
+                    </div>
+                    <td className="p-5 text-center"> 🌱 {cartitem.carbontotal}</td>
+                    {/* <td className="p-5 text-right">
                       <img
                         src={cartitem.item.url}
                         alt={cartitem.item.itemName}
@@ -191,30 +317,34 @@ export default function cart2() {
                         width={100}
                         height={100}
                       ></img>
-                    </td>
-                    <td className="p-5 text-right">{cartitem.item.price}</td>
+                    </td> */}
+                    <td className="p-5 text-center"> ${cartitem.item.price}</td>
 
                     <td
-                      className="p-5 text-right"
+                      className="p-5 text-center"
                       onChange={() =>
                         updateItemQty(cartitem.item, cartitem.quantity)
                       }
                     >
                       <button
-                        onClick={() => { if (cartitem.quantity > 1){
-                          updateItemQty(cartitem.item, cartitem.quantity - 1)
+                        onClick={() => {
+                          if (cartitem.quantity > 1) {
+                            updateItemQty(
+                              cartitem.item,
+                              cartitem.quantity - 1
+                            ) && reload();
                           } else {
-                            removeItemHandler(cartitem.item)
-                          } 
-                        }
-                      }
+                            removeItemHandler(cartitem.item) && reload();
+                          }
+                        }}
                       >
                         <MinusCircleIcon className="h-5 w-5"></MinusCircleIcon>
                       </button>
                       &nbsp;{cartitem.quantity}&nbsp;
                       <button
                         onClick={() =>
-                          updateItemQty(cartitem.item, cartitem.quantity + 1)
+                          updateItemQty(cartitem.item, cartitem.quantity + 1) &&
+                          reload()
                         }
                       >
                         <PlusCircleIcon className="h-5 w-5"></PlusCircleIcon>
@@ -236,9 +366,9 @@ export default function cart2() {
                                                 ))}
                                             </select>
                                         </td> */}
-                                    
-                    <td className="p-5 text-right">{cartitem.subtotal}</td>
-                    <td className="p-5 text-center">
+
+                    <td className="p-5 text-center">${cartitem.subtotal}</td>
+                    <td className="p-6 text-center">
                       <button onClick={() => removeItemHandler(cartitem.item)}>
                         <XCircleIcon className="h-5 w-5"></XCircleIcon>
                       </button>
@@ -248,25 +378,41 @@ export default function cart2() {
               </tbody>
             </table>
           </div>
-          <div className="card p-5">
-            <ul>
-              <li>
-                                <div className='pb-3 text-xl'>
-                                    Total $ {total}
-                                </div>
-                            </li> 
-          
-              <li>
-                <button className="primary-button w-full">Check Out</button>
-              </li>
-              <li >
-                <button className="primary-button w-full">Donate to charity</button>
-              </li>
-            </ul>
+          <div className="card h-4/5 place-items-center">
+            <div>
+              <div className="pb-3 text-xl font-bold"> 🛍 Total: ${total}</div>
+            </div>
+            <div>
+              <div className="pb-3 text-xl font-bold">
+                {" "}
+                🌱 Total Carbon Savings: {totalCarbonSavings}{" "}
+              </div>
+            </div>
+            <div>
+              <button
+                className="button w-full"
+                onClick={() => setShowCheckOutModal(true)}
+              >
+                Check Out
+              </button>
+            </div>
+            <p className="p-2"></p>
+            <div>
+              <button
+                className="button w-full"
+                onClick={() => setShowDonateModal(true)}
+              >
+                Donate to charity
+              </button>
+            </div>
+            <CheckOutModal
+              onClose={handleOnCloseClearCart}
+              visible={showCheckOutModal}
+            />
+            <Modal onClose={handleOnClose} visible={showDonateModal} />
           </div>
         </div>
       )}
     </Layout>
   );
 }
-

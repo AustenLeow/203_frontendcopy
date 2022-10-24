@@ -103,7 +103,7 @@ function CartScreen() {
                             </li>
                             {/* check out */}
                             <li>
-                                <button className='primary-button w-full'>Check Out</button>
+                                <button className='button w-full'>Check Out</button>
                             </li>
                         </ul>
                     </div>

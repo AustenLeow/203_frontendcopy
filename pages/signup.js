@@ -1,10 +1,16 @@
 import { useRouter } from "next/router";
+import React from "react";
 import { useState } from "react";
 import Layout from "../components/layout";
 import Image from "next/image";
 
 export default function SignUp() {
   const router = useRouter();
+
+  // const {
+  //   register,
+  //   formState: { errors },
+  // } = useForm();
 
   const [state, setState] = useState({
     username: "",
@@ -19,6 +25,14 @@ export default function SignUp() {
     password: "",
     confirmPassword: "",
   });
+
+  const [isError, setIsError] = useState("");
+
+  const checkValidation=(e)=>{
+    if(document.getElementById(username).value < 3){
+      setIsError("Username should have a minimum of 3 characters");
+    }
+  }
 
   function handleChange(e) {
     const copy = { ...state };
@@ -91,13 +105,14 @@ export default function SignUp() {
   return (
     <Layout title="signup">
       <div className="mx-auto w-4/5 py-16 md:py-32">
+        <div style={{ position: "absolute", top: 100, marginLeft: 250}}>{isError}</div>
         <div className="w-full flex items-center justify-center">
           <div className="w-full h-fit m-auto grid grid-cols-1 lg:grid-cols-2 ">
             <div className="flex flex-col items-center justify-center">
               <img
                 alt=" "
                 src="/signup.png"
-                height={250}
+                height={300}
                 width={300}
                 className="ml-3"
               />
@@ -155,11 +170,11 @@ export default function SignUp() {
                 )}
               </div>
               <div className="px-3">
-                <button className="primary-button" onClick={handleSubmit}>
+                <button className="button" onClick={handleSubmit}>
                   Submit
                 </button>
               </div>
-              <div className="mb-4 ">
+              <div className="mb-4  p-3">
                 Already have an account? &nbsp;
                 <a className="my-4 text-[#687259]" href="/login">
                   Login
