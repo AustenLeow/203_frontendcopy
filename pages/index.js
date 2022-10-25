@@ -3,8 +3,21 @@ import Typical from "react-typical";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { IoEarthSharp } from "react-icons/io5";
 import Navbar from "../components/Navbar";
+import { useState, useEffect } from "react";
 
 export default function Home() {
+
+  const [auth, setAuth] = useState({ loggedIn: false });
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setAuth(true);
+    } else {
+      setAuth(false);
+    }
+    console.log("Logged in");
+  });
+
   return (
     <div>
       <div className="w-screen flex items-center justify-center">
@@ -41,8 +54,8 @@ export default function Home() {
           </div>
           <div className="text-xl sm:text-2xl font-bold text-white flex flex-col items-end justify-center">
             <div className="mb-2 items-end text-end">helping our climate one byte at a time.</div>
-            <div className="flex items-center ">
-              <a
+            {auth ? "" : <div className="flex items-center ">
+            <a
                 href="/login"
                 className="relative inline-flex items-center justify-center py-1 px-8 overflow-hidden font-medium text-white transition duration-300 ease-out border-2 border-white rounded-full shadow-md group"
               >
@@ -68,6 +81,7 @@ export default function Home() {
                 <span className="relative invisible">sign up</span>
               </a>
             </div>
+}
           </div>
         </div>
       </div>
