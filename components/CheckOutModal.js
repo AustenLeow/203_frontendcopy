@@ -5,6 +5,22 @@ export default function CheckOutModal({ visible, onClose }) {
     return null;
   }
 
+  function addOrder() {
+    const res = fetch("http://localhost:8080/api/v1/order/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+  }
+
+  function checkoutModal(){
+    addOrder();
+    onClose();
+  }
+
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex items-center justify-center">
       <div className="absolute bg-white p-8 rounded-xl w-80">
@@ -29,7 +45,7 @@ export default function CheckOutModal({ visible, onClose }) {
           />
         </div>
         <div className="text-center p-4">
-          <button onClick={onClose} className="button">
+          <button onClick={checkoutModal} className="button">
             OK
           </button>
           <div className="pt-4">
