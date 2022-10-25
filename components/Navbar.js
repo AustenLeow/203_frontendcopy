@@ -131,7 +131,13 @@ export default function Navbar() {
         <MobileNav open={open} setOpen={setOpen} />
         <div className="w-3/4 flex items-center">
           <a className="text-4xl font-semibold text-[#4E632E] " href="/">
-            re:
+          <img
+          alt=" "
+          src="/logoTransparentBg.png"
+          height={80}
+          width={80}
+          className="ml-4"
+        />
           </a>
         </div>
         <div className="w-9/12 flex justify-end items-center">
