@@ -5,7 +5,8 @@ import { Tab } from "@headlessui/react";
 export default function profile() {
   return (
     <Layout title="profile">
-      <div className="flex flex-col justify-center items-center">
+      <div className="p-20">
+      <div className="pb-20 flex flex-col justify-center items-center">
         <Tab.Group>
           <div class="overflow-auto flex justify-center items-center max-w-3/5 border-b border-gray-200 dark:border-gray-700">
             <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
@@ -31,7 +32,7 @@ export default function profile() {
                 </Tab>
                 <Tab
                   href="#"
-                  className="mr-2 inline-flex p-4 ui-not-selected:text-gray-400 rounded-t-lg ui-selected:border-b-2 ui-selected:text-lime-700 ui-selected:border-b-lime-700 group"
+                  className="inline-flex p-4 ui-not-selected:text-gray-400 rounded-t-lg ui-selected:border-b-2 ui-selected:text-lime-700 ui-selected:border-b-lime-700 group"
                   aria-current="page"
                 >
                   <svg
@@ -49,7 +50,7 @@ export default function profile() {
               </Tab.List>
             </ul>
           </div>
-          <div className="flex justify-center items-center w-3/5">
+          <div className="flex justify-center items-center w-3/5 p-8">
           <Tab.Panels>
             <Tab.Panel>Content 1</Tab.Panel>
             <Tab.Panel>Content 2</Tab.Panel>
@@ -58,6 +59,8 @@ export default function profile() {
           </div>
         </Tab.Group>
       </div>
+      </div>
     </Layout>
+    
   );
 }
