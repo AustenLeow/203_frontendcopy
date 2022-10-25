@@ -17,6 +17,7 @@ export default function SignUp() {
     email: "",
     password: "",
     confirmPassword: "",
+    answer: ""
   });
 
   const [error, setError] = useState({
@@ -24,6 +25,7 @@ export default function SignUp() {
     email: "",
     password: "",
     confirmPassword: "",
+    answer: ""
   });
 
   const [isError, setIsError] = useState("");
@@ -77,6 +79,12 @@ export default function SignUp() {
             stateObj[name] = "Please enter Confirm Password.";
           } else if (state.password && value !== state.password) {
             stateObj[name] = "Password and Confirm Password does not match.";
+          }
+          break;
+
+          case "hint":
+          if (!value) {
+            stateObj[name] = "Please enter your favourite food.";
           }
           break;
 
@@ -168,6 +176,25 @@ export default function SignUp() {
                 {error.confirmPassword && (
                   <span className="err">{error.confirmPassword}</span>
                 )}
+                <div className="text-left">
+                <h2 className="text-left font-semibold text-[#4E632E] pt-10">Setting your forget password hint</h2>
+                
+                  
+
+                <input  
+                  type="text"
+                  name="answer"
+                  placeholder="Enter your favourite food as a child"
+                  value={state.answer}
+                  onChange={handleChange}
+                  autoComplete="off"
+                  onBlur={validateInput}
+                  className="input"
+                />
+                {error.answer && (
+                  <span className="err">{error.answer}</span>
+                )}
+                </div>
               </div>
               <div className="px-3">
                 <button className="button" onClick={handleSubmit}>
