@@ -156,7 +156,7 @@ export default function marketplace() {
                 <div className="py-5">
                   <p className="product-title">{item.itemName}</p>
                   <p className="product-brand">{item.brand}</p>
-                  <p className="mb-3"> {item.location}</p>
+                  <p className="mb-3"> 📍 {item.location}</p>
                   <p className="mb-2">{item.type}</p>
                 </div>
 
