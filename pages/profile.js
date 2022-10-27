@@ -1,6 +1,7 @@
 import { React, Fragment } from "react";
 import Layout from "../components/layout";
 import { Tab } from "@headlessui/react";
+import UserProfile from "../components/UserProfile";
 
 export default function profile() {
   return (
@@ -8,7 +9,7 @@ export default function profile() {
       <div className="p-20">
       <div className="pb-20 flex flex-col justify-center items-center">
         <Tab.Group>
-          <div class="overflow-auto flex justify-center items-center max-w-3/5 border-b border-gray-200 dark:border-gray-700">
+          <div class="overflow flex justify-center items-center max-w-3/5 border-b border-gray-200 dark:border-gray-700">
             <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
               <Tab.List>
                 <Tab
@@ -52,7 +53,7 @@ export default function profile() {
           </div>
           <div className="flex justify-center items-center w-3/5 p-8">
           <Tab.Panels>
-            <Tab.Panel>Content 1</Tab.Panel>
+            <Tab.Panel><UserProfile/></Tab.Panel>
             <Tab.Panel>Content 2</Tab.Panel>
             {/* ... */}
           </Tab.Panels>
