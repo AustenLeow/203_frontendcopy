@@ -280,8 +280,8 @@ export default function cart2() {
           </a>
         </div>
       ) : (
-        <div className="grid w-5/6 md:grid-cols-4 place-items-center">
-          <div className="overflow-x-auto md:col-span-3 pr-5 pl-20 ">
+        <div className="grid w-5/6 lg:grid-cols-4 place-items-center">
+          <div className="overflow-x-auto lg:col-span-3 pr-5 pl-20 ">
             <table className="table-auto min-w-full">
               <thead className=" uppercase">
                 <tr>
@@ -301,7 +301,7 @@ export default function cart2() {
                         <img
                           src={cartitem.item.url}
                           alt={cartitem.item.itemName}
-                          className="flex items-center"
+                          className="flex items-center rounded-full object-contain shadow-2xl"
                           width={100}
                           height={100}
                         ></img>
@@ -378,7 +378,7 @@ export default function cart2() {
               </tbody>
             </table>
           </div>
-          <div className="card h-4/5 place-items-center">
+          <div className="card h-place-items-center">
             <div>
               <div className="pb-3 text-xl font-bold"> 🛍 Total: ${total}</div>
             </div>
