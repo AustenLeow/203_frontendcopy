@@ -134,8 +134,8 @@ export default function Navbar() {
           <img
           alt=" "
           src="/logoTransparentBg.png"
-          height={80}
-          width={80}
+          height={95}
+          width={95}
           className="ml-4 p-3"
         />
           </a>
