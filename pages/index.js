@@ -14,7 +14,6 @@ export default function Home() {
     } else {
       setAuth(false);
     }
-    console.log("Logged in");
     fetchUserCount();
     fetchCarbonCount();
   });
@@ -145,8 +144,9 @@ export default function Home() {
         </div>
         <div className="h-screen w-4/5 m-auto">
           <div class="grid grid-cols-3 gap-8 place-items-center p-5">
-            <div className="statistics">
-              <span className="static justify-center">{userCount}</span>
+            <div className="">
+              <span className="statistics static justify-center">{userCount}</span>
+              <p className="text-center font-light text-gray-500"> users reducing food wastage </p>
               <img
                 alt=" "
                 src="/totalusers.png"
@@ -155,8 +155,9 @@ export default function Home() {
                 className="ml-3 p-4"
               />
             </div>
-            <div className="statistics">
-              <span className="static justify-center">{carbonCount}</span>
+            <div className="">
+              <span className="statistics static justify-center">{carbonCount}</span>
+              <p className="text-center font-light text-gray-500"> carbon saved </p>
               <img
                 alt=" "
                 src="/totalcarbon.png"
@@ -165,11 +166,12 @@ export default function Home() {
                 className="ml-3 p-4"
               />
             </div>
-            <div className="statistics">
-              <span className="static justify-center">{userCount}</span>
+            <div>
+              <span className="statistics static justify-center">${userCount}</span>
+              <p className="text-center font-light text-gray-500"> saved </p>
               <img
                 alt=" "
-                src="/totalusers.png"
+                src="/moneysaved.png"
                 height={300}
                 width={300}
                 className="ml-3 p-4"
