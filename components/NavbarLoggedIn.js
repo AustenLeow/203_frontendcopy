@@ -169,7 +169,7 @@ export default function Navbar() {
           src="/logoTransparentBg.png"
           height={95}
           width={95}
-          className="ml-4 p-3"
+          className="ml-4 p-5"
         />
           </a>
         </div>

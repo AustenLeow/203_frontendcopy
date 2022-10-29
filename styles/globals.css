@@ -85,3 +85,7 @@ textarea {
 .price{ 
   @apply text-xl;
 }
+
+.statistics {
+  @apply text-[#4E622E] text-7xl font-extrabold flex flex-col justify-center items-center;
+}
