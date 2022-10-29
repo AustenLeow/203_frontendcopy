@@ -8,6 +8,8 @@ import { useState, useEffect } from "react";
 export default function Home() {
 
   const [auth, setAuth] = useState({ loggedIn: false });
+  const [userCount, setUserCount] = useState(0)
+
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -16,7 +18,21 @@ export default function Home() {
       setAuth(false);
     }
     console.log("Logged in");
+    fetchUserCount()
   });
+
+  async function fetchUserCount() {
+    const res = await fetch('http://localhost:8080/api/v1/totalusers', {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + localStorage.getItem("token")
+      }
+    })
+    if (res.ok) {
+      const text = await res.text()
+      setUserCount(text)
+    }
+  }
 
   return (
     <div>
@@ -99,6 +115,14 @@ export default function Home() {
             how does it work
           </div>
           <div className="flex flex-col items-center justify-center">cycle</div>
+        </div>
+        <div className="h-screen w-3/5 m-auto">
+          <div className="flex flex-col items-start justify-center text-6xl font-bold text-[#4E632E]">
+            our progression
+          </div>
+          <div>
+            {userCount}
+          </div>
         </div>
       </Layout>
     </div>
