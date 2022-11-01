@@ -1,5 +1,5 @@
 import Layout from "../components/Layout";
-import Typical from "react-typical";
+// import Typical from "react-typical";
 import { IoEarthSharp } from "react-icons/io5";
 import { useState, useEffect } from "react";
 
@@ -64,7 +64,7 @@ export default function Home() {
           <div className="text-4xl sm:text-8xl text-white">
             <strong> green:</strong>
             <strong className="px-5 text-[#BFDB9C]">
-              <Typical
+              {/* <Typical
                 steps={[
                   "price",
                   1000,
@@ -80,7 +80,7 @@ export default function Home() {
                 ]}
                 wrapper="p"
                 loop={Infinity}
-              />
+              /> */}
             </strong>
           </div>
           <div className="text-xl sm:text-2xl font-bold text-white flex flex-col items-end justify-center">
