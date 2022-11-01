@@ -1,4 +1,3 @@
-import { AuthContextProvider } from '../stores/authContext';
 import '../styles/globals.css';
 import { StoreProvider } from '../utils/Store';
 
