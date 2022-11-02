@@ -4,6 +4,7 @@ const nextConfig = {
   swcMinify: true,
 }
 
+
 module.exports = nextConfig
 const withVideos = require('next-videos')
 

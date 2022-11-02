@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useState } from "react";
 import Layout from "../components/layout";
-import Image from "next/image";
+
 
 export default function SignUp() {
   const router = useRouter();
@@ -30,11 +30,11 @@ export default function SignUp() {
 
   const [isError, setIsError] = useState("");
 
-  const checkValidation=(e)=>{
-    if(document.getElementById(username).value < 3){
-      setIsError("Username should have a minimum of 3 characters");
-    }
-  }
+  // const checkValidation=(e)=>{
+  //   if(document.getElementById(username).value < 3){
+  //     setIsError("Username should have a minimum of 3 characters");
+  //   }
+  // }
 
   function handleChange(e) {
     const copy = { ...state };
