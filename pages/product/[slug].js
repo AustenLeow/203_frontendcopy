@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import React, { useContext } from "react";
 import Layout from "../../components/Layout";
 import data from "../../utils/data";
-import Link from 'next/Link';
+import Link from "next/link";
 import Image from 'next/image';
 import { Store } from '../../utils/Store';
 // import { BiArrowBack } from "react-icons/bi";

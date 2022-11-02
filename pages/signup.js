@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React from "react";
 import { useState } from "react";
-import Layout from "../components/layout";
+import Layout from "../components/Layout.js";
 
 
 export default function SignUp() {
