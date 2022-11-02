@@ -116,7 +116,7 @@ export default function Marketplace() {
     <Layout title="marketplace">
       <div className="w-screen px-10">
         <div>
-          <h1 className="py-3 header-text text-center m-auto">Marketplace</h1>
+          <h1 className="p-10 header-text text-center m-auto">Marketplace</h1>
         </div>
 
         <div className="flex justify-center items-center">
@@ -130,7 +130,7 @@ export default function Marketplace() {
           />
         </div>
 
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-y-20 gap-x-5 md:grid-cols-3 lg:grid-cols-4 space-y-{9}">
           {items
             .filter((item) => {
               if (searchTerm == "") {
@@ -154,37 +154,79 @@ export default function Marketplace() {
               }
             })
             .map((item) => (
-              <div className="card" key={item.id}>
+              <div
+                className="shadow-lg group container  rounded-md bg-white  max-w-sm flex justify-center items-center  mx-auto content-di"
+                key={item.id}
+              >
                 <div>
-                  <div className="max-w-4xl mx-auto">
-                    <img
-                      src={item.url}
-                      className=" object-contain rounded-full -mt-5 md:-mt-20 ml-5 md:ml-4 h-40 w-40 shadow-xl border-[3px] border-white bg-white"
-                    ></img>
-                  </div>
+                  <img
+                    src={item.url}
+                    className=" object-contain rounded-full -mt-5 md:-mt-20 ml-5 md:ml-4 h-40 w-40 shadow-xl border-[3px] border-white bg-white"
+                  ></img>
+                  <div className="w-full image-cover rounded-t-md py-8 px-4 rounded-b-md fd-cl group-hover:opacity-10">
+                    {/* <div class="p-2 m-4 w-16 h-16 text-center bg-gray-700 rounded-full text-white float-right fd-cl group-hover:opacity-25">
+                      <span class="text-base tracking-wide  font-bold border-b border-white font-sans">
+                        {" "}
+                        12
+                      </span>
+                      <span class="text-xs tracking-wide font-bold uppercase block font-sans">
+                        April
+                      </span>
+                    </div> */}
+                    <div>
+                      <div className="py-5">
+                        <p className="product-title">{item.itemName}</p>
+                        <p className="product-brand">{item.brand}</p>
+                        <p className="mb-3"> 📍 {item.location}</p>
+                        <p className="mb-2">{item.type}</p>
+                      </div>
 
-                  <div className="py-5">
-                    <p className="product-title">{item.itemName}</p>
-                    <p className="product-brand">{item.brand}</p>
-                    <p className="mb-3"> 📍 {item.location}</p>
-                    <p className="mb-2">{item.type}</p>
-                  </div>
+                      <p className="text-2xl">${item.price}</p>
+                      <div className="price-wrapper">
+                        <div className="price-slash"></div>
+                        <p className="price">${item.originalprice}</p>
+                      </div>
+                      {/* <p>Quantity: {item.quantity}</p> */}
 
-                  <p className="text-2xl">${item.price}</p>
-                  <div className="price-wrapper">
-                    <div className="price-slash"></div>
-                    <p className="price">${item.originalprice}</p>
+                      <p className="mb-3">Expires on: {item.expiry_date}</p>
+                      <button
+                        className="button w-full"
+                        type="button"
+                        onClick={() => addToCart(item) && reload()}
+                      >
+                        <div> Add to Cart</div>
+                      </button>
+                    </div>
                   </div>
-                  {/* <p>Quantity: {item.quantity}</p> */}
-
-                  <p className="mb-3">Expires on: {item.expiry_date}</p>
-                  <button
-                    className="button w-full"
-                    type="button"
-                    onClick={() => addToCart(item) && reload()}
-                  >
-                    <div> Add to Cart</div>
-                  </button>
+                </div>
+                <div className="absolute opacity-0 fd-sh group-hover:opacity-100 p-4">
+                  {item.carbon == 1 ? (
+                    <div>
+                      <p className="text-bold font-bold text-black tracking-wider leading-relaxed font-sans break-words">
+                        🌎 This item has {item.carbon} carbon saving
+                      </p>
+                      <p class="text-bold font-bold text-black tracking-wider leading-relaxed font-sans break-words">
+                        🤑 You will save ${item.originalprice - item.price}
+                      </p>
+                    </div>
+                  ) : (
+                    <div>
+                      <p className="text-bold font-bold text-black tracking-wider leading-relaxed font-sans break-words">
+                      🌎 This item has {item.carbon} carbon savings
+                      </p>
+                      <p class="text-bold font-bold text-black tracking-wider leading-relaxed font-sans break-words">
+                      🤑 You will save ${item.originalprice - item.price}
+                      </p>
+                    </div>
+                  )}
+                  <div class="pt-8 text-center">
+                    <button
+                      className="button"
+                      onClick={() => addToCart(item) && reload()}
+                    >
+                      Add to cart
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}

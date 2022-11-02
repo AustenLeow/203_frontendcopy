@@ -127,13 +127,13 @@ export default function Home() {
           <div className="flex flex-col items-start justify-center text-6xl font-bold text-[#4E632E]">
             why we do it
           </div>
-          <div className="flex flex-col items-center justify-center">
-            Our mission is to make sure good food gets eaten, <b>not wasted.</b> Every
-            day, delicious, fresh food goes to waste at cafés, restaurants,
-            hotels, shops and manufacturers - just because it hasn’t sold in
-            time. greenfoodforyou lets customers buy and collect Surprise Bags
-            of food - at a great price - directly from businesses
-          </div>
+          <blockquote class="text-2xl font-semibold italic text-center text-slate-900">
+            When you look
+            <span class="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-pink-500 relative inline-block">
+              <span class="relative text-white">food wastage</span>
+            </span>
+            all the time, people think that you're busy.
+          </blockquote>
         </div>
         <div className="h-screen w-4/5 m-auto">
           <div class="grid grid-cols-3 gap-8 place-items-center p-5">
@@ -155,7 +155,12 @@ export default function Home() {
             </div>
             <div className="">
               <div className="statistics static justify-center whitespace-nowrap">
-                 <div>{carbonCount}<var>cm<sup>3</sup></var></div>
+                <div>
+                  {carbonCount}
+                  <var>
+                    cm<sup>3</sup>
+                  </var>
+                </div>
               </div>
               <p className="text-center font-light text-gray-500">
                 {" "}
@@ -171,7 +176,10 @@ export default function Home() {
             </div>
             <div>
               <div className="statistics static justify-center whitespace-nowrap">
-              <div><var>$</var>{userCount}</div>
+                <div>
+                  <var>$</var>
+                  {userCount}
+                </div>
               </div>
               <p className="text-center font-light text-gray-500"> saved </p>
               <Image
@@ -185,7 +193,7 @@ export default function Home() {
           </div>
         </div>
         <div className="h-screen w-4/5 m-auto">
-        <div className="flex flex-col items-start justify-center text-6xl font-bold text-[#4E632E]">
+          <div className="flex flex-col items-start justify-center text-6xl font-bold text-[#4E632E]">
             why we do it
           </div>
           <div class="grid grid-cols-3 gap-8 place-items-center p-5">
@@ -207,7 +215,12 @@ export default function Home() {
             </div>
             <div className="">
               <div className="statistics static justify-center whitespace-nowrap">
-                 <div>{carbonCount}<var>cm<sup>3</sup></var></div>
+                <div>
+                  {carbonCount}
+                  <var>
+                    cm<sup>3</sup>
+                  </var>
+                </div>
               </div>
               <p className="text-center font-light text-gray-500">
                 {" "}
@@ -223,7 +236,10 @@ export default function Home() {
             </div>
             <div>
               <div className="statistics static justify-center whitespace-nowrap">
-              <div><var>$</var>{userCount}</div>
+                <div>
+                  <var>$</var>
+                  {userCount}
+                </div>
               </div>
               <p className="text-center font-light text-gray-500"> saved </p>
               <Image
