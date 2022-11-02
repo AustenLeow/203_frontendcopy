@@ -1,9 +1,7 @@
 import { useRouter } from "next/router";
 import React from "react";
 import Layout from "../components/Layout";
-import data from "../utils/data";
-import ProductItem from "../components/ProductItem";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect} from "react";
 
 export default function marketplace() {
   const [items, setItems] = useState([]);
@@ -60,11 +58,11 @@ export default function marketplace() {
     router.push("/cart2");
   }
 
-  function logout() {
-    localStorage.removeItem("token");
-    // localStorage.setItem("token", null);
-    router.push("/login");
-  }
+  // function logout() {
+  //   localStorage.removeItem("token");
+  //   // localStorage.setItem("token", null);
+  //   router.push("/login");
+  // }
 
   function getItems() {
     fetch("http://localhost:8080/api/v1/items", {
@@ -85,11 +83,11 @@ export default function marketplace() {
       });
   }
 
-  function fetchItemsHandler() {
-    const items = JSON.parse(localStorage.getItem("items") || "[]");
-    console.log(items);
-    setItems(items);
-  }
+  // function fetchItemsHandler() {
+  //   const items = JSON.parse(localStorage.getItem("items") || "[]");
+  //   console.log(items);
+  //   setItems(items);
+  // }
 
   async function addToCart(item) {
     fetch(`http://localhost:8080/api/v1/cart/add/${item.id}`, {

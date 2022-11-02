@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import React, { useContext } from "react";
 import { Store } from "../utils/Store";
-import ReactDOM from "react-dom/client";
-import { useRouter } from "next/router";
+
 
 function NavLink({ to, children }) {
   return <a href={to} className={`mx-4`}>

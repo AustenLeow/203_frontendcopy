@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout";
-// import Image from 'next/image';
-
 import {
   XCircleIcon,
   PlusCircleIcon,
@@ -9,7 +7,6 @@ import {
 } from "@heroicons/react/outline/esm";
 import Modal from "../components/DonateModal";
 import CheckOutModal from "../components/CheckOutModal";
-import { Router } from "next/router";
 import { useRouter } from "next/router";
 
 export default function cart2() {
