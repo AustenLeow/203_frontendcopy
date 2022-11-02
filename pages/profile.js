@@ -1,5 +1,5 @@
 import { React } from "react";
-import Layout from "../components/layout";
+import Layout from "../components/Layout.js";
 import { Tab } from "@headlessui/react";
 import UserProfile from "../components/UserProfile";
 
