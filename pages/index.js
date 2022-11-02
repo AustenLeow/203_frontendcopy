@@ -2,6 +2,10 @@ import Layout from "../components/Layout";
 // import Typical from "react-typical";
 import { IoEarthSharp } from "react-icons/io5";
 import { useState, useEffect } from "react";
+import Image from "next/image";
+import totalusers from ".././public/totalusers.png";
+import totalcarbon from ".././public/totalcarbon.png";
+import Link from "next/link";
 
 export default function Home() {
   const [auth, setAuth] = useState({ loggedIn: false });
@@ -16,7 +20,7 @@ export default function Home() {
     }
     fetchUserCount();
     fetchCarbonCount();
-  });
+  }, []);
 
   function fetchCarbonCount() {
     fetch("http://localhost:8080/api/v1/ordertotalcarbon", {
@@ -91,31 +95,19 @@ export default function Home() {
               ""
             ) : (
               <div className="flex items-center ">
-                <a
+                <Link
                   href="/login"
                   className="relative inline-flex items-center justify-center py-1 px-8 overflow-hidden font-medium text-white transition duration-300 ease-out border-2 border-white rounded-full shadow-md group"
                 >
-                  <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full group-hover:translate-x-0 ease">
-                    <IoEarthSharp />
-                  </span>
-                  <span className="absolute flex items-center justify-center w-full h-full text-white transition-all duration-300 transform group-hover:translate-x-full ease">
-                    login
-                  </span>
-                  <span className="relative invisible">login</span>
-                </a>
+                  <button className="button">login</button>
+                </Link>
                 <div className="p-4"></div>
-                <a
+                <Link
                   href="/signup"
                   className="relative inline-flex items-center justify-center py-1 px-10 overflow-hidden font-medium text-white transition duration-300 ease-out border-2 border-white rounded-full shadow-md group"
                 >
-                  <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full group-hover:translate-x-0 ease">
-                    <IoEarthSharp />
-                  </span>
-                  <span className="absolute flex items-center justify-center w-full h-full text-white transition-all duration-300 transform group-hover:translate-x-full ease">
-                    sign up
-                  </span>
-                  <span className="relative invisible">sign up</span>
-                </a>
+                  <button className="button">signup</button>
+                </Link>
               </div>
             )}
           </div>
@@ -145,36 +137,48 @@ export default function Home() {
         <div className="h-screen w-4/5 m-auto">
           <div class="grid grid-cols-3 gap-8 place-items-center p-5">
             <div className="">
-              <span className="statistics static justify-center">{userCount}</span>
-              <p className="text-center font-light text-gray-500"> users reducing food wastage </p>
-              <img
-                alt=" "
-                src="/totalusers.png"
-                height={300}
-                width={300}
-                className="ml-3 p-4"
+              <span className="statistics static justify-center">
+                {userCount}
+              </span>
+              <p className="text-center font-light text-gray-500">
+                {" "}
+                users reducing food wastage{" "}
+              </p>
+              <Image
+                alt="/"
+                className="rounded-[15px]"
+                src={totalusers}
+                width="240px"
+                height="300px"
               />
             </div>
             <div className="">
-              <span className="statistics static justify-center">{carbonCount}</span>
-              <p className="text-center font-light text-gray-500"> carbon saved </p>
-              <img
-                alt=" "
-                src="/totalcarbon.png"
-                height={300}
-                width={300}
-                className="ml-3 p-4"
+              <span className="statistics static justify-center">
+                {carbonCount}
+              </span>
+              <p className="text-center font-light text-gray-500">
+                {" "}
+                carbon saved{" "}
+              </p>
+              <Image
+                alt="/"
+                className="rounded-[15px]"
+                src={totalcarbon}
+                width="240px"
+                height="300px"
               />
             </div>
             <div>
-              <span className="statistics static justify-center">${userCount}</span>
+              <span className="statistics static justify-center">
+                ${userCount}
+              </span>
               <p className="text-center font-light text-gray-500"> saved </p>
-              <img
-                alt=" "
-                src="/moneysaved.png"
-                height={300}
-                width={300}
-                className="ml-3 p-4"
+              <Image
+                alt="/"
+                className="rounded-[15px]"
+                src={totalusers}
+                width="240px"
+                height="300px"
               />
             </div>
           </div>

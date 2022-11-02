@@ -9,7 +9,7 @@ import Modal from "../components/DonateModal";
 import CheckOutModal from "../components/CheckOutModal";
 import { useRouter } from "next/router";
 
-export default function cart2() {
+export default function Cart2() {
   const [total, setTotal] = useState(0.0);
   const [totalCarbonSavings, setTotalCarbonSavings] = useState(0.0);
   const [items, setItems] = useState([]);

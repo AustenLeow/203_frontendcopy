@@ -3,7 +3,7 @@ import React from "react";
 import Layout from "../components/Layout";
 import { useState, useEffect} from "react";
 
-export default function marketplace() {
+export default function Marketplace() {
   const [items, setItems] = useState([]);
   const [state1, setState1] = useState([]);
   const [searchTerm, setSearchTerm] = useState([]);
