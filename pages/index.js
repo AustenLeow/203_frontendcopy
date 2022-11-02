@@ -99,14 +99,14 @@ export default function Home() {
                   href="/login"
                   className="relative inline-flex items-center justify-center py-1 px-8 overflow-hidden font-medium text-white transition duration-300 ease-out border-2 border-white rounded-full shadow-md group"
                 >
-                  <button className="button">login</button>
+                  <button className="home-button">login</button>
                 </Link>
                 <div className="p-4"></div>
                 <Link
                   href="/signup"
                   className="relative inline-flex items-center justify-center py-1 px-10 overflow-hidden font-medium text-white transition duration-300 ease-out border-2 border-white rounded-full shadow-md group"
                 >
-                  <button className="button">signup</button>
+                  <button className="home-button">signup</button>
                 </Link>
               </div>
             )}

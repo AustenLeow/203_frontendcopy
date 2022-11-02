@@ -50,7 +50,7 @@ a {
 }
 
 .button {
-  @apply text-[#A4B07E] rounded border-2 outline-none border-[#A4B07E] hover:border-[#4E632E] hover:focus:ring font-bold py-2 px-4 rounded hover:text-[#4E632E];
+  @apply text-[#A4B07E] rounded border-2 outline-none border-[#A4B07E] hover:border-[#4E632E] duration-300 hover:opacity-90 hover:focus:ring font-bold py-2 px-4 rounded hover:text-[#4E632E];
 }
 
 .product-description {
@@ -88,4 +88,9 @@ textarea {
 
 .statistics {
   @apply text-[#4E622E] text-7xl font-extrabold flex flex-col justify-center items-center;
+}
+
+.home-button {
+
+  @apply text-white rounded border-2 outline-none border-white duration-300 opacity-[50%] hover:opacity-90 hover:focus:ring font-bold py-2 px-4 rounded hover:text-white;
 }
