@@ -46,7 +46,7 @@ a {
 }
 
 .product-brand {
-  @apply text-lg;
+  @apply font-medium;
 }
 
 .button {
@@ -63,13 +63,8 @@ textarea {
   @apply w-full rounded border p-3 bg-[#F5F5F5] outline-none ring-[#A2A182] focus:ring my-2;
 }
 
-.card {
-  @apply p-6 block rounded-xl border border-gray-200 shadow-2xl;
-}
-
-
 .price-wrapper{
-  position: relative; 
+  
   display: inline-block;
 }
 

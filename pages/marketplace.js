@@ -116,14 +116,14 @@ export default function Marketplace() {
     <Layout title="marketplace">
       <div className="w-screen px-10">
         <div>
-          <h1 className="p-10 header-text text-center m-auto">Marketplace</h1>
+          <h1 className="p-10 header-text text-center m-auto"> 🛍 Marketplace</h1>
         </div>
 
         <div className="flex justify-center items-center">
           <input
-            className="border-2 border-gray-300 mt-10 mb-20 w-1/3"
+            className="border-2 border-gray-300 mb-20 w-1/3"
             type="text"
-            placeholder="Search for..."
+            placeholder="🔍 Search for..."
             onChange={(e) => {
               setSearchTerm(e.target.value);
             }}
@@ -158,28 +158,30 @@ export default function Marketplace() {
                 className="shadow-lg group container rounded-md bg-white max-w-sm flex justify-center items-center content-di"
                 key={item.id}
               >
-                <div className="w-full p-7">
+                <div className="w-full p-5">
                   <img
                     src={item.url}
                     className=" object-contain rounded-full -mt-5 md:-mt-20 ml-5 md:ml-4 h-40 w-40 shadow-xl border-[3px] border-white bg-white"
                   ></img>
                   <p className="p-2"></p>
-                  <div className="w-full group-hover:opacity-10">
+                  <div className="w-full group-hover:opacity-5 p-4">
                      
                         <p className="product-title">{item.itemName}</p>
                         <p className="product-brand">{item.brand}</p>
-                        <p className="mb-3"> 📍 {item.location}</p>
-                        <p className="mb-2">{item.type}</p>
-                      
+                        <p className="p-2"></p>
+                        <p className="mb-text-gray-700 font-base "> 📍 {item.location}</p>
+                        <p className="text-gray-700 font-light">{item.type}</p>
+                        <p className="mb-3"> 🗓 Expires on: {item.expiry_date}</p>
+                        <p className="p-2"></p>
 
                       <p className="text-2xl"> ${item.price}</p>
-                      <div className="price-wrapper">
-                        <div className="price-slash"></div>
+                      <div className=" price-wrapper">
+                        <div className=" price-slash"></div>
                         <p className="price">${item.originalprice}</p>
                       </div>
                       {/* <p>Quantity: {item.quantity}</p> */}
 
-                      <p className="mb-3"> 🗓 Expires on: {item.expiry_date}</p>
+
                       {/* <button
                         className="button w-full"
                         type="button"
@@ -190,7 +192,7 @@ export default function Marketplace() {
                    
                   </div>
                 </div>
-                <div className="absolute opacity-0 fd-sh group-hover:opacity-100 p-4">
+                <div className="absolute opacity-0 fd-sh group-hover:opacity-100 p-6 pt-20">
                   {item.carbon == 1 ? (
                     <div>
                       <p className="text-bold font-bold text-black tracking-wider leading-relaxed font-sans break-words">
