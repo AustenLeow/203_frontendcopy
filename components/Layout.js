@@ -16,7 +16,7 @@ export default function Layout({ title, children }) {
       setAuth(false);
     }
     console.log("Logged in");
-  });
+  }, []);
 
   return (
     <>

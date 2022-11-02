@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React from "react";
 import Layout from "../components/Layout";
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 
 export default function Marketplace() {
   const [items, setItems] = useState([]);
@@ -106,8 +106,10 @@ export default function Marketplace() {
       });
   }
 
-  function reload(){
-    setTimeout(function(){location.reload()}, 0);
+  function reload() {
+    setTimeout(function () {
+      location.reload();
+    }, 0);
   }
 
   return (
@@ -117,67 +119,75 @@ export default function Marketplace() {
           <h1 className="py-3 header-text text-center m-auto">Marketplace</h1>
         </div>
 
-      <div className="flex justify-center items-center">
-        <input
-        className="border-2 border-gray-300 mt-10 mb-20 w-1/3"
-        type="text"
-        placeholder="Search for..."
-        onChange={ (e) => {
-          setSearchTerm(e.target.value);
-        }}
-        />
+        <div className="flex justify-center items-center">
+          <input
+            className="border-2 border-gray-300 mt-10 mb-20 w-1/3"
+            type="text"
+            placeholder="Search for..."
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+            }}
+          />
         </div>
 
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3 lg:grid-cols-4">
-          {items.filter((item) => {
-            if (searchTerm == "") {
-              return item
-            } else if (item.type.toLowerCase().includes(searchTerm.toLowerCase())) {
-              return item
-            } else if (item.brand.toLowerCase().includes(searchTerm.toLowerCase())) {
-              return item
-            } else if (item.itemName.toLowerCase().includes(searchTerm.toLowerCase())) {
-              return item
-            } else if (item.location.toLowerCase().includes(searchTerm.toLowerCase())) {
-              return item
-            }
-          }).map((item) => (
-            <div className="card" key={item.id}>
-              <div>
-                <div className="max-w-4xl mx-auto">
-                  <img
-                    src={item.url}
-                    className=" object-contain rounded-full -mt-5 md:-mt-20 ml-5 md:ml-4 h-40 w-40 shadow-xl border-[3px] border-white bg-white"
-                  ></img>
-                </div>
+          {items
+            .filter((item) => {
+              if (searchTerm == "") {
+                return item;
+              } else if (
+                item.type.toLowerCase().includes(searchTerm.toLowerCase())
+              ) {
+                return item;
+              } else if (
+                item.brand.toLowerCase().includes(searchTerm.toLowerCase())
+              ) {
+                return item;
+              } else if (
+                item.itemName.toLowerCase().includes(searchTerm.toLowerCase())
+              ) {
+                return item;
+              } else if (
+                item.location.toLowerCase().includes(searchTerm.toLowerCase())
+              ) {
+                return item;
+              }
+            })
+            .map((item) => (
+              <div className="card" key={item.id}>
+                <div>
+                  <div className="max-w-4xl mx-auto">
+                    <img
+                      src={item.url}
+                      className=" object-contain rounded-full -mt-5 md:-mt-20 ml-5 md:ml-4 h-40 w-40 shadow-xl border-[3px] border-white bg-white"
+                    ></img>
+                  </div>
 
-                <div className="py-5">
-                  <p className="product-title">{item.itemName}</p>
-                  <p className="product-brand">{item.brand}</p>
-                  <p className="mb-3"> 📍 {item.location}</p>
-                  <p className="mb-2">{item.type}</p>
-                </div>
+                  <div className="py-5">
+                    <p className="product-title">{item.itemName}</p>
+                    <p className="product-brand">{item.brand}</p>
+                    <p className="mb-3"> 📍 {item.location}</p>
+                    <p className="mb-2">{item.type}</p>
+                  </div>
 
-                <p className="text-2xl">${item.price}</p>
-                <div className="price-wrapper">
-                  <div className="price-slash"></div>
-                  <p className="price">
-                    ${item.originalprice}
-                  </p>
+                  <p className="text-2xl">${item.price}</p>
+                  <div className="price-wrapper">
+                    <div className="price-slash"></div>
+                    <p className="price">${item.originalprice}</p>
+                  </div>
+                  {/* <p>Quantity: {item.quantity}</p> */}
+
+                  <p className="mb-3">Expires on: {item.expiry_date}</p>
+                  <button
+                    className="button w-full"
+                    type="button"
+                    onClick={() => addToCart(item) && reload()}
+                  >
+                    <div> Add to Cart</div>
+                  </button>
                 </div>
-                {/* <p>Quantity: {item.quantity}</p> */}
-                
-                <p className="mb-3">Expires on: {item.expiry_date}</p>
-                <button
-                  className="button w-full"
-                  type="button"
-                  onClick={() => addToCart(item) && reload()}
-                >
-                  <div> Add to Cart</div>
-                </button>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
     </Layout>

@@ -87,7 +87,7 @@ textarea {
 }
 
 .statistics {
-  @apply text-[#4E622E] text-7xl font-extrabold flex flex-col justify-center items-center;
+  @apply text-[#4E622E] text-6xl font-extrabold flex flex-col justify-center items-center ;
 }
 
 .home-button {
