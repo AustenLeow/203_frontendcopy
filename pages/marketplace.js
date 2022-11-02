@@ -155,48 +155,39 @@ export default function Marketplace() {
             })
             .map((item) => (
               <div
-                className="shadow-lg group container  rounded-md bg-white  max-w-sm flex justify-center items-center  mx-auto content-di"
+                className="shadow-lg group container rounded-md bg-white max-w-sm flex justify-center items-center content-di"
                 key={item.id}
               >
-                <div>
+                <div className="w-full p-7">
                   <img
                     src={item.url}
                     className=" object-contain rounded-full -mt-5 md:-mt-20 ml-5 md:ml-4 h-40 w-40 shadow-xl border-[3px] border-white bg-white"
                   ></img>
-                  <div className="w-full image-cover rounded-t-md py-8 px-4 rounded-b-md fd-cl group-hover:opacity-10">
-                    {/* <div class="p-2 m-4 w-16 h-16 text-center bg-gray-700 rounded-full text-white float-right fd-cl group-hover:opacity-25">
-                      <span class="text-base tracking-wide  font-bold border-b border-white font-sans">
-                        {" "}
-                        12
-                      </span>
-                      <span class="text-xs tracking-wide font-bold uppercase block font-sans">
-                        April
-                      </span>
-                    </div> */}
-                    <div>
-                      <div className="py-5">
+                  <p className="p-2"></p>
+                  <div className="w-full group-hover:opacity-10">
+                     
                         <p className="product-title">{item.itemName}</p>
                         <p className="product-brand">{item.brand}</p>
                         <p className="mb-3"> 📍 {item.location}</p>
                         <p className="mb-2">{item.type}</p>
-                      </div>
+                      
 
-                      <p className="text-2xl">${item.price}</p>
+                      <p className="text-2xl"> ${item.price}</p>
                       <div className="price-wrapper">
                         <div className="price-slash"></div>
                         <p className="price">${item.originalprice}</p>
                       </div>
                       {/* <p>Quantity: {item.quantity}</p> */}
 
-                      <p className="mb-3">Expires on: {item.expiry_date}</p>
-                      <button
+                      <p className="mb-3"> 🗓 Expires on: {item.expiry_date}</p>
+                      {/* <button
                         className="button w-full"
                         type="button"
                         onClick={() => addToCart(item) && reload()}
                       >
                         <div> Add to Cart</div>
-                      </button>
-                    </div>
+                      </button> */}
+                   
                   </div>
                 </div>
                 <div className="absolute opacity-0 fd-sh group-hover:opacity-100 p-4">
@@ -224,7 +215,7 @@ export default function Marketplace() {
                       className="button"
                       onClick={() => addToCart(item) && reload()}
                     >
-                      Add to cart
+                      🛒 Add to cart
                     </button>
                   </div>
                 </div>
