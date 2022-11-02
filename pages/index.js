@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import totalusers from ".././public/totalusers.png";
 import totalcarbon from ".././public/totalcarbon.png";
+import moneysaved from ".././public/moneysaved.png";
 import Link from "next/link";
 
 export default function Home() {
@@ -126,13 +127,13 @@ export default function Home() {
           <div className="flex flex-col items-start justify-center text-6xl font-bold text-[#4E632E]">
             why we do it
           </div>
-          <div className="flex flex-col items-center justify-center">
-            Our mission? To make sure good food gets eaten, not wasted. Every
-            day, delicious, fresh food goes to waste at cafés, restaurants,
-            hotels, shops and manufacturers - just because it hasn’t sold in
-            time. greenfoodforyou lets customers buy and collect Surprise Bags
-            of food - at a great price - directly from businesses
-          </div>
+          <blockquote class="text-2xl font-semibold italic text-center text-slate-900">
+            When you look
+            <span class="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-pink-500 relative inline-block">
+              <span class="relative text-white">food wastage</span>
+            </span>
+            all the time, people think that you're busy.
+          </blockquote>
         </div>
         <div className="h-screen w-4/5 m-auto">
           <div class="grid grid-cols-3 gap-8 place-items-center p-5">
@@ -153,9 +154,14 @@ export default function Home() {
               />
             </div>
             <div className="">
-              <span className="statistics static justify-center">
-                {carbonCount}
-              </span>
+              <div className="statistics static justify-center whitespace-nowrap">
+                <div>
+                  {carbonCount}
+                  <var>
+                    cm<sup>3</sup>
+                  </var>
+                </div>
+              </div>
               <p className="text-center font-light text-gray-500">
                 {" "}
                 carbon saved{" "}
@@ -169,10 +175,36 @@ export default function Home() {
               />
             </div>
             <div>
-              <span className="statistics static justify-center">
-                ${userCount}
-              </span>
+              <div className="statistics static justify-center whitespace-nowrap">
+                <div>
+                  <var>$</var>
+                  {userCount}
+                </div>
+              </div>
               <p className="text-center font-light text-gray-500"> saved </p>
+              <Image
+                alt="/"
+                className="rounded-[15px]"
+                src={moneysaved}
+                width="240px"
+                height="300px"
+              />
+            </div>
+          </div>
+        </div>
+        <div className="h-screen w-4/5 m-auto">
+          <div className="flex flex-col items-start justify-center text-6xl font-bold text-[#4E632E]">
+            why we do it
+          </div>
+          <div class="grid grid-cols-3 gap-8 place-items-center p-5">
+            <div className="">
+              <span className="statistics static justify-center">
+                {userCount}
+              </span>
+              <p className="text-center font-light text-gray-500">
+                {" "}
+                users reducing food wastage{" "}
+              </p>
               <Image
                 alt="/"
                 className="rounded-[15px]"
@@ -181,13 +213,44 @@ export default function Home() {
                 height="300px"
               />
             </div>
+            <div className="">
+              <div className="statistics static justify-center whitespace-nowrap">
+                <div>
+                  {carbonCount}
+                  <var>
+                    cm<sup>3</sup>
+                  </var>
+                </div>
+              </div>
+              <p className="text-center font-light text-gray-500">
+                {" "}
+                carbon saved{" "}
+              </p>
+              <Image
+                alt="/"
+                className="rounded-[15px]"
+                src={totalcarbon}
+                width="240px"
+                height="300px"
+              />
+            </div>
+            <div>
+              <div className="statistics static justify-center whitespace-nowrap">
+                <div>
+                  <var>$</var>
+                  {userCount}
+                </div>
+              </div>
+              <p className="text-center font-light text-gray-500"> saved </p>
+              <Image
+                alt="/"
+                className="rounded-[15px]"
+                src={moneysaved}
+                width="240px"
+                height="300px"
+              />
+            </div>
           </div>
-        </div>
-        <div className="h-screen w-3/5 m-auto grid grid-cols-1 lg:grid-cols-2">
-          <div className="flex flex-col items-start justify-center text-6xl font-bold text-[#4E632E]">
-            how does it work
-          </div>
-          <div className="flex flex-col items-center justify-center">cycle</div>
         </div>
       </Layout>
     </div>

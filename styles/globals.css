@@ -38,7 +38,7 @@ a {
 } */
 
 .header-text {
-  @apply text-[#4E632E] text-2xl px-3 font-bold;
+  @apply text-[#4E632E] text-4xl px-3 font-bold;
 }
 
 .product-title{
@@ -46,7 +46,7 @@ a {
 }
 
 .product-brand {
-  @apply text-lg;
+  @apply font-medium;
 }
 
 .button {
@@ -63,13 +63,8 @@ textarea {
   @apply w-full rounded border p-3 bg-[#F5F5F5] outline-none ring-[#A2A182] focus:ring my-2;
 }
 
-.card {
-  @apply p-6 block rounded-xl border border-gray-200 shadow-2xl;
-}
-
-
 .price-wrapper{
-  position: relative; 
+  
   display: inline-block;
 }
 
@@ -87,7 +82,7 @@ textarea {
 }
 
 .statistics {
-  @apply text-[#4E622E] text-7xl font-extrabold flex flex-col justify-center items-center;
+  @apply text-[#4E622E] text-6xl font-extrabold flex flex-col justify-center items-center ;
 }
 
 .home-button {

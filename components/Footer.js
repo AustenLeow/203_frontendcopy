@@ -8,7 +8,7 @@ export default function Footer() {
               className=" text-xl font-bold tracking-wider text-[#4E632E] hidden md:block"
               href="#"
             >
-              re:
+              greenfoodforyou
             </a>
             <article className="h-0 md:h-auto -mt-4 md:mt-0 overflow-hidden">
               <ul className="my-5 text-sm tracking-wide">
@@ -19,10 +19,10 @@ export default function Footer() {
                   <a href="#">our climate story</a>
                 </li>
                 <li className="my-3 tracking-wide no-underline hover:underline">
-                  <a href="#">how re: works</a>
+                  <a href="#">how we work</a>
                 </li>
                 <li className="my-3 tracking-wide no-underline hover:underline">
-                  <a href="#">how re: helps the planet</a>
+                  <a href="#">how we help the planet</a>
                 </li>
                 <li className="my-3 tracking-wide no-underline hover:underline">
                   <a href="#">careers</a>
@@ -67,10 +67,10 @@ export default function Footer() {
                   <a href="#">our partners</a>
                 </li>
                 <li className="my-3 tracking-wide no-underline hover:underline">
-                  <a href="#">become a partner</a>
+                  <a href="#">how we choose our partners</a>
                 </li>
                 <li className="my-3 tracking-wide no-underline hover:underline">
-                  <a href="#">how to be a partner</a>
+                  <a href="#">how our partners help the planet</a>
                 </li>
               </ul>
             </article>

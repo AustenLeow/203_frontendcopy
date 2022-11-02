@@ -203,7 +203,7 @@ export default function Navbar() {
             <NavLink to="/cart2">
               <div onClick={getCart}>cart
               {quantity == 0 ? ("") : (
-                <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
+                <span className="ml-1 hover:animate-pulse rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
                   {quantity}
                 </span>
               )}
