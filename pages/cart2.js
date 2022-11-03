@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout";
-// import Image from 'next/image';
-
 import {
   XCircleIcon,
   PlusCircleIcon,
@@ -9,10 +7,9 @@ import {
 } from "@heroicons/react/outline/esm";
 import Modal from "../components/DonateModal";
 import CheckOutModal from "../components/CheckOutModal";
-import { Router } from "next/router";
 import { useRouter } from "next/router";
 
-export default function cart2() {
+export default function Cart2() {
   const [total, setTotal] = useState(0.0);
   const [totalCarbonSavings, setTotalCarbonSavings] = useState(0.0);
   const [items, setItems] = useState([]);
@@ -58,7 +55,7 @@ export default function cart2() {
   }
 
   function getQuantity() {
-    fetch("http://localhost:8080/api/v1/cart", {
+    fetch("http://52.221.210.169:8080/api/v1/cart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -86,7 +83,7 @@ export default function cart2() {
   }
 
   function getTotal() {
-    fetch("http://localhost:8080/api/v1/cart", {
+    fetch("http://52.221.210.169:8080/api/v1/cart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -114,7 +111,7 @@ export default function cart2() {
   }
 
   function getTotalCarbonSavings() {
-    fetch("http://localhost:8080/api/v1/cart", {
+    fetch("http://52.221.210.169:8080/api/v1/cart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -142,7 +139,7 @@ export default function cart2() {
   }
 
   const countItemStock = (product) => {
-    fetch(`http://localhost:8080/api/v1/items/${product.id}`, {
+    fetch(`http://52.221.210.169:8080/api/v1/items/${product.id}`, {
       method: "GET",
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -173,7 +170,7 @@ export default function cart2() {
 
   async function updateItemQty(item, qty) {
     const response = await fetch(
-      `http://localhost:8080/api/v1/cart/update/${item.id}/${qty}`,
+      `http://52.221.210.169:8080/api/v1/cart/update/${item.id}/${qty}`,
       {
         method: "PUT",
         headers: {
@@ -198,7 +195,7 @@ export default function cart2() {
   }
 
   function getCart() {
-    fetch("http://localhost:8080/api/v1/cart", {
+    fetch("http://52.221.210.169:8080/api/v1/cart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -224,7 +221,7 @@ export default function cart2() {
   }
 
   const removeItemHandler = (product) => {
-    fetch(`http://localhost:8080/api/v1/cart/delete/${product.id}`, {
+    fetch(`http://52.221.210.169:8080/api/v1/cart/delete/${product.id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -280,8 +277,8 @@ export default function cart2() {
           </a>
         </div>
       ) : (
-        <div className="grid w-5/6 md:grid-cols-4 place-items-center">
-          <div className="overflow-x-auto md:col-span-3 pr-5 pl-20 ">
+        <div className="grid w-5/6 lg:grid-cols-4 place-items-center">
+          <div className="overflow-x-auto lg:col-span-3 pr-5 pl-20 ">
             <table className="table-auto min-w-full">
               <thead className=" uppercase">
                 <tr>
@@ -301,7 +298,7 @@ export default function cart2() {
                         <img
                           src={cartitem.item.url}
                           alt={cartitem.item.itemName}
-                          className="flex items-center"
+                          className="flex items-center rounded-full object-contain shadow-2xl"
                           width={100}
                           height={100}
                         ></img>
@@ -378,7 +375,7 @@ export default function cart2() {
               </tbody>
             </table>
           </div>
-          <div className="card h-4/5 place-items-center">
+          <div className="card h-place-items-center">
             <div>
               <div className="pb-3 text-xl font-bold"> 🛍 Total: ${total}</div>
             </div>

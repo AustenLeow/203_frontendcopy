@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import React, { useContext } from "react";
 import Layout from "../../components/Layout";
 import data from "../../utils/data";
-import Link from 'next/Link';
+import Link from "next/link";
 import Image from 'next/image';
 import { Store } from '../../utils/Store';
 // import { BiArrowBack } from "react-icons/bi";
@@ -36,7 +36,7 @@ export default function ProductScreen() {
   }
 
   async function addToCart() {
-    const response = await fetch('http://localhost:8080/api/cart', {
+    const response = await fetch('http://52.221.210.169:8080/api/cart', {
     method: 'POST',
     headers: {'Content-type': 'application/json'},
     body: JSON.stringify()

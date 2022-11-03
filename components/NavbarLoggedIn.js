@@ -112,7 +112,7 @@ export default function Navbar() {
   }
 
   async function getCart() {
-    fetch("http://localhost:8080/api/v1/cart", {
+    fetch("http://52.221.210.169:8080/api/v1/cart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -131,7 +131,7 @@ export default function Navbar() {
   }
 
   function getQuantity() {
-    fetch("http://localhost:8080/api/v1/cart", {
+    fetch("http://52.221.210.169:8080/api/v1/cart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -169,7 +169,7 @@ export default function Navbar() {
           src="/logoTransparentBg.png"
           height={95}
           width={95}
-          className="ml-4 p-3"
+          className="ml-4 p-5"
         />
           </a>
         </div>
@@ -203,7 +203,7 @@ export default function Navbar() {
             <NavLink to="/cart2">
               <div onClick={getCart}>cart
               {quantity == 0 ? ("") : (
-                <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
+                <span className="ml-1 hover:animate-pulse rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
                   {quantity}
                 </span>
               )}

@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
 import React from "react";
 import { useState } from "react";
-import Layout from "../components/layout";
-import Image from "next/image";
+import Layout from "../components/Layout.js";
+
 
 export default function SignUp() {
   const router = useRouter();
@@ -30,11 +30,11 @@ export default function SignUp() {
 
   const [isError, setIsError] = useState("");
 
-  const checkValidation=(e)=>{
-    if(document.getElementById(username).value < 3){
-      setIsError("Username should have a minimum of 3 characters");
-    }
-  }
+  // const checkValidation=(e)=>{
+  //   if(document.getElementById(username).value < 3){
+  //     setIsError("Username should have a minimum of 3 characters");
+  //   }
+  // }
 
   function handleChange(e) {
     const copy = { ...state };
@@ -97,7 +97,7 @@ export default function SignUp() {
   };
 
   async function handleSubmit() {
-    const res = await fetch("http://localhost:8080/api/auth/signup", {
+    const res = await fetch("http://52.221.210.169:8080/api/auth/signup", {
       method: "POST",
       body: JSON.stringify(state),
       headers: {

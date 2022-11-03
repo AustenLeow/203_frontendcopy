@@ -24,7 +24,7 @@ export default function ProductItem({ product }) {
 
 
   async function addToCart() {
-    fetch(`http://localhost:8080/api/v1/cart/add/${product.id}`, {
+    fetch(`http://52.221.210.169:8080/api/v1/cart/add/${product.id}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

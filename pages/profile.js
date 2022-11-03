@@ -1,6 +1,7 @@
-import { React, Fragment } from "react";
-import Layout from "../components/layout";
+import { React } from "react";
+import Layout from "../components/Layout.js";
 import { Tab } from "@headlessui/react";
+import UserProfile from "../components/UserProfile";
 
 export default function profile() {
   return (
@@ -8,7 +9,7 @@ export default function profile() {
       <div className="p-20">
       <div className="pb-20 flex flex-col justify-center items-center">
         <Tab.Group>
-          <div class="overflow-auto flex justify-center items-center max-w-3/5 border-b border-gray-200 dark:border-gray-700">
+          <div class="overflow flex justify-center items-center max-w-3/5 border-b border-gray-200 dark:border-gray-700">
             <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
               <Tab.List>
                 <Tab
@@ -23,9 +24,9 @@ export default function profile() {
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
-                      clip-rule="evenodd"
+                      clipRule="evenodd"
                     ></path>
                   </svg>
                   Profile
@@ -52,7 +53,7 @@ export default function profile() {
           </div>
           <div className="flex justify-center items-center w-3/5 p-8">
           <Tab.Panels>
-            <Tab.Panel>Content 1</Tab.Panel>
+            <Tab.Panel><UserProfile/></Tab.Panel>
             <Tab.Panel>Content 2</Tab.Panel>
             {/* ... */}
           </Tab.Panels>

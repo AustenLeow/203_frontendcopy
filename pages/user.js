@@ -1,39 +1,33 @@
-import { useRouter } from "next/router"
-import { useEffect, useState } from "react"
-import LayoutAuthenticated from "../components/layout-authenticated"
-
+import { useEffect, useState } from "react";
+import LayoutAuthenticated from "../components/layout-authenticated";
 
 export default function User() {
-  const [content, setContent] = useState(null)
-  const router = useRouter()
+  const [content, setContent] = useState(null);
 
   useEffect(() => {
-    fetchContent()
-  }, [])
-
+    fetchContent();
+  }, []);
 
   async function fetchContent() {
-    const res = await fetch('http://localhost:8080/api/auth/currentuser', {
+    const res = await fetch("http://52.221.210.169:8080/api/auth/currentuser", {
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer " + localStorage.getItem("token")
-      }
-    })
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    });
     if (res.ok) {
-      const text = await res.text()
-      setContent(text)
+      const text = await res.text();
+      setContent(text);
     }
-    console.log("test2")
+    console.log("test2");
   }
 
   return (
     <LayoutAuthenticated>
-      <div >
-        <h1 >User</h1>
-        {content && (
-          <p>{content}</p>
-        )}
+      <div>
+        <h1>User</h1>
+        {content && <p>{content}</p>}
       </div>
     </LayoutAuthenticated>
-  )
+  );
 }
