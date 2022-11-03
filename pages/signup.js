@@ -97,7 +97,7 @@ export default function SignUp() {
   };
 
   async function handleSubmit() {
-    const res = await fetch("http://localhost:8080/api/auth/signup", {
+    const res = await fetch("http://52.221.210.169:8080/api/auth/signup", {
       method: "POST",
       body: JSON.stringify(state),
       headers: {
