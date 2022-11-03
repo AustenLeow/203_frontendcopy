@@ -112,7 +112,7 @@ export default function Navbar() {
   }
 
   async function getCart() {
-    fetch("http://52.221.210.169:8080/api/v1/cart", {
+    fetch("http://localhost:8080/api/v1/cart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -131,7 +131,7 @@ export default function Navbar() {
   }
 
   function getQuantity() {
-    fetch("http://52.221.210.169:8080/api/v1/cart", {
+    fetch("http://localhost:8080/api/v1/cart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
