@@ -3,7 +3,6 @@ import React from "react";
 import { useState } from "react";
 import Layout from "../components/Layout.js";
 
-
 export default function SignUp() {
   const router = useRouter();
 
@@ -17,7 +16,7 @@ export default function SignUp() {
     email: "",
     password: "",
     confirmPassword: "",
-    answer: ""
+    answer: "",
   });
 
   const [error, setError] = useState({
@@ -25,7 +24,7 @@ export default function SignUp() {
     email: "",
     password: "",
     confirmPassword: "",
-    answer: ""
+    answer: "",
   });
 
   const [isError, setIsError] = useState("");
@@ -82,7 +81,7 @@ export default function SignUp() {
           }
           break;
 
-          case "hint":
+        case "hint":
           if (!value) {
             stateObj[name] = "Please enter your favourite food.";
           }
@@ -97,7 +96,7 @@ export default function SignUp() {
   };
 
   async function handleSubmit() {
-    const res = await fetch("http://52.221.210.169:8080/api/auth/signup", {
+    const res = await fetch("http://52.221.210.169:443/api/auth/signup", {
       method: "POST",
       body: JSON.stringify(state),
       headers: {
@@ -113,7 +112,9 @@ export default function SignUp() {
   return (
     <Layout title="signup">
       <div className="mx-auto w-4/5 py-16 md:py-32">
-        <div style={{ position: "absolute", top: 100, marginLeft: 250}}>{isError}</div>
+        <div style={{ position: "absolute", top: 100, marginLeft: 250 }}>
+          {isError}
+        </div>
         <div className="w-full flex items-center justify-center">
           <div className="w-full h-fit m-auto grid grid-cols-1 lg:grid-cols-2 ">
             <div className="flex flex-col items-center justify-center">
@@ -177,23 +178,21 @@ export default function SignUp() {
                   <span className="err">{error.confirmPassword}</span>
                 )}
                 <div className="text-left">
-                <h2 className="text-left font-semibold text-[#4E632E] pt-10">Setting your forget password hint</h2>
-                
-                  
+                  <h2 className="text-left font-semibold text-[#4E632E] pt-10">
+                    Setting your forget password hint
+                  </h2>
 
-                <input  
-                  type="text"
-                  name="answer"
-                  placeholder="Enter your favourite food as a child"
-                  value={state.answer}
-                  onChange={handleChange}
-                  autoComplete="off"
-                  onBlur={validateInput}
-                  className="input"
-                />
-                {error.answer && (
-                  <span className="err">{error.answer}</span>
-                )}
+                  <input
+                    type="text"
+                    name="answer"
+                    placeholder="Enter your favourite food as a child"
+                    value={state.answer}
+                    onChange={handleChange}
+                    autoComplete="off"
+                    onBlur={validateInput}
+                    className="input"
+                  />
+                  {error.answer && <span className="err">{error.answer}</span>}
                 </div>
               </div>
               <div className="px-3">

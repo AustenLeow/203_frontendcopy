@@ -6,20 +6,19 @@ export default function CheckOutModal({ visible, onClose }) {
   }
 
   function addOrder() {
-    const res = fetch("http://52.221.210.169:8080/api/v1/order/add", {
+    const res = fetch("http://52.221.210.169:443/api/v1/order/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
-    })
+    });
   }
 
-  function checkoutModal(){
+  function checkoutModal() {
     addOrder();
     onClose();
   }
-
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex items-center justify-center">
@@ -33,7 +32,7 @@ export default function CheckOutModal({ visible, onClose }) {
         </p>
         <p className="text-center text-base p-4">
           {" "}
-          * Please self collect your order within 2 days! {" "}
+          * Please self collect your order within 2 days!{" "}
         </p>
         <div className="flex flex-col items-center justify-center">
           <img

@@ -55,7 +55,7 @@ export default function Cart2() {
   }
 
   function getQuantity() {
-    fetch("http://52.221.210.169:8080/api/v1/cart", {
+    fetch("http://52.221.210.169:443/api/v1/cart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -83,7 +83,7 @@ export default function Cart2() {
   }
 
   function getTotal() {
-    fetch("http://52.221.210.169:8080/api/v1/cart", {
+    fetch("http://52.221.210.169:443/api/v1/cart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -111,7 +111,7 @@ export default function Cart2() {
   }
 
   function getTotalCarbonSavings() {
-    fetch("http://52.221.210.169:8080/api/v1/cart", {
+    fetch("http://52.221.210.169:443/api/v1/cart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -139,7 +139,7 @@ export default function Cart2() {
   }
 
   const countItemStock = (product) => {
-    fetch(`http://52.221.210.169:8080/api/v1/items/${product.id}`, {
+    fetch(`http://52.221.210.169:443/api/v1/items/${product.id}`, {
       method: "GET",
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -170,7 +170,7 @@ export default function Cart2() {
 
   async function updateItemQty(item, qty) {
     const response = await fetch(
-      `http://52.221.210.169:8080/api/v1/cart/update/${item.id}/${qty}`,
+      `http://52.221.210.169:443/api/v1/cart/update/${item.id}/${qty}`,
       {
         method: "PUT",
         headers: {
@@ -195,7 +195,7 @@ export default function Cart2() {
   }
 
   function getCart() {
-    fetch("http://52.221.210.169:8080/api/v1/cart", {
+    fetch("http://52.221.210.169:443/api/v1/cart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -221,7 +221,7 @@ export default function Cart2() {
   }
 
   const removeItemHandler = (product) => {
-    fetch(`http://52.221.210.169:8080/api/v1/cart/delete/${product.id}`, {
+    fetch(`http://52.221.210.169:443/api/v1/cart/delete/${product.id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -305,7 +305,10 @@ export default function Cart2() {
                         {cartitem.item.itemName}
                       </td>
                     </div>
-                    <td className="p-5 text-center"> 🌱 {cartitem.carbontotal}</td>
+                    <td className="p-5 text-center">
+                      {" "}
+                      🌱 {cartitem.carbontotal}
+                    </td>
                     {/* <td className="p-5 text-right">
                       <img
                         src={cartitem.item.url}

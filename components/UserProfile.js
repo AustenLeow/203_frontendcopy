@@ -19,7 +19,7 @@ export default function UserProfile() {
   }, []);
 
   async function getUser() {
-    const response = await fetch("http://52.221.210.169:8080/api/auth/currentuser", {
+    const response = await fetch("http://:8080/api/auth/currentuser", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

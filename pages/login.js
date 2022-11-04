@@ -29,7 +29,7 @@ export default function SignIn() {
 
   async function getItems() {
     // e.preventDefault();
-    fetch("http://52.221.210.169:8080/api/v1/items", {
+    fetch("http://52.221.210.169:443/api/v1/items", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -48,7 +48,7 @@ export default function SignIn() {
   }
 
   async function handleSubmit() {
-    const res = await fetch("http://52.221.210.169:8080/api/auth/signin", {
+    const res = await fetch("http://52.221.210.169:443/api/auth/signin", {
       method: "POST",
       body: JSON.stringify(state),
       headers: {
@@ -97,7 +97,7 @@ export default function SignIn() {
         <div className="w-full flex items-center justify-center">
           <div className="w-full h-fit m-auto grid grid-cols-1 lg:grid-cols-2 ">
             <div className="flex flex-col items-center justify-center">
-            <img
+              <img
                 alt=" "
                 src="/login.png"
                 height={300}
@@ -145,7 +145,6 @@ export default function SignIn() {
                   Sign up here
                 </a>
               </div>
-              
             </div>
           </div>
         </div>
