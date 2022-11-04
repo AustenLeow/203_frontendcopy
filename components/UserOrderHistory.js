@@ -1,9 +1,13 @@
 import { getClientBuildManifest } from "next/dist/client/route-loader";
 import { useState, useEffect, React } from "react";
 import { CheckIcon } from "@heroicons/react/outline/esm";
+import { useRouter } from "next/router";
+import PendingCollectionModal from "../components/PendingCollectionModal";
 
 export default function UserProfile() {
     const [orders, setOrders] = useState([]);
+    const [showPendingCollectionModal, setShowPendingCollectionModal] = useState(false);
+    const router = useRouter();
 
     useEffect(() => {
         getOrders();
@@ -26,6 +30,11 @@ export default function UserProfile() {
             .catch((err) => {
                 console.log(err);
             });
+    }
+
+    function handleOnClose() {
+        setShowPendingCollectionModal(false);
+        router.push("/profile");
     }
 
     return (
@@ -60,7 +69,12 @@ export default function UserProfile() {
                                     </button>
                                 ) : (
                                     order.donated == 0 ? (
-                                        "pending collection"
+                                        <div>
+                                            <button className="button" onClick={() => setShowPendingCollectionModal(true)}>
+                                                Pending
+                                            </button>
+                                            <PendingCollectionModal onClose={handleOnClose} visible={showPendingCollectionModal} />
+                                        </div>
                                     ) : ("-")
                                 )}
                             </td>
