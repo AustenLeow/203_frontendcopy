@@ -12,8 +12,9 @@ import Typewriter from "typewriter-effect";
 export default function Home() {
   const [auth, setAuth] = useState({ loggedIn: false });
   const [userCount, setUserCount] = useState(0);
-  const [carbonCount, setCarbonCount] = useState(0);
-  const [totalAmountSaved, setTotalAmountSaved] = useState(0);
+  const [orders, setOrders] = useState([]);
+  // const [carbonCount, setCarbonCount] = useState(0);
+  // const [totalAmountSaved, setTotalAmountSaved] = useState(0);
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -22,12 +23,47 @@ export default function Home() {
       setAuth(false);
     }
     fetchUserCount();
-    fetchCarbonCount();
-    getTotalAmountSaved();
+    getOrders();
+    // fetchCarbonCount();
+    // getTotalAmountSaved();
   }, []);
 
-  function fetchCarbonCount() {
-    fetch("http://localhost:8080/api/v1/ordertotalcarbon", {
+  // function fetchCarbonCount() {
+  //   fetch("http://localhost:8080/api/v1/ordertotalcarbon", {
+  //     method: "GET",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: "Bearer " + localStorage.getItem("token"),
+  //     },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((carbon) => {
+  //       setCarbonCount(carbon);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }
+
+  // function getTotalAmountSaved() {
+  //   fetch("http://localhost:8080/api/v1/ordertotalsaved", {
+  //     method: "GET",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: "Bearer " + localStorage.getItem("token"),
+  //     },
+  //   })
+  //   .then((response) => response.json())
+  //   .then((amount) => {
+  //     setTotalAmountSaved(amount);
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
+  // }
+
+  function getOrders() {
+    fetch("http://localhost:8080/api/v1/order", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -35,29 +71,56 @@ export default function Home() {
       },
     })
       .then((response) => response.json())
-      .then((carbon) => {
-        setCarbonCount(carbon);
+      .then((product) => {
+        setOrders(product);
+        console.log(state);
+        localStorage.setItem("orders", JSON.stringify(state));
       })
       .catch((err) => {
         console.log(err);
       });
   }
 
-  function getTotalAmountSaved() {
-    fetch("http://localhost:8080/api/v1/ordertotalsaved", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
-    .then((response) => response.json())
-    .then((amount) => {
-      setTotalAmountSaved(amount);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  function getCarbonSavings() {
+    let x = 0;
+    {
+      orders.map((order) => (
+        <div key={order.id}>
+          {order.cartItems.map((item) => (
+            x += item.carbontotal
+          ))}
+        </div>
+      ))
+    }
+    return x;
+  }
+
+  function getDiscountedExpenditure() {
+    let x = 0;
+    {
+      orders.map((order) => (
+        <div key={order.id}>
+          {order.cartItems.map((item) => (
+            x += (item.quantity * item.item.price)
+          ))}
+        </div>
+      ))
+    }
+    return x;
+  }
+
+  function getOriginalExpenditure() {
+    let x = 0;
+    {
+      orders.map((order) => (
+        <div key={order.id}>
+          {order.cartItems.map((item) => (
+            x += (item.quantity * item.item.originalprice)
+          ))}
+        </div>
+      ))
+    }
+    return x;
   }
 
   async function fetchUserCount() {
@@ -191,7 +254,7 @@ export default function Home() {
             <div className="">
               <div className="statistics static justify-center whitespace-nowrap">
                 <div>
-                  {carbonCount}
+                  {getCarbonSavings().toFixed(2)}
                   cm<span id="super">3</span>
                 </div>
               </div>
@@ -211,7 +274,7 @@ export default function Home() {
               <div className="statistics static justify-center whitespace-nowrap">
                 <div>
                   <var>$</var>
-                  {totalAmountSaved}
+                  {(getOriginalExpenditure() - getDiscountedExpenditure()).toFixed(2)}
                 </div>
               </div>
               <p className="text-center font-light text-gray-500"> saved </p>
@@ -245,7 +308,7 @@ export default function Home() {
                 foods at a cheaper price and know their carbon savings{" "}
               </p>
             </div>
-          
+
             <div className="">
               <img
                 alt="/"
