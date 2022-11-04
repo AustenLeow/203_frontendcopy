@@ -1,9 +1,13 @@
 import { getClientBuildManifest } from "next/dist/client/route-loader";
 import { useState, useEffect, React } from "react";
 import { CheckIcon } from "@heroicons/react/outline/esm";
+import { useRouter } from "next/router";
+import PendingCollectionModal from "../components/PendingCollectionModal";
 
 export default function UserProfile() {
     const [orders, setOrders] = useState([]);
+    const [showPendingCollectionModal, setShowPendingCollectionModal] = useState(false);
+    const router = useRouter();
 
     useEffect(() => {
         getOrders();
@@ -28,6 +32,25 @@ export default function UserProfile() {
             });
     }
 
+    function handleOnClose() {
+        setShowPendingCollectionModal(false);
+        router.push("/profile");
+    }
+
+    function getCarbonSavings() {
+        let x = 0;
+        {
+            orders.map((order) => (
+                <div>
+                    {order.cartItems.map((item) => (
+                        x += item.carbontotal
+                    ))}
+                </div>
+            ))
+        }
+        return x;
+    }
+
     return (
         <div>
             <table className="table-auto min-w-full">
@@ -39,6 +62,7 @@ export default function UserProfile() {
                         <th className="py-3 px-6">Subtotal</th>
                         <th className="py-3 px-6">Collected</th>
                         <th className="py-3 px-6">Donated</th>
+                        <th className="py-3 px-6">totalCarbon</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -60,7 +84,12 @@ export default function UserProfile() {
                                     </button>
                                 ) : (
                                     order.donated == 0 ? (
-                                        "pending collection"
+                                        <div>
+                                            <button className="button" onClick={() => setShowPendingCollectionModal(true)}>
+                                                Pending
+                                            </button>
+                                            <PendingCollectionModal onClose={handleOnClose} visible={showPendingCollectionModal} />
+                                        </div>
                                     ) : ("-")
                                 )}
                             </td>
@@ -71,6 +100,7 @@ export default function UserProfile() {
                                     </button>
                                 ) : ("-")}
                             </td>
+                            <td className="p-5 text-center">{getCarbonSavings()}</td>
                         </tr>
                     ))}
                 </tbody>

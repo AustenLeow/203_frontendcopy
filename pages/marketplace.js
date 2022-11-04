@@ -21,7 +21,7 @@ export default function Marketplace() {
   // }
 
   async function getCart() {
-    fetch("http://localhost:8080/api/v1/cart", {
+    fetch("http://52.221.188.170:8080/api/v1/cart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -39,8 +39,7 @@ export default function Marketplace() {
       });
   }
   async function getCart2() {
-
-    fetch("http://localhost:8080/api/v1/cart", {
+    fetch("http://52.221.188.170:8080/api/v1/cart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -66,8 +65,7 @@ export default function Marketplace() {
   // }
 
   function getItems() {
-
-    fetch("http://localhost:8080/api/v1/items", {
+    fetch("http://52.221.188.170:8080/api/v1/items", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -92,8 +90,7 @@ export default function Marketplace() {
   // }
 
   async function addToCart(item) {
-
-    fetch(`http://localhost:8080/api/v1/cart/add/${item.id}`, {
+    fetch(`http://52.221.188.170:8080/api/v1/cart/add/${item.id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -205,7 +202,7 @@ export default function Marketplace() {
                         🌎 This item has {item.carbon} carbon saving
                       </p>
                       <p class="text-bold font-bold text-black tracking-wider leading-relaxed font-sans break-words">
-                        🤑 You will save ${item.originalprice - item.price}
+                        🤑 You will save ${(item.originalprice - item.price).toFixed(2)}
                       </p>
                     </div>
                   ) : (
@@ -214,7 +211,7 @@ export default function Marketplace() {
                         🌎 This item has {item.carbon} carbon savings
                       </p>
                       <p class="text-bold font-bold text-black tracking-wider leading-relaxed font-sans break-words">
-                        🤑 You will save ${item.originalprice - item.price}
+                        🤑 You will save ${(item.originalprice - item.price).toFixed(2)}
                       </p>
                     </div>
                   )}
