@@ -205,7 +205,7 @@ export default function Marketplace() {
                         🌎 This item has {item.carbon} carbon saving
                       </p>
                       <p class="text-bold font-bold text-black tracking-wider leading-relaxed font-sans break-words">
-                        🤑 You will save ${item.originalprice - item.price}
+                        🤑 You will save ${(item.originalprice - item.price).toFixed(2)}
                       </p>
                     </div>
                   ) : (
@@ -214,7 +214,7 @@ export default function Marketplace() {
                         🌎 This item has {item.carbon} carbon savings
                       </p>
                       <p class="text-bold font-bold text-black tracking-wider leading-relaxed font-sans break-words">
-                        🤑 You will save ${item.originalprice - item.price}
+                        🤑 You will save ${(item.originalprice - item.price).toFixed(2)}
                       </p>
                     </div>
                   )}

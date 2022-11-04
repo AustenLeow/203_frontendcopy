@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 
 export default function UserProfile() {
   const router = useRouter();
+  const [orders, setOrders] = useState([]);
   const [user, setUser] = useState({
     username: "",
     email: "",
@@ -16,7 +17,41 @@ export default function UserProfile() {
 
   useEffect(() => {
     getUser();
+    getOrders();
   }, []);
+
+  function getOrders() {
+    fetch("http://localhost:8080/api/v1/order", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((response) => response.json())
+      .then((product) => {
+        setOrders(product);
+        console.log(state);
+        localStorage.setItem("orders", JSON.stringify(state));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function getCarbonSavings() {
+    let x = 0;
+    {
+      orders.map((order) => (
+        <div>
+          {order.cartItems.map((item) => (
+            x += item.carbontotal
+          ))}
+        </div>
+      ))
+    }
+    return x;
+  }
 
   async function getUser() {
     const response = await fetch("http://localhost:8080/api/auth/currentuser", {
@@ -62,7 +97,7 @@ export default function UserProfile() {
             </span>{" "}
             dollars and{" "}
             <span className="text-lime-700 text-md font-bold">
-              {user.carbonsaved}{" "}
+              {getCarbonSavings().toFixed(2)}{" "}
             </span>{" "}
             cm<sup>3</sup> of carbon!
           </p>
