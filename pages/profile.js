@@ -2,6 +2,7 @@ import { React } from "react";
 import Layout from "../components/Layout.js";
 import { Tab } from "@headlessui/react";
 import UserProfile from "../components/UserProfile";
+import UserOrderHistory from "../components/UserOrderHistory";
 
 export default function profile() {
   return (
@@ -54,7 +55,7 @@ export default function profile() {
           <div className="flex justify-center items-center w-3/5 p-8">
           <Tab.Panels>
             <Tab.Panel><UserProfile/></Tab.Panel>
-            <Tab.Panel>Content 2</Tab.Panel>
+            <Tab.Panel><UserOrderHistory/></Tab.Panel>
             {/* ... */}
           </Tab.Panels>
           </div>

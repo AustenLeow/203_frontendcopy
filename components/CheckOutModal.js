@@ -6,7 +6,9 @@ export default function CheckOutModal({ visible, onClose }) {
   }
 
   function addOrder() {
-    const res = fetch("http://52.221.210.169:443/api/v1/order/add", {
+
+    const res = fetch("http://localhost:8080/api/v1/order/add", {
+
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -55,7 +55,7 @@ export default function Cart2() {
   }
 
   function getQuantity() {
-    fetch("http://52.221.210.169:443/api/v1/cart", {
+    fetch("http://localhost:8080/api/v1/cart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -83,7 +83,7 @@ export default function Cart2() {
   }
 
   function getTotal() {
-    fetch("http://52.221.210.169:443/api/v1/cart", {
+    fetch("http://localhost:8080/api/v1/cart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -111,7 +111,7 @@ export default function Cart2() {
   }
 
   function getTotalCarbonSavings() {
-    fetch("http://52.221.210.169:443/api/v1/cart", {
+    fetch("http://localhost:8080/api/v1/cart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -139,7 +139,7 @@ export default function Cart2() {
   }
 
   const countItemStock = (product) => {
-    fetch(`http://52.221.210.169:443/api/v1/items/${product.id}`, {
+    fetch(`http://localhost:8080/api/v1/items/${product.id}`, {
       method: "GET",
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -170,7 +170,7 @@ export default function Cart2() {
 
   async function updateItemQty(item, qty) {
     const response = await fetch(
-      `http://52.221.210.169:443/api/v1/cart/update/${item.id}/${qty}`,
+      `http://localhost:8080/api/v1/cart/update/${item.id}/${qty}`,
       {
         method: "PUT",
         headers: {
@@ -195,7 +195,8 @@ export default function Cart2() {
   }
 
   function getCart() {
-    fetch("http://52.221.210.169:443/api/v1/cart", {
+
+    fetch("http://localhost:8080/api/v1/cart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -221,7 +222,7 @@ export default function Cart2() {
   }
 
   const removeItemHandler = (product) => {
-    fetch(`http://52.221.210.169:443/api/v1/cart/delete/${product.id}`, {
+    fetch(`http://localhost:8080/api/v1/cart/delete/${product.id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -283,9 +284,9 @@ export default function Cart2() {
               <thead className=" uppercase">
                 <tr>
                   <th className="py-3 px-6">Item</th>
-                  <th className="py-3 px-6">Carbon savings</th>
                   <th className="py-3 px-6">Price</th>
                   <th className="py-3 px-6">Quantity</th>
+                  <th className="py-3 px-6">Carbon savings</th>
                   <th className="py-3 px-6">Subtotal</th>
                   <th className="py-3 px-6">Delete</th>
                 </tr>
@@ -367,6 +368,7 @@ export default function Cart2() {
                                             </select>
                                         </td> */}
 
+                    <td className="p-5 text-center"> 🌱 {cartitem.carbontotal}cm<sup>3</sup></td>
                     <td className="p-5 text-center">${cartitem.subtotal}</td>
                     <td className="p-6 text-center">
                       <button onClick={() => removeItemHandler(cartitem.item)}>
@@ -385,7 +387,7 @@ export default function Cart2() {
             <div>
               <div className="pb-3 text-xl font-bold">
                 {" "}
-                🌱 Total Carbon Savings: {totalCarbonSavings}{" "}
+                🌱 Total Carbon Savings: {totalCarbonSavings}cm<sup>3</sup>{" "}
               </div>
             </div>
             <div>

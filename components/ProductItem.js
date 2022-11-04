@@ -22,8 +22,8 @@ export default function ProductItem({ product }) {
   };
 
   async function addToCart() {
-    fetch(`http://52.221.210.169:443/api/v1/cart/add/${product.id}`, {
-      method: "POST",
+    fetch(`http://localhost:8080/api/v1/cart/add/${product.id}`, {
+      method: 'POST',
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + localStorage.getItem("token"),

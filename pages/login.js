@@ -29,7 +29,8 @@ export default function SignIn() {
 
   async function getItems() {
     // e.preventDefault();
-    fetch("http://52.221.210.169:443/api/v1/items", {
+
+    fetch("http://localhost:8080/api/v1/items", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -48,7 +49,7 @@ export default function SignIn() {
   }
 
   async function handleSubmit() {
-    const res = await fetch("http://52.221.210.169:443/api/auth/signin", {
+    const res = await fetch("http://localhost:8080/api/auth/signin", {
       method: "POST",
       body: JSON.stringify(state),
       headers: {

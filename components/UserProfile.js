@@ -19,7 +19,7 @@ export default function UserProfile() {
   }, []);
 
   async function getUser() {
-    const response = await fetch("http://:8080/api/auth/currentuser", {
+    const response = await fetch("http://localhost:8080/api/auth/currentuser", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -64,7 +64,7 @@ export default function UserProfile() {
             <span className="text-lime-700 text-md font-bold">
               {user.carbonsaved}{" "}
             </span>{" "}
-            pounds of carbon!
+            cm<sup>3</sup> of carbon!
           </p>
 
           <div className="flex flex-col px-16 mt-3 text-center">
