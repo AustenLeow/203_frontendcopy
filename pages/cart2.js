@@ -138,6 +138,8 @@ export default function Cart2() {
       });
   }
 
+
+
   const countItemStock = (product) => {
     fetch(`http://localhost:8080/api/v1/items/${product.id}`, {
       method: "GET",

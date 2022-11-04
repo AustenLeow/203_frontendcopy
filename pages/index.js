@@ -13,6 +13,7 @@ export default function Home() {
   const [auth, setAuth] = useState({ loggedIn: false });
   const [userCount, setUserCount] = useState(0);
   const [carbonCount, setCarbonCount] = useState(0);
+  const [totalAmountSaved, setTotalAmountSaved] = useState(0);
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -22,6 +23,7 @@ export default function Home() {
     }
     fetchUserCount();
     fetchCarbonCount();
+    getTotalAmountSaved();
   }, []);
 
   function fetchCarbonCount() {
@@ -35,11 +37,27 @@ export default function Home() {
       .then((response) => response.json())
       .then((carbon) => {
         setCarbonCount(carbon);
-        console.log(carbon);
       })
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  function getTotalAmountSaved() {
+    fetch("http://localhost:8080/api/v1/ordertotalsaved", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+    .then((response) => response.json())
+    .then((amount) => {
+      setTotalAmountSaved(amount);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   }
 
   async function fetchUserCount() {
@@ -193,7 +211,7 @@ export default function Home() {
               <div className="statistics static justify-center whitespace-nowrap">
                 <div>
                   <var>$</var>
-                  {userCount}
+                  {totalAmountSaved}
                 </div>
               </div>
               <p className="text-center font-light text-gray-500"> saved </p>
