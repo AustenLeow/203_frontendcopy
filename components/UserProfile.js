@@ -64,7 +64,7 @@ export default function UserProfile() {
             <span className="text-lime-700 text-md font-bold">
               {user.carbonsaved}{" "}
             </span>{" "}
-            pounds of carbon!
+            cm<sup>3</sup> of carbon!
           </p>
 
           <div className="flex flex-col px-16 mt-3 text-center">

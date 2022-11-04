@@ -283,9 +283,9 @@ export default function Cart2() {
               <thead className=" uppercase">
                 <tr>
                   <th className="py-3 px-6">Item</th>
-                  <th className="py-3 px-6">Carbon savings</th>
                   <th className="py-3 px-6">Price</th>
                   <th className="py-3 px-6">Quantity</th>
+                  <th className="py-3 px-6">Carbon savings</th>
                   <th className="py-3 px-6">Subtotal</th>
                   <th className="py-3 px-6">Delete</th>
                 </tr>
@@ -305,7 +305,6 @@ export default function Cart2() {
                         {cartitem.item.itemName}
                       </td>
                     </div>
-                    <td className="p-5 text-center"> 🌱 {cartitem.carbontotal}</td>
                     {/* <td className="p-5 text-right">
                       <img
                         src={cartitem.item.url}
@@ -364,6 +363,7 @@ export default function Cart2() {
                                             </select>
                                         </td> */}
 
+                    <td className="p-5 text-center"> 🌱 {cartitem.carbontotal}cm<sup>3</sup></td>
                     <td className="p-5 text-center">${cartitem.subtotal}</td>
                     <td className="p-6 text-center">
                       <button onClick={() => removeItemHandler(cartitem.item)}>
@@ -382,7 +382,7 @@ export default function Cart2() {
             <div>
               <div className="pb-3 text-xl font-bold">
                 {" "}
-                🌱 Total Carbon Savings: {totalCarbonSavings}{" "}
+                🌱 Total Carbon Savings: {totalCarbonSavings}cm<sup>3</sup>{" "}
               </div>
             </div>
             <div>
