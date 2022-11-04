@@ -36,8 +36,7 @@ export default function ProductScreen() {
   };
 
   async function addToCart() {
-
-    const response = await fetch('http://localhost:8080/api/cart', {
+    const response = await fetch('http://54.251.10.65:443/api/cart', {
     method: 'POST',
     headers: {'Content-type': 'application/json'},
     body: JSON.stringify()
