@@ -25,7 +25,7 @@ export default function Home() {
   }, []);
 
   function fetchCarbonCount() {
-    fetch("http://52.221.188.170:8080/api/v1/ordertotalcarbon", {
+    fetch("http://localhost:8080/api/v1/ordertotalcarbon", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -43,7 +43,7 @@ export default function Home() {
   }
 
   async function fetchUserCount() {
-    const res = await fetch("http://52.221.188.170:8080/api/v1/totalusers", {
+    const res = await fetch("http://localhost:8080/api/v1/totalusers", {
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + localStorage.getItem("token"),

@@ -51,6 +51,24 @@ export default function UserProfile() {
         return x;
     }
 
+    function reload() {
+        setTimeout(function () {
+          location.reload();
+        }, 0);
+      }
+
+    function collected(order) {
+
+        const res = fetch(`http://localhost:8080/api/v1/order/${order.id}/collected`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        });
+        reload();
+      }
+
     return (
         <div>
             <table className="table-auto min-w-full">
@@ -85,8 +103,8 @@ export default function UserProfile() {
                                 ) : (
                                     order.donated == 0 ? (
                                         <div>
-                                            <button className="button" onClick={() => setShowPendingCollectionModal(true)}>
-                                                Pending
+                                            <button className="button" onClick={() => collected(order) }>          
+                                                Click to confirm collected.
                                             </button>
                                             <PendingCollectionModal onClose={handleOnClose} visible={showPendingCollectionModal} />
                                         </div>
