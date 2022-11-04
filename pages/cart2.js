@@ -9,7 +9,7 @@ import Modal from "../components/DonateModal";
 import CheckOutModal from "../components/CheckOutModal";
 import { useRouter } from "next/router";
 
-export default function Cart2() {
+export default function cart2() {
   const [total, setTotal] = useState(0.0);
   const [totalCarbonSavings, setTotalCarbonSavings] = useState(0.0);
   const [items, setItems] = useState([]);
@@ -55,7 +55,7 @@ export default function Cart2() {
   }
 
   function getQuantity() {
-    fetch("http:// localhost:8080/api/v1/cart", {
+    fetch("http://localhost:8080/api/v1/cart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -73,7 +73,7 @@ export default function Cart2() {
           (cartitem) => (x += cartitem.quantity)
           // console.log(total)
         );
-        //  console.log(x);
+         console.log(x);
         setQuantity(x);
         return quantity;
       })
@@ -83,7 +83,7 @@ export default function Cart2() {
   }
 
   function getTotal() {
-    fetch("http:// localhost:8080/api/v1/cart", {
+    fetch("http://localhost:8080/api/v1/cart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -111,7 +111,7 @@ export default function Cart2() {
   }
 
   function getTotalCarbonSavings() {
-    fetch("http:// localhost:8080/api/v1/cart", {
+    fetch("http://localhost:8080/api/v1/cart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -139,7 +139,7 @@ export default function Cart2() {
   }
 
   const countItemStock = (product) => {
-    fetch(`http:// localhost:8080/api/v1/items/${product.id}`, {
+    fetch(`http://localhost:8080/api/v1/items/${product.id}`, {
       method: "GET",
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -170,7 +170,7 @@ export default function Cart2() {
 
   async function updateItemQty(item, qty) {
     const response = await fetch(
-      `http:// localhost:8080/api/v1/cart/update/${item.id}/${qty}`,
+      `http://localhost:8080/api/v1/cart/update/${item.id}/${qty}`,
       {
         method: "PUT",
         headers: {
@@ -195,7 +195,7 @@ export default function Cart2() {
   }
 
   function getCart() {
-    fetch("http:// localhost:8080/api/v1/cart", {
+    fetch("http://localhost:8080/api/v1/cart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -221,7 +221,7 @@ export default function Cart2() {
   }
 
   const removeItemHandler = (product) => {
-    fetch(`http:// localhost:8080/api/v1/cart/delete/${product.id}`, {
+    fetch(`http://localhost:8080/api/v1/cart/delete/${product.id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -350,24 +350,7 @@ export default function Cart2() {
                         <PlusCircleIcon className="h-5 w-5"></PlusCircleIcon>
                       </button>
                     </td>
-
-                    {/* <td className='p-5 text-center'>
-                                            <select
-                                                value={cartitem.quantity}
-                                                onChange={(e) =>
-                                                    //updateCartHandler(item, e.target.value)
-                                                     updateItemQty(cartitem.item, e.target.quantity)
-                                                }
-                                            >
-                                                {[...Array(items.item).keys()].map((x) => (
-                                                    <option key={x + 1} value={x + 1}>
-                                                        {x + 1}
-                                                    </option>
-                                                ))}
-                                            </select>
-                                        </td> */}
-
-                    <td className="p-5 text-center"> 🌱 {cartitem.carbontotal}cm<sup>3</sup></td>
+                    <td className="p-5 text-center"> 🌱 {cartitem.carbontotal}g<sup></sup></td>
                     <td className="p-5 text-center">${cartitem.subtotal}</td>
                     <td className="p-6 text-center">
                       <button onClick={() => removeItemHandler(cartitem.item)}>
@@ -386,7 +369,7 @@ export default function Cart2() {
             <div>
               <div className="pb-3 text-xl font-bold">
                 {" "}
-                🌱 Total Carbon Savings: {totalCarbonSavings}cm<sup>3</sup>{" "}
+                🌱 Total Carbon Savings: {totalCarbonSavings}g<sup></sup>{" "}
               </div>
             </div>
             <div>

@@ -132,7 +132,7 @@ export default function Navbar() {
   }
 
   function getQuantity() {
-    fetch("http://localhost:8080:8080/api/v1/cart", {
+    fetch("http://localhost:8080/api/v1/cart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
