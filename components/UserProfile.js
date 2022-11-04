@@ -53,6 +53,34 @@ export default function UserProfile() {
     return x;
   }
 
+  function getDiscountedExpenditure() {
+    let x = 0;
+    {
+      orders.map((order) => (
+        <div key={order.id}>
+          {order.cartItems.map((item) => (
+            x += (item.quantity * item.item.price)
+          ))}
+        </div>
+      ))
+    }
+    return x;
+  }
+
+  function getOriginalExpenditure() {
+    let x = 0;
+    {
+      orders.map((order) => (
+        <div key={order.id}>
+          {order.cartItems.map((item) => (
+            x += (item.quantity * item.item.originalprice)
+          ))}
+        </div>
+      ))
+    }
+    return x;
+  }
+
   async function getUser() {
     const response = await fetch("http://localhost:8080/api/auth/currentuser", {
       method: "GET",
@@ -93,7 +121,7 @@ export default function UserProfile() {
             You have saved a total of {" "}
             <span className="text-lime-700 text-md font-bold">
               {" "}
-              ${user.moneysaved}{" "}
+              ${(getOriginalExpenditure() - getDiscountedExpenditure()).toFixed(2)}{" "}
             </span>{" "}
             dollars and{" "}
             <span className="text-lime-700 text-md font-bold">
