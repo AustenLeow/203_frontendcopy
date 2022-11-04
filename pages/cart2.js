@@ -380,7 +380,7 @@ export default function Cart2() {
               </tbody>
             </table>
           </div>
-          <div className="card h-place-items-center">
+          <div className="p-6 block rounded-xl border border-gray-200 shadow-2xl h-place-items-center">
             <div>
               <div className="pb-3 text-xl font-bold"> 🛍 Total: ${total}</div>
             </div>
