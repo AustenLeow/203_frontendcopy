@@ -62,7 +62,7 @@ export default function UserProfile() {
                         <th className="py-3 px-6">Subtotal</th>
                         <th className="py-3 px-6">Collected</th>
                         <th className="py-3 px-6">Donated</th>
-                        <th className="py-3 px-6">totalCarbon</th>
+                        {/* <th className="py-3 px-6">totalCarbon</th> */}
                     </tr>
                 </thead>
                 <tbody>
@@ -100,7 +100,7 @@ export default function UserProfile() {
                                     </button>
                                 ) : ("-")}
                             </td>
-                            <td className="p-5 text-center">{getCarbonSavings()}</td>
+                            {/* <td className="p-5 text-center">{getCarbonSavings()}</td> */}
                         </tr>
                     ))}
                 </tbody>
