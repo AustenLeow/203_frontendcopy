@@ -195,6 +195,7 @@ export default function Cart2() {
   }
 
   function getCart() {
+
     fetch("http://localhost:8080/api/v1/cart", {
       method: "GET",
       headers: {
@@ -305,6 +306,10 @@ export default function Cart2() {
                         {cartitem.item.itemName}
                       </td>
                     </div>
+                    <td className="p-5 text-center">
+                      {" "}
+                      🌱 {cartitem.carbontotal}
+                    </td>
                     {/* <td className="p-5 text-right">
                       <img
                         src={cartitem.item.url}

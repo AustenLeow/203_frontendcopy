@@ -39,6 +39,7 @@ export default function Marketplace() {
       });
   }
   async function getCart2() {
+
     fetch("http://localhost:8080/api/v1/cart", {
       method: "GET",
       headers: {
@@ -65,6 +66,7 @@ export default function Marketplace() {
   // }
 
   function getItems() {
+
     fetch("http://localhost:8080/api/v1/items", {
       method: "GET",
       headers: {
@@ -90,6 +92,7 @@ export default function Marketplace() {
   // }
 
   async function addToCart(item) {
+
     fetch(`http://localhost:8080/api/v1/cart/add/${item.id}`, {
       method: "POST",
       headers: {
@@ -116,7 +119,10 @@ export default function Marketplace() {
     <Layout title="marketplace">
       <div className="w-screen px-10">
         <div>
-          <h1 className="p-10 header-text text-center m-auto"> 🛍 Marketplace</h1>
+          <h1 className="p-10 header-text text-center m-auto">
+            {" "}
+            🛍 Marketplace
+          </h1>
         </div>
 
         <div className="flex justify-center items-center">
@@ -165,31 +171,31 @@ export default function Marketplace() {
                   ></img>
                   <p className="p-2"></p>
                   <div className="w-full group-hover:opacity-5 p-4">
-                     
-                        <p className="product-title">{item.itemName}</p>
-                        <p className="product-brand">{item.brand}</p>
-                        <p className="p-2"></p>
-                        <p className="mb-text-gray-700 font-base "> 📍 {item.location}</p>
-                        <p className="text-gray-700 font-light">{item.type}</p>
-                        <p className="mb-3"> 🗓 Expires on: {item.expiry_date}</p>
-                        <p className="p-2"></p>
+                    <p className="product-title">{item.itemName}</p>
+                    <p className="product-brand">{item.brand}</p>
+                    <p className="p-2"></p>
+                    <p className="mb-text-gray-700 font-base ">
+                      {" "}
+                      📍 {item.location}
+                    </p>
+                    <p className="text-gray-700 font-light">{item.type}</p>
+                    <p className="mb-3"> 🗓 Expires on: {item.expiry_date}</p>
+                    <p className="p-2"></p>
 
-                      <p className="text-2xl"> ${item.price}</p>
-                      <div className=" price-wrapper">
-                        <div className=" price-slash"></div>
-                        <p className="price">${item.originalprice}</p>
-                      </div>
-                      {/* <p>Quantity: {item.quantity}</p> */}
+                    <p className="text-2xl"> ${item.price}</p>
+                    <div className=" price-wrapper">
+                      <div className=" price-slash"></div>
+                      <p className="price">${item.originalprice}</p>
+                    </div>
+                    {/* <p>Quantity: {item.quantity}</p> */}
 
-
-                      {/* <button
+                    {/* <button
                         className="button w-full"
                         type="button"
                         onClick={() => addToCart(item) && reload()}
                       >
                         <div> Add to Cart</div>
                       </button> */}
-                   
                   </div>
                 </div>
                 <div className="absolute opacity-0 fd-sh group-hover:opacity-100 p-6 pt-20">
@@ -205,10 +211,10 @@ export default function Marketplace() {
                   ) : (
                     <div>
                       <p className="text-bold font-bold text-black tracking-wider leading-relaxed font-sans break-words">
-                      🌎 This item has {item.carbon} carbon savings
+                        🌎 This item has {item.carbon} carbon savings
                       </p>
                       <p class="text-bold font-bold text-black tracking-wider leading-relaxed font-sans break-words">
-                      🤑 You will save ${item.originalprice - item.price}
+                        🤑 You will save ${item.originalprice - item.price}
                       </p>
                     </div>
                   )}

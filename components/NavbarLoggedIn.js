@@ -15,8 +15,9 @@ function NavLink({ to, children }) {
 function MobileNav({ open, setOpen }) {
   return (
     <div
-      className={`absolute left-0 h-screen w-screen bg-[#F5F5F5] transform ${open ? "-translate-x-0" : "-translate-x-full"
-        } transition-transform duration-300 ease-in-out filter drop-shadow-md `}
+      className={`absolute left-0 h-screen w-screen bg-[#F5F5F5] transform ${
+        open ? "-translate-x-0" : "-translate-x-full"
+      } transition-transform duration-300 ease-in-out filter drop-shadow-md `}
     >
       <div className="flex items-center justify-center filter drop-shadow-md h-20">
         {" "}
@@ -145,10 +146,11 @@ export default function Navbar() {
         let x = 0;
         console.log(product);
         localStorage.setItem("myCart", JSON.stringify(product));
-        product.map((cartitem) => (
-          x += cartitem.quantity
-          // console.log(total)
-        ));
+        product.map(
+          (cartitem) =>
+            (x += cartitem.quantity)
+            // console.log(total)
+        );
         //  console.log(x);
         setQuantity(x);
         return quantity;
@@ -164,13 +166,13 @@ export default function Navbar() {
         <MobileNav open={open} setOpen={setOpen} />
         <div className="w-3/4 flex items-center">
           <a className="text-4xl font-semibold text-[#4E632E] " href="/">
-          <img
-          alt=" "
-          src="/logoTransparentBg.png"
-          height={95}
-          width={95}
-          className="ml-4 p-5"
-        />
+            <img
+              alt=" "
+              src="/logoTransparentBg.png"
+              height={95}
+              width={95}
+              className="ml-4 p-5"
+            />
           </a>
         </div>
         <div className="w-9/12 flex justify-end items-center">
@@ -182,16 +184,19 @@ export default function Navbar() {
           >
             {/* hamburger button */}
             <span
-              className={`h-1 w-full bg-[#4E632E] rounded-lg transform transition duration-300 ease-in-out ${open ? "rotate-45 translate-y-3.5" : ""
-                }`}
+              className={`h-1 w-full bg-[#4E632E] rounded-lg transform transition duration-300 ease-in-out ${
+                open ? "rotate-45 translate-y-3.5" : ""
+              }`}
             />
             <span
-              className={`h-1 w-full bg-[#4E632E] rounded-lg transition-all duration-300 ease-in-out ${open ? "w-0" : "w-full"
-                }`}
+              className={`h-1 w-full bg-[#4E632E] rounded-lg transition-all duration-300 ease-in-out ${
+                open ? "w-0" : "w-full"
+              }`}
             />
             <span
-              className={`h-1 w-full bg-[#4E632E] rounded-lg transform transition duration-300 ease-in-out ${open ? "-rotate-45 -translate-y-3.5" : ""
-                }`}
+              className={`h-1 w-full bg-[#4E632E] rounded-lg transform transition duration-300 ease-in-out ${
+                open ? "-rotate-45 -translate-y-3.5" : ""
+              }`}
             />
           </div>
 
@@ -201,12 +206,15 @@ export default function Navbar() {
             </NavLink>
             <NavLink to="/marketplace">marketplace</NavLink>
             <NavLink to="/cart2">
-              <div onClick={getCart}>cart
-              {quantity == 0 ? ("") : (
-                <span className="ml-1 hover:animate-pulse rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
-                  {quantity}
-                </span>
-              )}
+              <div onClick={getCart}>
+                cart
+                {quantity == 0 ? (
+                  ""
+                ) : (
+                  <span className="ml-1 hover:animate-pulse rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
+                    {quantity}
+                  </span>
+                )}
               </div>
               {/* {cartItemsCount > 0 && (
                 <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">

@@ -8,11 +8,10 @@ export default function about() {
       
         <div className="h-screen w-4/6 m-auto grid grid-cols-1 lg:grid-cols-2">
           <div className="flex flex-col items-start justify-center text-4xl font-bold">
-            <div className="pb-10 text-[#A4B07E]">re:ducing food wastage.</div>
-
-            <div className="pb-10 text-[#707C4F]">re:growing the planet.</div>
-
-            <div className="pb-6 text-[#4E632E]">re:imagining the future.</div>
+            
+            <div className="pb-10 text-[#707C4F]">helping our planet one byte at a time.</div>
+            <div className="pb-10 text-[#A4B07E]">connecting customers to restaurants and stores that have surplus unsold food.</div>
+            <div className="pb-6 text-[#4E632E]">reshaping our food and carbon landscape.</div>
           </div>
           <div className="font-light flex flex-col items-start justify-center ">
             <div className="pb-4">
