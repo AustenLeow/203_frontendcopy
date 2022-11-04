@@ -43,7 +43,7 @@ export default function UserProfile() {
                 </thead>
                 <tbody>
                     {orders.map((order) => (
-                        <tr key={order.id} className="border-b-4">
+                        <tr className="border-b-4">
                             <td className="p-5 text-center">{order.id}</td>
                             {order.cartItems.map((item) => (
                                 <tr className="border-b">
