@@ -29,7 +29,7 @@ export default function SignIn() {
 
   async function getItems() {
     // e.preventDefault();
-    fetch("http://52.221.188.170:8080/api/v1/items", {
+    fetch("http://18.138.254.41:8080/api/v1/items", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -48,7 +48,7 @@ export default function SignIn() {
   }
 
   async function handleSubmit() {
-    const res = await fetch("http://52.221.188.170:8080/api/auth/signin", {
+    const res = await fetch("http://18.138.254.41:8080/api/auth/signin", {
       method: "POST",
       body: JSON.stringify(state),
       headers: {
