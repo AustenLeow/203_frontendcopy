@@ -1,43 +1,41 @@
 import { useRouter } from "next/router";
 import React, { useContext } from "react";
 import data from "../utils/data";
-import Link from 'next/Link';
-import { Store } from '../utils/Store';
+import Link from "next/Link";
+import { Store } from "../utils/Store";
 
 export default function ProductItem({ product }) {
   const { state, dispatch } = useContext(Store);
   const router = useRouter();
-  
 
   const addToCartHandler = () => {
     const existItem = state.cart.cartItems.find((x) => x.slug === product.slug);
     const quantity = existItem ? existItem.quantity + 1 : 1;
 
     if (product.countInStock < quantity) {
-      alert('Product is out of stock.');
+      alert("Product is out of stock.");
       return;
     }
 
-    dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
-    router.push('/cart');
-  }
-
+    dispatch({ type: "CART_ADD_ITEM", payload: { ...product, quantity } });
+    router.push("/cart");
+  };
 
   async function addToCart() {
     fetch(`http://localhost:8080/api/v1/cart/add/${product.id}`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        "Authorization": "Bearer " + localStorage.getItem("token")
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
       },
-    }).then(response => response.text())
-    .then(product => {
-      console.log(product);
-      
     })
-    .catch(err => {
-      console.log(err);
-    })
+      .then((response) => response.text())
+      .then((product) => {
+        console.log(product);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   return (
@@ -81,4 +79,4 @@ export default function ProductItem({ product }) {
       </div>
     </div>
   );
-  }
+}

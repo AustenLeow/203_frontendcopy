@@ -55,7 +55,7 @@ export default function UserProfile() {
           </div>
 
           <p className="px-16 text-center text-md text-gray-800">
-            You have saved{" "}
+            You have saved a total of {" "}
             <span className="text-lime-700 text-md font-bold">
               {" "}
               ${user.moneysaved}{" "}
@@ -67,7 +67,7 @@ export default function UserProfile() {
             cm<sup>3</sup> of carbon!
           </p>
 
-          <div className="flex flex-col px-16 mt-3 text-center">
+          {/* <div className="flex flex-col px-16 mt-3 text-center">
             <span className="bg-gray-100  rounded cursor-pointer hover:shadow hover:bg-gray-200">
               Change email
             </span>
@@ -76,7 +76,7 @@ export default function UserProfile() {
               Change password
             </span>
             <p className="p-1"></p>
-          </div>
+          </div> */}
 
           <div className="px-14 mt-5 flex items-center justify-center">
             <button className="button" onClick={() => router.back()}>

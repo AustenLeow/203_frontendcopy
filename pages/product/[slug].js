@@ -3,8 +3,8 @@ import React, { useContext } from "react";
 import Layout from "../../components/Layout";
 import data from "../../utils/data";
 import Link from "next/link";
-import Image from 'next/image';
-import { Store } from '../../utils/Store';
+import Image from "next/image";
+import { Store } from "../../utils/Store";
 // import { BiArrowBack } from "react-icons/bi";
 
 export default function ProductScreen() {
@@ -19,23 +19,24 @@ export default function ProductScreen() {
   }
 
   const backToProductsHandler = () => {
-    router.push('/marketplace');
-  }
+    router.push("/marketplace");
+  };
 
   const addToCartHandler = () => {
     const existItem = state.cart.cartItems.find((x) => x.slug === product.slug);
     const quantity = existItem ? existItem.quantity + 1 : 1;
 
     if (product.countInStock < quantity) {
-      alert('Product is out of stock.');
+      alert("Product is out of stock.");
       return;
     }
 
-    dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
-    router.push('/cart');
-  }
+    dispatch({ type: "CART_ADD_ITEM", payload: { ...product, quantity } });
+    router.push("/cart");
+  };
 
   async function addToCart() {
+
     const response = await fetch('http://localhost:8080/api/cart', {
     method: 'POST',
     headers: {'Content-type': 'application/json'},
@@ -48,9 +49,7 @@ export default function ProductScreen() {
     <Layout title={product.name}>
       <div className="py-2 px-10">
         <button className="button w-1/10" onClick={backToProductsHandler}>
-          <Link href="/marketplace">
-            Back to products
-          </Link>
+          <Link href="/marketplace">Back to products</Link>
         </button>
       </div>
       <div className="grid md:grid-cols-4 md:gap-3">
@@ -60,8 +59,8 @@ export default function ProductScreen() {
             alt={product.name}
             width={150}
             height={150}
-            layout="responsive">
-          </Image>
+            layout="responsive"
+          ></Image>
         </div>
         <div>
           <ul>
@@ -80,9 +79,14 @@ export default function ProductScreen() {
             </div>
             <div className="mb-2 flex justify-between">
               <div>Status</div>
-              <div>{product.countInStock > 0? 'In stock' : 'Unavailable'}</div>
+              <div>{product.countInStock > 0 ? "In stock" : "Unavailable"}</div>
             </div>
-            <button className="button w-full" onClick={addToCartHandler && addToCart}>Add to cart</button>
+            <button
+              className="button w-full"
+              onClick={addToCartHandler && addToCart}
+            >
+              Add to cart
+            </button>
           </div>
         </div>
       </div>
