@@ -37,6 +37,20 @@ export default function UserProfile() {
         router.push("/profile");
     }
 
+    function getCarbonSavings() {
+        let x = 0;
+        {
+            orders.map((order) => (
+                <div key={order.id}>
+                    {order.cartItems.map((item) => (
+                        x += item.carbontotal
+                    ))}
+                </div>
+            ))
+        }
+        return x;
+    }
+
     function reload() {
         setTimeout(function () {
           location.reload();
