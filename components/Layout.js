@@ -22,7 +22,7 @@ export default function Layout({ title, children }) {
     <>
       <Head>
         <title>{title ? title : "greenfoodforyou"}</title>
-        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
+        
         <meta name="description" content="climate change" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
