@@ -21,7 +21,7 @@ export default function Marketplace() {
   // }
 
   async function getCart() {
-    fetch("https://greenfoodforyou.com:8080/api/v1/cart", {
+    fetch("https://api.greenfoodforyou.com:8080/api/v1/cart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -39,7 +39,7 @@ export default function Marketplace() {
       });
   }
   async function getCart2() {
-    fetch("https://greenfoodforyou.com:8080/api/v1/cart", {
+    fetch("https://api.greenfoodforyou.com:8080/api/v1/cart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -65,7 +65,7 @@ export default function Marketplace() {
   // }
 
   function getItems() {
-    fetch("https://greenfoodforyou.com:8080/api/v1/items", {
+    fetch("https://api.greenfoodforyou.com:8080/api/v1/items", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -90,7 +90,7 @@ export default function Marketplace() {
   // }
 
   async function addToCart(item) {
-    fetch(`https://greenfoodforyou.com:8080/api/v1/cart/add/${item.id}`, {
+    fetch(`https://api.greenfoodforyou.com:8080/api/v1/cart/add/${item.id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

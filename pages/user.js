@@ -9,7 +9,7 @@ export default function User() {
   }, []);
 
   async function fetchContent() {
-    const res = await fetch("https://greenfoodforyou.com:8080/api/auth/currentuser", {
+    const res = await fetch("https://api.greenfoodforyou.com:8080/api/auth/currentuser", {
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + localStorage.getItem("token"),

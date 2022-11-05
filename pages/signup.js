@@ -96,7 +96,7 @@ export default function SignUp() {
   };
 
   async function handleSubmit() {
-    const res = await fetch("https://greenfoodforyou.com:8080/api/auth/signup", {
+    const res = await fetch("https://api.greenfoodforyou.com:8080/api/auth/signup", {
       method: "POST",
       body: JSON.stringify(state),
       headers: {

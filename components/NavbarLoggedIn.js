@@ -113,7 +113,7 @@ export default function Navbar() {
   }
 
   async function getCart() {
-    fetch("https://greenfoodforyou.com:8080/api/v1/cart", {
+    fetch("https://api.greenfoodforyou.com:8080/api/v1/cart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -132,7 +132,7 @@ export default function Navbar() {
   }
 
   function getQuantity() {
-    fetch("https://greenfoodforyou.com:8080/api/v1/cart", {
+    fetch("https://api.greenfoodforyou.com:8080/api/v1/cart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
