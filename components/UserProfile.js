@@ -43,7 +43,7 @@ export default function UserProfile() {
     let x = 0;
     {
       orders.map((order) => (
-        <div>
+        <div key={order.id}>
           {order.cartItems.map((item) => (
             x += item.carbontotal
           ))}

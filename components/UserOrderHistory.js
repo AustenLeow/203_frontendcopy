@@ -41,7 +41,7 @@ export default function UserProfile() {
         let x = 0;
         {
             orders.map((order) => (
-                <div>
+                <div key={order.id}>
                     {order.cartItems.map((item) => (
                         x += item.carbontotal
                     ))}
@@ -88,7 +88,7 @@ export default function UserProfile() {
                         <tr className="border-b-4">
                             <td className="p-5 text-center">{order.id}</td>
                             {order.cartItems.map((item) => (
-                                <tr className="border-b">
+                                <tr key={item.id} className="border-b">
                                     <td className="p-5 text-center">{item.quantity}x</td>
                                     <td className="p-5 text-center">{item.item.itemName}</td>
                                 </tr>
