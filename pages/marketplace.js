@@ -201,7 +201,7 @@ export default function Marketplace() {
                       <p className="text-bold font-bold text-black tracking-wider leading-relaxed font-sans break-words">
                         🌎 This item has {item.carbon} carbon saving
                       </p>
-                      <p class="text-bold font-bold text-black tracking-wider leading-relaxed font-sans break-words">
+                      <p className="text-bold font-bold text-black tracking-wider leading-relaxed font-sans break-words">
                         🤑 You will save ${(item.originalprice - item.price).toFixed(2)}
                       </p>
                     </div>
@@ -210,12 +210,12 @@ export default function Marketplace() {
                       <p className="text-bold font-bold text-black tracking-wider leading-relaxed font-sans break-words">
                         🌎 This item has {item.carbon} carbon savings
                       </p>
-                      <p class="text-bold font-bold text-black tracking-wider leading-relaxed font-sans break-words">
+                      <p className="text-bold font-bold text-black tracking-wider leading-relaxed font-sans break-words">
                         🤑 You will save ${(item.originalprice - item.price).toFixed(2)}
                       </p>
                     </div>
                   )}
-                  <div class="pt-8 text-center">
+                  <div className="pt-8 text-center">
                     <button
                       className="button"
                       onClick={() => addToCart(item) && reload()}
