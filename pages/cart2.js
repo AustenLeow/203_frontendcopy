@@ -73,7 +73,7 @@ export default function Cart2() {
           (cartitem) => (x += cartitem.quantity)
           // console.log(total)
         );
-         console.log(x);
+        console.log(x);
         setQuantity(x);
         return quantity;
       })
@@ -137,8 +137,6 @@ export default function Cart2() {
         console.log(err);
       });
   }
-
-
 
   const countItemStock = (product) => {
     fetch(`http://localhost:8080/api/v1/items/${product.id}`, {
@@ -279,8 +277,8 @@ export default function Cart2() {
           </a>
         </div>
       ) : (
-        <div className="grid w-5/6 lg:grid-cols-4 place-items-center">
-          <div className="overflow-x-auto lg:col-span-3 pr-5 pl-20 ">
+        <div className="grid lg:grid-cols-4 place-items-center">
+          <div className="overflow-x-auto lg:col-span-3 ">
             <table className="table-auto min-w-full">
               <thead className=" uppercase">
                 <tr>
@@ -307,10 +305,7 @@ export default function Cart2() {
                         {cartitem.item.itemName}
                       </td>
                     </div>
-                    <td className="p-5 text-center">
-                      {" "}
-                      🌱 {cartitem.carbontotal}
-                    </td>
+
                     {/* <td className="p-5 text-right">
                       <img
                         src={cartitem.item.url}
@@ -352,7 +347,10 @@ export default function Cart2() {
                         <PlusCircleIcon className="h-5 w-5"></PlusCircleIcon>
                       </button>
                     </td>
-                    <td className="p-5 text-center"> 🌱 {cartitem.carbontotal}g<sup></sup></td>
+                    <td className="p-5 text-center">
+                      {" "}
+                      🌱 {cartitem.carbontotal}g<sup></sup>
+                    </td>
                     <td className="p-5 text-center">${cartitem.subtotal}</td>
                     <td className="p-6 text-center">
                       <button onClick={() => removeItemHandler(cartitem.item)}>
@@ -364,38 +362,40 @@ export default function Cart2() {
               </tbody>
             </table>
           </div>
-          <div className="p-6 block rounded-xl border border-gray-200 shadow-2xl h-place-items-center">
-            <div>
-              <div className="pb-3 text-xl font-bold"> 🛍 Total: ${total}</div>
-            </div>
-            <div>
-              <div className="pb-3 text-xl font-bold">
-                {" "}
-                🌱 Total Carbon Savings: {totalCarbonSavings}g<sup></sup>{" "}
+          <div className="pr-10 flex justify-start w-6/8">
+            <div className="p-4 block rounded-xl border border-gray-200 shadow-2xl">
+              <div>
+                <div className="pb-3 text-xl font-bold"> 🛍 Total: ${total}</div>
               </div>
+              <div>
+                <div className="pb-3 text-xl font-bold">
+                  {" "}
+                  🌱 Total Carbon Savings: {totalCarbonSavings}g<sup></sup>{" "}
+                </div>
+              </div>
+              <div>
+                <button
+                  className="button w-full"
+                  onClick={() => setShowCheckOutModal(true)}
+                >
+                  Check Out
+                </button>
+              </div>
+              <p className="p-2"></p>
+              <div>
+                <button
+                  className="button w-full"
+                  onClick={() => setShowDonateModal(true)}
+                >
+                  Donate to charity
+                </button>
+              </div>
+              <CheckOutModal
+                onClose={handleOnCloseClearCart}
+                visible={showCheckOutModal}
+              />
+              <Modal onClose={handleOnClose} visible={showDonateModal} />
             </div>
-            <div>
-              <button
-                className="button w-full"
-                onClick={() => setShowCheckOutModal(true)}
-              >
-                Check Out
-              </button>
-            </div>
-            <p className="p-2"></p>
-            <div>
-              <button
-                className="button w-full"
-                onClick={() => setShowDonateModal(true)}
-              >
-                Donate to charity
-              </button>
-            </div>
-            <CheckOutModal
-              onClose={handleOnCloseClearCart}
-              visible={showCheckOutModal}
-            />
-            <Modal onClose={handleOnClose} visible={showDonateModal} />
           </div>
         </div>
       )}
