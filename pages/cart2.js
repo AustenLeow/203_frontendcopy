@@ -255,7 +255,7 @@ export default function Cart2() {
     <Layout title="Your shopping cart">
       <div className="p-10">
         <h1 className="py-3 header-text text-center m-auto">
-          Your Shopping Cart ({quantity})
+        🛒  Your Shopping Cart ({quantity})
         </h1>
       </div>
 
@@ -307,10 +307,6 @@ export default function Cart2() {
                         {cartitem.item.itemName}
                       </td>
                     </div>
-                    <td className="p-5 text-center">
-                      {" "}
-                      🌱 {cartitem.carbontotal}
-                    </td>
                     {/* <td className="p-5 text-right">
                       <img
                         src={cartitem.item.url}
