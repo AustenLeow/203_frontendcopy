@@ -21,7 +21,7 @@ export default function UserProfile() {
   }, []);
 
   function getOrders() {
-    fetch("http://localhost:8080/api/v1/order", {
+    fetch("https://greenfoodforyou.com:8080/api/v1/order", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -54,7 +54,7 @@ export default function UserProfile() {
   }
 
   async function getUser() {
-    const response = await fetch("http://localhost:8080/api/auth/currentuser", {
+    const response = await fetch("https://greenfoodforyou.com:8080/api/auth/currentuser", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
