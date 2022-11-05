@@ -3,25 +3,27 @@ import { useRouter } from "next/router";
 
 export default function UserProfile() {
   const router = useRouter();
+  const [auth, setAuth] = useState({ loggedIn: false });
   const [orders, setOrders] = useState([]);
-  const [user, setUser] = useState({
-    username: "",
-    email: "",
-    password: "",
-    roles: [],
-    id: 0,
-    moneysaved: 0,
-    carbonsaved: 0,
-    answer: "",
-  });
+  const [carbonCount, setCarbonCount] = useState(0);
+  const [moneySaved, setMoneySaved] = useState(0);
+  const [user, setUser] = useState({});
 
   useEffect(() => {
+    // if (localStorage.getItem("token")) {
+    //   setAuth(true);
+    // } else {
+    //   setAuth(false);
+    // }
     getUser();
-    getOrders();
+    // fetchUserHandler();
+    // getOrders();
+    // getCarbonSavings(user.id);
+    // getTotalAmountSaved(user.id);
   }, []);
 
   function getOrders() {
-    fetch("https://greenfoodforyou.com:8080/api/v1/order", {
+    fetch("http://localhost:8080/api/v1/order", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -39,22 +41,46 @@ export default function UserProfile() {
       });
   }
 
-  function getCarbonSavings() {
-    let x = 0;
-    {
-      orders.map((order) => (
-        <div key={order.id}>
-          {order.cartItems.map((item) => (
-            x += item.carbontotal
-          ))}
-        </div>
-      ))
-    }
-    return x;
+  function getTotalAmountSaved(userid) {
+    fetch(`http://localhost:8080/api/v1/users/${userid}/moneysaved`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        'Access-Control-Allow-Origin': '*',
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+    .then((response) => response.json())
+    .then((amount) => {
+      setMoneySaved(amount);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
+  function getCarbonSavings(userid) {
+    fetch(`http://localhost:8080/api/v1/users/${userid}/carbonsaved`, {
+      crossorigin: true,  
+      method: "GET",
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((response) => response.json())
+      .then((carbon) => {
+        setCarbonCount(carbon);
+        console.log(user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   async function getUser() {
-    const response = await fetch("https://greenfoodforyou.com:8080/api/auth/currentuser", {
+    const response = await fetch("http://localhost:8080/api/auth/currentuser", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -63,13 +89,31 @@ export default function UserProfile() {
     })
       .then((response) => response.json())
       .then((user) => {
-        setUser(user);
-        console.log();
+        console.log(user);
+        localStorage.setItem("myUser", JSON.stringify(user));
+        const user1 = JSON.parse(localStorage.getItem("myUser") || "{}");
+        console.log(user1);
+        setUser(user1);
+        getCarbonSavings(user.id);
+        getTotalAmountSaved(user.id);
+        // setUser(user);
+        // localStorage.setItem("myUser", JSON.stringify(user));
+        // console.log(user);
+        // setUser({id:user.id, username:user.username, email:user.email, password:user.password, carbonsaved:user.carbonsaved, moneysaved:user.moneysaved, answer:user.answer});
+        // console.log(user);
+        // console.log(user);
       })
       .catch((err) => {
         console.log(err);
       });
   }
+
+  // function fetchUserHandler() {
+  //   const user1 = JSON.parse(localStorage.getItem("myUser") || "{}");
+  //   setUser(user1);
+  //   // console.log(user1);
+  //   // console.log(user);
+  // }
 
   return (
     <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-md">
@@ -93,11 +137,13 @@ export default function UserProfile() {
             You have saved a total of {" "}
             <span className="text-lime-700 text-md font-bold">
               {" "}
-              ${user.moneysaved}{" "}
+              {/* ${() => getTotalAmountSaved(user.id)}{" "} */}
+              ${moneySaved}{" "}
             </span>{" "}
             dollars and{" "}
             <span className="text-lime-700 text-md font-bold">
-              {getCarbonSavings().toFixed(2)}{" "}
+              {/* {() => getCarbonSavings(user.id)}{" "} */}
+              {carbonCount}
             </span>{" "}
             cm<sup>3</sup> of carbon!
           </p>

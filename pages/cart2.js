@@ -55,7 +55,7 @@ export default function Cart2() {
   }
 
   function getQuantity() {
-    fetch("https://greenfoodforyou.com:8080/api/v1/cart", {
+    fetch("http://localhost:8080/api/v1/cart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -83,7 +83,7 @@ export default function Cart2() {
   }
 
   function getTotal() {
-    fetch("https://greenfoodforyou.com:8080/api/v1/cart", {
+    fetch("http://localhost:8080/api/v1/cart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -111,7 +111,7 @@ export default function Cart2() {
   }
 
   function getTotalCarbonSavings() {
-    fetch("https://greenfoodforyou.com:8080/api/v1/cart", {
+    fetch("http://localhost:8080/api/v1/cart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -141,7 +141,7 @@ export default function Cart2() {
 
 
   const countItemStock = (product) => {
-    fetch(`https://greenfoodforyou.com:8080/api/v1/items/${product.id}`, {
+    fetch(`http://localhost:8080/api/v1/items/${product.id}`, {
       method: "GET",
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -149,7 +149,7 @@ export default function Cart2() {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
       // proxy: {
-      //   host: 'https://greenfoodforyou.com:/8080/api/v1/items',
+      //   host: 'http://localhost:/8080/api/v1/items',
       //   port: 8080
       // }
     })
@@ -172,7 +172,7 @@ export default function Cart2() {
 
   async function updateItemQty(item, qty) {
     const response = await fetch(
-      `https://greenfoodforyou.com:8080/api/v1/cart/update/${item.id}/${qty}`,
+      `http://localhost:8080/api/v1/cart/update/${item.id}/${qty}`,
       {
         method: "PUT",
         headers: {
@@ -197,7 +197,7 @@ export default function Cart2() {
   }
 
   function getCart() {
-    fetch("https://greenfoodforyou.com:8080/api/v1/cart", {
+    fetch("http://localhost:8080/api/v1/cart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -223,7 +223,7 @@ export default function Cart2() {
   }
 
   const removeItemHandler = (product) => {
-    fetch(`https://greenfoodforyou.com:8080/api/v1/cart/delete/${product.id}`, {
+    fetch(`http://localhost:8080/api/v1/cart/delete/${product.id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
