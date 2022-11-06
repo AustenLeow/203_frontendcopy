@@ -145,7 +145,7 @@ export default function UserProfile() {
               {/* {() => getCarbonSavings(user.id)}{" "} */}
               {carbonCount}
             </span>{" "}
-            cm<sup>3</sup> of carbon!
+            cm<span id="super">3</span> of carbon!
           </p>
 
           {/* <div className="flex flex-col px-16 mt-3 text-center">
