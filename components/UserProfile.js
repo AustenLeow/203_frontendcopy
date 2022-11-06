@@ -46,7 +46,7 @@ export default function UserProfile() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        'Access-Control-Allow-Origin': '*',
+        // 'Access-Control-Allow-Origin': '*',
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
     })
@@ -64,7 +64,7 @@ export default function UserProfile() {
       crossorigin: true,  
       method: "GET",
       headers: {
-        'Access-Control-Allow-Origin': '*',
+        // 'Access-Control-Allow-Origin': '*',
         "Content-Type": "application/json",
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
