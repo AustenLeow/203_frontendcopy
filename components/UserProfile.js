@@ -23,13 +23,16 @@ export default function UserProfile() {
   }, []);
 
   function getOrders() {
-    fetch("https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/v1/order", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
+    fetch(
+      "https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/v1/order",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      }
+    )
       .then((response) => response.json())
       .then((product) => {
         setOrders(product);
@@ -42,33 +45,39 @@ export default function UserProfile() {
   }
 
   function getTotalAmountSaved(userid) {
-    fetch(`https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/v1/users/${userid}/moneysaved`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        // 'Access-Control-Allow-Origin': '*',
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
-    .then((response) => response.json())
-    .then((amount) => {
-      setMoneySaved(amount);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    fetch(
+      `https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/v1/users/${userid}/moneysaved`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          // 'Access-Control-Allow-Origin': '*',
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((amount) => {
+        setMoneySaved(amount);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   function getCarbonSavings(userid) {
-    fetch(`https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/v1/users/${userid}/carbonsaved`, {
-      crossorigin: true,  
-      method: "GET",
-      headers: {
-        // 'Access-Control-Allow-Origin': '*',
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
+    fetch(
+      `https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/v1/users/${userid}/carbonsaved`,
+      {
+        crossorigin: true,
+        method: "GET",
+        headers: {
+          // 'Access-Control-Allow-Origin': '*',
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      }
+    )
       .then((response) => response.json())
       .then((carbon) => {
         setCarbonCount(carbon);
@@ -80,13 +89,16 @@ export default function UserProfile() {
   }
 
   async function getUser() {
-    const response = await fetch("https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/auth/currentuser", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
+    const response = await fetch(
+      "https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/auth/currentuser",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      }
+    )
       .then((response) => response.json())
       .then((user) => {
         console.log(user);
@@ -132,21 +144,35 @@ export default function UserProfile() {
             </span>
             <span className="text-md text-gray-400">{user.email}</span>
           </div>
-
-          <p className="px-16 text-center text-md text-gray-800">
-            You have saved a total of {" "}
-            <span className="text-lime-700 text-md font-bold">
-              {" "}
-              {/* ${() => getTotalAmountSaved(user.id)}{" "} */}
-              ${moneySaved}{" "}
-            </span>{" "}
-            dollars and{" "}
-            <span className="text-lime-700 text-md font-bold">
-              {/* {() => getCarbonSavings(user.id)}{" "} */}
-              {carbonCount}
-            </span>{" "}
-            cm<span id="super">3</span> of carbon!
-          </p>
+          {moneySaved == 0 ? (
+            <div>
+              <p className="px-16 text-center text-md text-gray-800">
+                Start saving on money and your carbon footprint!
+              </p>
+              <p className="px-16 text-center text-md">
+                <a
+                  className="px-16 text-center text-md text-[#687259] hover:underline no-underline"
+                  href="/marketplace"
+                >
+                  Start shopping 🛒
+                </a>
+              </p>
+            </div>
+          ) : (
+            <p className="px-16 text-center text-md text-gray-800">
+              You have saved a total of{" "}
+              <span className="text-lime-700 text-md font-bold">
+                {" "}
+                {/* ${() => getTotalAmountSaved(user.id)}{" "} */}${moneySaved}{" "}
+              </span>{" "}
+              dollars and{" "}
+              <span className="text-lime-700 text-md font-bold">
+                {/* {() => getCarbonSavings(user.id)}{" "} */}
+                {carbonCount}
+              </span>{" "}
+              cm<span id="super">3</span> of carbon!
+            </p>
+          )}
 
           {/* <div className="flex flex-col px-16 mt-3 text-center">
             <span className="bg-gray-100  rounded cursor-pointer hover:shadow hover:bg-gray-200">
