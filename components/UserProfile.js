@@ -144,6 +144,16 @@ export default function UserProfile() {
             </span>
             <span className="text-md text-gray-400">{user.email}</span>
           </div>
+          <div className=" flex items-center justify-center">
+          <img
+            alt="/"
+            src="/profile.png"
+            height={100}
+            width={200}
+            className="ml-3 p-2"
+          />
+          </div>
+
           {moneySaved == 0 ? (
             <div>
               <p className="px-16 text-center text-md text-gray-800">
