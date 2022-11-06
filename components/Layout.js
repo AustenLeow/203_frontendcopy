@@ -20,7 +20,7 @@ export default function Layout({ title, children }) {
   return (
     <>
       <Head>
-        <title>{title ? title : "GreenFoodForYouforyou"}</title>
+        <title>{title ? title : "GreenFoodForYou"}</title>
 
         <meta name="description" content="climate change" />
         <link rel="icon" href="/favicon.ico" />

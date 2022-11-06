@@ -28,20 +28,20 @@ export default function about() {
           </div>
 
           <div className="pb-4">
-            GreenFoodForYouForYou targets to help the climate by reducing food
+            GreenFoodForYou targets to help the climate by reducing food
             wastage.{" "}
           </div>
           <div className="pb-4">
-            to achieve this goal, GreenFoodForYouForYou was invented to be the
+            to achieve this goal, GreenFoodForYou was invented to be the
             bridge between consumers and businesses.{" "}
           </div>
           <div className="pb-4">
-            GreenFoodForYouForYou does this through its marketplace where
+            GreenFoodForYou does this through its marketplace where
             customers can buy near-expired, good condition foods at a
             significantly cheaper price.{" "}
           </div>
           <div className="pb-4">
-            GreenFoodForYouForYou also provides statistics such as{" "}
+            GreenFoodForYou also provides statistics such as{" "}
             <strong className="text-[#4E622E] underline">
               carbon savings{" "}
             </strong>
