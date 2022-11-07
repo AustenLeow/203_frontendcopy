@@ -32,15 +32,15 @@ export default function UserProfile() {
             <table className="table-auto min-w-full">
                 <thead className="uppercase">
                     <tr>
-                        {/* <th className="py-3 px-6">Rank</th> */}
-                        <th className="py-3 px-6">Username</th>
-                        <th className="py-3 px-6">Carbon savings</th>
+                        <th className="py-3 px-6">🎖 Rank</th>
+                        <th className="py-3 px-6">👤 User</th>
+                        <th className="py-3 px-5">🌱 Carbon savings</th>
                     </tr>
                 </thead>
                 <tbody>
                     {top10.map((user) => (
                         <tr key={user.id} className="border-b-4">
-                            {/* <td className="p-5 text-center">(rank)</td> */}
+                            <td className="p-5 text-center">{top10.indexOf(user) + 1}</td>
                             <td className="p-5 text-center">{user.username}</td>
                             <td className="p-5 text-center">{user.carbonsaved}</td>
                         </tr>
