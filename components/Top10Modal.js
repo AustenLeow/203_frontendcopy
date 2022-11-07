@@ -32,9 +32,9 @@ export default function UserProfile() {
             <table className="table-auto min-w-full">
                 <thead className="uppercase">
                     <tr>
-                        <th className="py-3 px-6">Rank</th>
-                        <th className="py-3 px-6">Username</th>
-                        <th className="py-3 px-6">Carbon savings</th>
+                        <th className="py-3 px-6">🎖 Rank</th>
+                        <th className="py-3 px-6">👤 User</th>
+                        <th className="py-3 px-5">🌱 Carbon savings</th>
                     </tr>
                 </thead>
                 <tbody>

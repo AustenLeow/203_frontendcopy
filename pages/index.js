@@ -228,7 +228,7 @@ export default function Home() {
         </div>
 
         <div className="h-max p-32 m-auto">
-          <div className="flex flex-col items-center justify-center text-5xl font-bold text-[#4E632E]">
+          <div className="flex flex-col items-center justify-center text-3xl font-bold text-[#4E632E]">
           🏆  Top 10 users with the highest carbon savings 🏆
           </div>
           <div className="mt-10 px-40"><Top10Modal /></div>
