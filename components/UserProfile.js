@@ -128,7 +128,7 @@ export default function UserProfile() {
 
   function getRank(userid, carbonsaved) {
     fetch(
-      "https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/v1/users/top10",
+      "https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/v1/users/top5",
       {
         method: "GET",
         headers: {
@@ -139,22 +139,21 @@ export default function UserProfile() {
       .then((response) => response.json())
       .then((users) => {
         setRanklist(users);
-        console.log("XXX");
-        console.log(users);
-
+        // console.log("XXX");
+        // console.log(users);
         for (const user of users) {
           if (userid == user.id) {
-            console.log(users.indexOf(user));
+            // console.log(users.indexOf(user));
             setRank(users.indexOf(user));
-            console.log(rank);
+            // console.log(rank);
             break;
           } else {
             setRank(0);
-            let tenthpos = users[9].carbonsaved;
-            setDistFromLeaderboard(tenthpos - carbonsaved);
-            console.log(carbonsaved);
-            console.log("curr" + carbonsaved);
-            console.log("tenth" + tenthpos);
+            let fifthpos = users[4].carbonsaved;
+            setDistFromLeaderboard(fifthpos - carbonsaved);
+            // console.log(carbonsaved);
+            // console.log("curr" + carbonsaved);
+            // console.log("fifth" + fifthpos);
           }
         }
       })
@@ -220,8 +219,12 @@ export default function UserProfile() {
               {{ rank } == 0 ? (
                 <div>
                   <p className="px-16 text-center text-md text-gray-800">
-                    Thank you for your support! You are {distFromLeaderboard}cm
-                    <span id="super">3</span> away from the leaderboard.
+                    Thank you for your support! You are {distFromLeaderboard}
+                    <span className="text-lime-700 text-md font-bold">
+                     cm
+                    <span id="super">3</span>
+                    </span>
+                     away from the leaderboard.
                   </p>
                 </div>
               ) : (
@@ -242,12 +245,13 @@ export default function UserProfile() {
                 {/* ${() => getTotalAmountSaved(user.id)}{" "} */}$
                 {moneySaved.toFixed(2)}{" "}
               </span>{" "}
-              dollars and{" "}
+              and{" "}
               <span className="text-lime-700 text-md font-bold">
                 {/* {() => getCarbonSavings(user.id)}{" "} */}
                 {carbonCount}
-              </span>{" "}
-              cm<span id="super">3</span> of carbon!
+              {" "}
+              cm<span id="super">3</span>
+              </span> of carbon!
             </p>
           )}
 

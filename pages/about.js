@@ -22,7 +22,7 @@ export default function about() {
 
         <div className="flex flex-col items-center justify-center text-center ">
           <div className="pb-4">
-            <strong className="text-[#4E622E] underline">food wastage</strong>{" "}
+            <strong className="text-[#4E622E] underline">Food wastage</strong>{" "}
             has been a major contributor to our{" "}
             <strong className="text-[#4E622E] underline">climate.</strong>
           </div>
@@ -32,7 +32,7 @@ export default function about() {
             wastage.{" "}
           </div>
           <div className="pb-4">
-            to achieve this goal, GreenFoodForYou was invented to be the
+            To achieve this goal, GreenFoodForYou was invented to be the
             bridge between consumers and businesses.{" "}
           </div>
           <div className="pb-4">

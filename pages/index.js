@@ -8,7 +8,7 @@ import totalcarbon from ".././public/totalcarbon.png";
 import moneysaved from ".././public/moneysaved.png";
 import Link from "next/link";
 import Typewriter from "typewriter-effect";
-import Top10Modal from "../components/Top10Modal";
+import Top5Modal from "../components/Top5Modal";
 
 export default function Home() {
   const [auth, setAuth] = useState({ loggedIn: false });
@@ -229,9 +229,9 @@ export default function Home() {
 
         <div className="h-max p-32 m-auto">
           <div className="flex flex-col items-center justify-center text-3xl font-bold text-[#4E632E]">
-          🏆  Top 10 users with the highest carbon savings 🏆
+          🏆  Top 5 users with the highest carbon savings 🏆
           </div>
-          <div className="mt-10 px-40"><Top10Modal /></div>
+          <div className="mt-10 px-40"><Top5Modal /></div>
         </div>
 
         <div className="h-max p-32 m-auto grid grid-cols-1 lg:grid-cols-3">
