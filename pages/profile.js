@@ -6,7 +6,7 @@ import UserOrderHistory from "../components/UserOrderHistory";
 
 export default function profile() {
   return (
-    <Layout title="profile">
+    <Layout title="Profile">
       <div className="p-20">
       <div className="pb-20 flex flex-col justify-center items-center">
         <Tab.Group>

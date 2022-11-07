@@ -4,7 +4,7 @@ import Layout from "../components/Layout";
 export default function about() {
   return (
     <div>
-      <Layout title="about">
+      <Layout title="About">
         <div className="h-screen w-4/6 m-auto grid grid-cols-1 lg:grid-cols-2 place-items-center">
           <div className="flex flex-col items-center justify-center text-4xl font-bold">
             <div className="pb-10 text-[#707C4F]">

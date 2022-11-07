@@ -113,7 +113,7 @@ export default function Marketplace() {
   }
 
   return (
-    <Layout title="marketplace">
+    <Layout title="Marketplace">
       <div className="w-screen px-10">
         <div>
           <h1 className="p-10 header-text text-center m-auto">
