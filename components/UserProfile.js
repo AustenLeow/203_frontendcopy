@@ -222,12 +222,10 @@ export default function UserProfile() {
               {rank == 0 ? (
                 <div>
                   <p className="px-16 text-center text-md text-gray-800">
-                    Thank you for your support! You are {distFromLeaderboard}
-                    <span className="text-lime-700 text-md font-bold">
-                     cm
+                    Thank you for your support! You are <span className="text-lime-700 text-md font-bold">
+                     {distFromLeaderboard.toFixed(2)} cm
                     <span id="super">3</span>
-                    </span>
-                     away from the leaderboard.
+                    </span> away from the leaderboard.
                   </p>
                 </div>
               ) : (
