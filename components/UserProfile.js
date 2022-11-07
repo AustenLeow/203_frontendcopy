@@ -113,7 +113,8 @@ export default function UserProfile() {
         setUser(user1);
         getCarbonSavings(user.id);
         getTotalAmountSaved(user.id);
-        getRank(user.id, user.carbonsaved);
+        
+        getRank(user.id, carbonCount);
         // setUser(user);
         // localStorage.setItem("myUser", JSON.stringify(user));
         // console.log(user);
@@ -125,8 +126,13 @@ export default function UserProfile() {
         console.log(err);
       });
   }
+  function reload() {
+    setTimeout(function () {
+      location.reload();
+    }, 0);
+  }
 
-  function getRank(userid, carbonsaved) {
+  function getRank(userid, carbon_saved) {
     fetch(
       "https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/v1/users/top5",
       {
@@ -144,17 +150,14 @@ export default function UserProfile() {
         for (const user of users) {
           if (userid == user.id) {
             // console.log(users.indexOf(user));
-            setRank(users.indexOf(user));
+            setRank(users.indexOf(user) + 1);
             // console.log(rank);
             break;
-          } else {
-            setRank(0);
-            let fifthpos = users[4].carbonsaved;
-            setDistFromLeaderboard(fifthpos - carbonsaved);
-            // console.log(carbonsaved);
-            // console.log("curr" + carbonsaved);
-            // console.log("fifth" + fifthpos);
-          }
+          } 
+        }
+        if (rank == 0) {
+          let fifthpos = users[4].carbonsaved;
+          setDistFromLeaderboard(fifthpos - carbon_saved);
         }
       })
       .catch((err) => {
@@ -216,7 +219,7 @@ export default function UserProfile() {
             </div>
           ) : (
             <p className="px-16 text-center text-md text-gray-800">
-              {{ rank } == 0 ? (
+              {rank == 0 ? (
                 <div>
                   <p className="px-16 text-center text-md text-gray-800">
                     Thank you for your support! You are {distFromLeaderboard}
@@ -232,7 +235,7 @@ export default function UserProfile() {
                   <p className="">
                     Congratulations, you are number{" "}
                     <span className="text-lime-700 text-md font-bold">
-                      {rank + 1}{" "}
+                      {rank}{" "}
                     </span>{" "}
                     on the leaderboard!
                   </p>
