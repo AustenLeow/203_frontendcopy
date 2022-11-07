@@ -8,6 +8,7 @@ import totalcarbon from ".././public/totalcarbon.png";
 import moneysaved from ".././public/moneysaved.png";
 import Link from "next/link";
 import Typewriter from "typewriter-effect";
+import Top10Modal from "../components/Top10Modal";
 
 export default function Home() {
   const [auth, setAuth] = useState({ loggedIn: false });
@@ -51,13 +52,13 @@ export default function Home() {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
     })
-    .then((response) => response.json())
-    .then((amount) => {
-      setTotalAmountSaved(amount);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+      .then((response) => response.json())
+      .then((amount) => {
+        setTotalAmountSaved(amount);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   async function fetchUserCount() {
@@ -137,16 +138,16 @@ export default function Home() {
               <strong className="text-[#4E622E]">food wastage </strong> is a
               <strong className="text-[#4E622E]">
                 {" "}
-                major contributor to our climate{" "}
+                major contributor to climate change.{" "}
               </strong>
-              . We aim to reduce food wastage by{" "}
+              We aim to reduce food wastage by{" "}
               <strong className="text-[#4E622E]">
-                selling near-expired foods at a significantly lower price{" "}
+                selling near-expired products at a significantly lower price.{" "}
               </strong>
-              . We also aim to help our users navigate their{" "}
+              We also aim to help our users reach their{" "}
               <strong className="text-[#4E622E]">
                 {" "}
-                carbon and monetary savings
+                carbon and monetary saving goals
               </strong>
               .
             </p>
@@ -197,7 +198,7 @@ export default function Home() {
               </div>
               <p className="text-center font-light text-gray-500">
                 {" "}
-                carbon saved{" "}
+                carbon saved by our users{" "}
               </p>
               <img
                 alt="/"
@@ -214,7 +215,7 @@ export default function Home() {
                   {totalAmountSaved}
                 </div>
               </div>
-              <p className="text-center font-light text-gray-500"> saved </p>
+              <p className="text-center font-light text-gray-500"> saved by our users </p>
               <img
                 alt=""
                 className="rounded-[15px]"
@@ -224,6 +225,13 @@ export default function Home() {
               />
             </div>
           </div>
+        </div>
+
+        <div className="h-max p-32 m-auto">
+          <div className="flex flex-col items-center justify-center text-5xl font-bold text-[#4E632E]">
+            Leaderboard of our top monthly users
+          </div>
+          <div className="mt-10"><Top10Modal /></div>
         </div>
 
         <div className="h-max p-32 m-auto grid grid-cols-1 lg:grid-cols-3">
@@ -242,10 +250,10 @@ export default function Home() {
               <h2 className="text-center font-bold text-xl text-[#4E632E] pt-5">EXPLORE</h2>
               <p className="text-center font-light text-gray-500 pb-1">
                 {" "}
-                foods at a cheaper price and know their carbon savings{" "}
+                products at a cheaper price and know their carbon savings{" "}
               </p>
             </div>
-          
+
             <div className="">
               <img
                 alt="/"
@@ -257,7 +265,7 @@ export default function Home() {
               <h2 className="text-center font-bold text-xl text-[#4E632E] pt-5">PICK-UP</h2>
               <p className="text-center font-light text-gray-500 pb-1">
                 {" "}
-                delicious food from our shops  {" "}
+                your orders from the stores  {" "}
               </p>
             </div>
 
@@ -272,7 +280,7 @@ export default function Home() {
               <h2 className="text-center font-bold text-xl text-[#4E632E] pt-5">FEEL GOOD</h2>
               <p className="text-center font-light text-gray-500 pb-1">
                 {" "}
-                about your tasty meal that helps the planet, your carbon savings and money saved!{" "}
+                about your purchases that help our planet, your carbon savings and money saved!{" "}
               </p>
             </div>
           </div>
