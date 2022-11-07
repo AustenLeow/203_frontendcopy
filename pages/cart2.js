@@ -348,7 +348,7 @@ export default function Cart2() {
                         <PlusCircleIcon className="h-5 w-5"></PlusCircleIcon>
                       </button>
                     </td>
-                    <td className="p-5 text-center"> 🌱 {cartitem.carbontotal}g<sup></sup></td>
+                    <td className="p-5 text-center"> 🌱 {cartitem.carbontotal} cm<span id="super">3</span><sup></sup></td>
                     <td className="p-5 text-center">${cartitem.subtotal}</td>
                     <td className="p-6 text-center">
                       <button onClick={() => removeItemHandler(cartitem.item)}>
@@ -367,7 +367,7 @@ export default function Cart2() {
             <div>
               <div className="pb-3 text-xl font-bold">
                 {" "}
-                🌱 Total Carbon Savings: {totalCarbonSavings}g<sup></sup>{" "}
+                🌱 Total Carbon Savings: {totalCarbonSavings} cm<span id="super">3</span><sup></sup>{" "}
               </div>
             </div>
             <div>

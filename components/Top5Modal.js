@@ -2,15 +2,15 @@
 import { useState, useEffect, React } from "react";
 
 export default function UserProfile() {
-    const [top10, setTop10] = useState([]);
+    const [top5, setTop5] = useState([]);
     var array =
 
         useEffect(() => {
-            getTop10();
+            getTop5();
         }, []);
 
-    function getTop10() {
-        fetch("https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/v1/users/top10", {
+    function getTop5() {
+        fetch("https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/v1/users/top5", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -19,7 +19,7 @@ export default function UserProfile() {
         })
             .then((response) => response.json())
             .then((users) => {
-                setTop10(users);
+                setTop5(users);
                 console.log(state);
             })
             .catch((err) => {
@@ -38,11 +38,11 @@ export default function UserProfile() {
                     </tr>
                 </thead>
                 <tbody>
-                    {top10.map((user) => (
+                    {top5.map((user) => (
                         <tr key={user.id} className="border-b-4">
-                            <td className="p-5 text-center">{top10.indexOf(user) + 1}</td>
+                            <td className="p-5 text-center">{top5.indexOf(user) + 1}</td>
                             <td className="p-5 text-center">{user.username}</td>
-                            <td className="p-5 text-center">{user.carbonsaved}</td>
+                            <td className="p-5 text-center">{user.carbonsaved} cm<span id="super">3</span></td>
                         </tr>
                     ))}
                 </tbody>
