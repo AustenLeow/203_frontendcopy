@@ -29,7 +29,7 @@ export default function SignIn() {
 
   async function getItems() {
     // e.preventDefault();
-    fetch("https://greenfoodforyou.com:8080/api/v1/items", {
+    fetch("https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/v1/items", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -48,7 +48,7 @@ export default function SignIn() {
   }
 
   async function handleSubmit() {
-    const res = await fetch("https://greenfoodforyou.com:8080/api/auth/signin", {
+    const res = await fetch("https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/auth/signin", {
       method: "POST",
       body: JSON.stringify(state),
       headers: {
@@ -92,7 +92,7 @@ export default function SignIn() {
   };
 
   return (
-    <Layout>
+    <Layout title="Log In">
       <div className="mx-auto w-4/5 py-16 md:py-32">
         <div className="w-full flex items-center justify-center">
           <div className="w-full h-fit m-auto grid grid-cols-1 lg:grid-cols-2 ">

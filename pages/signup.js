@@ -96,7 +96,7 @@ export default function SignUp() {
   };
 
   async function handleSubmit() {
-    const res = await fetch("https://greenfoodforyou.com:8080/api/auth/signup", {
+    const res = await fetch("https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/auth/signup", {
       method: "POST",
       body: JSON.stringify(state),
       headers: {
@@ -110,7 +110,7 @@ export default function SignUp() {
   }
 
   return (
-    <Layout title="signup">
+    <Layout title="Sign Up">
       <div className="mx-auto w-4/5 py-16 md:py-32">
         <div style={{ position: "absolute", top: 100, marginLeft: 250 }}>
           {isError}
