@@ -236,7 +236,7 @@ export default function UserProfile() {
               You have saved a total of{" "}
               <span className="text-lime-700 text-md font-bold">
                 {" "}
-                {/* ${() => getTotalAmountSaved(user.id)}{" "} */}${moneySaved}{" "}
+                {/* ${() => getTotalAmountSaved(user.id)}{" "} */}${moneySaved.toFixed(2)}{" "}
               </span>{" "}
               dollars and{" "}
               <span className="text-lime-700 text-md font-bold">
