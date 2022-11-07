@@ -110,7 +110,7 @@ export default function SignUp() {
   }
 
   return (
-    <Layout title="signup">
+    <Layout title="Sign Up">
       <div className="mx-auto w-4/5 py-16 md:py-32">
         <div style={{ position: "absolute", top: 100, marginLeft: 250 }}>
           {isError}

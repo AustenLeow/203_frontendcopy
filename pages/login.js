@@ -92,7 +92,7 @@ export default function SignIn() {
   };
 
   return (
-    <Layout>
+    <Layout title="Log In">
       <div className="mx-auto w-4/5 py-16 md:py-32">
         <div className="w-full flex items-center justify-center">
           <div className="w-full h-fit m-auto grid grid-cols-1 lg:grid-cols-2 ">
