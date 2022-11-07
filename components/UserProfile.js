@@ -157,7 +157,9 @@ export default function UserProfile() {
         }
         if (rank == 0) {
           let fifthpos = users[4].carbonsaved;
-          setDistFromLeaderboard(fifthpos - carbon_saved);
+          let dist = fifthpos - carbon_saved;
+          setDistFromLeaderboard(dist);
+          console.log(dist)
         }
       })
       .catch((err) => {
@@ -204,9 +206,12 @@ export default function UserProfile() {
               <p className="px-16 text-center text-md text-gray-800">
                 Start saving on money and your carbon footprint!
               </p>
-              <p className="px-16 text-center text-md text-gray-800">
-                You are {distFromLeaderboard}cm<span id="super">3</span> away
-                from the leaderboard.
+              <p className="px-16 text-center text-md text-gray-800">You are
+                <span className="px-16 text-center text-lime-700 text-md font-bold">
+                  {distFromLeaderboard.toFixed(2)} cm
+                  <span id="super">3</span> 
+                  {" "}away from the leaderboard.
+                </span>
               </p>
               <p className="px-16 text-center text-md">
                 <a
@@ -221,8 +226,9 @@ export default function UserProfile() {
             <p className="px-16 text-center text-md text-gray-800">
               {rank == 0 ? (
                 <div>
-                  <p className="px-16 text-center text-md text-gray-800">
-                    Thank you for your support! You are <span className="text-lime-700 text-md font-bold">
+                  <p className="px-16 text-md text-gray-800">
+                    Thank you for your support! You are {" "}
+                    <span className="text-lime-700 text-md font-bold">
                      {distFromLeaderboard.toFixed(2)} cm
                     <span id="super">3</span>
                     </span> away from the leaderboard.
