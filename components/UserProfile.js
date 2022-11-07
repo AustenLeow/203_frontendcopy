@@ -12,7 +12,7 @@ export default function UserProfile() {
   const [user, setUser] = useState({});
   const [rank, setRank] = useState(0);
   const [ranklist, setRanklist] = useState([]);
-  const [distFromLeaderboard ,setDistFromLeaderboard] = useState(0);
+  const [distFromLeaderboard, setDistFromLeaderboard] = useState(0);
 
   useEffect(() => {
     // if (localStorage.getItem("token")) {
@@ -126,7 +126,6 @@ export default function UserProfile() {
       });
   }
 
-
   function getRank(userid, carbonsaved) {
     fetch(
       "https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/v1/users/top10",
@@ -142,31 +141,27 @@ export default function UserProfile() {
         setRanklist(users);
         console.log("XXX");
         console.log(users);
-        
 
-        for(const user of users) {
-        if(userid == user.id){
-          console.log(users.indexOf(user));
-          setRank(users.indexOf(user));
-          console.log(rank);
-          break;
+        for (const user of users) {
+          if (userid == user.id) {
+            console.log(users.indexOf(user));
+            setRank(users.indexOf(user));
+            console.log(rank);
+            break;
+          } else {
+            setRank(0);
+            let tenthpos = users[9].carbonsaved;
+            setDistFromLeaderboard(tenthpos - carbonsaved);
+            console.log(carbonsaved);
+            console.log("curr" + carbonsaved);
+            console.log("tenth" + tenthpos);
+          }
         }
-        else{
-          setRank(0);
-          let tenthpos = users[9].carbonsaved;
-          setDistFromLeaderboard(tenthpos - carbonsaved);
-          console.log(carbonsaved);
-          console.log("curr" + carbonsaved);
-          console.log("tenth" + tenthpos);
-        }
-        }
-  })
+      })
       .catch((err) => {
         console.log(err);
       });
   }
-
-  
 
   // function fetchUserHandler() {
   //   const user1 = JSON.parse(localStorage.getItem("myUser") || "{}");
@@ -181,7 +176,7 @@ export default function UserProfile() {
         <div className="w-full p-2 py-10">
           <div className="flex flex-col text-center mt-3 mb-4">
             <span className="text-2xl font-medium">
-              Hi{" "}
+              🌿 Hi{" "}
               <strong>
                 <span className="text-lime-700 text-md font-bold">
                   {" "}
@@ -193,13 +188,13 @@ export default function UserProfile() {
             <span className="text-md text-gray-400">{user.email}</span>
           </div>
           <div className=" flex items-center justify-center">
-          <img
-            alt="/"
-            src="/profile.png"
-            height={100}
-            width={200}
-            className="ml-3 p-2"
-          />
+            <img
+              alt="/"
+              src="/profile.png"
+              height={100}
+              width={200}
+              className="ml-3 p-2"
+            />
           </div>
 
           {moneySaved == 0 ? (
@@ -208,7 +203,8 @@ export default function UserProfile() {
                 Start saving on money and your carbon footprint!
               </p>
               <p className="px-16 text-center text-md text-gray-800">
-              You are {distFromLeaderboard}cm<span id="super">3</span> away from the leaderboard.
+                You are {distFromLeaderboard}cm<span id="super">3</span> away
+                from the leaderboard.
               </p>
               <p className="px-16 text-center text-md">
                 <a
@@ -221,22 +217,30 @@ export default function UserProfile() {
             </div>
           ) : (
             <p className="px-16 text-center text-md text-gray-800">
-              {{rank} == 0 ? 
-              (<div><p className="px-16 text-center text-md text-gray-800">
-              Thank you for your support!
-              You are {distFromLeaderboard}cm<span id="super">3</span> away from the leaderboard.
-            </p></div>)
-            :
-            (
-                <div><p className="px-16 text-center text-md text-gray-800">
-               Congratulations, you are number {rank + 1} on the leaderboard!
-              </p></div>
-              )
-            }
+              {{ rank } == 0 ? (
+                <div>
+                  <p className="px-16 text-center text-md text-gray-800">
+                    Thank you for your support! You are {distFromLeaderboard}cm
+                    <span id="super">3</span> away from the leaderboard.
+                  </p>
+                </div>
+              ) : (
+                <div>
+                  <p className="">
+                    Congratulations, you are number{" "}
+                    <span className="text-lime-700 text-md font-bold">
+                      {rank + 1}{" "}
+                    </span>{" "}
+                    on the leaderboard!
+                  </p>
+                  <p className="p-1"></p>
+                </div>
+              )}
               You have saved a total of{" "}
               <span className="text-lime-700 text-md font-bold">
                 {" "}
-                {/* ${() => getTotalAmountSaved(user.id)}{" "} */}${moneySaved.toFixed(2)}{" "}
+                {/* ${() => getTotalAmountSaved(user.id)}{" "} */}$
+                {moneySaved.toFixed(2)}{" "}
               </span>{" "}
               dollars and{" "}
               <span className="text-lime-700 text-md font-bold">
