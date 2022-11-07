@@ -1,5 +1,7 @@
 import { useState, useEffect, React } from "react";
 import { useRouter } from "next/router";
+import { IoConstructOutline } from "react-icons/io5";
+// import { forwardRefWithAs } from "@headlessui/react/dist/utils/render";
 
 export default function UserProfile() {
   const router = useRouter();
@@ -8,6 +10,9 @@ export default function UserProfile() {
   const [carbonCount, setCarbonCount] = useState(0);
   const [moneySaved, setMoneySaved] = useState(0);
   const [user, setUser] = useState({});
+  const [rank, setRank] = useState(0);
+  const [ranklist, setRanklist] = useState([]);
+  const [distFromLeaderboard ,setDistFromLeaderboard] = useState(0);
 
   useEffect(() => {
     // if (localStorage.getItem("token")) {
@@ -108,6 +113,7 @@ export default function UserProfile() {
         setUser(user1);
         getCarbonSavings(user.id);
         getTotalAmountSaved(user.id);
+        getRank(user.id, user.carbonsaved);
         // setUser(user);
         // localStorage.setItem("myUser", JSON.stringify(user));
         // console.log(user);
@@ -119,6 +125,48 @@ export default function UserProfile() {
         console.log(err);
       });
   }
+
+
+  function getRank(userid, carbonsaved) {
+    fetch(
+      "https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/v1/users/top10",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((users) => {
+        setRanklist(users);
+        console.log("XXX");
+        console.log(users);
+        
+
+        for(const user of users) {
+        if(userid == user.id){
+          console.log(users.indexOf(user));
+          setRank(users.indexOf(user));
+          console.log(rank);
+          break;
+        }
+        else{
+          setRank(0);
+          let tenthpos = users[9].carbonsaved;
+          setDistFromLeaderboard(tenthpos - carbonsaved);
+          console.log(carbonsaved);
+          console.log("curr" + carbonsaved);
+          console.log("tenth" + tenthpos);
+        }
+        }
+  })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  
 
   // function fetchUserHandler() {
   //   const user1 = JSON.parse(localStorage.getItem("myUser") || "{}");
@@ -159,6 +207,9 @@ export default function UserProfile() {
               <p className="px-16 text-center text-md text-gray-800">
                 Start saving on money and your carbon footprint!
               </p>
+              <p className="px-16 text-center text-md text-gray-800">
+              You are {distFromLeaderboard}cm<span id="super">3</span> away from the leaderboard.
+              </p>
               <p className="px-16 text-center text-md">
                 <a
                   className="px-16 text-center text-md text-[#687259] hover:underline no-underline"
@@ -170,6 +221,18 @@ export default function UserProfile() {
             </div>
           ) : (
             <p className="px-16 text-center text-md text-gray-800">
+              {{rank} == 0 ? 
+              (<div><p className="px-16 text-center text-md text-gray-800">
+              Thank you for your support!
+              You are {distFromLeaderboard}cm<span id="super">3</span> away from the leaderboard.
+            </p></div>)
+            :
+            (
+                <div><p className="px-16 text-center text-md text-gray-800">
+               Congratulations, you are number {rank + 1} on the leaderboard!
+              </p></div>
+              )
+            }
               You have saved a total of{" "}
               <span className="text-lime-700 text-md font-bold">
                 {" "}
