@@ -204,49 +204,44 @@ export default function UserProfile() {
           {moneySaved == 0 ? (
             <div>
               <p className="px-16 text-center text-md text-gray-800">
-                Start saving on money and your carbon footprint!
+                🌱 Start saving on money and your carbon footprint!
               </p>
-              <p className="px-16 text-center text-md text-gray-800">You are
-                <span className="px-16 text-center text-lime-700 text-md font-bold">
+              <p className="px-16 text-center text-md text-gray-800">You are {" "}
+                <span className=" text-center text-lime-700 text-md font-bold">
                   {distFromLeaderboard.toFixed(2)} cm
                   <span id="super">3</span> 
                   {" "}away from the leaderboard.
                 </span>
-              </p>
-              <p className="px-16 text-center text-md">
-                <a
-                  className="px-16 text-center text-md text-[#687259] hover:underline no-underline"
-                  href="/marketplace"
-                >
-                  Start shopping 🛒
-                </a>
               </p>
             </div>
           ) : (
             <p className="px-16 text-center text-md text-gray-800">
               {rank == 0 ? (
                 <div>
-                  <p className="px-16 text-md text-gray-800">
-                    Thank you for your support! You are {" "}
+                  <p className="p-2 text-md text-gray-800">
+                  🌱 Thank you for your support! 
+                    
+                  </p>
+                  <p> 💪 You are {" "}
                     <span className="text-lime-700 text-md font-bold">
                      {distFromLeaderboard.toFixed(2)} cm
                     <span id="super">3</span>
-                    </span> away from the leaderboard.
-                  </p>
+                    </span> away from the leaderboard.  </p>
                 </div>
               ) : (
                 <div>
-                  <p className="">
-                    Congratulations, you are number{" "}
+                  <p className="p-2">
+                  🌱 Congratulations, you are number{" "}
                     <span className="text-lime-700 text-md font-bold">
                       {rank}{" "}
                     </span>{" "}
-                    on the leaderboard!
+                    on the leaderboard! 
                   </p>
                   <p className="p-1"></p>
                 </div>
               )}
-              You have saved a total of{" "}
+              <p className="p-2">
+              🤑 You have saved a total of{" "}
               <span className="text-lime-700 text-md font-bold">
                 {" "}
                 {/* ${() => getTotalAmountSaved(user.id)}{" "} */}$
@@ -259,6 +254,7 @@ export default function UserProfile() {
               {" "}
               cm<span id="super">3</span>
               </span> of carbon!
+              </p>
             </p>
           )}
 
