@@ -8,7 +8,7 @@ export default function MyModal({ visible, onClose }) {
 
   function addOrder() {
 
-    const res = fetch("https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/v1/order/donate", {
+    const res = fetch("http://localhost:8080/api/v1/order/donate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

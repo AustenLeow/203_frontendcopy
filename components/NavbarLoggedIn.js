@@ -113,7 +113,7 @@ export default function Navbar() {
   }
 
   async function getCart() {
-    fetch("https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/v1/cart", {
+    fetch("http://localhost:8080/api/v1/cart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -132,7 +132,7 @@ export default function Navbar() {
   }
 
   function getQuantity() {
-    fetch("https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/v1/cart", {
+    fetch("http://localhost:8080/api/v1/cart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

@@ -21,7 +21,7 @@ export default function Marketplace() {
   // }
 
   async function getCart() {
-    fetch("https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/v1/cart", {
+    fetch("http://localhost:8080/api/v1/cart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -39,7 +39,7 @@ export default function Marketplace() {
       });
   }
   async function getCart2() {
-    fetch("https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/v1/cart", {
+    fetch("http://localhost:8080/api/v1/cart", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -65,7 +65,7 @@ export default function Marketplace() {
   // }
 
   function getItems() {
-    fetch("https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/v1/items", {
+    fetch("http://localhost:8080/api/v1/items", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -90,7 +90,7 @@ export default function Marketplace() {
   // }
 
   async function addToCart(item) {
-    fetch(`https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/v1/cart/add/${item.id}`, {
+    fetch(`http://localhost:8080/api/v1/cart/add/${item.id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -22,7 +22,7 @@ export default function ProductItem({ product }) {
   };
 
   async function addToCart() {
-    fetch(`https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/v1/cart/add/${product.id}`, {
+    fetch(`http://localhost:8080/api/v1/cart/add/${product.id}`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",

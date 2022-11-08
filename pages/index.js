@@ -28,7 +28,7 @@ export default function Home() {
   }, []);
 
   function fetchCarbonCount() {
-    fetch("https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/v1/ordertotalcarbon", {
+    fetch("http://localhost:8080/api/v1/ordertotalcarbon", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -45,7 +45,7 @@ export default function Home() {
   }
 
   function getTotalAmountSaved() {
-    fetch("https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/v1/ordertotalsaved", {
+    fetch("http://localhost:8080/api/v1/ordertotalsaved", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -62,7 +62,7 @@ export default function Home() {
   }
 
   async function fetchUserCount() {
-    const res = await fetch("https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/v1/totalusers", {
+    const res = await fetch("http://localhost:8080/api/v1/totalusers", {
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + localStorage.getItem("token"),

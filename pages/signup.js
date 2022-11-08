@@ -96,7 +96,7 @@ export default function SignUp() {
   };
 
   async function handleSubmit() {
-    const res = await fetch("https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/auth/signup", {
+    const res = await fetch("http://localhost:8080/api/auth/signup", {
       method: "POST",
       body: JSON.stringify(state),
       headers: {

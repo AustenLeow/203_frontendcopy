@@ -100,7 +100,7 @@ export default function Navbar() {
   // }, [cart.cartItems]);
 
   // async function getCart() {
-  //   fetch("https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/v1/cart", {
+  //   fetch("http://localhost:8080/api/v1/cart", {
   //     method: "GET",
   //     headers: {
   //       "Content-Type": "application/json",

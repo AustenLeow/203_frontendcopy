@@ -10,7 +10,7 @@ export default function UserProfile() {
         }, []);
 
     function getTop5() {
-        fetch("https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/v1/users/top5", {
+        fetch("http://localhost:8080/api/v1/users/top5", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

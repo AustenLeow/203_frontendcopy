@@ -9,7 +9,7 @@ export default function User() {
   }, []);
 
   async function fetchContent() {
-    const res = await fetch("https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/auth/currentuser", {
+    const res = await fetch("http://localhost:8080/api/auth/currentuser", {
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + localStorage.getItem("token"),

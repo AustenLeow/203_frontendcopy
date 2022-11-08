@@ -29,7 +29,7 @@ export default function UserProfile() {
 
   function getOrders() {
     fetch(
-      "https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/v1/order",
+      "http://localhost:8080/api/v1/order",
       {
         method: "GET",
         headers: {
@@ -51,7 +51,7 @@ export default function UserProfile() {
 
   function getTotalAmountSaved(userid) {
     fetch(
-      `https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/v1/users/${userid}/moneysaved`,
+      `http://localhost:8080/api/v1/users/${userid}/moneysaved`,
       {
         method: "GET",
         headers: {
@@ -72,7 +72,7 @@ export default function UserProfile() {
 
   function getCarbonSavings(userid) {
     fetch(
-      `https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/v1/users/${userid}/carbonsaved`,
+      `http://localhost:8080/api/v1/users/${userid}/carbonsaved`,
       {
         crossorigin: true,
         method: "GET",
@@ -95,7 +95,7 @@ export default function UserProfile() {
 
   async function getUser() {
     const response = await fetch(
-      "https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/auth/currentuser",
+      "http://localhost:8080/api/auth/currentuser",
       {
         method: "GET",
         headers: {
@@ -134,7 +134,7 @@ export default function UserProfile() {
 
   function getRank(userid, carbon_saved) {
     fetch(
-      "https://9gbljis7zg.execute-api.ap-southeast-1.amazonaws.com/green/api/v1/users/top5",
+      "http://localhost:8080/api/v1/users/top5",
       {
         method: "GET",
         headers: {
