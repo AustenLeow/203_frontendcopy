@@ -3,7 +3,7 @@ import { useState, useEffect, React } from "react";
 
 export default function UserProfile() {
     const [top5, setTop5] = useState([]);
-    var array =
+    // var array =
 
         useEffect(() => {
             getTop5();
@@ -20,7 +20,7 @@ export default function UserProfile() {
             .then((response) => response.json())
             .then((users) => {
                 setTop5(users);
-                console.log(state);
+                console.log(users);
             })
             .catch((err) => {
                 console.log(err);

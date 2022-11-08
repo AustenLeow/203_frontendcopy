@@ -15,17 +15,122 @@ export default function Home() {
   const [userCount, setUserCount] = useState(0);
   const [carbonCount, setCarbonCount] = useState(0);
   const [totalAmountSaved, setTotalAmountSaved] = useState(0);
+  const [carbonCount2, setCarbonCount2] = useState(0);
+  const [moneySaved, setMoneySaved] = useState(0);
+  const [user, setUser] = useState({});
+  const [top5, setTop5] = useState([]);
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
       setAuth(true);
+      getUser();
+      getTop5();
     } else {
       setAuth(false);
     }
     fetchUserCount();
     fetchCarbonCount();
     getTotalAmountSaved();
+    getTop5();
   }, []);
+
+  function getTotalAmountSaved(userid) {
+    fetch(
+      `http://localhost:8080/api/v1/users/${userid}/moneysaved`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          // 'Access-Control-Allow-Origin': '*',
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((amount) => {
+        setMoneySaved(amount);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function getTop5() {
+    fetch("http://localhost:8080/api/v1/users/top5", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+    })
+        .then((response) => response.json())
+        .then((users) => {
+            setTop5(users);
+            console.log(users);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+  }
+
+  function getCarbonSavings(userid) {
+    fetch(
+      `http://localhost:8080/api/v1/users/${userid}/carbonsaved`,
+      {
+        crossorigin: true,
+        method: "GET",
+        headers: {
+          // 'Access-Control-Allow-Origin': '*',
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((carbon) => {
+        setCarbonCount2(carbon);
+        getTop5();
+        console.log(user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  async function getUser() {
+    const response = await fetch(
+      "http://localhost:8080/api/auth/currentuser",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((user) => {
+        console.log(user);
+        localStorage.setItem("myUser", JSON.stringify(user));
+        const user1 = JSON.parse(localStorage.getItem("myUser") || "{}");
+        console.log(user1);
+        setUser(user1);
+        getCarbonSavings(user.id);
+        getTotalAmountSaved(user.id);
+        getTop5();
+        
+        // getRank(user.id, carbonCount);
+        // setUser(user);
+        // localStorage.setItem("myUser", JSON.stringify(user));
+        // console.log(user);
+        // setUser({id:user.id, username:user.username, email:user.email, password:user.password, carbonsaved:user.carbonsaved, moneysaved:user.moneysaved, answer:user.answer});
+        // console.log(user);
+        // console.log(user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   function fetchCarbonCount() {
     fetch("http://localhost:8080/api/v1/ordertotalcarbon", {
@@ -231,7 +336,28 @@ export default function Home() {
           <div className="flex flex-col items-center justify-center text-3xl font-bold text-[#4E632E]">
           🏆  Top 5 users with the highest carbon savings 🏆
           </div>
-          <div className="mt-10 px-40"><Top5Modal /></div>
+          <div className="mt-10 px-40">
+          <div>
+            <table className="table-auto min-w-full">
+                <thead className="uppercase">
+                    <tr>
+                        <th className="py-3 px-6">🎖 Rank</th>
+                        <th className="py-3 px-6">👤 User</th>
+                        <th className="py-3 px-5">🌱 Carbon savings</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {top5.map((user) => (
+                        <tr key={user.id} className="border-b-4">
+                            <td className="p-5 text-center">{top5.indexOf(user) + 1}</td>
+                            <td className="p-5 text-center">{user.username}</td>
+                            <td className="p-5 text-center">{user.carbonsaved} cm<span id="super">3</span></td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+          </div>
         </div>
 
         <div className="h-max p-32 m-auto grid grid-cols-1 lg:grid-cols-3">

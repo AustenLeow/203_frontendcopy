@@ -86,6 +86,7 @@ export default function UserProfile() {
       .then((response) => response.json())
       .then((carbon) => {
         setCarbonCount(carbon);
+        getRank(userid,carbon);
         console.log(user);
       })
       .catch((err) => {
@@ -126,6 +127,7 @@ export default function UserProfile() {
         console.log(err);
       });
   }
+
   function reload() {
     setTimeout(function () {
       location.reload();
