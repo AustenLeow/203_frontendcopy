@@ -6,7 +6,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ### Cloning the repository
 ```
-$ git clone 
+$ git clone https://github.com/CS203-G1-T2/frontend.git
 ```
 
 
